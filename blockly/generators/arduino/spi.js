@@ -32,13 +32,13 @@ Blockly.Arduino['spi_setup'] = function(block) {
   var spiMode = block.getFieldValue('SPI_MODE');
 
   Blockly.Arduino.addInclude('spi', '#include <SPI.h>');
-  Blockly.Arduino.addSetup('spi_order',
+  Blockly.Arduino.addMain('spi_order',
       spiId + '.setBitOrder(' + spiShift + ');', true);
-  Blockly.Arduino.addSetup('spi_mode',
+  Blockly.Arduino.addMain('spi_mode',
       spiId + '.setDataMode(' + spiMode + ');', true);
-  Blockly.Arduino.addSetup('spi_div',
+  Blockly.Arduino.addMain('spi_div',
       spiId + '.setClockDivider(' + spiClockDivide + ');', true);
-  Blockly.Arduino.addSetup('spi_begin',
+  Blockly.Arduino.addMain('spi_begin',
       spiId + '.begin();', true);
 
   return '';
@@ -63,7 +63,7 @@ Blockly.Arduino['spi_transfer'] = function(block) {
       block, 'SPI_DATA', Blockly.Arduino.ORDER_ATOMIC) || '0';
 
   Blockly.Arduino.addInclude('spi', '#include <SPI.h>');
-  Blockly.Arduino.addSetup('spi_begin', spiId + '.begin();', false);
+  Blockly.Arduino.addMain('spi_begin', spiId + '.begin();', false);
 
   // Reserve SPI pins MOSI, MISO, and SCK
   var spiPins = Blockly.Arduino.Boards.selected.spiPins[spiId];
@@ -77,7 +77,7 @@ Blockly.Arduino['spi_transfer'] = function(block) {
     Blockly.Arduino.reservePin(
         block, spiSs, Blockly.Arduino.PinTypes.OUTPUT, 'SPI Slave pin');
     var setupCode = 'pinMode(' + spiSs + ', OUTPUT);';
-    Blockly.Arduino.addSetup('io_' + spiSs, setupCode, false);
+    Blockly.Arduino.addMain('io_' + spiSs, setupCode, false);
   } // else means the SS pin is always set for the device
 
   // Add the code, but only use a SS pin if one is selected

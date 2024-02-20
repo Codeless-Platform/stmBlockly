@@ -234,15 +234,15 @@ Blockly.Arduino.addVariable = function(varName, code, overwrite) {
  * identifier to not repeat the same kind of initialisation code from several
  * blocks. If overwrite option is set to true it will overwrite whatever
  * value the identifier held before.
- * @param {!string} setupTag Identifier for the type of set up code.
+ * @param {!string} mainTag Identifier for the type of set up code.
  * @param {!string} code Code to be included in the setup() function.
  * @param {boolean=} overwrite Flag to ignore previously set value.
  * @return {!boolean} Indicates if the new setup code overwrote a previous one.
  */
-Blockly.Arduino.addMain = function(setupTag, code, overwrite) {
+Blockly.Arduino.addMain = function(mainTag, code, overwrite) {
   var overwritten = false;
-  if (overwrite || (Blockly.Arduino.setups_[setupTag] === undefined)) {
-    Blockly.Arduino.setups_[setupTag] = code;
+  if (overwrite || (Blockly.Arduino.setups_[mainTag] === undefined)) {
+    Blockly.Arduino.setups_[mainTag] = code;
     overwritten = true;
   }
   return overwritten;
