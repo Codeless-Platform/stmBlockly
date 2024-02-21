@@ -1,0 +1,7 @@
+RCC.c:37:8:RCC_getSYSCLK_Freq	16	static
+RCC.c:60:8:RCC_getPCKL1_Freq	8	static
+RCC.c:64:8:RCC_getPCKL2_Freq	8	static
+RCC.c:68:8:RCC_getHCKL_Freq	8	static
+RCC.c:73:6:RCC_init	16	static
+RCC.c:128:6:RCC_CLK_EN	16	static
+RCC.c:142:6:RCC_CLK_RST	16	static

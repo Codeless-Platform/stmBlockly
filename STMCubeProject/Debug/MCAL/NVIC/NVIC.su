@@ -1,0 +1,6 @@
+NVIC.c:23:6:NVIC_Enable	16	static
+NVIC.c:38:6:NVIC_Disable	16	static
+NVIC.c:53:6:NVIC_setPending	16	static
+NVIC.c:68:6:NVIC_clearPending	16	static
+NVIC.c:83:7:NVIC_getActiveBit	24	static
+NVIC.c:99:6:NVIC_setPriority	16	static

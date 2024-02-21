@@ -1,0 +1,14 @@
+I2C.c:29:6:I2C_init	40	static
+I2C.c:121:6:I2C_Deinit	16	static
+I2C.c:133:6:I2C_GPIO_SetPins	24	static
+I2C.c:160:6:I2C_Master_TX	32	static
+I2C.c:184:6:I2C_Master_RX	32	static
+I2C.c:224:6:I2C_GenerateStart	16	static
+I2C.c:248:6:I2C_GenerateStop	16	static
+I2C.c:264:6:I2C_ACKConfig	16	static
+I2C.c:274:12:I2C_GetFlagStatus	24	static
+I2C.c:304:6:I2C_SendSlaveAddress	24	static
+I2C.c:325:6:I2C_Slave_TX	16	static
+I2C.c:328:7:I2C_Slave_RX	16	static
+I2C.c:332:6:I2C1_EV_IRQHandler	32	static
+I2C.c:415:6:Slave_States	24	static

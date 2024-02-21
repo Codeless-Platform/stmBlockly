@@ -1,0 +1,30 @@
+MCAL/USART/USART.o: ../MCAL/USART/USART.c ../MCAL/USART/USART.h \
+ ../MCAL/USART/../GPIO/GPIO.h ../MCAL/USART/../GPIO/../lib/STM32_F103x6.h \
+ ../MCAL/USART/../GPIO/../lib/Platform_types.h \
+ ../MCAL/USART/../GPIO/../lib/BIT_MATH.h ../MCAL/USART/../RCC/RCC.h \
+ ../MCAL/USART/../RCC/../lib/STM32_F103x6.h ../MCAL/USART/../EXTI/EXTI.h \
+ ../MCAL/USART/../EXTI/../GPIO/GPIO.h \
+ ../MCAL/USART/../EXTI/../NVIC/NVIC.h \
+ ../MCAL/USART/../EXTI/../NVIC/../lib/STM32_F103x6.h
+
+../MCAL/USART/USART.h:
+
+../MCAL/USART/../GPIO/GPIO.h:
+
+../MCAL/USART/../GPIO/../lib/STM32_F103x6.h:
+
+../MCAL/USART/../GPIO/../lib/Platform_types.h:
+
+../MCAL/USART/../GPIO/../lib/BIT_MATH.h:
+
+../MCAL/USART/../RCC/RCC.h:
+
+../MCAL/USART/../RCC/../lib/STM32_F103x6.h:
+
+../MCAL/USART/../EXTI/EXTI.h:
+
+../MCAL/USART/../EXTI/../GPIO/GPIO.h:
+
+../MCAL/USART/../EXTI/../NVIC/NVIC.h:
+
+../MCAL/USART/../EXTI/../NVIC/../lib/STM32_F103x6.h:
