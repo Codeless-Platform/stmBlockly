@@ -18,7 +18,7 @@ goog.require('Blockly.Arduino');
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
-Blockly.Arduino['io_digitalwrite'] = function(block) {
+Blockly.Arduino['io_writePin'] = function(block) {
   var pin = block.getFieldValue('PIN');
   var gpio = pin.charAt(1); 
   var pinnumber = pin.slice(2); 
@@ -27,12 +27,12 @@ Blockly.Arduino['io_digitalwrite'] = function(block) {
       block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
 
   Blockly.Arduino.reservePin(
-      block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Digital Write');
+      block, pin, Blockly.Arduino.PinTypes.OUTPUT, 'Write PIN');
 
   var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
   Blockly.Arduino.addInclude('io' , pinIncludeCode);  
 
-  var pinCode ='GPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.PIN = PIN_' + pinnumber+ ';\nGPIO_pinConfig.Output_Speed =SPEED_10M;\n';
+  var pinCode ='GPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.Pin_Number = PIN_' + pinnumber+ ';\nGPIO_pinConfig.Output_Speed =SPEED_10M;\n';
   
   var pinMainCode = pinCode + 'GPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
@@ -48,7 +48,7 @@ Blockly.Arduino['io_digitalwrite'] = function(block) {
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {array} Completed code with order of operation.
  */
-Blockly.Arduino['io_digitalread'] = function(block) {
+Blockly.Arduino['io_readPin'] = function(block) {
   var pin = block.getFieldValue('PIN');
   var gpio = pin.charAt(1); 
   var pinnumber = pin.slice(2); 
@@ -59,12 +59,12 @@ Blockly.Arduino['io_digitalread'] = function(block) {
   var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
   Blockly.Arduino.addInclude('io' , pinIncludeCode);  
 
-  var pinCode ='GPIO_pinConfig.MODE = MODE_INPUT_FLO;\nGPIO_pinConfig.PIN = PIN_' + pinnumber+ ';' ;    
+  var pinCode ='GPIO_pinConfig.MODE = MODE_INPUT_FLO;\nGPIO_pinConfig.Pin_Number = PIN_' + pinnumber+ ';' ;    
 
   var pinMainCode = pinCode+ '\nGPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
 
-  var code = 'GPIO_ReadPin(GPIO'+gpio + ' ,PIN_'+ pinnumber + ')\n';
+  var code = 'GPIO_ReadPin(GPIO'+gpio + ' ,PIN_'+ pinnumber + ')'; 
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -87,7 +87,7 @@ Blockly.Arduino['io_builtin_led'] = function(block) {
  var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
   Blockly.Arduino.addInclude('io' , pinIncludeCode);  
 
-  var pinCode ='GPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.PIN = PIN_' + pinnumber+ ';\nGPIO_pinConfig.Output_Speed =SPEED_10M;' ;    
+  var pinCode ='GPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.Pin_Number = PIN_' + pinnumber+ ';\nGPIO_pinConfig.Output_Speed =SPEED_10M;' ;    
   
   var pinMainCode = pinCode+ '\nGPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
@@ -96,11 +96,8 @@ Blockly.Arduino['io_builtin_led'] = function(block) {
   return code;
 };
 
-/**
- * Function for toggling state of an digital pin (X).
- * @param {!Blockly.Block} block Block to generate the code from.
- * @return {string} Completed code.
- */
+// New Blocks 
+
 Blockly.Arduino['io_togglePin'] = function(block) {
   var pin = block.getFieldValue('PIN');
   var gpio = pin.charAt(1); 
@@ -112,7 +109,7 @@ Blockly.Arduino['io_togglePin'] = function(block) {
  var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
   Blockly.Arduino.addInclude('io' , pinIncludeCode);  
 
-  var pinCode ='\nGPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.PIN = PIN_' + pinnumber+ '; \nGPIO_pinConfig.Output_Speed =SPEED_10M;' ;      
+  var pinCode ='\nGPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.Pin_Number = PIN_' + pinnumber+ '; \nGPIO_pinConfig.Output_Speed =SPEED_10M;' ;      
   var pinMainCode = pinCode+'\nGPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
 
@@ -121,6 +118,36 @@ Blockly.Arduino['io_togglePin'] = function(block) {
 };
 
 
+Blockly.Arduino['io_writePort'] = function(block) {
+  var port = block.getFieldValue('PORT');
+
+  var stateOutput = Blockly.Arduino.valueToCode(
+    block, 'STATE', Blockly.Arduino.ORDER_ATOMIC) || 'LOW';
+
+ var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
+  Blockly.Arduino.addInclude('io' , pinIncludeCode);  
+
+  var pinCode ='\nGPIO_pinConfig.MODE = MODE_OUTPUT_PP;\nGPIO_pinConfig.Output_Speed =SPEED_10M;' ;      
+  var pinMainCode = pinCode+'\nGPIO_initPort('+ port +  ', &GPIO_pinConfig);';
+  Blockly.Arduino.addMain('io_' , pinMainCode, false);
+
+  var code = 'GPIO_WritePort(' + port + ',PORT_' +stateOutput +');\n';
+  return code;
+};
+
+Blockly.Arduino['io_readPort'] = function(block) {
+  var port = block.getFieldValue('PORT');
+
+ var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
+  Blockly.Arduino.addInclude('io' , pinIncludeCode);  
+
+  var pinCode ='\nGPIO_pinConfig.MODE = MODE_INPUT_FLO;\n' ;      
+  var pinMainCode = pinCode+'\nGPIO_initPort('+ port +  ', &GPIO_pinConfig);';
+  Blockly.Arduino.addMain('io_' , pinMainCode, false);
+
+  var code = 'GPIO_ReadPort(' + port  +')' ;  
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
 
 /**
  * Value for defining a digital pin state.

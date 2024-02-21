@@ -99,7 +99,7 @@ Ardublockly.LOCALISED_TEXT = {
   catVariables: "Variables",
   catFunctions: "Functions",
   catInputOutput: "Input/Output",
-  catTime: "Time",
+  catTime: "Time/Clock",
   catAudio: "Audio",
   catMotors: "Motors",
   catComms: "Comms",

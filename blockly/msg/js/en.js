@@ -402,10 +402,10 @@ Blockly.Msg.ARD_BUILTIN_LED = "set built-in LED";
 Blockly.Msg.ARD_BUILTIN_LED_TIP = "Light on or off for the built-in LED of the Arduino";
 Blockly.Msg.ARD_COMPONENT_WARN1 = "A %1 configuration block with the same %2 name must be added to use this block!";
 Blockly.Msg.ARD_DEFINE = "Define";
-Blockly.Msg.ARD_DIGITALREAD = "read digital pin#";
+Blockly.Msg.ARD_DIGITALREAD = "read pin#";
 Blockly.Msg.ARD_DIGITALREAD_TIP = "Read digital value on a pin: HIGH or LOW";
-Blockly.Msg.ARD_DIGITALWRITE = "set digitial pin#";
-Blockly.Msg.ARD_TOGGLEPIN = "toggle digitial pin#";
+Blockly.Msg.ARD_DIGITALWRITE = "set pin#";
+Blockly.Msg.ARD_TOGGLEPIN = "toggle pin#";
 Blockly.Msg.ARD_DIGITALWRITE_TIP = "Write digital value HIGH or LOW to a specific Pin";
 Blockly.Msg.ARD_TOGGLE_TIP = "Toggle current value HIGH or LOW to a specific Pin";
 Blockly.Msg.ARD_FUN_RUN_LOOP = "Arduino loop forever:";
@@ -512,3 +512,20 @@ Blockly.Msg.NEW_INSTANCE = "New instance...";
 Blockly.Msg.NEW_INSTANCE_TITLE = "New instance name:";
 Blockly.Msg.RENAME_INSTANCE = "Rename instance...";
 Blockly.Msg.RENAME_INSTANCE_TITLE = "Rename all '%1' instances to:";
+//New Msgs 
+Blockly.Msg.CLK_EN = "Enable ";
+Blockly.Msg.CLK_FOR = " Clock";
+Blockly.Msg.CLK_EN_TIP = "Enables Clock for selected periphral";
+
+Blockly.Msg.CLK_DIS = "Disable ";
+Blockly.Msg.CLK_DIS_TIP = "Disables Clock for selected periphral";
+
+Blockly.Msg.WRITE_PORT_TIP = "Sets the whole gpio port to HIGH or LOW"; 
+Blockly.Msg.WRITE_PORT= "Write ";
+Blockly.Msg.PORT = " port to"; 
+
+Blockly.Msg.READ = "Read "; 
+Blockly.Msg.READ_PORT = "port "; 
+Blockly.Msg.READ_PORT_TIP = "gets the whole gpio value"; 
+
+

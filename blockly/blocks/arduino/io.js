@@ -20,7 +20,7 @@ goog.require('Blockly.Types');
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.io.HUE = 250;
 
-Blockly.Blocks['io_digitalwrite'] = {
+Blockly.Blocks['io_writePin'] = {
   /**
    * Block for creating a 'set pin' to a state.
    * @this Blockly.Block
@@ -49,7 +49,7 @@ Blockly.Blocks['io_digitalwrite'] = {
   }
 };
 
-Blockly.Blocks['io_digitalread'] = {
+Blockly.Blocks['io_readPin'] = {
   /**
    * Block for creating a 'read pin'.
    * @this Blockly.Block
@@ -130,7 +130,7 @@ Blockly.Blocks['io_highlow'] = {
     return Blockly.Types.BOOLEAN;
   }
 };
-
+// New Blocks
 Blockly.Blocks['io_togglePin'] = {
     /**
      * Block for creating a 'set pin' to a state.
@@ -157,6 +157,46 @@ Blockly.Blocks['io_togglePin'] = {
     }
   };
 
-Blockly.Blocks['togglePin'].getBlockType = function() {
-  return Blockly.Types.BOOLEAN;
+// Blockly.Blocks['togglePin'].getBlockType = function() {
+//   return Blockly.Types.BOOLEAN;
+// };
+
+Blockly.Blocks['io_writePort'] = {
+
+  init: function() {
+    this.setColour(Blockly.Blocks.io.HUE);
+    this.appendValueInput('STATE')
+        .appendField(Blockly.Msg.WRITE_PORT)
+        .appendField(new Blockly.FieldDropdown(
+            Blockly.Arduino.Boards.selected.ports), 'PORT')
+        .appendField(Blockly.Msg.PORT)    
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.WRITE_PORT_TIP);
+  },
+
+};
+
+Blockly.Blocks['io_readPort'] = {
+  /**
+   * Block for creating a 'read pin'.
+   * @this Blockly.Block
+   */
+  init: function() {
+   // this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+    this.setColour(Blockly.Blocks.io.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.READ)
+        .appendField(new Blockly.FieldDropdown(
+            Blockly.Arduino.Boards.selected.ports), 'PORT')
+        .appendField(Blockly.Msg.READ_PORT)    
+    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setTooltip(Blockly.Msg.READ_PORT_TIP);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function() {
+    return Blockly.Types.BOOLEAN;
+  },
+
 };

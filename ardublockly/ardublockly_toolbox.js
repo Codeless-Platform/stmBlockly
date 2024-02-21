@@ -123,21 +123,39 @@ Ardublockly.TOOLBOX_XML =
 '  <category id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
 '  <sep></sep>' +
 '  <category id="catInputOutput" name="Input/Output">' +
-'    <block type="io_digitalwrite">' +
+'    <block type="io_writePin">' +
 '      <value name="STATE">' +
 '        <block type="io_highlow"></block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="io_digitalread"></block>' +
+'    <block type="io_readPin"></block>' +
 '    <block type="io_builtin_led">' +
 '      <value name="STATE">' +
 '        <block type="io_highlow"></block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="io_highlow"></block>' +
 '    <block type="io_togglePin"></block>' +
+'    <block type="io_writePort">' +
+'      <value name="STATE">' +
+'        <block type="io_highlow"></block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="io_readPort"></block>'+
+'    <block type="io_highlow"></block>' +
 '  </category>' +
 '  <sep></sep>' +
+'  <category id="catTime" name="Time/Clock">' +
+'    <block type="time_delay">' +
+'      <value name="DELAY_TIME_MILI">' +
+'        <block type="math_number">' +
+'          <field name="NUM">1000</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="time_clockEN"></block>' +
+'    <block type="time_clockDisable"></block>' +
+'    <block type="infinite_loop"></block>' +
+'  </category>' +
 '  <sep></sep>' +
 '  <category id="catComms" name="Comms">' +
 '    <block type="serial_setup"></block>' +

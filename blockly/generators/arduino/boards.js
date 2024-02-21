@@ -99,6 +99,8 @@ Blockly.Arduino.Boards.duplicateBoardProfile =
     compilerFlag: compilerFlag || originalBoard.compilerFlag,
     analogPins: originalBoard.analogPins,
     digitalPins: originalBoard.digitalPins,
+    ports: originalBoard.ports,   // EDITED HERE
+    periphrals: originalBoard.periphrals,
     pwmPins: originalBoard.pwmPins,
     serial: originalBoard.serial,
     serialPins: originalBoard.serialPins,
@@ -114,16 +116,18 @@ Blockly.Arduino.Boards.duplicateBoardProfile =
   }
 };
 
-/** Object to contain all Arduino board profiles. */
+/** Object to contain all  board profiles. */
 Blockly.Arduino.Boards.profiles = new Object();
 
-/** Arduino BluePill board profile (stm32) */
+/**  BluePill board profile (stm32) */
 Blockly.Arduino.Boards.profiles.stm32 = {
   name: 'STM32F103C6',
   description: 'stm32 standard compatible board',
   compilerFlag: 'stm32duino:STM32F1:genericSTM32F103C',
   analogPins: Blockly.Arduino.Boards.generateAnalogIostm32(),
   digitalPins: Blockly.Arduino.Boards.generateDigitalIostm32(),
+  ports: [['GPIOA', 'GPIOA'], ['GPIOB', 'GPIOB'], ['GPIOC', 'GPIOC']], // edited here
+  peripherals: [['GPIOA','GPIOA'], ['GPIOB','GPIOB'], ['GPIOC', 'GPIOC'], ['USART1', 'USART1'], ['USART2', 'USART2'], ['USART3', 'USART3'], ['SPI1', 'SPI1'], ['SPI2', 'SPI2'], ['I2C1', 'I2C1'], ['I2C2', 'I2C2'], ['I2C3', 'I2C3']],
   pwmPins: Blockly.Arduino.Boards.generateDigitalIo(0, 32), 
   serial: [['serial', 'Serial']],
   serialPins: { Serial: [['RX', 'PA10'], ['TX', 'PA9']] },

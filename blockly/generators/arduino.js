@@ -64,9 +64,6 @@ Blockly.Arduino.ORDER_NONE = 99;          // (...)
 Blockly.Arduino.PinTypes = {
   INPUT: 'INPUT',
   OUTPUT: 'OUTPUT',
-  PWM: 'PWM',
-  SERVO: 'SERVO',
-  STEPPER: 'STEPPER',
   SERIAL: 'SERIAL',
   I2C: 'I2C/TWI',
   SPI: 'SPI'
@@ -183,8 +180,8 @@ Blockly.Arduino.finish = function(code) {
 
   var allDefs = includes.join('\n') + variables.join('\n') +
   definitions.join('\n') + functions.join('\n\n');
-  var main = 'void main() {' + setups.join('\n  ') +  '\n\nwhile(1) {\n' +code.replace(/\n/g, '\n  ')+'\n}\n\n' +'\n}\n\n'; //تم التعديل هنا
-  return allDefs + main ;
+  var main = 'int main() {' + setups.join('\n  ') +  '\n\nwhile(1) {\n' +code.replace(/\n/g, '\n  ')+'\n}\n\n' +'\n return 0;}\n\n'; 
+  return "#include \"main.h\"\n"+allDefs + main ;
 };
 
 /**
