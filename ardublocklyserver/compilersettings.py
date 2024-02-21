@@ -189,7 +189,7 @@ class ServerCompilerSettings(object):
     sketch_name = property(get_sketch_name, set_sketch_name)
 
     def set_sketch_name_default(self):
-        self.__sketch_name = 'ArdublocklySketch'
+        self.__sketch_name = 'main'
 
     def set_sketch_name_from_file(self, new_sketch_name):
         """Set the Sketch name from a file read.

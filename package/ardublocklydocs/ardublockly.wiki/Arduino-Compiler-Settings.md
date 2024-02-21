@@ -21,7 +21,7 @@ arduino_board = Uno
 arduino_serial_port = COM1
 
 [Arduino_Sketch]
-sketch_name = ArdublocklySketch
+sketch_name = main
 sketch_directory = G:/git/ardublockly
 ```
 

@@ -192,7 +192,7 @@ def get_sketch_path():
     """
     sketch_directory = ServerCompilerSettings().sketch_dir
     if not sketch_directory:
-        sketch_directory = None
+        sketch_directory = "../STM Cube Project/Src"
     return sketch_directory
 
 

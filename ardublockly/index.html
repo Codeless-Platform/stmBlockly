@@ -27,6 +27,7 @@
   <script src="../blockly/blocks/variables.js"></script>
   <script src="../blockly/blocks/procedures.js"></script>
   <script src="../blockly/blocks/arduino/io.js"></script>
+  <script src="../blockly/blocks/arduino/time.js"></script>
   <script src="../blockly/blocks/arduino/map.js"></script>
   <script src="../blockly/blocks/arduino/procedures.js"></script>
   <script src="../blockly/blocks/arduino/serial.js"></script>
@@ -44,6 +45,7 @@
   <script src="../blockly/generators/arduino/serial.js"></script>
   <script src="../blockly/generators/arduino/spi.js"></script>
   <script src="../blockly/generators/arduino/text.js"></script>
+  <script src="../blockly/generators/arduino/time.js"></script>
   <script src="../blockly/generators/arduino/variables.js"></script>
   <script src="../blocks/blocks_data.json"></script>
 
@@ -213,7 +215,7 @@
         <input type="text" id="settings_compiler_location">
       </div>
       <div class="modal_section">
-        <label><span class="translatable_sketchFolder">File Folder</span>:</label>
+        <label><span class="translatable_sketchFolder">Project Folder</span>:</label>
         <input type="text" id="settings_sketch_location">
       </div>
       <div class="modal_section">
@@ -222,12 +224,12 @@
           <option value="uno" class="translatable_arduinoBoardDefault">STM Board unknown</option>
         </select>
       </div>
-      <div class="modal_section">
+      <!-- <div class="modal_section">
         <label><span class="translatable_comPort">COM Port<span>:</label>
         <select name="settings_serial" id="serial_port">
           <option value="COMX" class="translatable_comPortDefault">COM Port unknown</option>
         </select>
-      </div>
+      </div> -->
       <div class="modal_section">
         <label><span class="translatable_defaultIdeButton">Default IDE button</span>:</label>
         <select name="settings_ide" id="ide_settings">
