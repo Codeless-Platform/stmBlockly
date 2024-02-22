@@ -77,10 +77,10 @@ def build_sketch_path(sketch_dir, sketch_name):
     :return: unicode string with full path to the sketch file.
              Return None indicates an error has occurred.
     """
-    sketch_path = "STMCubeProject/Src"
+    sketch_path = None
     if os.path.isdir(sketch_dir):
         try:
-            sketch_path = os.path.join(sketch_dir, sketch_name)
+            sketch_path = "STMCubeProject/Src"
         except (TypeError, AttributeError) as e:
             print('Error: %s\project Name could not be processed.' % e)
         else:
