@@ -82,7 +82,7 @@ class ServerCompilerSettings(object):
         # Create variables to be used with accessors
         self.__load_ide_option = None
         self.__compiler_dir = None
-        self.__sketch_dir = None
+        self.__sketch_dir = "../STMCubeProject/Src"
         self.__sketch_name = None
         self.__arduino_board_key = None
         self.__arduino_board_value = None
@@ -232,7 +232,7 @@ class ServerCompilerSettings(object):
 
     def set_sketch_dir_default(self):
         """Sketch default location the same as the settings file location."""
-        self.__sketch_dir = os.path.dirname(self.__settings_path)
+        self.__sketch_dir = "../STMCubeProject/Src"
 
     def set_sketch_dir_from_file(self, new_sketch_dir):
         """Set the sketch directory from settings file, must be a folder."""
