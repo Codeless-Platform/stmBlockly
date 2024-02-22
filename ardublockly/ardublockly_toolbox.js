@@ -79,20 +79,6 @@ Ardublockly.TOOLBOX_XML =
 '        </block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="math_random_int">' +
-'      <value name="FROM">' +
-'        <block type="math_number">' +
-'          <field name="NUM">1</field>' +
-'        </block>' +
-'      </value>' +
-'      <value name="TO">' +
-'        <block type="math_number">' +
-'          <field name="NUM">100</field>' +
-'        </block>' +
-'      </value>' +
-'    </block>' +
-'    <block type="math_random_float"></block>' +
-'    <block type="base_map"></block>' +
 '  </category>' +
 '  <sep></sep>' +
 '  <category id="catText" name="Text">' +
