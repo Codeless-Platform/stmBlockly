@@ -61,12 +61,12 @@ Blockly.Blocks['io_readPin'] = {
         .appendField(Blockly.Msg.ARD_DIGITALREAD)
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.digitalPins), 'PIN');
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.UINT8.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
-    return Blockly.Types.BOOLEAN;
+    return Blockly.Types.UINT8;
   },
   /**
    * Updates the content of the the pin related fields.
@@ -157,9 +157,6 @@ Blockly.Blocks['io_togglePin'] = {
     }
   };
 
-// Blockly.Blocks['togglePin'].getBlockType = function() {
-//   return Blockly.Types.BOOLEAN;
-// };
 
 Blockly.Blocks['io_writePort'] = {
 
@@ -191,12 +188,12 @@ Blockly.Blocks['io_readPort'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.ports), 'PORT')
         .appendField(Blockly.Msg.READ_PORT)    
-    this.setOutput(true, Blockly.Types.BOOLEAN.output);
+    this.setOutput(true, Blockly.Types.UINT16.output);
     this.setTooltip(Blockly.Msg.READ_PORT_TIP);
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function() {
-    return Blockly.Types.BOOLEAN;
+    return Blockly.Types.UINT16;
   },
 
 };

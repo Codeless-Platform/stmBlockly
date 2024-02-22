@@ -86,6 +86,28 @@ Blockly.Types.UNDEF = new Blockly.Type({
   compatibleTypes: []
 });
 
+/*
+ * Define custom data types used in embedded C  
+ */
+Blockly.Types.UINT8 = new Blockly.Type({
+  typeId: 'uint8',
+  typeMsgName: 'ARD_TYPE_UNIT8',
+  compatibleTypes: []
+});
+
+Blockly.Types.UINT16 = new Blockly.Type({
+  typeId: 'uint16',
+  typeMsgName: 'TYPE_UNIT16',
+  compatibleTypes: []
+});
+
+Blockly.Types.UINT32 = new Blockly.Type({
+  typeId: 'uint32',
+  typeMsgName: 'TYPE_UNIT32',
+  compatibleTypes: []
+});
+
+
 /** Set when no child block (meant to define the variable type) is connected. */
 Blockly.Types.CHILD_BLOCK_MISSING = new Blockly.Type({
   typeId: 'ChildBlockMissing',

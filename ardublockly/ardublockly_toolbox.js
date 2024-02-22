@@ -128,7 +128,12 @@ Ardublockly.TOOLBOX_XML =
 '        <block type="io_highlow"></block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="io_readPin"></block>' +
+'    <block type="variables_set">' +
+'      <field name="VAR">pinVal</field>' +
+'      <value name="VALUE">' +
+'        <block type="io_readPin"></block>' +
+'      </value>' +
+'    </block>' +
 '    <block type="io_builtin_led">' +
 '      <value name="STATE">' +
 '        <block type="io_highlow"></block>' +
@@ -140,7 +145,12 @@ Ardublockly.TOOLBOX_XML =
 '        <block type="io_highlow"></block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="io_readPort"></block>'+
+'    <block type="variables_set">' +
+'      <field name="VAR">portVal</field>' +
+'      <value name="VALUE">' +
+'        <block type="io_readPort"></block>' +
+'      </value>' +
+'    </block>' +
 '    <block type="io_highlow"></block>' +
 '  </category>' +
 '  <sep></sep>' +

@@ -180,7 +180,7 @@ Blockly.Arduino.finish = function(code) {
 
   var allDefs = includes.join('\n') + variables.join('\n') +
   definitions.join('\n') + functions.join('\n\n');
-  var main = 'int main() {' + setups.join('\n  ') +  '\n\nwhile(1) {\n' +code.replace(/\n/g, '\n  ')+'\n}\n\n' +'\n return 0;}\n\n'; 
+  var main = 'int main() {' + setups.join('\n  ') +  '\n\nwhile(1) {\n' +code.replace(/\n/g, '\n  ')+'\n}\n\n' +'\n return 0;\n}\n\n'; 
   return "#include \"main.h\"\n"+allDefs + main ;
 };
 
@@ -379,6 +379,12 @@ Blockly.Arduino.getArduinoType_ = function(typeBlockly) {
       return 'void';
     case Blockly.Types.UNDEF.typeId:
       return 'undefined';
+    case Blockly.Types.UINT8.typeId: //edited here define New types 
+      return 'uint8';  
+    case Blockly.Types.UINT16.typeId: //edited here define New types 
+      return 'uint16';  
+    case Blockly.Types.UINT32.typeId: //edited here define New types 
+      return 'uint32';        
     case Blockly.Types.CHILD_BLOCK_MISSING.typeId:
       // If no block connected default to int, change for easier debugging
       //return 'ChildBlockMissing';
