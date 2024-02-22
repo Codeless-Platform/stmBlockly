@@ -23,15 +23,14 @@ Blockly.Blocks['arduino_functions'] = {
    */
   init: function() {
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_FUN_RUN_SETUP);
+        .appendField(Blockly.Msg.RUN_ONCE);
     this.appendStatementInput('SETUP_FUNC');
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_FUN_RUN_LOOP);
+        .appendField(Blockly.Msg.RUN_LOOP);
     this.appendStatementInput('LOOP_FUNC');
     this.setInputsInline(false);
     this.setColour(Blockly.Blocks.procedures.HUE);
-    this.setTooltip(Blockly.Msg.ARD_FUN_RUN_TIP);
-    this.setHelpUrl('https://arduino.cc/en/Reference/Loop');
+    this.setTooltip(Blockly.Msg.FUN);
     this.contextMenu = false;
   },
   /** @return {!boolean} True if the block instance is in the workspace. */

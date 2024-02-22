@@ -408,12 +408,8 @@ Blockly.Msg.ARD_DIGITALWRITE = "set pin#";
 Blockly.Msg.ARD_TOGGLEPIN = "toggle pin#";
 Blockly.Msg.ARD_DIGITALWRITE_TIP = "Write digital value HIGH or LOW to a specific Pin";
 Blockly.Msg.ARD_TOGGLE_TIP = "Toggle current value HIGH or LOW to a specific Pin";
-Blockly.Msg.ARD_FUN_RUN_LOOP = "Arduino loop forever:";
-Blockly.Msg.ARD_FUN_RUN_SETUP = "Arduino run first:";
-Blockly.Msg.ARD_FUN_RUN_TIP = "Defines the Arduino setup() and loop() functions.";
 Blockly.Msg.ARD_HIGH = "HIGH";
 Blockly.Msg.ARD_HIGHLOW_TIP = "Set a pin state logic High or Low.";
-Blockly.Msg.ARD_LOW = "LOW";
 Blockly.Msg.ARD_MAP = "Map";
 Blockly.Msg.ARD_MAP_TIP = "Re-maps a number from [0-1024] to another.";
 Blockly.Msg.ARD_MAP_VAL = "value to [0-";
@@ -527,5 +523,13 @@ Blockly.Msg.PORT = " port to";
 Blockly.Msg.READ = "Read "; 
 Blockly.Msg.READ_PORT = "port "; 
 Blockly.Msg.READ_PORT_TIP = "gets the whole gpio value"; 
+
+Blockly.Msg.RUN_ONCE = "Main:";
+Blockly.Msg.RUN_LOOP = "Loop";
+Blockly.Msg.FUN = "Defines the main() and while(1) functions.";
+Blockly.Msg.PORT_LOW= "PORT_LOW";
+Blockly.Msg.PIN_LOW= "PIN_LOW";
+Blockly.Msg.PORT_HIGH= "PORT_HIGH";
+Blockly.Msg.PIN_HIGH= "PIN_HIGH";
 
 

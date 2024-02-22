@@ -120,7 +120,7 @@ Blockly.Blocks['io_highlow'] = {
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
         .appendField(
-            new Blockly.FieldDropdown([[Blockly.Msg.ARD_HIGH, 'HIGH'], [Blockly.Msg.ARD_LOW, 'LOW']]),
+            new Blockly.FieldDropdown([[Blockly.Msg.PIN_HIGH, 'PIN_HIGH'],[Blockly.Msg.PORT_HIGH, 'PORT_HIGH'], [Blockly.Msg.PIN_LOW, 'PIN_LOW'],[Blockly.Msg.PORT_LOW, 'PORT_LOW']]),
            'STATE');
     this.setOutput(true, Blockly.Types.BOOLEAN.output);
     this.setTooltip(Blockly.Msg.ARD_HIGHLOW_TIP);

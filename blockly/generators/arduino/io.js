@@ -37,7 +37,7 @@ Blockly.Arduino['io_writePin'] = function(block) {
   var pinMainCode = pinCode + 'GPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
 
-  var code = 'GPIO_WritePin(GPIO'+gpio + ' ,PIN_'+ pinnumber +', ' +'PIN_'+ stateOutput + ');\n';
+  var code = 'GPIO_WritePin(GPIO'+gpio + ' ,PIN_'+ pinnumber +', ' + stateOutput + ');\n';
   return code;
 };
 
@@ -92,7 +92,7 @@ Blockly.Arduino['io_builtin_led'] = function(block) {
   var pinMainCode = pinCode+ '\nGPIO_init(GPIO'+gpio +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
 
-  var code = 'GPIO_WritePin(GPIO'+gpio + ' ,PIN_'+ pinnumber +', ' +'PIN_'+ stateOutput + ');\n';
+  var code = 'GPIO_WritePin(GPIO'+gpio + ' ,PIN_'+ pinnumber +', ' + stateOutput + ');\n';
   return code;
 };
 
@@ -131,7 +131,7 @@ Blockly.Arduino['io_writePort'] = function(block) {
   var pinMainCode = pinCode+'\nGPIO_initPort('+ port +  ', &GPIO_pinConfig);';
   Blockly.Arduino.addMain('io_' , pinMainCode, false);
 
-  var code = 'GPIO_WritePort(' + port + ',PORT_' +stateOutput +');\n';
+  var code = 'GPIO_WritePort(' + port + ',' +stateOutput +');\n';
   return code;
 };
 
