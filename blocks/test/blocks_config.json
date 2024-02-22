@@ -1,7 +1,7 @@
 {
     "categoryName": "Test blocks",
     "description": "Test blocks to demonstrate the feature.",
-    "languages": ["en", "es"],
+    "languages": ["en"],
     "toolboxName": "Test",
     "toolbox": [
         "<category>",
