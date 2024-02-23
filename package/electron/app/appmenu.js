@@ -234,7 +234,7 @@ var getExamplesMenuData = function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
                             'Ardublockly.loadServerXmlFile("../examples/' +
-                            'serial_print_ascii.xml");');
+                            'LCD_Hello_World.xml");');
                 }
             }, {
                 label: 'Serial Repeat Game',
@@ -242,7 +242,7 @@ var getExamplesMenuData = function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
                             'Ardublockly.loadServerXmlFile("../examples/' +
-                            'serial_repeat_game.xml");');
+                            'KeypadGetKey.xml");');
                 }
             }, {
                 label: 'Servo Knob',

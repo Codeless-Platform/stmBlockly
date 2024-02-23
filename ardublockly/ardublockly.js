@@ -63,11 +63,11 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_2', function() {
-    Ardublockly.loadServerXmlFile('../examples/serial_print_ascii.xml');
+    Ardublockly.loadServerXmlFile('../examples/LCD_Hello_World.xml');
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_3', function() {
-    Ardublockly.loadServerXmlFile('../examples/serial_repeat_game.xml');
+    Ardublockly.loadServerXmlFile('../examples/KeypadGetKey.xml');
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_4', function() {
