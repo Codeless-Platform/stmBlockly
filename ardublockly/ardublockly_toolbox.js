@@ -81,19 +81,11 @@ Ardublockly.TOOLBOX_XML =
 '    </block>' +
 '  </category>' +
 '  <sep></sep>' +
-'  <category id="catText" name="Text">' +
-'    <block type="text"></block>' +
-'    <block type="text_join"></block>' +
-'    <block type="text_append">' +
-'      <value name="TEXT">' +
-'        <block type="text"></block>' +
-'      </value>' +
-'    </block>' +
-'    <block type="text_length"></block>' +
-'    <block type="text_isEmpty"></block>' +
-//'    <!--block type="text_trim"></block Need to update block -->' +
-//'    <!--block type="text_print"></block Part of the serial comms -->' +
-'  </category>' +
+// '  <category id="catText" name="Text">' +  //commenting this section temporarly to be edited and uncommented
+// '    <block type="text"></block>' +
+// '    <!--block type="text_trim"></block Need to update block -->' +
+// '    <!--block type="text_print"></block Part of the serial comms -->' +
+//'  </category>' +
 '  <sep></sep>' +
 '  <category id="catVariables" name="Variables">' +
 '    <block type="variables_get"></block>' +
@@ -153,15 +145,57 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="infinite_loop"></block>' +
 '  </category>' +
 '  <sep></sep>' +
-'  <category id="catComms" name="Comms">' +
-'    <block type="serial_setup"></block>' +
-'    <block type="serial_print"></block>' +
-'    <block type="text_prompt_ext">' +
-'      <value name="TEXT">' +
-'        <block type="text"></block>' +
+'  <category id="catLCD" name="LCD">' +
+'    <block type="lcd_init"></block>' +
+'    <block type="lcd_sendChar">' +
+'      <value name="DATA">' +
+'        <block type="text_char">' +
+'          <field name="TEXT">A</field>' +
+'        </block>' +
 '      </value>' +
 '    </block>' +
-'    <block type="spi_setup"></block>' +
-'    <block type="spi_transfer"></block>' +
-'    <block type="spi_transfer_return"></block>' +
+'    <block type="lcd_sendString">' +
+'      <value name="DATA">' +
+'        <block type="text">' +
+'          <field name="TEXT">Hello World!</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'    <block type="lcd_clear"></block>' +
+'    <block type="lcd_goto">' +
+'      <value name="ROW">' +
+'        <block type="math_number">' +
+'          <field name="NUM">1</field>' +
+'        </block>' +
+'      </value>' +
+'      <value name="COL">' +
+'        <block type="math_number">' +
+'          <field name="NUM">1</field>' +
+'        </block>' +
+'      </value>' +
+'    </block>' +
+'  </category>' +
+'  <sep></sep>' +
+'  <category id="catKeypad" name="Keypad">' +
+'    <block type="keypad_init"></block>' +
+'    <block type="variables_set">' +
+'      <field name="VAR">key</field>' +
+'      <value name="VALUE">' +
+'        <block type="keypad_getKey"></block>' +
+'      </value>' +
+'    </block>' +
 '  </category>' 
+
+// '  <sep></sep>' +
+// '  <category id="catComms" name="Comms">' +
+// '    <block type="serial_setup"></block>' +
+// '    <block type="serial_print"></block>' +
+// '    <block type="text_prompt_ext">' +
+// '      <value name="TEXT">' +
+// '        <block type="text"></block>' +
+// '      </value>' +
+// '    </block>' +
+// '    <block type="spi_setup"></block>' +
+// '    <block type="spi_transfer"></block>' +
+// '    <block type="spi_transfer_return"></block>' +
+// '  </category>' 
