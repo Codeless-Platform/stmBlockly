@@ -31,6 +31,13 @@ Blockly.Arduino['text'] = function(block) {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+Blockly.Arduino['text_char'] = function(block) {
+  var code = "'" + block.getFieldValue('TEXT') + "'";
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+
+
 /**
  * Code generator for a String concatenation (X...Y). This string can be made
  * up of any number of elements of any type.
