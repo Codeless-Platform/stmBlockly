@@ -49,7 +49,7 @@ Blockly.Arduino['time_clockEN'] = function(block) {
   if((peripheralID == 'USART2') || (peripheralID == 'USART3') || (peripheralID == 'SPI2') || (peripheralID == 'I2C2')||(peripheralID == 'I2C1'))
       busID = 'APB1_ID'
   var pinMainCode = '\nRCC_CLK_EN(' + busID + ','+ peripheralID+ '_ID);\n';
-  Blockly.Arduino.addMain('time_' , pinMainCode, false);
+  Blockly.Arduino.addMain('time_' +peripheralID, pinMainCode, false);
   return "";
 };
 
@@ -60,6 +60,6 @@ Blockly.Arduino['time_clockDisable'] = function(block) {
   if((peripheralID == 'USART2') || (peripheralID == 'USART3') || (peripheralID == 'SPI2') || (peripheralID == 'I2C2')||(peripheralID == 'I2C1'))
       busID = 'APB1_ID'
   var Code = 'RCC_CLK_RST(' + busID + ','+ peripheralID+ '_ID);\n';
-  Blockly.Arduino.addMain('time' , Code, false);
+  Blockly.Arduino.addMain('time' +peripheralID, Code, false);
   return "";
 };

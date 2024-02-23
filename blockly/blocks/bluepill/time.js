@@ -65,16 +65,13 @@ Blockly.Blocks['time_clockEN'] = {
         .appendField(new Blockly.FieldDropdown(
             Blockly.Arduino.Boards.selected.peripherals), 'PERIPHRAL')
         .appendField(Blockly.Msg.CLK_FOR)
-    this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.CLK_EN_TIP);
   },
   
 };
-Blockly.Blocks['time_clockEN'].getBlockType = function() {
-  return Blockly.Types.BOOLEAN;
-};
+
 
 Blockly.Blocks['time_clockDisable'] = {
   init: function() {
@@ -90,8 +87,5 @@ Blockly.Blocks['time_clockDisable'] = {
     this.setTooltip(Blockly.Msg.CLK_DIS_TIP);
   },
   
-};
-Blockly.Blocks['time_clockDisable'].getBlockType = function() {
-  return Blockly.Types.BOOLEAN;
 };
 
