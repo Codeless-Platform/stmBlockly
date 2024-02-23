@@ -127,6 +127,7 @@ Blockly.Arduino.Boards.profiles.stm32 = {
   analogPins: Blockly.Arduino.Boards.generateAnalogIostm32(),
   digitalPins: Blockly.Arduino.Boards.generateDigitalIostm32(),
   ports: [['GPIOA', 'GPIOA'], ['GPIOB', 'GPIOB'], ['GPIOC', 'GPIOC']], // edited here
+  full_ports: [['GPIOA', 'GPIOA'], ['GPIOB', 'GPIOB']], // edited here
   peripherals: [['GPIOA','GPIOA'], ['GPIOB','GPIOB'], ['GPIOC', 'GPIOC'], ['USART1', 'USART1'], ['USART2', 'USART2'], ['USART3', 'USART3'], ['SPI1', 'SPI1'], ['SPI2', 'SPI2'], ['I2C1', 'I2C1'], ['I2C2', 'I2C2'], ['I2C3', 'I2C3']],
   pwmPins: Blockly.Arduino.Boards.generateDigitalIo(0, 32), 
   serial: [['serial', 'Serial']],

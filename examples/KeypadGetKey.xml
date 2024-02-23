@@ -1,0 +1,76 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="92" y="-43">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="|Q|QnK%p%)FKPFdSa9rL">
+        <field name="PERIPHRAL">GPIOB</field>
+        <next>
+          <block type="time_clockEN" id="(~mE#zY(h!7Uc}-~vY8t">
+            <field name="PERIPHRAL">GPIOA</field>
+            <next>
+              <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+                <field name="PORT">GPIOA</field>
+                <next>
+                  <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf">
+                    <field name="PORT">GPIOB</field>
+                    <next>
+                      <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
+                        <next>
+                          <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                            <value name="DATA">
+                              <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
+                                <field name="TEXT">Keypad_LCD!</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="variables_set" id="4YXEPEJR_J/|e3KU,eB5">
+        <field name="VAR">key</field>
+        <value name="VALUE">
+          <block type="keypad_getKey" id="o8JLljC@;CBUO]Mwnm4K"></block>
+        </value>
+        <next>
+          <block type="controls_if" id="FZtqS@;A?5S0!!Sc3bx_">
+            <value name="IF0">
+              <block type="logic_compare" id="6edHYyt_)-6:7O4k}h6|">
+                <field name="OP">NEQ</field>
+                <value name="A">
+                  <block type="variables_get" id="?7.A_/yr)8P#El8o*^Aj">
+                    <field name="VAR">key</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text_char" id="@*dmbDXWQ*rs!7J8]DjX">
+                    <field name="TEXT">A</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="lcd_sendChar" id="7dXly*r/;Dg,t^ctS:r!">
+                <value name="DATA">
+                  <block type="variables_get" id="H[27H/PkGKKQ(IP#W=s;">
+                    <field name="VAR">key</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

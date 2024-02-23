@@ -1,0 +1,73 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="P9=K,[*0X94Km@oluEt[" x="104" y="45">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="K@g^voLoR]C0*izcx+9O">
+        <field name="PERIPHRAL">GPIOA</field>
+        <next>
+          <block type="lcd_init" id=")8;OTVkhhuL9x{B,r65r">
+            <field name="PORT">GPIOA</field>
+            <next>
+              <block type="lcd_sendString" id="3l1G9X{oZ5cS-=g*Z?l*">
+                <value name="DATA">
+                  <block type="text" id="Ugb7X22Ro9pFT4u|C2t/">
+                    <field name="TEXT">Hello World!</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="lcd_clear" id="+mA3jY?f2}oDdmA+WxI(">
+        <next>
+          <block type="lcd_goto" id="rJ,%,/lg3n.cxGN!,w!t">
+            <value name="ROW">
+              <block type="math_number" id="z??w5L26hp+0P4~M6-Pm">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <value name="COL">
+              <block type="math_number" id="7Pb;%Z;(I~NbZRkp~mw3">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="lcd_sendChar" id="kpbu`2`ME]ehkb-hMXVc">
+                <value name="DATA">
+                  <block type="text_char" id=";y;qX=+Eg(hZQ_qu@Z%U">
+                    <field name="TEXT">A</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="lcd_goto" id="/{u_5]7YYR1bh}?Dv(DV">
+                    <value name="ROW">
+                      <block type="math_number" id="E,J.BZ9^C}P/%MAJTlnU">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <value name="COL">
+                      <block type="math_number" id="`POp8eFM#,k_0hW0ET8{">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lcd_sendString" id="e=hb;lxkI+J]d3_U05Ui">
+                        <value name="DATA">
+                          <block type="text" id="A@0qSG;fDIu`m4Ml+#{`">
+                            <field name="TEXT">Hello Alaa!</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
