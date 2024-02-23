@@ -57,8 +57,8 @@ stmBlockly.bin \
 all: stmBlockly.elf secondary-outputs
 
 # Tool invocations
-stmBlockly.elf: $(OBJS) $(USER_OBJS) D:\Projects\Low\ Code\ platforms\stmBlockly\STM\ Cube\ Project\STM32F103C6TX_FLASH.ld
-	arm-none-eabi-gcc -o "stmBlockly.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Projects\Low Code platforms\stmBlockly\STM Cube Project\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stmBlockly.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+stmBlockly.elf: $(OBJS) $(USER_OBJS) D:\Projects\Low\ Code\ platforms\stmBlockly\STMCubeProject\STM32F103C6TX_FLASH.ld
+	arm-none-eabi-gcc -o "stmBlockly.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Projects\Low Code platforms\stmBlockly\STMCubeProject\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stmBlockly.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -16,7 +16,8 @@
 #include "../MCAL/Lib/STM32_F103x6.h"
 #include "../MCAL/RCC/RCC.h"
 #include "../HAL/Keypad/Keypad.h"
-
+#include "../HAL/LCD/LCD.h"
+#include "math.h"
 
 void delay_ms(uint32 time);
 

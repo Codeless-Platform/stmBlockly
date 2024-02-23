@@ -11,19 +11,17 @@
 #include "../../MCAL/GPIO/GPIO.h"
 
 //Define the PORT  connected to keypad
-#define Keypad_Row_PORT   		GPIOB
-#define Keypad_COL_PORT   		GPIOB
+#define Keypad_PORT     GPIOB
 
 
 // Define the Keypad Cols & Rows pins
 #define R0 					PIN_0
 #define R1					PIN_1
-#define R2 					PIN_3
-#define R3					PIN_4
-#define C0 					PIN_5
-#define C1					PIN_6
-#define C2 					PIN_7
-#define C3					PIN_8
+#define R2 					PIN_2
+#define R3					PIN_3
+#define C0 					PIN_4
+#define C1					PIN_5
+#define C2 					PIN_6
 
 #define KPD_MAX_COLS			3
 

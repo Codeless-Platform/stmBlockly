@@ -52,7 +52,7 @@ void isBusy(void) {
 	pinConfig.Pin_Number = PIN_7;
 	GPIO_init(LCD_PORT, &pinConfig);
 	// STEP TWO
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_LOW);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_LOW);
 	// STEP THREE
 	lcd_kick();
 }
@@ -119,14 +119,14 @@ void lcd_init() {
 	pinConfig.MODE = MODE_OUTPUT_PP;
 	pinConfig.Pin_Number = ENABLE_SWITCH;
 	pinConfig.Output_Speed = SPEED_10M;
-	GPIO_init(LCD_CONTROL_PORT, &pinConfig);
-	GPIO_WritePin(LCD_CONTROL_PORT, ENABLE_SWITCH, PIN_LOW);
+	GPIO_init(LCD_PORT, &pinConfig);
+	GPIO_WritePin(LCD_PORT, ENABLE_SWITCH, PIN_LOW);
 
 	pinConfig.MODE = MODE_OUTPUT_PP;
 	pinConfig.Pin_Number = REGISTER_SELECT;
 	pinConfig.Output_Speed = SPEED_10M;
-	GPIO_init(LCD_CONTROL_PORT, &pinConfig);
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_LOW);
+	GPIO_init(LCD_PORT, &pinConfig);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_LOW);
 
 	delay_ms(15);
 	lcd_Clear_Screen();
@@ -152,13 +152,13 @@ void lcd_Send_Command(unsigned char command) {
 	 */
 #ifdef EIGHT_BIT_MODE
 	GPIO_WritePort(LCD_PORT, command);
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_LOW);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_LOW);
 	delay_ms(1);
 	lcd_kick();
 #endif
 
 #ifdef FOUR_BIT_MODE
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_LOW);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_LOW);
 
 	GPIO_WritePin(LCD_PORT, D4, GET(command, 4));
 	GPIO_WritePin(LCD_PORT, D5, GET(command, 5));
@@ -186,14 +186,14 @@ void lcd_Send_Char(unsigned char character) {
 	 *3. Reactivate Enable
 	 */
 	GPIO_WritePort(LCD_PORT, character);
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_HIGH);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_HIGH);
 
 	delay_ms(1);
 	lcd_kick();
 #endif
 
 #ifdef FOUR_BIT_MODE
-	GPIO_WritePin(LCD_CONTROL_PORT, REGISTER_SELECT, PIN_HIGH);
+	GPIO_WritePin(LCD_PORT, REGISTER_SELECT, PIN_HIGH);
 
 	GPIO_WritePin(LCD_PORT, D4, GET(character, 4));
 	GPIO_WritePin(LCD_PORT, D5, GET(character, 5));
@@ -280,9 +280,9 @@ void lcd_display_Real_number(double Number) {
 }
 void lcd_kick() {
 	// Enable =0 >> LCD Busy
-	GPIO_WritePin(LCD_CONTROL_PORT, ENABLE_SWITCH, PIN_HIGH);
+	GPIO_WritePin(LCD_PORT, ENABLE_SWITCH, PIN_HIGH);
 	delay_ms(50);
-	GPIO_WritePin(LCD_CONTROL_PORT, ENABLE_SWITCH, PIN_LOW);
+	GPIO_WritePin(LCD_PORT, ENABLE_SWITCH, PIN_LOW);
 }
 
 void LCD_createCustomCharacter(uint8 *pattern, uint8 location) {

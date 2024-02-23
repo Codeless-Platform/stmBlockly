@@ -16,7 +16,8 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
  ../Src/../MCAL/USART/../GPIO/GPIO.h ../Src/../MCAL/USART/../RCC/RCC.h \
  ../Src/../MCAL/USART/../EXTI/EXTI.h ../Src/../MCAL/Lib/STM32_F103x6.h \
  ../Src/../MCAL/RCC/RCC.h ../Src/../HAL/Keypad/Keypad.h \
- ../Src/../HAL/Keypad/../../MCAL/GPIO/GPIO.h
+ ../Src/../HAL/Keypad/../../MCAL/GPIO/GPIO.h ../Src/../HAL/LCD/LCD.h \
+ ../Src/../HAL/LCD/../../MCAL/GPIO/GPIO.h
 
 ../Src/main.h:
 
@@ -73,3 +74,7 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
 ../Src/../HAL/Keypad/Keypad.h:
 
 ../Src/../HAL/Keypad/../../MCAL/GPIO/GPIO.h:
+
+../Src/../HAL/LCD/LCD.h:
+
+../Src/../HAL/LCD/../../MCAL/GPIO/GPIO.h:
