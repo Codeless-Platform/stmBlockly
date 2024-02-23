@@ -16,6 +16,53 @@ from six import iteritems
 # This package modules
 from ardublocklyserver import actions
 
+from bottle import route, run, request
+
+@route('/edit_file_at_line', method='POST')
+
+def edit_file_at_line():
+    file_path = request.forms.get('file_path')
+    line_number = int(request.forms.get('line_number'))
+    new_text = request.forms.get('new_text')
+
+    # Function to edit file at line
+    edit_file(file_path, line_number, new_text)
+    pass
+
+    return "File edited successfully."
+
+def edit_file(file_path, line_number, new_text):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    if line_number <= len(lines):
+         # Delete existing text at the specified line number
+        del lines[line_number - 1]
+        # Insert new text at the specified line number
+        lines.insert(line_number - 1, new_text + '\n')
+
+        with open(file_path, 'w') as file:
+            file.writelines(lines)
+    else:
+        print("Line number exceeds the total number of lines in the file.")
+
+@route('/delete_line', method='POST')
+
+def delete_line():
+    file_path = request.forms.get('file_path')
+    line_number = int(request.forms.get('line_number'))
+    """Delete the specified line from the file."""
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    if line_number <= len(lines):
+        del lines[line_number - 1]  # Delete the line
+        with open(file_path, 'w') as file:
+            file.writelines(lines)  # Write the modified content back to the file
+    else:
+        print("Line number exceeds the total number of lines in the file.")
+    pass    
+
 
 #
 # Configure server
