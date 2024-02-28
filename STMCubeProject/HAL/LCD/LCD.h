@@ -8,27 +8,23 @@
 #ifndef LCD_H_
 #define LCD_H_
 #include "../../MCAL/GPIO/GPIO.h"
+#include "../../MCAL/SYSTICK/SYSTICK.h"
 
-#define LCD_PORT     GPIOA
-// define the three control pins connected to MCU
-#define ENABLE_SWITCH			PIN_2
-#define REGISTER_SELECT         PIN_3
+typedef struct {
+	uint8 LCD_Size;		// @ref LCD_SIZE
+    GPIO_Registers_t* LCD_PORT;
+	GPIO_Registers_t* LCD_CONTROL_PORT;
+	uint16 ENABLE_SWITCH;
+	uint16 REGISTER_SELECT;
+	uint16 PINS[4];
+}LCD_t;
 
-#define D0 						PIN_0
-#define D1 						PIN_1
-#define D2 						PIN_2
-#define D3 						PIN_3
-#define D4 						PIN_4
-#define D5 						PIN_5
-#define D6 						PIN_6
-#define D7 						PIN_7
 
-//#define EIGHT_BIT_MODE
-#define FOUR_BIT_MODE
 
-//#define LCD_4x20				1
-#define LCD_2x16
-//#define LCD_4x16				1
+// @ref LCD_SIZE
+#define LCD_4x20				1
+#define LCD_2x16				0
+#define LCD_4x16				2
 
 
 #define MAX_COLS				16
@@ -37,15 +33,13 @@
 /* Some instructions from data sheet */
 #define CURSOR_FIRST_LINE 		(0x80)
 #define CURSOR_SECOND_LINE 		(0xC0)
-#ifdef LCD_4x20
-#define CURSOR_THIRD_LINE 		(0x94)
-#define CURSOR_FOURTH_LINE 		(0xD4)
-#endif
 
-#ifdef LCD_4x16
-#define CURSOR_THIRD_LINE 		(0x90)
-#define CURSOR_FOURTH_LINE 		(0xD0)
-#endif
+#define CURSOR_THIRD_LINE_20 	(0x94)
+#define CURSOR_FOURTH_LINE_20 	(0xD4)
+
+#define CURSOR_THIRD_LINE_16 	(0x90)
+#define CURSOR_FOURTH_LINE_16 	(0xD0)
+
 
 #define FUNCTION_8BIT_2LINES 	(0x38)
 #define FUNCTION_4BIT_2LINES 	(0x28)
@@ -68,15 +62,16 @@
 
 #define CLEAR_SCREEN 			(0x01)
 
-void isBusy(void);
-void lcd_kick(void);
+void isBusy();
+void lcd_kick();
 void lcd_Send_Command(unsigned char command);
 void lcd_Send_Char(unsigned char data);
 void lcd_send_String(char *string);
-void lcd_init(void);
-void lcd_Clear_Screen(void);
+void lcd_init(LCD_t *LCD_Config);
+void lcd_Clear_Screen();
 void lcd_GOTO_XY(unsigned char row, unsigned char col);
 void lcd_display_number(int Number);
 void lcd_display_Real_number(double Number);
+
 
 #endif /* LCD_H_ */

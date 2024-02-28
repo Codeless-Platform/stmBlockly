@@ -6,6 +6,7 @@
 "MCAL/NVIC/NVIC.o"
 "MCAL/RCC/RCC.o"
 "MCAL/SPI/SPI.o"
+"MCAL/SYSTICK/SYSTICK.o"
 "MCAL/USART/USART.o"
 "Src/main.o"
 "Src/syscalls.o"

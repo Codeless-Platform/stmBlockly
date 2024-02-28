@@ -17,8 +17,8 @@
 #include "../MCAL/RCC/RCC.h"
 #include "../HAL/Keypad/Keypad.h"
 #include "../HAL/LCD/LCD.h"
+#include "../MCAL/SYSTICK/SYSTICK.h"
 #include "math.h"
 
-void delay_ms(uint32 time);
 
 #endif /* INC_MAIN_H_ */

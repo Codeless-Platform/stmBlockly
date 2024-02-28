@@ -11,31 +11,30 @@
 #include "../../MCAL/GPIO/GPIO.h"
 
 //Define the PORT  connected to keypad
-#define Keypad_PORT     GPIOB
+typedef struct{
+	uint16 R0;
+	uint16 R1;
+	uint16 R2;
+	uint16 R3;
+	uint16 C0;
+	uint16 C1;
+	uint16 C2;
+	GPIO_Registers_t *Keypad_PORT;
 
-
-// Define the Keypad Cols & Rows pins
-#define R0 					PIN_0
-#define R1					PIN_1
-#define R2 					PIN_2
-#define R3					PIN_3
-#define C0 					PIN_4
-#define C1					PIN_5
-#define C2 					PIN_6
+}keypad_t;
 
 #define KPD_MAX_COLS			3
 
-
-void Keypad_init();
+void Keypad_init(keypad_t *keypad);
 char Keypad_Get_Key();
 
 //define keypad keys
 
-static const char arr_keys[4][KPD_MAX_COLS]=
-{{'#','0','*'},
- {'7','8','9'},
- {'4','5','6'},
- {'1','2','3'}
+static const char arr_keys[4][KPD_MAX_COLS] =
+{ { '1', '2', '3' },
+  { '4', '5','6' },
+  { '7', '8', '9' },
+  { '*', '0', '#' },
 
 };
 

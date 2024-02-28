@@ -1,64 +1,47 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="P9=K,[*0X94Km@oluEt[" x="104" y="45">
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="74" y="3">
     <statement name="SETUP_FUNC">
-      <block type="time_clockEN" id="K@g^voLoR]C0*izcx+9O">
+      <block type="time_clockEN" id="(~mE#zY(h!7Uc}-~vY8t">
         <field name="PERIPHRAL">GPIOA</field>
         <next>
-          <block type="lcd_init" id=")8;OTVkhhuL9x{B,r65r">
+          <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
             <field name="PORT">GPIOA</field>
+            <field name="d4">PA4</field>
+            <field name="d5">PA5</field>
+            <field name="d6">PA6</field>
+            <field name="d7">PA7</field>
+            <field name="EN">PA2</field>
+            <field name="RS">PA3</field>
             <next>
-              <block type="lcd_sendString" id="3l1G9X{oZ5cS-=g*Z?l*">
-                <value name="DATA">
-                  <block type="text" id="Ugb7X22Ro9pFT4u|C2t/">
-                    <field name="TEXT">Hello World!</field>
-                  </block>
-                </value>
-              </block>
-            </next>
-          </block>
-        </next>
-      </block>
-    </statement>
-    <statement name="LOOP_FUNC">
-      <block type="lcd_clear" id="+mA3jY?f2}oDdmA+WxI(">
-        <next>
-          <block type="lcd_goto" id="rJ,%,/lg3n.cxGN!,w!t">
-            <value name="ROW">
-              <block type="math_number" id="z??w5L26hp+0P4~M6-Pm">
-                <field name="NUM">1</field>
-              </block>
-            </value>
-            <value name="COL">
-              <block type="math_number" id="7Pb;%Z;(I~NbZRkp~mw3">
-                <field name="NUM">1</field>
-              </block>
-            </value>
-            <next>
-              <block type="lcd_sendChar" id="kpbu`2`ME]ehkb-hMXVc">
-                <value name="DATA">
-                  <block type="text_char" id=";y;qX=+Eg(hZQ_qu@Z%U">
-                    <field name="TEXT">A</field>
-                  </block>
-                </value>
+              <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
                 <next>
-                  <block type="lcd_goto" id="/{u_5]7YYR1bh}?Dv(DV">
-                    <value name="ROW">
-                      <block type="math_number" id="E,J.BZ9^C}P/%MAJTlnU">
-                        <field name="NUM">0</field>
-                      </block>
-                    </value>
-                    <value name="COL">
-                      <block type="math_number" id="`POp8eFM#,k_0hW0ET8{">
-                        <field name="NUM">1</field>
+                  <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                    <value name="DATA">
+                      <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
+                        <field name="TEXT">Hello World!</field>
                       </block>
                     </value>
                     <next>
-                      <block type="lcd_sendString" id="e=hb;lxkI+J]d3_U05Ui">
-                        <value name="DATA">
-                          <block type="text" id="A@0qSG;fDIu`m4Ml+#{`">
-                            <field name="TEXT">Hello Alaa!</field>
+                      <block type="lcd_goto" id="f_saXh/V!j6*9WtNw8|p">
+                        <value name="ROW">
+                          <block type="math_number" id="_`cy=Hj~IE{xyRD!fz;q">
+                            <field name="NUM">1</field>
                           </block>
                         </value>
+                        <value name="COL">
+                          <block type="math_number" id="eYX`{bToAN|OxndBJm^?">
+                            <field name="NUM">5</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lcd_sendString" id="P6FMHTV#mf0aCQ~%n~%i">
+                            <value name="DATA">
+                              <block type="text" id="Vb9rBoBmM%rO_]v_6rOG">
+                                <field name="TEXT">:)</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
                       </block>
                     </next>
                   </block>

@@ -1,12 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="time_clockEN" id="Jh)-Ep^HleVjOZHYQh1y" x="65" y="42">
+  <block type="time_clockEN" id="Jh)-Ep^HleVjOZHYQh1y" x="1" y="8">
     <field name="PERIPHRAL">GPIOC</field>
     <next>
       <block type="io_builtin_led" id="06kb7}*Wxf`Raf#Sf6Wf">
         <field name="BUILT_IN_LED">PC13</field>
         <value name="STATE">
           <block type="io_highlow" id="#;aTiwibZMgcFn`tU5@K">
-            <field name="STATE">HIGH</field>
+            <field name="STATE">PIN_HIGH</field>
           </block>
         </value>
         <next>
@@ -21,7 +21,7 @@
                 <field name="BUILT_IN_LED">PC13</field>
                 <value name="STATE">
                   <block type="io_highlow" id="DxUz?(2,g-S`vQ9U8s4t">
-                    <field name="STATE">LOW</field>
+                    <field name="STATE">PIN_LOW</field>
                   </block>
                 </value>
                 <next>

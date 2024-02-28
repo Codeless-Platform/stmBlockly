@@ -28,6 +28,7 @@ MCAL/I2C \
 MCAL/NVIC \
 MCAL/RCC \
 MCAL/SPI \
+MCAL/SYSTICK \
 MCAL/USART \
 Src \
 Startup \

@@ -8,10 +8,24 @@
             <field name="PERIPHRAL">GPIOA</field>
             <next>
               <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+                <field name="SIZE"></field>
                 <field name="PORT">GPIOA</field>
+                <field name="d4">PA4</field>
+                <field name="d5">PA5</field>
+                <field name="d6">PA6</field>
+                <field name="d7">PA7</field>
+                <field name="EN">PA2</field>
+                <field name="RS">PA3</field>
                 <next>
                   <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf">
                     <field name="PORT">GPIOB</field>
+                    <field name="R0">PB3</field>
+                    <field name="R1">PB4</field>
+                    <field name="R2">PB5</field>
+                    <field name="R3">PB6</field>
+                    <field name="C0">PB7</field>
+                    <field name="C1">PB8</field>
+                    <field name="C2">PB9</field>
                     <next>
                       <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
                         <next>
@@ -22,7 +36,16 @@
                               </block>
                             </value>
                             <next>
-                              <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}"></block>
+                              <block type="time_delay" id="W+jx,fkQHt[0Y-bV7,Hc">
+                                <value name="DELAY_TIME_MILI">
+                                  <block type="math_number" id="29=iFI6.}rp#{hNZpM^-">
+                                    <field name="NUM">1000</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}"></block>
+                                </next>
+                              </block>
                             </next>
                           </block>
                         </next>
