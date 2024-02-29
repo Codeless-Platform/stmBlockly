@@ -10,6 +10,7 @@
 GPIO_PinConfig_t GPIO_pinConfig;
 LCD_t *G_LCD_pinConfig;
 static int count = 0;
+uint8 MAX_COLS=16 , MAX_ROWS =2;
 void lcd_init(LCD_t *LCD_Config) {
 
 	/*
@@ -23,7 +24,19 @@ void lcd_init(LCD_t *LCD_Config) {
 	 * 8. Go to Entry Mode
 	 */
 	G_LCD_pinConfig = LCD_Config;
+	if (G_LCD_pinConfig->LCD_Size == LCD_2x16)
+	{
+		MAX_COLS = 16; MAX_ROWS =2;
+	}else if (G_LCD_pinConfig->LCD_Size == LCD_4x16)
+	{
+		MAX_COLS = 16; MAX_ROWS =4;
+	}else if (G_LCD_pinConfig->LCD_Size == LCD_4x20)
+	{
+		MAX_COLS = 20; MAX_ROWS =4;
+	}
 	// you must wait for the hardware to initialize
+		STK_init();
+
 	STK_delayMs(20);
 	// set port as ouput to write commands
 

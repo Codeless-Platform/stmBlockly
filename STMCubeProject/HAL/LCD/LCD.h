@@ -27,9 +27,6 @@ typedef struct {
 #define LCD_4x16				2
 
 
-#define MAX_COLS				16
-#define MAX_ROWS				4
-
 /* Some instructions from data sheet */
 #define CURSOR_FIRST_LINE 		(0x80)
 #define CURSOR_SECOND_LINE 		(0xC0)
