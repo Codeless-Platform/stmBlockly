@@ -124,12 +124,12 @@ Blockly.Arduino.Boards.profiles.stm32 = {
   name: 'STM32F103C6',
   description: 'stm32 standard compatible board',
   compilerFlag: 'stm32duino:STM32F1:genericSTM32F103C',
-  analogPins: Blockly.Arduino.Boards.generateAnalogIostm32(),
   digitalPins: Blockly.Arduino.Boards.generateDigitalIostm32(),
   ports: [['GPIOA', 'GPIOA'], ['GPIOB', 'GPIOB'], ['GPIOC', 'GPIOC']], // edited here
   full_ports: [['GPIOA', 'GPIOA'], ['GPIOB', 'GPIOB']], // edited here
   peripherals: [['GPIOA','GPIOA'], ['GPIOB','GPIOB'], ['GPIOC', 'GPIOC'], ['USART1', 'USART1'], ['USART2', 'USART2'], ['USART3', 'USART3'], ['SPI1', 'SPI1'], ['SPI2', 'SPI2'], ['I2C1', 'I2C1'], ['I2C2', 'I2C2'], ['I2C3', 'I2C3']],
-  pwmPins: Blockly.Arduino.Boards.generateDigitalIo(0, 32), 
+  analog: [['PA0','PA0'],['PA1','PA1'],['PA2','PA2'],['PA3','PA3'],['PA4','PA4'],['PA5','PA5'],['PA6','PA6'],['PA7','PA7'], ['PB0' ,'PB0'], ['PB1', 'PB1']],
+  ADC:[['ADC1','ADC1'],['ADC2','ADC2']],
   serial: [['serial', 'Serial']],
   serialPins: { Serial: [['RX', 'PA10'], ['TX', 'PA9']] },
   serialSpeed: [['9600', '9600'], ['19200', '19200'], ['38400', '38400'],
