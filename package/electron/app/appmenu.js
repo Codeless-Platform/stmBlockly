@@ -250,7 +250,7 @@ var getExamplesMenuData = function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
                             'Ardublockly.loadServerXmlFile("../examples/' +
-                            'servo_knob.xml");');
+                            'LM35.xml");');
                 }
             }, {
                 label: 'Stepper Knob',

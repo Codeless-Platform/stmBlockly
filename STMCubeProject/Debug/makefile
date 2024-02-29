@@ -18,6 +18,8 @@ RM := rm -rf
 -include MCAL/I2C/subdir.mk
 -include MCAL/GPIO/subdir.mk
 -include MCAL/EXTI/subdir.mk
+-include MCAL/ADC/subdir.mk
+-include HAL/LM35/subdir.mk
 -include HAL/LCD/subdir.mk
 -include HAL/Keypad/subdir.mk
 -include subdir.mk

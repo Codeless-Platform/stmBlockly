@@ -71,7 +71,7 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_4', function() {
-    Ardublockly.loadServerXmlFile('../examples/servo_knob.xml');
+    Ardublockly.loadServerXmlFile('../examples/LM35.xml');
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_5', function() {

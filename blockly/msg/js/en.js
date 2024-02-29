@@ -665,6 +665,8 @@ Blockly.Msg.KEYPAD_READ_TTL = "gets the value of pressed pin";
 Blockly.Msg.LCD_INIT = "initalize lcd";
 Blockly.Msg.LCD_INIT_TTL = "initalize 16x2 LCD connected to selected pins";
 Blockly.Msg.LCD_CHAR = "write a character";
+Blockly.Msg.LCD_NUMBER = "write a number";
+Blockly.Msg.LCD_NUMBER_TTL = "writes a number on lcd ";
 Blockly.Msg.LCD_TO = "on lcd";
 Blockly.Msg.LCD_CHAR_TTL = "writes a single char on lcd ";
 Blockly.Msg.LCD_STRING = "write";
@@ -689,3 +691,5 @@ Blockly.Msg.KEY_R0 = "R0:";
 Blockly.Msg.KEY_R1 = "R1:";
 Blockly.Msg.KEY_R2 = "R2:";
 Blockly.Msg.KEY_R3 = "R3:";
+
+Blockly.Msg.READLM35 = "Read Tempreature sensor at pin #";

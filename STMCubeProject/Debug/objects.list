@@ -1,5 +1,7 @@
 "HAL/Keypad/Keypad.o"
 "HAL/LCD/LCD.o"
+"HAL/LM35/LM35.o"
+"MCAL/ADC/ADC.o"
 "MCAL/EXTI/EXTI.o"
 "MCAL/GPIO/GPIO.o"
 "MCAL/I2C/I2C.o"

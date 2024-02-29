@@ -85,7 +85,19 @@ Blockly.Blocks["lcd_sendString"] = {
     this.setTooltip(Blockly.Msg.LCD_STRING_TTL);
   },
 };
-
+// send Number
+Blockly.Blocks["lcd_sendNumber"] = {
+  init: function () {
+    this.setColour(Blockly.Blocks.lcd.HUE);
+    this.appendValueInput("DATA")
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField(Blockly.Msg.LCD_NUMBER);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.LCD_NUMBER_TTL);
+  },
+};
 // clear screen
 Blockly.Blocks["lcd_clear"] = {
   init: function () {

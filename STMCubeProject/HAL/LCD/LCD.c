@@ -216,6 +216,7 @@ void lcd_GOTO_XY(unsigned char row, unsigned char col) {
 }
 void lcd_Clear_Screen() {
 	lcd_Send_Command(CLEAR_SCREEN);
+	count = 0;
 }
 void lcd_display_number(int Number) {
 	char str[7];

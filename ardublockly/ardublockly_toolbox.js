@@ -167,6 +167,13 @@ Ardublockly.TOOLBOX_XML =
   "        </block>" +
   "      </value>" +
   "    </block>" +
+  '    <block type="lcd_sendNumber">' +
+  '      <value name="DATA">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">5</field>' +
+  "        </block>" +
+  "      </value>" +
+  "    </block>" +
   '    <block type="lcd_clear"></block>' +
   '    <block type="lcd_goto">' +
   '      <value name="ROW">' +
@@ -190,9 +197,15 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="keypad_getKey"></block>' +
   "      </value>" +
   "    </block>" +
-  "  </category>";
-"  <sep></sep>" +
+  "  </category>" +
+  "  <sep></sep>" +
   '  <category id="catSensors" name="Sensors">' +
+  '    <block type="variables_set">' +
+  '      <field name="VAR">temp</field>' +
+  '      <value name="VALUE">' +
+  '        <block type="sensors_LM35"></block>' +
+  "      </value>" +
+  "    </block>" +
   "  </category>";
 
 // '  <sep></sep>' +

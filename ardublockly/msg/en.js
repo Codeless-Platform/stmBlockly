@@ -102,4 +102,5 @@ Ardublockly.LOCALISED_TEXT = {
   catLCD: "LCD",
   catKeypad: "Keypad",
   catComms: "Comms",
+  catSensors: "Sensors",
 };

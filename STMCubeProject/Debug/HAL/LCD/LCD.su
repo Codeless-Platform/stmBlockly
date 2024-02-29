@@ -4,7 +4,7 @@ LCD.c:117:6:lcd_Send_Char	16	static
 LCD.c:163:6:lcd_send_String	24	static
 LCD.c:189:6:lcd_GOTO_XY	16	static
 LCD.c:217:6:lcd_Clear_Screen	8	static
-LCD.c:220:6:lcd_display_number	24	static
-LCD.c:226:6:lcd_display_Real_number	72	static
-LCD.c:240:6:lcd_kick	8	static
-LCD.c:250:6:LCD_createCustomCharacter	24	static
+LCD.c:221:6:lcd_display_number	24	static
+LCD.c:227:6:lcd_display_Real_number	72	static
+LCD.c:241:6:lcd_kick	8	static
+LCD.c:251:6:LCD_createCustomCharacter	24	static

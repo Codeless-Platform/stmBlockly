@@ -18,6 +18,8 @@
 #include "../HAL/Keypad/Keypad.h"
 #include "../HAL/LCD/LCD.h"
 #include "../MCAL/SYSTICK/SYSTICK.h"
+#include "../MCAL/ADC/ADC.h"
+#include "../HAL/LM35/LM35.h"
 #include "math.h"
 
 
