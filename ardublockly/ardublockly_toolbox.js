@@ -81,11 +81,11 @@ Ardublockly.TOOLBOX_XML =
   "    </block>" +
   "  </category>" +
   "  <sep></sep>" +
-  // '  <category id="catText" name="Text">' +  //commenting this section temporarly to be edited and uncommented
-  // '    <block type="text"></block>' +
+  '  <category id="catText" name="Text">' + //commenting this section temporarly to be edited and uncommented
+  '    <block type="text"></block>' +
   // '    <!--block type="text_trim"></block Need to update block -->' +
   // '    <!--block type="text_print"></block Part of the serial comms -->' +
-  //'  </category>' +
+  "  </category>" +
   "  <sep></sep>" +
   '  <category id="catVariables" name="Variables">' +
   '    <block type="variables_get"></block>' +
@@ -95,7 +95,23 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="variables_set_type"></block>' +
   "      </value>" +
   "    </block>" +
-  '    <block type="variables_set_type"></block>' +
+  '    <block type="array_declare">' +
+  '      <field name="ARRAY_TYPE">int</field>' +
+  '      <field name="ARRAY_NAME">name</field>' +
+  '      <value name="ARRAY_SIZE">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">0</field>' +
+  "        </block>" +
+  "      </value>" +
+  "    </block>" +
+  '    <block type="array_set">' +
+  '      <field name="ARRAY_NAME">name</field>' +
+  '      <value name="ARRAY_INDEX">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">0</field>' +
+  "        </block>" +
+  "      </value>" +
+  "    </block>" +
   "  </category>" +
   "  <sep></sep>" +
   '  <category id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
@@ -206,18 +222,17 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="sensors_LM35"></block>' +
   "      </value>" +
   "    </block>" +
+  "  </category>" +
+  "  <sep></sep>" +
+  '  <category id="catComms" name="Comms">' +
+  '    <block type="uart_init"></block>' +
+  '    <block type="uart_write"></block>' +
+  // '    <block type="text_prompt_ext">' +
+  // '      <value name="TEXT">' +
+  // '        <block type="text"></block>' +
+  // '      </value>' +
+  // '    </block>' +
+  // '    <block type="spi_setup"></block>' +
+  // '    <block type="spi_transfer"></block>' +
+  // '    <block type="spi_transfer_return"></block>' +
   "  </category>";
-
-// '  <sep></sep>' +
-// '  <category id="catComms" name="Comms">' +
-// '    <block type="serial_setup"></block>' +
-// '    <block type="serial_print"></block>' +
-// '    <block type="text_prompt_ext">' +
-// '      <value name="TEXT">' +
-// '        <block type="text"></block>' +
-// '      </value>' +
-// '    </block>' +
-// '    <block type="spi_setup"></block>' +
-// '    <block type="spi_transfer"></block>' +
-// '    <block type="spi_transfer_return"></block>' +
-// '  </category>'

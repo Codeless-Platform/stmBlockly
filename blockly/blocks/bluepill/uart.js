@@ -1,0 +1,136 @@
+/**
+ * @license Licensed under the Apache License, Version 2.0 (the "License"):
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/**
+ * @fileoverview Blocks for the Arduino serial communication functions.
+ *     The Arduino built in functions syntax can be found at:
+ *     http://arduino.cc/en/Reference/HomePage
+ *
+ * TODO: There are more function that can be added:
+ *       http://arduino.cc/en/Reference/Serial
+ */
+"use strict";
+
+goog.provide("Blockly.Blocks.uart");
+
+goog.require("Blockly.Blocks");
+goog.require("Blockly.Types");
+
+/** Common HSV hue for all blocks in this category. */
+Blockly.Blocks.uart.HUE = 160;
+
+Blockly.Blocks["uart_init"] = {
+  /**
+   * Block for setting the speed of the serial connection.
+   * @this Blockly.Block
+   */
+  init: function () {
+    this.setColour(Blockly.Blocks.uart.HUE);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.UART_INIT)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uart),
+        "UART_ID"
+      )
+      .appendField(Blockly.Msg.UART_SPEED)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uartSpeed),
+        "SPEED"
+      )
+      .appendField(Blockly.Msg.UART_BPS);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.UART_INIT_TTP);
+  },
+  /**
+   * Returns the serial instance name.
+   * @return {!string} Serial instance name.
+   * @this Blockly.Block
+   */
+  getSerialSetupInstance: function () {
+    return this.getFieldValue("UART_ID");
+  },
+  /**
+   * Updates the content of the the serial related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, "UART_ID", "uart");
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      "SPEED",
+      "uartSpeed"
+    );
+  },
+};
+
+Blockly.Blocks["uart_write"] = {
+  /**
+   * Block for creating a write to serial com function.
+   * @this Blockly.Block
+   */
+  init: function () {
+    this.setColour(Blockly.Blocks.uart.HUE);
+    this.appendDummyInput()
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uart),
+        "UART_ID"
+      )
+      .appendField(Blockly.Msg.UART_WRITE);
+    this.appendValueInput("CONTENT");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.UART_WRITE_TTP);
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks the instances of serial_setup and attaches a warning to this
+   * block if not valid data is found.
+   * @this Blockly.Block
+   */
+  onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
+
+    // Get the Serial instance from this block
+    var thisInstanceName = this.getFieldValue("UART_ID");
+    // Iterate through top level blocks to find setup instance for the serial id
+    var blocks = Blockly.mainWorkspace.getTopBlocks();
+    var setupInstancePresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getSerialSetupInstance;
+      if (func) {
+        var setupBlockInstanceName = func.call(blocks[x]);
+        if (thisInstanceName == setupBlockInstanceName) {
+          setupInstancePresent = true;
+          break;
+        }
+      }
+    }
+
+    if (!setupInstancePresent) {
+      this.setWarningText(
+        Blockly.Msg.ARD_SERIAL_PRINT_WARN.replace("%1", thisInstanceName),
+        "uart_init"
+      );
+    } else {
+      this.setWarningText(null, "uart_init");
+    }
+  },
+  /**
+   * Updates the content of the the serial related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, "UART_ID", "uart");
+  },
+};

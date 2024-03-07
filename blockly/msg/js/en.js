@@ -544,6 +544,8 @@ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT =
   Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT;
 
 // Ardublockly strings
+Blockly.Msg.ARD_PIN_WARN1 = "Pin %1 is needed for %2 as pin %3. Already used as %4.";
+
 Blockly.Msg.ARD_ANALOGREAD = "read analog pin#";
 Blockly.Msg.ARD_ANALOGREAD_TIP = "Return value between 0 and 1024";
 Blockly.Msg.ARD_ANALOGWRITE = "set analog pin#";
@@ -565,17 +567,7 @@ Blockly.Msg.ARD_TOGGLE_TIP =
   "Toggle current value HIGH or LOW to a specific Pin";
 Blockly.Msg.ARD_HIGH = "HIGH";
 Blockly.Msg.ARD_HIGHLOW_TIP = "Set a pin state logic High or Low.";
-Blockly.Msg.ARD_SERIAL_BPS = "bps";
-Blockly.Msg.ARD_SERIAL_PRINT = "print";
-Blockly.Msg.ARD_SERIAL_PRINT_NEWLINE = "add new line";
-Blockly.Msg.ARD_SERIAL_PRINT_TIP =
-  "Prints data to the console/serial port as human-readable ASCII text.";
-Blockly.Msg.ARD_SERIAL_PRINT_WARN =
-  "A setup block for %1 must be added to the workspace to use this block!";
-Blockly.Msg.ARD_SERIAL_SETUP = "Setup";
-Blockly.Msg.ARD_SERIAL_SETUP_TIP =
-  "Selects the speed for a specific Serial peripheral";
-Blockly.Msg.ARD_SERIAL_SPEED = ":  speed to";
+
 Blockly.Msg.ARD_SPI_SETUP = "Setup";
 Blockly.Msg.ARD_SPI_SETUP_CONF = "configuration:";
 Blockly.Msg.ARD_SPI_SETUP_DIVIDE = "clock divide";
@@ -693,3 +685,14 @@ Blockly.Msg.KEY_R2 = "R2:";
 Blockly.Msg.KEY_R3 = "R3:";
 
 Blockly.Msg.READLM35 = "Read Tempreature sensor at pin #";
+
+Blockly.Msg.UART_INIT = "initalize ";
+Blockly.Msg.UART_INIT_TTP = "Selects the speed for a specific uart peripheral";
+Blockly.Msg.UART_SPEED = ":  speed to";
+
+Blockly.Msg.UART_BPS = "bps";
+Blockly.Msg.UART_WRITE = "write";
+Blockly.Msg.UART_WRITE_TTP =
+  "Prints data to the console/serial port as human-readable ASCII text.";
+Blockly.Msg.ARD_SERIAL_PRINT_WARN =
+  "A setup block for %1 must be added to the workspace to use this block!";
