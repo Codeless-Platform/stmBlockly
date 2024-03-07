@@ -24,7 +24,7 @@ Blockly.Arduino["lcd_init"] = function (block) {
     Blockly.Arduino.reservePin(
       block,
       pin,
-      Blockly.Arduino.PinTypes.INPUT,
+      Blockly.Arduino.PinTypes.OUTPUT,
       "LCD pins"
     );
   }
@@ -32,14 +32,14 @@ Blockly.Arduino["lcd_init"] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.INPUT,
+    Blockly.Arduino.PinTypes.OUTPUT,
     "LCD pins"
   );
-  pin = block.getFieldValue("EN" + i);
+  pin = block.getFieldValue("EN");
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.INPUT,
+    Blockly.Arduino.PinTypes.OUTPUT,
     "LCD pins"
   );
   var pinMainCode =

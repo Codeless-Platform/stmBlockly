@@ -69,7 +69,7 @@ Blockly.Arduino["io_readPin"] = function (block) {
     block,
     pin,
     Blockly.Arduino.PinTypes.INPUT,
-    "Digital Read"
+    "Read Pin"
   );
 
   var pinIncludeCode = "GPIO_PinConfig_t GPIO_pinConfig;\n";
@@ -105,7 +105,7 @@ Blockly.Arduino["io_builtin_led"] = function (block) {
     block,
     pin,
     Blockly.Arduino.PinTypes.OUTPUT,
-    "Digital Write"
+    "Write Pin"
   );
 
   var pinIncludeCode = "GPIO_PinConfig_t GPIO_pinConfig;\n";
