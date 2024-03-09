@@ -134,7 +134,7 @@ Blockly.Arduino.Boards.profiles.stm32 = {
   serialPins: { uart: [['RX', 'PA10'], ['TX', 'PA9']] },
   uartSpeed:[['2400', '2400'],['9600', '9600'], ['19200', '19200'], ['19200', '19200'],
   ['57600', '57600'], ['115200', '115200'],['230400', '230400']],
-  spi: [['SPI', 'SPI']],
+  spi: [['SPI1', 'SPI1'],['SPI2','SPI2']],
   spiPins: { SPI: [['MOSI', 'PA7'], ['MISO', 'PA6'], ['SCK', 'PA5']] },
   spiClockDivide: [['2 (36MHz)', 'SPI_CLOCK_DIV2'],
                    ['4 (18MHz)', 'SPI_CLOCK_DIV4'],
