@@ -1,0 +1,50 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="74" y="3">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="(~mE#zY(h!7Uc}-~vY8t">
+        <field name="PERIPHRAL">GPIOA</field>
+        <next>
+          <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+            <field name="SIZE">2x16</field>
+            <field name="PORT">GPIOA</field>
+            <field name="d4">PA4</field>
+            <field name="d5">PA5</field>
+            <field name="d6">PA6</field>
+            <field name="d7">PA7</field>
+            <field name="EN">PA2</field>
+            <field name="RS">PA3</field>
+            <next>
+              <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
+                <next>
+                  <block type="uart_init" id="D8;-/}kOp-G7fR0|fb@3">
+                    <field name="UART_ID">USART1</field>
+                    <field name="SPEED">9600</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="uart_recieve" id="N8pRf`A#7pK-@Y@8_hk4">
+        <field name="UART_ID">USART1</field>
+        <value name="CONTENT">
+          <block type="variables_get" id="K*?trJ(G/uYsiev-FRN3">
+            <field name="VAR">item</field>
+          </block>
+        </value>
+        <next>
+          <block type="lcd_sendString" id="FhW3`YQ5-mn?`C@U)2CS">
+            <value name="DATA">
+              <block type="variables_get" id="^S^e`fQdS6MwF[z}z+Ud">
+                <field name="VAR">item</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

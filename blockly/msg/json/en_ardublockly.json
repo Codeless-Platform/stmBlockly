@@ -50,7 +50,7 @@
 	"ARD_SERIAL_PRINT": "print",
 	"ARD_SERIAL_PRINT_NEWLINE": "add new line",
 	"ARD_SERIAL_PRINT_TIP": "Prints data to the console/serial port as human-readable ASCII text.",
-	"ARD_SERIAL_PRINT_WARN": "A setup block for %1 must be added to the workspace to use this block!",
+	"UART_PRINT_WARN": "A setup block for %1 must be added to the workspace to use this block!",
 	"ARD_SERVO_WRITE": "set SERVO from Pin",
 	"ARD_SERVO_WRITE_TO": "to",
 	"ARD_SERVO_WRITE_DEG_180": "Degrees (0~180)",
