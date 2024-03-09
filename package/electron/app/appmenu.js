@@ -221,7 +221,7 @@ var getExamplesMenuData = function() {
         label: 'Examples',
         submenu: [
             {
-                label: 'Blinky',
+                label: 'Blink',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
@@ -229,7 +229,7 @@ var getExamplesMenuData = function() {
                             'blink.xml");');
                 }
             }, {
-                label: 'Serial Print',
+                label: 'Lcd Hello World',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
@@ -237,7 +237,7 @@ var getExamplesMenuData = function() {
                             'LCD_Hello_World.xml");');
                 }
             }, {
-                label: 'Serial Repeat Game',
+                label: 'Get Key',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
@@ -245,7 +245,7 @@ var getExamplesMenuData = function() {
                             'KeypadGetKey.xml");');
                 }
             }, {
-                label: 'Servo Knob',
+                label: 'LM35',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
@@ -253,12 +253,12 @@ var getExamplesMenuData = function() {
                             'LM35.xml");');
                 }
             }, {
-                label: 'Stepper Knob',
+                label: 'Uart Send',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
                             'Ardublockly.loadServerXmlFile("../examples/' +
-                            'stepper_knob.xml");');
+                            'uart_write.xml");');
                 }
             }
         ]

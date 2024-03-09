@@ -75,7 +75,7 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
   Ardublockly.bindClick_('menu_example_5', function() {
-    Ardublockly.loadServerXmlFile('../examples/stepper_knob.xml');
+    Ardublockly.loadServerXmlFile('../examples/uart_write.xml');
     $('.button-collapse').sideNav('hide');
   });
 
