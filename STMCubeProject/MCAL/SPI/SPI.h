@@ -33,7 +33,7 @@ struct IRQ_source_t{
 };
 
 typedef struct{
-
+	
 	uint16 SPI_Mode;							//Specifies The operating Mode @ref SPI_MODE_Define
 	uint16 Commuincation_Mode;					// Specifies The SPI Bidirectional Mode @ref SPI_Commuincation_Mode_define
 	uint16 Data_Size;							// @ref Data_Size_Define
