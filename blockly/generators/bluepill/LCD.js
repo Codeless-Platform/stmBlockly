@@ -81,7 +81,7 @@ Blockly.Arduino["lcd_sendString"] = function (block) {
   var data =
     Blockly.Arduino.valueToCode(block, "DATA", Blockly.Arduino.ORDER_ATOMIC) ||
     "0";
-  var code = "lcd_send_String(" + data + ");\n";
+  var code = "lcd_send_String(&" + data + ");\n";
   return code;
 };
 // send Number
