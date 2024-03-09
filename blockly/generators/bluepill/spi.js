@@ -13,7 +13,6 @@ goog.provide('Blockly.Arduino.spi');
 
 goog.require('Blockly.Arduino');
 
-
 /**
  * Code generator for the SPI configuration block. It does not add any LoC to
  * the loop(), but it generates code for the setup() function.
@@ -25,22 +24,60 @@ goog.require('Blockly.Arduino');
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
-Blockly.Arduino['spi_setup'] = function(block) {
+Blockly.Arduino['spi_init'] = function (block) {
   var spiId = block.getFieldValue('SPI_ID');
-  var spiShift = block.getFieldValue('SPI_SHIFT_ORDER');
-  var spiClockDivide = block.getFieldValue('SPI_CLOCK_DIVIDE');
   var spiMode = block.getFieldValue('SPI_MODE');
-
-  Blockly.Arduino.addInclude('spi', '#include <SPI.h>');
-  Blockly.Arduino.addMain('spi_order',
-      spiId + '.setBitOrder(' + spiShift + ');', true);
-  Blockly.Arduino.addMain('spi_mode',
-      spiId + '.setDataMode(' + spiMode + ');', true);
-  Blockly.Arduino.addMain('spi_div',
-      spiId + '.setClockDivider(' + spiClockDivide + ');', true);
-  Blockly.Arduino.addMain('spi_begin',
-      spiId + '.begin();', true);
-
+  var spiClk = block.getFieldValue('SPI_CLK');
+  var SPI_Polarity, SPI_Phase;
+  if (spiClk == 'SPI_MODE0') {
+    SPI_Polarity = 'SPI_CLK_Polarity_0';
+    SPI_Phase = 'SPI_CLK_Phase_1st';
+  } else if (spiClk == 'SPI_MODE1') {
+    SPI_Polarity = 'SPI_CLK_Polarity_0';
+    SPI_Phase = 'SPI_CLK_Phase_2nd';
+  } else if (spiClk == 'SPI_MODE2') {
+    SPI_Polarity = 'SPI_CLK_Polarity_1';
+    SPI_Phase = 'SPI_CLK_Phase_1st';
+  } else if (spiClk == 'SPI_MODE3') {
+    SPI_Polarity = 'SPI_CLK_Polarity_1';
+    SPI_Phase = 'SPI_CLK_Phase_2nd';
+  }
+  var mainCode = `\nSPI_PinConfig_t SPI_pinConfig;
+	SPI_pinConfig.Commuincation_Mode = SPI_Direction_2Lines_RXTX;
+	SPI_pinConfig.Data_Size = SPI_Data8;
+	SPI_pinConfig.Frame_Format = SPI_Frame_MSB;
+	SPI_pinConfig.BaudRate = SPI_BaudRate_8;
+	SPI_pinConfig.CLK_Polarity = ${SPI_Polarity};
+	SPI_pinConfig.CLK_Phase = ${SPI_Phase};\n`;
+  if (spiMode == 'MASTER') {
+    mainCode += `SPI_pinConfig.SPI_Mode = SPI_Mode_Master;
+    SPI_pinConfig.NSS =  SPI_NSS_Soft_set;
+    SPI_pinConfig.IRQ_Enable = SPI_IRQ_EN_None;
+    SPI_pinConfig.P_CallBackFun = NULL;
+  
+    // Configure SS pin
+    GPIO_PinConfig_t GPIO_pinConfig;
+    GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
+    GPIO_pinConfig.Output_Speed = SPEED_10M;`;
+    if (spiId == 'SPI1') {
+      mainCode += `GPIO_pinConfig.Pin_Number = PIN_4;
+          GPIO_init(GPIOA, &GPIO_pinConfig);
+          GPIO_WritePin(GPIOA, PIN_4, PIN_HIGH);`;
+    } else {
+      mainCode += `GPIO_pinConfig.Pin_Number = PIN_12;
+      GPIO_init(GPIOA, &GPIO_pinConfig);
+      GPIO_WritePin(GPIOA, PIN_12, PIN_HIGH);      `;
+    }
+    // write high as idle case
+  } else if (spiMode == 'SLAVE') {
+    mainCode += `	SPI_pinConfig.SPI_Mode = SPI_Mode_Slave;
+    SPI_pinConfig.NSS = SPI_NSS_Hard_Slave;
+    SPI_pinConfig.IRQ_Enable = SPI_IRQ_EN_None;
+    SPI_pinConfig.P_CallBackFun = NULL;`;
+  }
+  mainCode += `	SPI_init(&SPI_pinConfig, ${spiId});
+	SPI_GPIO_SetPins(${spiId});`;
+  Blockly.Arduino.addMain('spi_', mainCode, true);
   return '';
 };
 
@@ -56,69 +93,39 @@ Blockly.Arduino['spi_setup'] = function(block) {
  * @param {!Blockly.Block} block Block to generate the code from.
  * @return {string} Completed code.
  */
-Blockly.Arduino['spi_transfer'] = function(block) {
+
+Blockly.Arduino['spi_RXTX'] = function (block) {
   var spiId = block.getFieldValue('SPI_ID');
-  var spiSs = block.getFieldValue('SPI_SS');
-  var spiData = Blockly.Arduino.valueToCode(
-      block, 'SPI_DATA', Blockly.Arduino.ORDER_ATOMIC) || '0';
-
-  Blockly.Arduino.addInclude('spi', '#include <SPI.h>');
-  Blockly.Arduino.addMain('spi_begin', spiId + '.begin();', false);
-
-  // Reserve SPI pins MOSI, MISO, and SCK
-  var spiPins = Blockly.Arduino.Boards.selected.spiPins[spiId];
-  for (var i = 0; i < spiPins.length; i++) {
-    Blockly.Arduino.reservePin(block, spiPins[i][1],
-        Blockly.Arduino.PinTypes.SPI, 'SPI ' + spiPins[i][0]);
-  }
-
-  // Configure the Slave Select as a normal output if a pin is used
-  if (spiSs !== 'none') {
-    Blockly.Arduino.reservePin(
-        block, spiSs, Blockly.Arduino.PinTypes.OUTPUT, 'SPI Slave pin');
-    var setupCode = 'pinMode(' + spiSs + ', OUTPUT);';
-    Blockly.Arduino.addMain('io_' + spiSs, setupCode, false);
-  } // else means the SS pin is always set for the device
-
-  // Add the code, but only use a SS pin if one is selected
-  var code = [];
-  if (spiSs !== 'none') {
-    code.push('digitalWrite(' + spiSs + ', HIGH);');
-  }
-  code.push(spiId + '.transfer(' + spiData + ');');
-  if (spiSs !== 'none') {
-    code.push('digitalWrite(' + spiSs + ', LOW);');
-  }
-  return code.join('\n') + '\n';
-};
-
-/**
- * Code generator for the SPI transfer block with a return value.
- * The rest is the same as the spi_transfer block.
- * @param {!Blockly.Block} block Block to generate the code from.
- * @return {string} Completed code.
- */
-Blockly.Arduino['spi_transfer_return'] = function(block) {
-  var spiId = block.getFieldValue('SPI_ID');
-  var spiSs = block.getFieldValue('SPI_SS');
-  var spiData = Blockly.Arduino.valueToCode(
-      block, 'SPI_DATA', Blockly.Arduino.ORDER_ATOMIC) || '0';
-  // The spi_transfer block invoked to generate all setup stuff, code discarded
-  var spiTransferOnlyCode = Blockly.Arduino['spi_transfer'](block);
-  if (spiSs === 'none') {
-    var code = spiId + '.transfer(' + spiData + ')';
+  var spiData =
+    Blockly.Arduino.valueToCode(
+      block,
+      'SPI_DATA',
+      Blockly.Arduino.ORDER_ATOMIC
+    ) || '0';
+  var declarationCode = 'uint16 ' + spiData + ';\n';
+  Blockly.Arduino.addDeclaration('uart_', declarationCode);
+  if (spiId == 'SPI1') {
+   var code = `GPIO_WritePin(GPIOA, PIN_4, PIN_LOW);
+   SPI_RXTX(SPI1, &${spiData}, Pollingenable);
+   GPIO_WritePin(GPIOA, PIN_4, PIN_HIGH);
+    `;
   } else {
-    var func = [
-        'int ' + Blockly.Arduino.DEF_FUNC_NAME + '() {',
-        '  int spiReturn = 0;',
-        '  digitalWrite(' + spiSs + ', HIGH);',
-        '  spiReturn = ' + spiId + '.transfer(' + spiData + ');',
-        '  digitalWrite(' + spiSs + ', LOW);',
-        '  return spiReturn;',
-        '}'];
-    var functionName = Blockly.Arduino.addFunction(
-        'spiReturnSlave' + spiSs, func.join('\n'));
-    var code = functionName + '()';
+   var code = `GPIO_WritePin(GPIOA, PIN_12, PIN_LOW);
+    SPI_RXTX(SPI2, &${spiData}, Pollingenable);
+    GPIO_WritePin(GPIOA, PIN_12, PIN_HIGH);  `;
   }
-  return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
+  // Reserve SPI pins MOSI, MISO, and SCK
+  var spiPins =
+    spiId == 'SPI1'
+      ? ['PA4', 'PA5', 'PA6', 'PA7']
+      : ['PB12', 'PB13', 'PB14', 'PB15'];
+  for (var i = 0; i < spiPins.length; i++) {
+    Blockly.Arduino.reservePin(
+      block,
+      spiPins[i],
+      Blockly.Arduino.PinTypes.SPI,
+      'SPI pins'
+    );
+  }
+  return code;
 };

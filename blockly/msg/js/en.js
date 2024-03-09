@@ -568,28 +568,6 @@ Blockly.Msg.ARD_TOGGLE_TIP =
 Blockly.Msg.ARD_HIGH = "HIGH";
 Blockly.Msg.ARD_HIGHLOW_TIP = "Set a pin state logic High or Low.";
 
-Blockly.Msg.ARD_SPI_SETUP = "Setup";
-Blockly.Msg.ARD_SPI_SETUP_CONF = "configuration:";
-Blockly.Msg.ARD_SPI_SETUP_DIVIDE = "clock divide";
-Blockly.Msg.ARD_SPI_SETUP_LSBFIRST = "LSBFIRST";
-Blockly.Msg.ARD_SPI_SETUP_MODE = "SPI mode (idle - edge)";
-Blockly.Msg.ARD_SPI_SETUP_MODE0 = "0 (Low - Falling)";
-Blockly.Msg.ARD_SPI_SETUP_MODE1 = "1 (Low - Rising)";
-Blockly.Msg.ARD_SPI_SETUP_MODE2 = "2 (High - Falling)";
-Blockly.Msg.ARD_SPI_SETUP_MODE3 = "3 (High - Rising)";
-Blockly.Msg.ARD_SPI_SETUP_MSBFIRST = "MSBFIRST";
-Blockly.Msg.ARD_SPI_SETUP_SHIFT = "data shift";
-Blockly.Msg.ARD_SPI_SETUP_TIP = "Configures the SPI peripheral.";
-Blockly.Msg.ARD_SPI_TRANSRETURN_TIP =
-  "Send a SPI message to an specified slave device and get data back.";
-Blockly.Msg.ARD_SPI_TRANS_NONE = "none";
-Blockly.Msg.ARD_SPI_TRANS_SLAVE = "to slave pin";
-Blockly.Msg.ARD_SPI_TRANS_TIP =
-  "Send a SPI message to an specified slave device.";
-Blockly.Msg.ARD_SPI_TRANS_VAL = "transfer";
-Blockly.Msg.ARD_SPI_TRANS_WARN1 =
-  "A setup block for %1 must be added to the workspace to use this block!";
-Blockly.Msg.ARD_SPI_TRANS_WARN2 = "Old pin value %1 is no longer available.";
 Blockly.Msg.ARD_TIME_DELAY = "wait";
 Blockly.Msg.ARD_TIME_DELAY_MICROS = "microseconds";
 Blockly.Msg.ARD_TIME_DELAY_MICRO_TIP = "Wait specific time in microseconds";
@@ -694,5 +672,33 @@ Blockly.Msg.UART_BPS = "bps";
 Blockly.Msg.UART_WRITE = "write";
 Blockly.Msg.UART_WRITE_TTP =
   "Prints data to the console/serial port as human-readable ASCII text.";
-Blockly.Msg.ARD_SERIAL_PRINT_WARN =
+Blockly.Msg.UART_PRINT_WARN =
   "A setup block for %1 must be added to the workspace to use this block!";
+  Blockly.Msg.UART_READ = "get data from";
+  Blockly.Msg.UART_READ_TTP =
+    "reads incoming data from the console/serial port as human-readable ASCII text.";
+// spi 
+Blockly.Msg.SPI_SETUP = "Setup";
+Blockly.Msg.SPI_SETUP_CONF = "configuration:";
+Blockly.Msg.SPI_SETUP_DIVIDE = "clock divide";
+Blockly.Msg.SPI_SETUP_MODE = "SPI mode (idle - edge)";
+Blockly.Msg.SPI_SETUP_MODE0 = "0 (Low - Falling)"; // CPOL , CPHA
+Blockly.Msg.SPI_SETUP_MODE1 = "1 (Low - Rising)";
+Blockly.Msg.SPI_SETUP_MODE2 = "2 (High - Falling)";
+Blockly.Msg.SPI_SETUP_MODE3 = "3 (High - Rising)";
+Blockly.Msg.SPI_SETUP_SHIFT = "data shift";
+Blockly.Msg.SPI_INIT_TIP = "Configures the SPI peripheral.";
+Blockly.Msg.SPI_TRANSRETURN_TIP =
+  "Send a SPI message to an specified slave device and get data back.";
+Blockly.Msg.SPI_TRANS_NONE = "none";
+Blockly.Msg.SPI_TRANS_SLAVE = "to slave pin";
+Blockly.Msg.SPI_TRANS_TIP =
+  "Send a SPI message to an specified slave device.";
+Blockly.Msg.SPI_TRANS_VAL = "transfer";
+Blockly.Msg.SPI_TRANS_WARN1 =
+  "A setup block for %1 must be added to the workspace to use this block!";
+Blockly.Msg.ARD_SPI_TRANS_WARN2 = "Old pin value %1 is no longer available.";    
+Blockly.Msg.SPI_MODE = "Mode:";
+Blockly.Msg.SPI_MODE_MASTER = "Master";
+Blockly.Msg.SPI_MODE_SALVE = "Slave";
+
