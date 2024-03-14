@@ -1,0 +1,8 @@
+../HAL/LCD_I2C/LCD_I2C.c:14:6:lcd_I2C_init	56	static
+../HAL/LCD_I2C/LCD_I2C.c:41:6:lcd_I2C_Send_Command	32	static
+../HAL/LCD_I2C/LCD_I2C.c:60:6:lcd_I2C_Send_Char	32	static
+../HAL/LCD_I2C/LCD_I2C.c:93:6:lcd_I2C_Clear_Screen	8	static
+../HAL/LCD_I2C/LCD_I2C.c:97:6:lcd_I2C_GOTO_XY	16	static
+../HAL/LCD_I2C/LCD_I2C.c:130:6:lcd_I2C_display_number	24	static
+../HAL/LCD_I2C/LCD_I2C.c:136:6:lcd_I2C_display_Real_number	72	static
+../HAL/LCD_I2C/LCD_I2C.c:152:6:lcd_I2C_send_String	24	static

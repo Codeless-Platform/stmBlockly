@@ -1,0 +1,14 @@
+../MCAL/I2C/I2C.c:29:6:I2C_init	10
+../MCAL/I2C/I2C.c:127:6:I2C_Deinit	3
+../MCAL/I2C/I2C.c:139:6:I2C_GPIO_SetPins	3
+../MCAL/I2C/I2C.c:166:6:I2C_Master_TX	7
+../MCAL/I2C/I2C.c:193:6:I2C_Master_RX	8
+../MCAL/I2C/I2C.c:233:6:I2C_GenerateStart	4
+../MCAL/I2C/I2C.c:257:6:I2C_GenerateStop	2
+../MCAL/I2C/I2C.c:273:6:I2C_ACKConfig	2
+../MCAL/I2C/I2C.c:283:12:I2C_GetFlagStatus	11
+../MCAL/I2C/I2C.c:313:6:I2C_SendSlaveAddress	3
+../MCAL/I2C/I2C.c:331:6:I2C_Slave_TX	1
+../MCAL/I2C/I2C.c:334:7:I2C_Slave_RX	1
+../MCAL/I2C/I2C.c:338:6:I2C1_EV_IRQHandler	14
+../MCAL/I2C/I2C.c:421:6:Slave_States	9

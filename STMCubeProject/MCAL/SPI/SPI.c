@@ -9,8 +9,8 @@
 //       Includes
 //=======================
 #include "SPI.h"
-#define   RXNE_PIN            ((uint8_t)0x01)         //Bit 0 RXNE: Receive buffer not empty
-#define   TXE_PIN             ((uint8_t)0x02)         //Bit 1 TXE: Transmit buffer empty
+#define   RXNE_PIN            ((uint16)0x01)         //Bit 0 RXNE: Receive buffer not empty
+#define   TXE_PIN             ((uint16)0x02)         //Bit 1 TXE: Transmit buffer empty
 /*
  * =======================================================================================
  * 							Generic Variables
@@ -113,10 +113,13 @@ void SPI_DeInit(SPI_Registers_t *SPIx) {
 void SPI_SendData(SPI_Registers_t *SPIx, uint16 *pData,
 		enum PollingMechanism PollingEn) {
 	if (PollingEn == Pollingenable) {
-		while (!((SPIx->SR) & TXE_PIN))
-			;
+		while (!((SPIx->SR) & TXE_PIN));
+
 	}
 	SPIx->DR = *pData;
+	if (PollingEn == Pollingenable) {
+			while (!((SPIx->SR) & RXNE_PIN));
+		}
 }
 /**================================================================
  * @Fn				- SPI_RecieveData
@@ -125,13 +128,13 @@ void SPI_SendData(SPI_Registers_t *SPIx, uint16 *pData,
  * @param [in]	    - pData: Data to be received
  * @param [in]		- PollingEn: Enables or disables the polling mechanism
  */
-void SPI_RecieveData(SPI_Registers_t *SPIx, uint16 *pData,
+uint16 SPI_RecieveData(SPI_Registers_t *SPIx,
 		enum PollingMechanism PollingEn) {
 	if (PollingEn == Pollingenable) {
 		while (!((SPIx->SR) & RXNE_PIN))
 			;
 	}
-	*pData = SPIx->DR;
+	return SPIx->DR;
 }
 /**================================================================
  * @Fn				-SPI_GPIO_SetPins

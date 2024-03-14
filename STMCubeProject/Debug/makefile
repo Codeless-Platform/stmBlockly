@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (11.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -20,9 +21,9 @@ RM := rm -rf
 -include MCAL/EXTI/subdir.mk
 -include MCAL/ADC/subdir.mk
 -include HAL/LM35/subdir.mk
+-include HAL/LCD_I2C/subdir.mk
 -include HAL/LCD/subdir.mk
 -include HAL/Keypad/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -39,9 +40,23 @@ endif
 
 -include ../makefile.defs
 
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
+
+BUILD_ARTIFACT_NAME := stmBlockly
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX :=
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 stmBlockly.elf \
+
+MAP_FILES += \
+stmBlockly.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
@@ -52,47 +67,48 @@ stmBlockly.list \
 OBJCOPY_HEX += \
 stmBlockly.hex \
 
-OBJCOPY_BIN += \
-stmBlockly.bin \
-
 
 # All Target
-all: stmBlockly.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: stmBlockly.elf secondary-outputs
 
 # Tool invocations
-stmBlockly.elf: $(OBJS) $(USER_OBJS) D:\Projects\Low\ Code\ platforms\stmBlockly\STMCubeProject\STM32F103C6TX_FLASH.ld
+stmBlockly.elf stmBlockly.map: $(OBJS) $(USER_OBJS) D:\Projects\Low\ Code\ platforms\stmBlockly\STMCubeProject\STM32F103C6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "stmBlockly.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Projects\Low Code platforms\stmBlockly\STMCubeProject\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stmBlockly.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-stmBlockly.list: $(EXECUTABLES)
+stmBlockly.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "stmBlockly.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-stmBlockly.hex: $(EXECUTABLES)
+stmBlockly.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "stmBlockly.hex"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-stmBlockly.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "stmBlockly.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) *
+	-$(RM) default.size.stdout stmBlockly.elf stmBlockly.hex stmBlockly.list stmBlockly.map
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
-.PHONY: all clean dependents
-.SECONDARY:
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 
 -include ../makefile.targets

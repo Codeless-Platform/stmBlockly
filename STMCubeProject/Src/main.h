@@ -17,6 +17,8 @@
 #include "../MCAL/RCC/RCC.h"
 #include "../HAL/Keypad/Keypad.h"
 #include "../HAL/LCD/LCD.h"
+#include "../HAL/LCD_I2C/LCD_I2C.h"
+
 #include "../MCAL/SYSTICK/SYSTICK.h"
 #include "../MCAL/ADC/ADC.h"
 #include "../HAL/LM35/LM35.h"

@@ -1,0 +1,2 @@
+../HAL/LM35/LM35.c:11:6:LM35_init	1
+../HAL/LM35/LM35.c:14:8:LM35_Read	1

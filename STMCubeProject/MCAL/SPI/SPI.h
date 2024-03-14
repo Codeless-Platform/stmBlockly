@@ -33,7 +33,7 @@ struct IRQ_source_t{
 };
 
 typedef struct{
-	
+
 	uint16 SPI_Mode;							//Specifies The operating Mode @ref SPI_MODE_Define
 	uint16 Commuincation_Mode;					// Specifies The SPI Bidirectional Mode @ref SPI_Commuincation_Mode_define
 	uint16 Data_Size;							// @ref Data_Size_Define
@@ -125,7 +125,7 @@ void SPI_init(SPI_PinConfig_t *SPI_pinConfig, SPI_Registers_t *SPIx);
 void SPI_DeInit(SPI_Registers_t *SPIx);
 
 void SPI_SendData(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism PollingEn );
-void SPI_RecieveData(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism PollingEn );
+uint16 SPI_RecieveData(SPI_Registers_t *SPIx, enum PollingMechanism PollingEn );
 
 void SPI_GPIO_SetPins(SPI_Registers_t *SPIx);
 void SPI_RXTX(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism PollingEn);

@@ -1,2 +1,2 @@
-LM35.c:11:6:LM35_init	16	static
-LM35.c:14:8:LM35_Read	24	static
+../HAL/LM35/LM35.c:11:6:LM35_init	16	static
+../HAL/LM35/LM35.c:14:8:LM35_Read	24	static

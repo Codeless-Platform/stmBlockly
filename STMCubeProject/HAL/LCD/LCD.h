@@ -9,7 +9,6 @@
 #define LCD_H_
 #include "../../MCAL/GPIO/GPIO.h"
 #include "../../MCAL/SYSTICK/SYSTICK.h"
-
 typedef struct {
 	uint8 LCD_Size;		// @ref LCD_SIZE
     GPIO_Registers_t* LCD_PORT;

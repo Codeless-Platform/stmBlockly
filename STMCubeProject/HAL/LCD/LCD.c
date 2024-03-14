@@ -6,7 +6,6 @@
  */
 
 #include "LCD.h"
-
 GPIO_PinConfig_t GPIO_pinConfig;
 LCD_t *G_LCD_pinConfig;
 static int count = 0;
@@ -257,4 +256,5 @@ void LCD_createCustomCharacter(uint8 *pattern, uint8 location) {
 		lcd_Send_Char(pattern[i]); /* Pass the Bytes of pattern on LCD */
 	}
 }
+
 

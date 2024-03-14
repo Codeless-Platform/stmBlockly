@@ -315,7 +315,7 @@ void USART_SendString(USART_Registers_t *USARTx, const uint8 *str) {
 	// Loop through each character and send it
 	for (size_t i = 0; i < len; i++) {
 		// Send character
-		USART_Send(USARTx, (uint16_t*) &str[i], Enable);
+		USART_Send(USARTx, (uint16*) &str[i], Enable);
 
 	}
 }

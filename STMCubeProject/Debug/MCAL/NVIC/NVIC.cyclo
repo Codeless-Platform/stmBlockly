@@ -1,0 +1,6 @@
+../MCAL/NVIC/NVIC.c:23:6:NVIC_Enable	4
+../MCAL/NVIC/NVIC.c:38:6:NVIC_Disable	4
+../MCAL/NVIC/NVIC.c:53:6:NVIC_setPending	4
+../MCAL/NVIC/NVIC.c:68:6:NVIC_clearPending	4
+../MCAL/NVIC/NVIC.c:83:7:NVIC_getActiveBit	4
+../MCAL/NVIC/NVIC.c:99:6:NVIC_setPriority	2

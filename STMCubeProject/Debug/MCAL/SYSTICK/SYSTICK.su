@@ -1,8 +1,8 @@
-SYSTICK.c:26:6:STK_init	4	static
-SYSTICK.c:36:6:STK_BusyWait	16	static
-SYSTICK.c:51:6:STK_delayMs	24	static
-SYSTICK.c:67:6:STK_delayUs	16	static
-SYSTICK.c:81:6:STK_SetInterval	16	static
-SYSTICK.c:90:8:STK_getElapsedTime	4	static
-SYSTICK.c:93:8:STK_getRemainingTime	4	static
-SYSTICK.c:98:6:SysTick_Handler	16	static
+../MCAL/SYSTICK/SYSTICK.c:26:6:STK_init	4	static
+../MCAL/SYSTICK/SYSTICK.c:36:6:STK_BusyWait	16	static
+../MCAL/SYSTICK/SYSTICK.c:51:6:STK_delayMs	24	static
+../MCAL/SYSTICK/SYSTICK.c:67:6:STK_delayUs	16	static
+../MCAL/SYSTICK/SYSTICK.c:81:6:STK_SetInterval	16	static
+../MCAL/SYSTICK/SYSTICK.c:90:8:STK_getElapsedTime	4	static
+../MCAL/SYSTICK/SYSTICK.c:93:8:STK_getRemainingTime	4	static
+../MCAL/SYSTICK/SYSTICK.c:98:6:SysTick_Handler	16	static
