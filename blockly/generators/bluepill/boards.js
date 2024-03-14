@@ -143,7 +143,7 @@ Blockly.Arduino.Boards.profiles.stm32 = {
                    ['32 (2.25MHz)', 'SPI_CLOCK_DIV32'],
                    ['64 (1.125MHz)', 'SPI_CLOCK_DIV64'],
                    ['128 (562.5KHz)', 'SPI_CLOCK_DIV128']],
-  i2c: [['I2C', 'Wire']],
+  i2c: [['I2C1', 'I2C1']],
   i2cPins: { Wire: [['SDA', 'PB7'], ['SCL', 'PB6']] },
   i2cSpeed: [['100kHz', '100000L'], ['400kHz', '400000L']],
   builtinLed: [['LED_BUILTIN', 'PC13']],

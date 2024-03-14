@@ -7,17 +7,32 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.lcd.HUE = 400;
-
 Blockly.Blocks['lcd_init'] = {
   init: function () {
+    var dropdownType = new Blockly.FieldDropdown([['Standard'], ['I2C']]);
+    var dropdownSize = new Blockly.FieldDropdown([
+      ['2x16'],
+      ['4x16'],
+      ['4x20'],
+    ]);
+    var dropdownAddress = new Blockly.FieldDropdown([
+      ['0x40'],
+      ['0x42'],
+      ['0x46'],
+      ['0x48'],
+      ['0x4A'],
+      ['0x4C'],
+      ['0x4E'],
+    ]);
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_INIT)
+      .appendField(dropdownType, 'TYPE')
       .appendField(Blockly.Msg.LCD_SIZE)
-      .appendField(
-        new Blockly.FieldDropdown([['2x16'], ['4x16'], ['4x20']]),
-        'SIZE'
-      )
+      .appendField(dropdownSize, 'SIZE');
+
+    // Additional fields added later
+    this.standardInput = this.appendDummyInput()
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.full_ports),
         'PORT'
@@ -36,8 +51,7 @@ Blockly.Blocks['lcd_init'] = {
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'd6'
-      );
-    this.appendDummyInput()
+      )
       .appendField(Blockly.Msg.LCD_D7)
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
@@ -53,11 +67,46 @@ Blockly.Blocks['lcd_init'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'RS'
       );
+    this.i2cInput = this.appendDummyInput()
+      .appendField(Blockly.Msg.LCD_INIT_I2C)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c),
+        'I2C'
+      )
+      .appendField(Blockly.Msg.LCD_ADDRESS_I2C)
+      .appendField(dropdownAddress, 'ADDRESS');
+
     this.setFieldValue('2x16', 'SIZE');
+    this.setFieldValue('0x4E', 'ADDRESS');
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.LCD_INIT_TTL);
+
+    var thisBlock = this;
+    dropdownType.setValue('I2C'); // Initialize value
+    thisBlock.standardInput.fieldRow.forEach(function (field) {
+      field.setVisible(false);
+    });
+    // Add change listener to TYPE dropdown
+    dropdownType.setValidator(function (newValue) {
+      if (newValue === 'Standard') {
+        thisBlock.standardInput.fieldRow.forEach(function (field) {
+          field.setVisible(true);
+        });
+        thisBlock.i2cInput.fieldRow.forEach(function (field) {
+          field.setVisible(false);
+        });
+      } else {
+        thisBlock.standardInput.fieldRow.forEach(function (field) {
+          field.setVisible(false);
+        });
+        thisBlock.i2cInput.fieldRow.forEach(function (field) {
+          field.setVisible(true);
+        });
+      }
+      return newValue;
+    });
   },
 };
 

@@ -152,6 +152,7 @@ Ardublockly.TOOLBOX_XML =
   '  <sep></sep>' +
   '  <category id="catInterfaces" name="Interfaces">' +
   '    <block type="lcd_init"></block>' +
+  // '    <block type="lcd_i2c_init"></block>' +
   '    <block type="lcd_sendChar">' +
   '      <value name="DATA">' +
   '        <block type="text_char">' +
