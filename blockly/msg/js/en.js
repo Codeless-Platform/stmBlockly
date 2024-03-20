@@ -661,6 +661,7 @@ Blockly.Msg.LCD_SIZE = 'Size:';
 Blockly.Msg.KEY_C0 = 'C0:';
 Blockly.Msg.KEY_C1 = 'C1:';
 Blockly.Msg.KEY_C2 = 'C2:';
+Blockly.Msg.KEY_C3 = 'C3:';
 Blockly.Msg.KEY_R0 = 'R0:';
 Blockly.Msg.KEY_R1 = 'R1:';
 Blockly.Msg.KEY_R2 = 'R2:';
@@ -726,6 +727,6 @@ Blockly.Msg.OLED_STOP_SCROLL = 'Stop scroll';
 Blockly.Msg.OLED_DRAW = 'Draw';
 Blockly.Msg.OLED_DATA = 'Data';
 
-Blockly.Msg.OLED_DRAW_BITMAP = 'Draw bitmap' ;
+Blockly.Msg.OLED_DRAW_BITMAP = 'Draw bitmap';
 
 Blockly.Msg.OLED_COLOR = 'color';
