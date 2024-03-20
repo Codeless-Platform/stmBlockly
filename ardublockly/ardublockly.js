@@ -79,6 +79,11 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
 
+  Ardublockly.bindClick_('menu_example_6', function() {
+    Ardublockly.loadServerXmlFile('../examples/oled_test.xml');
+    $('.button-collapse').sideNav('hide');
+  });
+
   // Floating buttons
   Ardublockly.bindClick_('button_ide_large', function() {
     Ardublockly.ideButtonLargeAction();

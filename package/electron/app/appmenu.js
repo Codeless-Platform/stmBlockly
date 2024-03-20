@@ -260,7 +260,17 @@ var getExamplesMenuData = function() {
                             'Ardublockly.loadServerXmlFile("../examples/' +
                             'uart_write.xml");');
                 }
+            },
+            {
+                label: 'Oled Test',
+                click: function() {
+                     BrowserWindow.getFocusedWindow().webContents
+                        .executeJavaScript(
+                            'Ardublockly.loadServerXmlFile("../examples/' +
+                            'oled_test.xml");');
+                }
             }
+            
         ]
     };
 };

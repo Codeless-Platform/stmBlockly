@@ -95,6 +95,7 @@ Ardublockly.TOOLBOX_XML =
   '      </value>' +
   '    </block>' +
   '    <block type="text"></block>' +
+  '    <block type="array_declare"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catFunctions" name="Functions" custom="PROCEDURE"></category>' +
@@ -152,7 +153,6 @@ Ardublockly.TOOLBOX_XML =
   '  <sep></sep>' +
   '  <category id="catInterfaces" name="Interfaces">' +
   '    <block type="lcd_init"></block>' +
-  // '    <block type="lcd_i2c_init"></block>' +
   '    <block type="lcd_sendChar">' +
   '      <value name="DATA">' +
   '        <block type="text_char">' +
@@ -194,6 +194,15 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="keypad_getKey"></block>' +
   '      </value>' +
   '    </block>' +
+  '    <block type="oled_init"></block>' +
+  '    <block type="oled_sendString"></block>' +
+  '    <block type="oled_clear"></block>' +
+  '    <block type="oled_goto"></block>' +
+  '    <block type="oled_Scroll"></block>' +
+  '    <block type="oled_StopScroll"></block>' +
+  '    <block type="oled_UpdateScreen"></block>' +
+  '    <block type="oled_Draw"></block>' +
+  '    <block type="oled_drawBitmap"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catSensors" name="Sensors">' +

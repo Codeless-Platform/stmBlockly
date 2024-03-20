@@ -704,3 +704,28 @@ Blockly.Msg.ARD_SPI_TRANS_WARN2 = 'Old pin value %1 is no longer available.';
 Blockly.Msg.SPI_MODE = 'Mode:';
 Blockly.Msg.SPI_MODE_MASTER = 'Master';
 Blockly.Msg.SPI_MODE_SALVE = 'Slave';
+
+Blockly.Msg.OLED_INIT = 'initalize oled';
+Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected selected I2C';
+Blockly.Msg.OLED_CLEAR = 'Clear Oled screen';
+Blockly.Msg.OLED_UPDATE = 'Update Oled screen';
+Blockly.Msg.OLED_UPDATE_TTL =
+  'This function must be called each time you do some changes to oled';
+Blockly.Msg.OLED_GOTOx = 'Go to row';
+Blockly.Msg.OLED_GOTOy = 'and column';
+Blockly.Msg.OLED_GOTO_TTL =
+  'Sets LCD cursor to specified row and column, counting starts from 0';
+Blockly.Msg.OLED_STRING = 'write';
+Blockly.Msg.OLED_STRING_TTL = 'writes a string on oled ';
+Blockly.Msg.OLED_FONT = 'with font size';
+Blockly.Msg.OLED_COLOR = 'and color';
+Blockly.Msg.OLED_SCROLL = 'Scroll';
+Blockly.Msg.OLED_SCROLLx = 'x';
+Blockly.Msg.OLED_SCROLLy = 'y';
+Blockly.Msg.OLED_STOP_SCROLL = 'Stop scroll';
+Blockly.Msg.OLED_DRAW = 'Draw';
+Blockly.Msg.OLED_DATA = 'Data';
+
+Blockly.Msg.OLED_DRAW_BITMAP = 'Draw bitmap' ;
+
+Blockly.Msg.OLED_COLOR = 'color';
