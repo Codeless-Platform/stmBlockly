@@ -22,6 +22,8 @@
 #include "../MCAL/SYSTICK/SYSTICK.h"
 #include "../MCAL/ADC/ADC.h"
 #include "../HAL/LM35/LM35.h"
+#include "../HAL/OLED/OLED.h"
+
 #include "math.h"
 
 

@@ -1,0 +1,6 @@
+../HAL/OLED/test.c:12:6:TestLines	9
+../HAL/OLED/test.c:102:6:TestRectangles	2
+../HAL/OLED/test.c:119:6:TestFilledRectangles	2
+../HAL/OLED/test.c:137:6:TestFilledCircles	3
+../HAL/OLED/test.c:154:6:TestCircles	3
+../HAL/OLED/test.c:173:6:TestTriangles	2

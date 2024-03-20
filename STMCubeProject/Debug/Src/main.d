@@ -23,7 +23,10 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
  ../Src/../HAL/LCD_I2C/LCD_I2C.h ../Src/../MCAL/SYSTICK/SYSTICK.h \
  ../Src/../MCAL/ADC/ADC.h ../Src/../MCAL/ADC/../RCC/RCC.h \
  ../Src/../MCAL/ADC/../GPIO/GPIO.h ../Src/../HAL/LM35/LM35.h \
- ../Src/../HAL/LM35/../../MCAL/ADC/ADC.h
+ ../Src/../HAL/LM35/../../MCAL/ADC/ADC.h ../Src/../HAL/OLED/OLED.h \
+ ../Src/../HAL/OLED/../../MCAL/Lib/STM32_F103x6.h \
+ ../Src/../HAL/OLED/../../MCAL/SYSTICK/SYSTICK.h \
+ ../Src/../HAL/OLED/../../MCAL/I2C/I2C.h ../Src/../HAL/OLED/fonts.h
 ../Src/main.h:
 ../Src/../MCAL/EXTI/EXTI.h:
 ../Src/../MCAL/EXTI/../GPIO/GPIO.h:
@@ -63,3 +66,8 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
 ../Src/../MCAL/ADC/../GPIO/GPIO.h:
 ../Src/../HAL/LM35/LM35.h:
 ../Src/../HAL/LM35/../../MCAL/ADC/ADC.h:
+../Src/../HAL/OLED/OLED.h:
+../Src/../HAL/OLED/../../MCAL/Lib/STM32_F103x6.h:
+../Src/../HAL/OLED/../../MCAL/SYSTICK/SYSTICK.h:
+../Src/../HAL/OLED/../../MCAL/I2C/I2C.h:
+../Src/../HAL/OLED/fonts.h:
