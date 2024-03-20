@@ -7,18 +7,18 @@
 goog.provide('Blockly.Arduino.lcd');
 
 goog.require('Blockly.Arduino');
-var type ;
+var type;
 Blockly.Arduino['lcd_init'] = function (block) {
-    type = block.getFieldValue('TYPE');
+  type = block.getFieldValue('TYPE');
   if (type == 'Standard') {
     var port = block.getFieldValue('PORT');
     var gpio = port.charAt(4);
-    var D4 = 'PIN_' + block.getFieldValue('d4').charAt(2);
-    var D5 = 'PIN_' + block.getFieldValue('d5').charAt(2);
-    var D6 = 'PIN_' + block.getFieldValue('d6').charAt(2);
-    var D7 = 'PIN_' + block.getFieldValue('d7').charAt(2);
-    var RS = 'PIN_' + block.getFieldValue('RS').charAt(2);
-    var EN = 'PIN_' + block.getFieldValue('EN').charAt(2);
+    var D4 = 'PIN_' + block.getFieldValue('d4').toString().substring(2);
+    var D5 = 'PIN_' + block.getFieldValue('d5').toString().substring(2);
+    var D6 = 'PIN_' + block.getFieldValue('d6').toString().substring(2);
+    var D7 = 'PIN_' + block.getFieldValue('d7').toString().substring(2);
+    var RS = 'PIN_' + block.getFieldValue('RS').toString().substring(2);
+    var EN = 'PIN_' + block.getFieldValue('EN').toString().substring(2);
     var SIZE = 'LCD_' + block.getFieldValue('SIZE');
 
     for (var i = 4; i < 8; i++) {
@@ -90,7 +90,10 @@ Blockly.Arduino['lcd_sendChar'] = function (block) {
   var data =
     Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
-  var code = (type == 'Standard') ? `lcd_Send_Char(${data});\n` : `lcd_I2C_Send_Char(${data});\n`;
+  var code =
+    type == 'Standard'
+      ? `lcd_Send_Char(${data});\n`
+      : `lcd_I2C_Send_Char(${data});\n`;
   return code;
 };
 // send string
@@ -99,7 +102,10 @@ Blockly.Arduino['lcd_sendString'] = function (block) {
   var data =
     Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
-  var code = (type == 'Standard') ? `lcd_send_String(${data});\n` : `lcd_I2C_send_String(${data});\n`;
+  var code =
+    type == 'Standard'
+      ? `lcd_send_String(${data});\n`
+      : `lcd_I2C_send_String(${data});\n`;
   return code;
 };
 // send Number
@@ -108,7 +114,10 @@ Blockly.Arduino['lcd_sendNumber'] = function (block) {
   var data =
     Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
-  var code = (type == 'Standard') ? `lcd_display_number(${data});\n` : `lcd_I2C_display_number(${data});\n`;
+  var code =
+    type == 'Standard'
+      ? `lcd_display_number(${data});\n`
+      : `lcd_I2C_display_number(${data});\n`;
 
   return code;
 };
@@ -116,7 +125,9 @@ Blockly.Arduino['lcd_sendNumber'] = function (block) {
 // clear screen
 
 Blockly.Arduino['lcd_clear'] = function (block) {
-  return  (type == 'Standard') ? `lcd_Clear_Screen());\n` : `lcd_I2C_Clear_Screen();\n`;
+  return type == 'Standard'
+    ? `lcd_Clear_Screen();\n`
+    : `lcd_I2C_Clear_Screen();\n`;
 };
 
 // go to x , y
@@ -127,7 +138,10 @@ Blockly.Arduino['lcd_goto'] = function (block) {
   var y =
     Blockly.Arduino.valueToCode(block, 'COL', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
-  
-  var code = (type == 'Standard') ? `lcd_GOTO_XY(${x}, ${y});\n` : `lcd_I2C_GOTO_XY(${x}, ${y});\n`;
+
+  var code =
+    type == 'Standard'
+      ? `lcd_GOTO_XY(${x}, ${y});\n`
+      : `lcd_I2C_GOTO_XY(${x}, ${y});\n`;
   return code;
 };
