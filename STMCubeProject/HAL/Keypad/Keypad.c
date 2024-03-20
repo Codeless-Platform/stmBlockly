@@ -7,8 +7,9 @@
 
 #include "Keypad.h"
 
-int Keypad_Cols[3];
+int Keypad_Cols[4];
 int Keypad_Rows[4];
+uint16 KPD_MAX_COLS ;
 GPIO_Registers_t *G_keypad_PORT;
 void Keypad_init(keypad_t *keypad) {
 	/*
@@ -21,11 +22,13 @@ void Keypad_init(keypad_t *keypad) {
 	Keypad_Cols[0] =keypad->C0;
 	Keypad_Cols[1] =keypad->C1;
 	Keypad_Cols[2] =keypad->C2;
+	Keypad_Cols[3] =keypad->C3;
 	Keypad_Rows[0] =keypad->R0;
 	Keypad_Rows[1] =keypad->R1;
 	Keypad_Rows[2] =keypad->R2;
 	Keypad_Rows[3] =keypad->R3;
 	G_keypad_PORT = (keypad->Keypad_PORT);
+	KPD_MAX_COLS = keypad->MAX_COLS;
 
 	for (int i = 0; i < KPD_MAX_COLS; i++) {
 		pinConfig.MODE = MODE_OUTPUT_PP;
@@ -52,7 +55,7 @@ void Keypad_init(keypad_t *keypad) {
 char Keypad_Get_Key() {
 
 	int i, j;
-	char ret_key = 'A';
+	char ret_key = 'N';
 	for (i = 0; i < KPD_MAX_COLS; i++) {  // Cols loop
 		GPIO_WritePin(G_keypad_PORT, Keypad_Cols[i], PIN_HIGH);
 		for (j = 0; j < 4; j++) { // Rows loop

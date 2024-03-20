@@ -19,22 +19,23 @@ typedef struct{
 	uint16 C0;
 	uint16 C1;
 	uint16 C2;
+	uint16 C3;
+	uint16 MAX_COLS;
 	GPIO_Registers_t *Keypad_PORT;
 
 }keypad_t;
 
-#define KPD_MAX_COLS			3
 
 void Keypad_init(keypad_t *keypad);
 char Keypad_Get_Key();
 
 //define keypad keys
 
-static const char arr_keys[4][KPD_MAX_COLS] =
-{ { '1', '2', '3' },
-  { '4', '5','6' },
-  { '7', '8', '9' },
-  { '*', '0', '#' },
+static const char arr_keys[4][4] =
+{ { '1', '2', '3' ,'A'},
+  { '4', '5','6' ,'B' },
+  { '7', '8', '9' ,'C'},
+  { '*', '0', '#' ,'D'},
 
 };
 
