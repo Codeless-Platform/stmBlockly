@@ -15,7 +15,6 @@
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
-
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.variables.HUE = 330;
 
@@ -24,15 +23,16 @@ Blockly.Blocks['variables_set_type'] = {
    * Block for variable casting.
    * @this Blockly.Block
    */
-  init: function() {
+  init: function () {
     // this.setHelpUrl('http://arduino.cc/en/Reference/HomePage');
     this.setColour(Blockly.Blocks.variables.HUE);
     this.appendValueInput('VARIABLE_SETTYPE_INPUT');
     this.appendDummyInput()
-        .appendField(Blockly.Msg.ARD_VAR_AS)
-        .appendField(new Blockly.FieldDropdown(
-                         Blockly.Types.getValidTypeArray()),
-                     'VARIABLE_SETTYPE_TYPE');
+      .appendField(Blockly.Msg.ARD_VAR_AS)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Types.getValidTypeArray()),
+        'VARIABLE_SETTYPE_TYPE'
+      );
     this.setInputsInline(true);
     this.setOutput(true);
     this.setTooltip(Blockly.Msg.ARD_VAR_AS_TIP);
@@ -42,8 +42,34 @@ Blockly.Blocks['variables_set_type'] = {
    * @return {!string} Blockly type for this block configuration.
    * @this Blockly.Block
    */
-  getBlockType: function() {
+  getBlockType: function () {
     var blocklyTypeKey = this.getFieldValue('VARIABLE_SETTYPE_TYPE');
     return Blockly.Types[blocklyTypeKey];
-  }
+  },
+};
+
+Blockly.Blocks['array_declare'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField('Array Type')
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Types.getValidTypeArray()),
+        'ARRAY_TYPE'
+      )
+      .appendField('Name')
+      .appendField(new Blockly.FieldTextInput('name'), 'ARRAY_NAME')
+      .appendField('Size')
+      .appendField(new Blockly.FieldNumber(0), 'ARRAY_SIZE');
+
+    this.appendDummyInput()
+      .appendField('Data')
+      .appendField(new Blockly.FieldNumber(0), 'ARRAY_DATA');
+
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(Blockly.Blocks.variables.HUE);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  },
 };
