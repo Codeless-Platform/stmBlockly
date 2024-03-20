@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="92" y="-43">
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="39" y="-19">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="|Q|QnK%p%)FKPFdSa9rL">
         <field name="PERIPHRAL">GPIOB</field>
@@ -8,7 +8,8 @@
             <field name="PERIPHRAL">GPIOA</field>
             <next>
               <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
-                <field name="SIZE"></field>
+                <field name="TYPE">Standard</field>
+                <field name="SIZE">2x16</field>
                 <field name="PORT">GPIOA</field>
                 <field name="d4">PA4</field>
                 <field name="d5">PA5</field>
@@ -16,8 +17,11 @@
                 <field name="d7">PA7</field>
                 <field name="EN">PA2</field>
                 <field name="RS">PA3</field>
+                <field name="I2C">I2C1</field>
+                <field name="ADDRESS">0x4E</field>
                 <next>
                   <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf">
+                    <field name="SIZE">4x3</field>
                     <field name="PORT">GPIOB</field>
                     <field name="R0">PB3</field>
                     <field name="R1">PB4</field>
@@ -77,7 +81,7 @@
                 </value>
                 <value name="B">
                   <block type="text_char" id="@*dmbDXWQ*rs!7J8]DjX">
-                    <field name="TEXT">A</field>
+                    <field name="TEXT">N</field>
                   </block>
                 </value>
               </block>
