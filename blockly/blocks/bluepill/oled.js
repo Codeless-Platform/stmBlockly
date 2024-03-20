@@ -172,7 +172,6 @@ Blockly.Blocks['oled_Draw'] = {
     this.setFieldValue('Line', 'SHAPE');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
   },
   updateShape_: function (option) {
     this.shape = option;
