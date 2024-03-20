@@ -33,6 +33,7 @@ Blockly.Blocks['lcd_init'] = {
 
     // Additional fields added later
     this.standardInput = this.appendDummyInput()
+      .appendField(' ')
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.full_ports),
         'PORT'
@@ -78,6 +79,7 @@ Blockly.Blocks['lcd_init'] = {
 
     this.setFieldValue('2x16', 'SIZE');
     this.setFieldValue('0x4E', 'ADDRESS');
+    this.setInputsInline(true);
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
