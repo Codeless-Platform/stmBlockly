@@ -1,6 +1,7 @@
 "./HAL/Keypad/Keypad.o"
 "./HAL/LCD/LCD.o"
 "./HAL/LCD_I2C/LCD_I2C.o"
+"./HAL/LED_MATRIX/Led_Matrix.o"
 "./HAL/LM35/LM35.o"
 "./HAL/OLED/OLED.o"
 "./HAL/OLED/fonts.o"

@@ -203,6 +203,8 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="oled_UpdateScreen"></block>' +
   '    <block type="oled_Draw"></block>' +
   '    <block type="oled_drawBitmap"></block>' +
+  '    <block type="matrix_init"></block>' +
+  '    <block type="matrix_sendString"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catSensors" name="Sensors">' +

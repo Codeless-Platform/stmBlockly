@@ -1,0 +1,4 @@
+../HAL/LED_MATRIX/Led_Matrix.c:57:6:Led_Matrix_init	56	static
+../HAL/LED_MATRIX/Led_Matrix.c:107:6:Led_Matrix_writeByte	24	static
+../HAL/LED_MATRIX/Led_Matrix.c:115:6:Led_Matrix_write	16	static
+../HAL/LED_MATRIX/Led_Matrix.c:121:6:Led_Matrix_writeString	24	static

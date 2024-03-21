@@ -128,6 +128,6 @@ void SPI_SendData(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism Po
 uint16 SPI_RecieveData(SPI_Registers_t *SPIx, enum PollingMechanism PollingEn );
 
 void SPI_GPIO_SetPins(SPI_Registers_t *SPIx);
-void SPI_RXTX(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism PollingEn);
+uint16 SPI_RXTX(SPI_Registers_t *SPIx, uint16 *pData, enum PollingMechanism PollingEn);
 
 #endif /* INC_SPI_H_ */

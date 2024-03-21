@@ -726,7 +726,10 @@ Blockly.Msg.OLED_SCROLLy = 'y';
 Blockly.Msg.OLED_STOP_SCROLL = 'Stop scroll';
 Blockly.Msg.OLED_DRAW = 'Draw';
 Blockly.Msg.OLED_DATA = 'Data';
-
 Blockly.Msg.OLED_DRAW_BITMAP = 'Draw bitmap';
-
 Blockly.Msg.OLED_COLOR = 'color';
+
+Blockly.Msg.MATRIX_INIT = 'initalize led dot matrix';
+Blockly.Msg.MATRIX_INIT_TTL =
+  'initalize led dot matrix connected selected SPI and chip select with size 8*8';
+Blockly.Msg.MATRIX_STRING = 'write ';

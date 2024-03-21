@@ -26,7 +26,12 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
  ../Src/../HAL/LM35/../../MCAL/ADC/ADC.h ../Src/../HAL/OLED/OLED.h \
  ../Src/../HAL/OLED/../../MCAL/Lib/STM32_F103x6.h \
  ../Src/../HAL/OLED/../../MCAL/SYSTICK/SYSTICK.h \
- ../Src/../HAL/OLED/../../MCAL/I2C/I2C.h ../Src/../HAL/OLED/fonts.h
+ ../Src/../HAL/OLED/../../MCAL/I2C/I2C.h ../Src/../HAL/OLED/fonts.h \
+ ../Src/../HAL/LED_MATRIX/Led_Matrix.h \
+ ../Src/../HAL/LED_MATRIX/../../MCAL/Lib/STM32_F103x6.h \
+ ../Src/../HAL/LED_MATRIX/../../MCAL/SPI/SPI.h \
+ ../Src/../HAL/LED_MATRIX/../../MCAL/GPIO/GPIO.h \
+ ../Src/../HAL/LED_MATRIX/../../MCAL/SYSTICK/SYSTICK.h
 ../Src/main.h:
 ../Src/../MCAL/EXTI/EXTI.h:
 ../Src/../MCAL/EXTI/../GPIO/GPIO.h:
@@ -71,3 +76,8 @@ Src/main.o: ../Src/main.c ../Src/main.h ../Src/../MCAL/EXTI/EXTI.h \
 ../Src/../HAL/OLED/../../MCAL/SYSTICK/SYSTICK.h:
 ../Src/../HAL/OLED/../../MCAL/I2C/I2C.h:
 ../Src/../HAL/OLED/fonts.h:
+../Src/../HAL/LED_MATRIX/Led_Matrix.h:
+../Src/../HAL/LED_MATRIX/../../MCAL/Lib/STM32_F103x6.h:
+../Src/../HAL/LED_MATRIX/../../MCAL/SPI/SPI.h:
+../Src/../HAL/LED_MATRIX/../../MCAL/GPIO/GPIO.h:
+../Src/../HAL/LED_MATRIX/../../MCAL/SYSTICK/SYSTICK.h:
