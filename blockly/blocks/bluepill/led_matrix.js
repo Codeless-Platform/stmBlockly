@@ -26,6 +26,9 @@ Blockly.Blocks['matrix_init'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.MATRIX_INIT_TTL);
   },
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi');
+  },
 };
 
 Blockly.Blocks['matrix_sendString'] = {

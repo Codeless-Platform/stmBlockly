@@ -20,6 +20,9 @@ Blockly.Blocks['oled_init'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_INIT_I2C_TTL);
   },
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
+  },
 };
 
 Blockly.Blocks['oled_sendString'] = {

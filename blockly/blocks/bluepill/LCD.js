@@ -110,6 +110,9 @@ Blockly.Blocks['lcd_init'] = {
       return newValue;
     });
   },
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
+  },
 };
 
 // send char
