@@ -102,7 +102,7 @@ Ardublockly.bindActionFunctions = function() {
     var el = document.getElementById(elId);
     if (el.readOnly === false) {
       // Event listener that send the data when the user presses 'Enter'
-      el.onkeypress = function(e) {
+      el.addEventListener('keypress', function(event) {
         if (!e) e = window.event;
         var keyCode = e.keyCode || e.which;
         if (keyCode == '13') {
@@ -111,7 +111,7 @@ Ardublockly.bindActionFunctions = function() {
           });
           return false;
         }
-      };
+    });
       // Event listener that send the data when moving out of the input field
       el.onblur = function() {
         setValFunc(el.value, function(jsonObj) {
