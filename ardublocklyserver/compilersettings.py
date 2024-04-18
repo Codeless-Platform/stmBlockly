@@ -83,7 +83,7 @@ class ServerCompilerSettings(object):
         # Create variables to be used with accessors
         self.__load_ide_option = None
         self.__compiler_dir = None
-        self.__sketch_dir = "../STMCubeProject/Src"
+        self.__sketch_dir = None
         self.__sketch_name = None
         self.__arduino_board_key = None
         self.__arduino_board_value = None
