@@ -532,21 +532,9 @@ class ServerTestCase(unittest.TestCase):
                             in put_response_json['options'])
 
     def test_put_settings_board_all_options(self):
-        self.helper_test_put_settings_board('Uno')
-        self.helper_test_put_settings_board('Nano 328')
-        self.helper_test_put_settings_board('Nano 168')
-        self.helper_test_put_settings_board('Leonardo')
-        self.helper_test_put_settings_board('Yun')
-        self.helper_test_put_settings_board('stm32')
-        self.helper_test_put_settings_board('intel Galileo')
-        self.helper_test_put_settings_board('Mega')
-        self.helper_test_put_settings_board('Duemilanove 328p')
-        self.helper_test_put_settings_board('Duemilanove 168p')
-        self.helper_test_put_settings_board('Atmel atmega328p Xplained mini')
-        self.helper_test_put_settings_board('Atmel atmega168pb Xplained mini')
-        self.helper_test_put_settings_board('Atmel atmega328pb Xplained mini')
-        self.helper_test_put_settings_board('ESP8266 Huzzah')
-        self.helper_test_put_settings_board('ESP8266 WeMos D1')
+        self.helper_test_put_settings_board('stm32F103C6')
+        self.helper_test_put_settings_board('stm32F103C8')
+
 
     def test_put_settings_sketch(self):
         """Set the location for the Arduino Sketch and read it back."""

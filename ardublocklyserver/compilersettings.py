@@ -49,7 +49,8 @@ class ServerCompilerSettings(object):
     #       into 'blockly\generators\arduino\boards.js', which should then
     #       send the selected flag to be saved as a single value
     __arduino_types = {
-                       'stm32': 'stm32duino:STM32F1:genericSTM32F103C',
+                       'stm32F103C6': 'stm32duino:STM32F1:genericSTM32F103C',
+                       'stm32F103C8': 'stm32duino:STM32F1:genericSTM32F103C',
                       }
 
     # Class dictionary to contain the computer COM ports, dynamic content
