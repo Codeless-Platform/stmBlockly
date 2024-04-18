@@ -31,7 +31,7 @@ def launch_server(ip='localhost', port=7000, document_root_=''):
 
     :param ip: IP address to serve. Default to localhost, set to '0.0.0.0' to
             be able to access the server from your local network.
-    :param port: Port to serve, default 8000.
+    :param port: Port to serve, default 7000.
     :param document_root_: Path to be the server document root, defualt cwd.
     :return: This function DOES NOT return.
     """
@@ -65,21 +65,21 @@ def set_header_no_cache():
 # Serving static files.
 #
 @app.route('/')
-@app.route('/ardublockly')
+@app.route('/stmBlockly') #route edited
 def index_redirect():
-    """Redirect the server entry point to the Ardublockly front end."""
-    redirect('/ardublockly/index.html')
+    """Redirect the server entry point to the stmBlockly front end."""
+    redirect('/stmBlockly/index.html')
 
 
-@app.route('/ardublockly/<file_path:path>')
+@app.route('/stmBlockly/<file_path:path>') 
 def static_ardublockly(file_path):
-    """Serve the 'ardublockly' folder static files.
+    """Serve the 'stmBlockly' folder static files.
 
-    :param file_path: File path inside the 'ardublockly' folder.
+    :param file_path: File path inside the 'stmBlockly' folder.
     :return: Full HTTPResponse for the static file.
     """
     return static_file(file_path,
-                       root=os.path.join(document_root, 'ardublockly'))
+                       root=os.path.join(document_root, 'stmBlockly'))
 
 
 @app.route('/blockly/<file_path:path>')

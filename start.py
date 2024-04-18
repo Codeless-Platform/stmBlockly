@@ -57,7 +57,7 @@ def find_ardublockly_dir(search_path):
     while path_to_navigate:
         # Check if file ardublockly/index.html exists within current path
         if os.path.isfile(
-                os.path.join(path_to_navigate, 'ardublockly', 'index.html')):
+                os.path.join(path_to_navigate, 'stmBlockly', 'index.html')):
             # Found the right folder
             return path_to_navigate
         path_to_navigate = os.path.dirname(path_to_navigate)
@@ -165,7 +165,7 @@ def main():
                   'the server root directory !')
     print('Selected server root:\n\t%s' % server_root)
     print('Selected server ip:\n\t%s' % SERVER_IP)
-    print('Selected server port:\n\t%s' % SERVER_PORT)
+    # print('Selected server port:\n\t%s' % SERVER_PORT)
 
     print('\n======= Loading Settings =======')
     # ServerCompilerSettings is a singleton, no need to save instance
