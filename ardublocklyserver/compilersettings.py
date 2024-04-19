@@ -233,7 +233,7 @@ class ServerCompilerSettings(object):
 
     def set_sketch_dir_default(self):
         """Sketch default location the same as the settings file location."""
-        self.__sketch_dir = "../STMCubeProject/Src"
+        self.__sketch_dir = os.path.dirname(self.__settings_path)
 
     def set_sketch_dir_from_file(self, new_sketch_dir):
         """Set the sketch directory from settings file, must be a folder."""

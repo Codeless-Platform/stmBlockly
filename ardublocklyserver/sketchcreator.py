@@ -79,12 +79,7 @@ def build_sketch_path(sketch_dir, sketch_name):
     """
     sketch_path = None
     if os.path.isdir(sketch_dir):
-        try:
-            sketch_path = "STMCubeProject/Src"
-        except (TypeError, AttributeError) as e:
-            print('Error: %s\project Name could not be processed.' % e)
-        else:
-            sketch_path = os.path.join(sketch_path, sketch_name + '.c')
+            sketch_path = os.path.join(sketch_dir, sketch_name + '.c')
     else:
         print('The sketch directory "%s" does not exists !!!' % sketch_dir)
     return sketch_path

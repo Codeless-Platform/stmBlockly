@@ -190,7 +190,9 @@ def get_sketch_path():
     :return: String with the sketch path from the Settings.
              None if there is no path saved in the Settings.
     """
-    sketch_directory = "../STMCubeProject/Src"  #set default path
+    sketch_directory = ServerCompilerSettings().sketch_dir
+    if not sketch_directory:
+        sketch_directory = "../STM Cube Project/Src"  #set default path
     return sketch_directory
 
 
