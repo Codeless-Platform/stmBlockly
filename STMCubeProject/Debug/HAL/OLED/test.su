@@ -1,6 +1,0 @@
-../HAL/OLED/test.c:12:6:TestLines	40	static
-../HAL/OLED/test.c:102:6:TestRectangles	40	static
-../HAL/OLED/test.c:119:6:TestFilledRectangles	40	static
-../HAL/OLED/test.c:137:6:TestFilledCircles	24	static
-../HAL/OLED/test.c:154:6:TestCircles	24	static
-../HAL/OLED/test.c:173:6:TestTriangles	56	static
