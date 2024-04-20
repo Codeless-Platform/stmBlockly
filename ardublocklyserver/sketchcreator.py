@@ -11,6 +11,7 @@ import os
 # local-packages imports
 import six
 import subprocess
+import xml.etree.ElementTree as ET
 
 
 # Default blinky sketch
@@ -57,6 +58,20 @@ def create_sketch(sketch_dir, sketch_name, sketch_code):
 
     # Create the sketch path
     sketch_path = build_sketch_path(sketch_dir, sketch_name)
+    parent_directory = os.path.dirname(sketch_path)
+    gparent_directory = os.path.dirname(parent_directory)
+    folder_name = os.path.basename(gparent_directory)
+     # Parse the XML file
+    tree = ET.parse("./STMCubeProject/.project")
+    root = tree.getroot()
+
+    # Find the <name> element and change its text to the new project name
+    for name_elem in root.iter("name"):
+        name_elem.text = folder_name
+        break
+
+    # Write the modified XML tree back to the file
+    tree.write("./STMCubeProject/.project", encoding="UTF-8", xml_declaration=True)
     if sketch_dir:
         
         try:

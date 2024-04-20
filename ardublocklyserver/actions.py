@@ -93,7 +93,10 @@ def load_arduino_cli(sketch_path):
     if success:
         ide_mode = settings.load_ide_option
         # Concatenates the CLI command and execute if the flags are valid
-        cli_command = [settings.compiler_dir, "%s" % sketch_path]
+        directory_path = os.path.dirname(sketch_path)
+        grandparent_directory = os.path.dirname(directory_path)
+        new_sketch_path = os.path.join(grandparent_directory, ".project")
+        cli_command = [settings.compiler_dir, "%s" % new_sketch_path]
         if settings.load_ide_option == 'upload':
             print('\nUploading sketch to Arduino...')
             cli_command.append('--upload')
@@ -116,7 +119,8 @@ def load_arduino_cli(sketch_path):
 
         if settings.load_ide_option == 'open':
             # Open IDE in a subprocess without capturing outputs
-            subprocess.Popen(cli_command, shell=False)
+          #  subprocess.Popen(cli_command, shell=False)
+            os.startfile(new_sketch_path)
             exit_code = 0
         else:
             # Launch the Arduino CLI in a subprocess and capture output data
