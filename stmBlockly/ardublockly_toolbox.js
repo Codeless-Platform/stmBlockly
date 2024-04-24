@@ -214,6 +214,12 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="sensors_LM35"></block>' +
   '      </value>' +
   '    </block>' +
+  '    <block type="variables_set">' +
+  '      <field name="VAR">pirVal</field>' +
+  '      <value name="VALUE">' +
+  '        <block type="sensors_PIR"></block>' +
+  '      </value>' +
+  '    </block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catComms" name="Comms">' +

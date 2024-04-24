@@ -28,3 +28,31 @@ Blockly.Arduino["sensors_LM35"] = function (block) {
   var code = "LM35_Read(" + ADC + "," + adcChannel + ")";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+
+Blockly.Arduino["sensors_PIR"] = function (block) {
+  var pin = block.getFieldValue("PIN");
+  var gpio = pin.charAt(1);
+  var pinnumber = pin.slice(2);
+
+  Blockly.Arduino.reservePin(
+    block,
+    pin,
+    Blockly.Arduino.PinTypes.INPUT,
+    "PIR Pin"
+  );
+
+  var pinIncludeCode = "GPIO_PinConfig_t GPIO_pinConfig;\n";
+  Blockly.Arduino.addInclude("io", pinIncludeCode);
+
+  var pinCode =
+    "GPIO_pinConfig.MODE = MODE_INPUT_FLO;\nGPIO_pinConfig.Pin_Number = PIN_" +
+    pinnumber +
+    ";";
+
+  var pinMainCode = pinCode + "\nGPIO_init(GPIO" + gpio + ", &GPIO_pinConfig);";
+  Blockly.Arduino.addMain("io_" + pin, pinMainCode, false);
+
+  var code = "GPIO_ReadPin(GPIO" + gpio + " ,PIN_" + pinnumber + ")";
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
