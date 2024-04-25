@@ -28,6 +28,10 @@ Blockly.Arduino['spi_init'] = function (block) {
   var spiId = block.getFieldValue('SPI_ID');
   var spiMode = block.getFieldValue('SPI_MODE');
   var spiClk = block.getFieldValue('SPI_CLK');
+  var CS = block.getFieldValue('CS');
+  var gpio = 'GPIO' + CS.charAt(1);
+  var pinnumber = 'PIN_' + CS.slice(2);
+
   var SPI_Polarity, SPI_Phase;
   if (spiClk == 'SPI_MODE0') {
     SPI_Polarity = 'SPI_CLK_Polarity_0';
@@ -58,16 +62,11 @@ Blockly.Arduino['spi_init'] = function (block) {
     // Configure SS pin
     GPIO_PinConfig_t GPIO_pinConfig;
     GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
-    GPIO_pinConfig.Output_Speed = SPEED_10M;`;
-    if (spiId == 'SPI1') {
-      mainCode += `GPIO_pinConfig.Pin_Number = PIN_4;
-          GPIO_init(GPIOA, &GPIO_pinConfig);
-          GPIO_WritePin(GPIOA, PIN_4, PIN_HIGH);`;
-    } else {
-      mainCode += `GPIO_pinConfig.Pin_Number = PIN_12;
-      GPIO_init(GPIOA, &GPIO_pinConfig);
-      GPIO_WritePin(GPIOA, PIN_12, PIN_HIGH);      `;
-    }
+    GPIO_pinConfig.Output_Speed = SPEED_10M;
+    GPIO_pinConfig.Pin_Number = ${pinnumber};
+    GPIO_init(${gpio}, &GPIO_pinConfig);
+    GPIO_WritePin(${gpio}, ${pinnumber}, PIN_HIGH);`;
+
     // write high as idle case
   } else if (spiMode == 'SLAVE') {
     mainCode += `	SPI_pinConfig.SPI_Mode = SPI_Mode_Slave;
@@ -105,12 +104,12 @@ Blockly.Arduino['spi_RXTX'] = function (block) {
   var declarationCode = 'uint16 ' + spiData + ';\n';
   Blockly.Arduino.addDeclaration('uart_', declarationCode);
   if (spiId == 'SPI1') {
-   var code = `GPIO_WritePin(GPIOA, PIN_4, PIN_LOW);
+    var code = `GPIO_WritePin(GPIOA, PIN_4, PIN_LOW);
    SPI_RXTX(SPI1, &${spiData}, Pollingenable);
    GPIO_WritePin(GPIOA, PIN_4, PIN_HIGH);
     `;
   } else {
-   var code = `GPIO_WritePin(GPIOA, PIN_12, PIN_LOW);
+    var code = `GPIO_WritePin(GPIOA, PIN_12, PIN_LOW);
     SPI_RXTX(SPI2, &${spiData}, Pollingenable);
     GPIO_WritePin(GPIOA, PIN_12, PIN_HIGH);  `;
   }
