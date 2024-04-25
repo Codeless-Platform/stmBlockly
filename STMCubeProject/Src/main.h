@@ -24,6 +24,7 @@
 #include "../HAL/LM35/LM35.h"
 #include "../HAL/OLED/OLED.h"
 #include "../HAL/LED_MATRIX/Led_Matrix.h"
+#include "../HAL/Ultrasonic/Ultrasonic.h"
 
 
 #include "math.h"

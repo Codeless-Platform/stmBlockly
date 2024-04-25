@@ -1,0 +1,86 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="G=1bV^wjsaT(uVrJ-~s-" x="36" y="46">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="NH_fO5Ut*5UR%}kLF)Jj">
+        <field name="PERIPHRAL">GPIOA</field>
+        <next>
+          <block type="lcd_init" id="^jMOTkv[mwTajqFD,G#Q">
+            <field name="TYPE">I2C</field>
+            <field name="SIZE">2x16</field>
+            <field name="PORT">GPIOA</field>
+            <field name="d4">PA0</field>
+            <field name="d5">PA0</field>
+            <field name="d6">PA0</field>
+            <field name="d7">PA0</field>
+            <field name="EN">PA0</field>
+            <field name="RS">PA0</field>
+            <field name="I2C">I2C1</field>
+            <field name="ADDRESS">0x4E</field>
+            <next>
+              <block type="lcd_sendString" id="%`Ypdw*BvNtOv{7k6%QI">
+                <value name="DATA">
+                  <block type="text" id="I6iJ5]-!xM{yv-2]T1s8">
+                    <field name="TEXT">Ultrasonic Test!</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="Yu[9]HIdy-fXe)S^g0=.">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="V^`G.FAo0b1%+G#KwE,h">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lcd_clear" id="7rV6}rQcz}/XV-k#Z~q+"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="variables_set" id="J_R/8@eHKdR}k]sP]hpK">
+        <field name="VAR">distance</field>
+        <value name="VALUE">
+          <block type="sensors_ultrasonic" id="qs_3/.I|A|y.BfCJHq69">
+            <field name="echo">PA8</field>
+            <field name="trig">PA9</field>
+          </block>
+        </value>
+        <next>
+          <block type="lcd_sendString" id="IA54F#r!BKbJEH#LGbHo">
+            <value name="DATA">
+              <block type="text" id="d5ef`yqsJwRtX=RX*E3t">
+                <field name="TEXT">Distance =</field>
+              </block>
+            </value>
+            <next>
+              <block type="lcd_sendNumber" id="|%5BWs7skZlIM57M[Tib">
+                <value name="DATA">
+                  <block type="variables_get" id="Q78v,frZDw0cSlxQa!v_">
+                    <field name="VAR">distance</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="jidJ90S_mJR#c!F{8%3X">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="@F/s.kyDK|wjQb(+9iEf">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lcd_clear" id="_SH}Ej5V%SJ~{n2!r^/4"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

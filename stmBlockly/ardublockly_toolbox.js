@@ -220,6 +220,12 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="sensors_PIR"></block>' +
   '      </value>' +
   '    </block>' +
+  '    <block type="variables_set">' +
+  '      <field name="VAR">distance</field>' +
+  '      <value name="VALUE">' +
+  '        <block type="sensors_ultrasonic"></block>' +
+  '      </value>' +
+  '    </block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catComms" name="Comms">' +

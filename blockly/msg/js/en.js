@@ -733,4 +733,7 @@ Blockly.Msg.MATRIX_INIT = 'initalize led dot matrix';
 Blockly.Msg.MATRIX_INIT_TTL =
   'initalize led dot matrix connected selected SPI and chip select with size 8*8';
 Blockly.Msg.MATRIX_STRING = 'write ';
-Blockly.Msg.PIR_READ = 'read PIR sensor pin#';
+Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
+Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
+Blockly.Msg.ULTRASONIC_READ = 'read distance on echo pin';
+Blockly.Msg.ULTRASONIC_TRIG = 'trigger pin';
