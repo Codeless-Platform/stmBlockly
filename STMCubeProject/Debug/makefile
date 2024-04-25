@@ -20,6 +20,7 @@ RM := rm -rf
 -include MCAL/GPIO/subdir.mk
 -include MCAL/EXTI/subdir.mk
 -include MCAL/ADC/subdir.mk
+-include HAL/Ultrasonic/subdir.mk
 -include HAL/OLED/subdir.mk
 -include HAL/LM35/subdir.mk
 -include HAL/LED_MATRIX/subdir.mk

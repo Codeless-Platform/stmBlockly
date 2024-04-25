@@ -6,6 +6,7 @@
 "./HAL/OLED/OLED.o"
 "./HAL/OLED/fonts.o"
 "./HAL/OLED/test.o"
+"./HAL/Ultrasonic/Ultrasonic.o"
 "./MCAL/ADC/ADC.o"
 "./MCAL/EXTI/EXTI.o"
 "./MCAL/GPIO/GPIO.o"
