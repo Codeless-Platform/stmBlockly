@@ -20,13 +20,13 @@ Blockly.Blocks.spi.HUE = 170;
 
 Blockly.Blocks['spi_init'] = {
   init: function () {
+    var SPI_instant = new Blockly.FieldDropdown(
+      Blockly.Arduino.Boards.selected.spi
+    );
     this.setColour(Blockly.Blocks.spi.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.SPI_SETUP)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.spi),
-        'SPI_ID'
-      )
+      .appendField(SPI_instant, 'SPI_ID')
       .appendField(Blockly.Msg.SPI_SETUP_CONF);
     this.appendDummyInput()
       .appendField(Blockly.Msg.SPI_MODE)
@@ -37,16 +37,8 @@ Blockly.Blocks['spi_init'] = {
         ]),
         'SPI_MODE'
       );
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-    // this.appendDummyInput()
-    //   .appendField(Blockly.Msg.SPI_SETUP_DIVIDE)
-    //   .appendField(
-    //     new Blockly.FieldDropdown(
-    //       Blockly.Arduino.Boards.selected.spiClockDivide
-    //     ),
-    //     'SPI_CLOCK_DIVIDE'
-    //   );
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.appendDummyInput()
       .appendField(Blockly.Msg.SPI_SETUP_MODE)
       .appendField(
@@ -57,8 +49,30 @@ Blockly.Blocks['spi_init'] = {
           [Blockly.Msg.SPI_SETUP_MODE3, 'SPI_MODE3'],
         ]),
         'SPI_CLK'
+      )
+      .appendField('CS: ')
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
+        'CS'
       );
-    this.setTooltip(Blockly.Msg.SPI_INIT_TIP);
+    var ToolTipMsg = Blockly.Msg.SPI_INIT_TIP.replace('%1', 'PA7')
+      .replace('%2', 'PA6')
+      .replace('%3', 'PA5');
+    this.setTooltip(ToolTipMsg);
+    var thisBlock = this;
+    SPI_instant.setValidator(function (newValue) {
+      if (newValue === 'SPI1') {
+        var ToolTipMsg = Blockly.Msg.SPI_INIT_TIP.replace('%1', 'PA7')
+          .replace('%2', 'PA6')
+          .replace('%3', 'PA5');
+        thisBlock.setTooltip(ToolTipMsg);
+      } else {
+        var ToolTipMsg = Blockly.Msg.SPI_INIT_TIP.replace('%1', 'PB13')
+          .replace('%2', 'PB14')
+          .replace('%3', 'PB15');
+        thisBlock.setTooltip(ToolTipMsg);
+      }
+    });
   },
   /**
    * Returns the selected SPI instance.
@@ -83,7 +97,6 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   init: function () {
-  
     this.setColour(Blockly.Blocks.spi.HUE);
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.spi),
@@ -145,5 +158,4 @@ Blockly.Blocks['spi_RXTX'] = {
   getBlockType: function () {
     return Blockly.Types.UINT16;
   },
-
 };

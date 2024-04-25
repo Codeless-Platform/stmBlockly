@@ -10,13 +10,13 @@ Blockly.Blocks.ledMatrix.HUE = 170;
 
 Blockly.Blocks['matrix_init'] = {
   init: function () {
+    var SPI_instant = new Blockly.FieldDropdown(
+      Blockly.Arduino.Boards.selected.spi
+    );
     this.setColour(Blockly.Blocks.ledMatrix.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.MATRIX_INIT)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.spi),
-        'SPI'
-      )
+      .appendField(SPI_instant, 'SPI')
       .appendField('CS: ')
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
@@ -24,7 +24,24 @@ Blockly.Blocks['matrix_init'] = {
       );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.MATRIX_INIT_TTL);
+    var ToolTipMsg = Blockly.Msg.MATRIX_INIT_TTL.replace('%1', 'PA7')
+      .replace('%2', 'PA6')
+      .replace('%3', 'PA5');
+    this.setTooltip(ToolTipMsg);
+    var thisBlock = this;
+    SPI_instant.setValidator(function (newValue) {
+      if (newValue === 'SPI1') {
+        var ToolTipMsg = Blockly.Msg.MATRIX_INIT_TTL.replace('%1', 'PA7')
+          .replace('%2', 'PA6')
+          .replace('%3', 'PA5');
+        thisBlock.setTooltip(ToolTipMsg);
+      } else {
+        var ToolTipMsg = Blockly.Msg.MATRIX_INIT_TTL.replace('%1', 'PB13')
+          .replace('%2', 'PB14')
+          .replace('%3', 'PB15');
+        thisBlock.setTooltip(ToolTipMsg);
+      }
+    });
   },
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi');

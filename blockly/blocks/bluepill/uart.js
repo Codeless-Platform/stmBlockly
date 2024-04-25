@@ -22,13 +22,13 @@ Blockly.Blocks.uart.HUE = 160;
 
 Blockly.Blocks['uart_init'] = {
   init: function () {
+    var uart_instant = new Blockly.FieldDropdown(
+      Blockly.Arduino.Boards.selected.uart
+    );
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.UART_INIT)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uart),
-        'UART_ID'
-      )
+      .appendField(uart_instant, 'UART_ID')
       .appendField(Blockly.Msg.UART_SPEED)
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uartSpeed),
@@ -38,7 +38,34 @@ Blockly.Blocks['uart_init'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.UART_INIT_TTP);
+    var ToolTipMsg = Blockly.Msg.UART_INIT_TTP.replace('%1', 'PA9').replace(
+      '%2',
+      'PA10'
+    );
+    this.setTooltip(ToolTipMsg);
+
+    var thisBlock = this;
+    uart_instant.setValidator(function (newValue) {
+      if (newValue === 'USART1') {
+        ToolTipMsg = Blockly.Msg.UART_INIT_TTP.replace('%1', 'PA9').replace(
+          '%2',
+          'PA10'
+        );
+        thisBlock.setTooltip(ToolTipMsg);
+      } else if (newValue === 'USART2') {
+        ToolTipMsg = Blockly.Msg.UART_INIT_TTP.replace('%1', 'PA2').replace(
+          '%2',
+          'PA3'
+        );
+        thisBlock.setTooltip(ToolTipMsg);
+      } else {
+        ToolTipMsg = Blockly.Msg.UART_INIT_TTP.replace('%1', 'PB10').replace(
+          '%2',
+          'PB11'
+        );
+        thisBlock.setTooltip(ToolTipMsg);
+      }
+    });
   },
 
   getSerialSetupInstance: function () {
@@ -122,12 +149,12 @@ Blockly.Blocks['uart_recieve'] = {
   init: function () {
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()
-    .appendField(Blockly.Msg.UART_READ)
+      .appendField(Blockly.Msg.UART_READ)
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.uart),
         'UART_ID'
-      )
-    this.appendValueInput("CONTENT");
+      );
+    this.appendValueInput('CONTENT');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

@@ -9,6 +9,7 @@ goog.require('Blockly.Types');
 Blockly.Blocks.lcd.HUE = 400;
 Blockly.Blocks['lcd_init'] = {
   init: function () {
+    var I2C_Instant = new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c) ; 
     var dropdownType = new Blockly.FieldDropdown([['Standard'], ['I2C']]);
     var dropdownSize = new Blockly.FieldDropdown([
       ['2x16'],
@@ -70,10 +71,7 @@ Blockly.Blocks['lcd_init'] = {
       );
     this.i2cInput = this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_INIT_I2C)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c),
-        'I2C'
-      )
+      .appendField(I2C_Instant, 'I2C')
       .appendField(Blockly.Msg.LCD_ADDRESS_I2C)
       .appendField(dropdownAddress, 'ADDRESS');
 
@@ -83,12 +81,23 @@ Blockly.Blocks['lcd_init'] = {
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.LCD_INIT_TTL);
+    var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+    this.setTooltip(ToolTipMsg);
 
     var thisBlock = this;
     dropdownType.setValue('I2C'); // Initialize value
     thisBlock.standardInput.fieldRow.forEach(function (field) {
       field.setVisible(false);
+    });
+    // change listener for I2C 
+    I2C_Instant.setValidator(function(newValue){
+      if (newValue === 'I2C1') {
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+        thisBlock.setTooltip(ToolTipMsg);
+      }else{
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB11').replace('%2','PB10');
+        thisBlock.setTooltip(ToolTipMsg);
+      }
     });
     // Add change listener to TYPE dropdown
     dropdownType.setValidator(function (newValue) {
@@ -99,6 +108,7 @@ Blockly.Blocks['lcd_init'] = {
         thisBlock.i2cInput.fieldRow.forEach(function (field) {
           field.setVisible(false);
         });
+        thisBlock.setTooltip(Blockly.Msg.LCD_INIT_TTL);
       } else {
         thisBlock.standardInput.fieldRow.forEach(function (field) {
           field.setVisible(false);
@@ -106,6 +116,11 @@ Blockly.Blocks['lcd_init'] = {
         thisBlock.i2cInput.fieldRow.forEach(function (field) {
           field.setVisible(true);
         });
+        var I2C = thisBlock.getFieldValue('I2C');
+        var SDA = (I2C == 'I2C1')? 'PB7': 'PB11' ;
+        var SCL = (I2C == 'I2C1')? 'PB6': 'PB10' ;
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', SDA).replace('%2',SCL);
+        thisBlock.setTooltip(ToolTipMsg);
       }
       return newValue;
     });

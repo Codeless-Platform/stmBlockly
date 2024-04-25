@@ -9,20 +9,32 @@ goog.require('Blockly.Types');
 Blockly.Blocks.oled.HUE = 120;
 Blockly.Blocks['oled_init'] = {
   init: function () {
+    var I2C_Instant = new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c) ; 
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_INIT)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c),
-        'I2C'
-      );
+      .appendField(I2C_Instant, 'I2C');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.OLED_INIT_I2C_TTL);
+    var ToolTipMsg = Blockly.Msg.OLED_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+    this.setTooltip(ToolTipMsg);
+    var thisBlock = this;
+     // change listener for I2C 
+     I2C_Instant.setValidator(function(newValue){
+      if (newValue === 'I2C1') {
+        var ToolTipMsg = Blockly.Msg.OLED_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+        thisBlock.setTooltip(ToolTipMsg);
+      }else{
+        var ToolTipMsg = Blockly.Msg.OLED_INIT_I2C_TTL.replace('%1', 'PB11').replace('%2','PB10');
+        thisBlock.setTooltip(ToolTipMsg);
+      }
+    });
   },
+  
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
   },
+
 };
 
 Blockly.Blocks['oled_sendString'] = {

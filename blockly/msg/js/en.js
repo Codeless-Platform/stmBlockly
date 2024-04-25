@@ -634,10 +634,10 @@ Blockly.Msg.KEYPAD_TTL = 'initalize 4x3 keypad connected to the selected pins';
 Blockly.Msg.KEYPAD_READ = 'get pressed keypad pin';
 Blockly.Msg.KEYPAD_READ_TTL = 'gets the value of pressed pin';
 Blockly.Msg.LCD_INIT = 'initalize lcd';
-Blockly.Msg.LCD_INIT_TTL = 'initalize LCD connected to selected pins';
+Blockly.Msg.LCD_INIT_TTL = 'initalize standard LCD connected to selected pins';
 Blockly.Msg.LCD_INIT_I2C = 'I2C';
 Blockly.Msg.LCD_ADDRESS_I2C = 'with Address';
-Blockly.Msg.LCD_INIT_I2C_TTL = 'initalize LCD connected selected I2C';
+Blockly.Msg.LCD_INIT_I2C_TTL = 'initalize LCD connected to SDA:%1 SCL:%2';
 Blockly.Msg.LCD_CHAR = 'write a character';
 Blockly.Msg.LCD_NUMBER = 'write a number';
 Blockly.Msg.LCD_NUMBER_TTL = 'writes a number on lcd ';
@@ -670,7 +670,7 @@ Blockly.Msg.KEY_R3 = 'R3:';
 Blockly.Msg.READLM35 = 'Read Tempreature sensor at pin #';
 
 Blockly.Msg.UART_INIT = 'initalize ';
-Blockly.Msg.UART_INIT_TTP = 'Selects the speed for a specific uart peripheral';
+Blockly.Msg.UART_INIT_TTP = 'Selects the speed for a uart connected on TX: %1 RX: %2';
 Blockly.Msg.UART_SPEED = ':  speed to';
 
 Blockly.Msg.UART_BPS = 'bps';
@@ -692,7 +692,7 @@ Blockly.Msg.SPI_SETUP_MODE1 = '1 (Low - Rising)';
 Blockly.Msg.SPI_SETUP_MODE2 = '2 (High - Falling)';
 Blockly.Msg.SPI_SETUP_MODE3 = '3 (High - Rising)';
 Blockly.Msg.SPI_SETUP_SHIFT = 'data shift';
-Blockly.Msg.SPI_INIT_TIP = 'Configures the SPI peripheral.';
+Blockly.Msg.SPI_INIT_TIP = 'Configures the SPI peripheral on MOSI: %1 MISO: %2 SCK: %3';
 Blockly.Msg.SPI_TRANSRETURN_TIP =
   'Send a SPI message to an specified slave device and get data back.';
 Blockly.Msg.SPI_TRANS_NONE = 'none';
@@ -707,7 +707,7 @@ Blockly.Msg.SPI_MODE_MASTER = 'Master';
 Blockly.Msg.SPI_MODE_SALVE = 'Slave';
 
 Blockly.Msg.OLED_INIT = 'initalize oled';
-Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected selected I2C';
+Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected SDA: %1 , SCL: %2';
 Blockly.Msg.OLED_CLEAR = 'Clear Oled screen';
 Blockly.Msg.OLED_UPDATE = 'Update Oled screen';
 Blockly.Msg.OLED_UPDATE_TTL =
@@ -731,7 +731,7 @@ Blockly.Msg.OLED_COLOR = 'color';
 
 Blockly.Msg.MATRIX_INIT = 'initalize led dot matrix';
 Blockly.Msg.MATRIX_INIT_TTL =
-  'initalize led dot matrix connected selected SPI and chip select with size 8*8';
+  'initalize led dot matrix on MOSI: %1 MISO: %2 SCK: %3 and chip select with size 8*8';
 Blockly.Msg.MATRIX_STRING = 'write ';
 Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
 Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
