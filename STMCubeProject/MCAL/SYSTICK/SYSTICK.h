@@ -26,7 +26,7 @@
  * Options: SINGLE
  * 			PERIODIC
  */
-#define STK_MODE 		PERIODIC
+#define STK_MODE 		SINGLE
 
 /*
 * ===============================================
@@ -34,6 +34,7 @@
 * ===============================================
 */
 void STK_init();
+void STK_stopInterval (void);
 void STK_BusyWait(uint32 ticks);
 void STK_SetInterval(uint32 time, void (*CB_ptr)(void));
 uint32 STK_getElapsedTime();
