@@ -5,12 +5,11 @@
  *      Author: Alaa Wahba
  */
 
-#ifndef LCD_H_
-#define LCD_H_
+#ifndef LCD_I2C_H_
+#define LCD_I2C_H_
 #include "../../MCAL/I2C/I2C.h"
 #include "../../MCAL/SYSTICK/SYSTICK.h"
 
-//#define SLAVE_ADDRESS_LCD 		0x4e
 
 
 

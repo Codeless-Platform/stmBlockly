@@ -116,8 +116,8 @@ Blockly.Arduino['lcd_sendNumber'] = function (block) {
     '0';
   var code =
     type == 'Standard'
-      ? `lcd_display_number(${data});\n`
-      : `lcd_I2C_display_number(${data});\n`;
+      ? `lcd_display_Real_number(${data});\n`
+      : `lcd_I2C_display_Real_number(${data});\n`;
 
   return code;
 };

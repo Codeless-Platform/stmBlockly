@@ -171,34 +171,10 @@ void lcd_Send_Char(unsigned char character)
 }
 void lcd_send_String(char *string)
 {
-	// keeps track of chars count
-	int count = 0;
+
 	while (*string > 0)
 	{
-		count++;
 		lcd_Send_Char(*string++);
-		// if first line is full go to second
-		if (count == MAX_COLS)
-		{
-			lcd_GOTO_XY(1, 0);
-		} // if both lines are full clear and start over.
-		else if (count == (MAX_COLS * MAX_ROWS))
-		{
-			lcd_Clear_Screen();
-			lcd_GOTO_XY(0, 0);
-			count = 0;
-		}
-		if ((G_LCD_pinConfig->LCD_Size == LCD_4x20) || (G_LCD_pinConfig->LCD_Size == LCD_4x16))
-		{
-			if (count == MAX_COLS * 2)
-			{
-				lcd_GOTO_XY(2, 0);
-			}
-			else if (count == MAX_COLS * 3)
-			{
-				lcd_GOTO_XY(3, 0);
-			}
-		}
 	}
 }
 void lcd_GOTO_XY(unsigned char row, unsigned char col)
@@ -262,9 +238,9 @@ void lcd_display_Real_number(double Number)
 	int tmpVal = tmpNum;
 	float tmpFrac = tmpNum - tmpVal;
 
-	int Frac = tmpFrac * 10000;
+	int Frac = tmpFrac * 100;
 
-	sprintf(str, "%s%d.%04d", tmpSign, tmpVal, Frac);
+	sprintf(str, "%s%d.%02d", tmpSign, tmpVal, Frac);
 	lcd_send_String(str);
 }
 void lcd_kick()
