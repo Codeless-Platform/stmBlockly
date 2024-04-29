@@ -215,12 +215,12 @@ void SPI_GPIO_SetPins(SPI_Registers_t *SPIx) {
 				break;
 			}
 			// SCLK
-			GPIO_pinConfig.MODE = MODE_OUTPUT_AF_PP;
+			GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
 			GPIO_pinConfig.Output_Speed = SPEED_10M;
 			GPIO_pinConfig.Pin_Number = PIN_13;
 			GPIO_init(GPIOB, &GPIO_pinConfig);
 			// MOSI
-			GPIO_pinConfig.MODE = MODE_OUTPUT_AF_PP;
+			GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
 			GPIO_pinConfig.Output_Speed = SPEED_10M;
 			GPIO_pinConfig.Pin_Number = PIN_15;
 			GPIO_init(GPIOB, &GPIO_pinConfig);
