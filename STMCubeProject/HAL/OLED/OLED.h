@@ -46,27 +46,37 @@ SDA        |PB7          |Serial data line
 
 /* oled settings */
 /* oled width in pixels */
-#ifndef oled_WIDTH
-#define oled_WIDTH            128
+#ifndef oled_WIDTH1
+#define oled_WIDTH1            128
 #endif
 /* oled height in pixels */
-#ifndef oled_HEIGHT
-#define oled_HEIGHT           64
+#ifndef oled_HEIGHT1
+#define oled_HEIGHT1           64
+#endif
+
+/* oled settings */
+/* oled width in pixels */
+#ifndef oled_WIDTH2
+#define oled_WIDTH2            128
+#endif
+/* oled height in pixels */
+#ifndef oled_HEIGHT2
+#define oled_HEIGHT2           64
 #endif
 
 /**
  * @brief  oled color enumeration
  */
 typedef enum {
-	oled_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
-	oled_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on oled */
+    oled_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
+    oled_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on oled */
 } oled_COLOR_t;
 
 typedef struct {
-	uint16 CurrentX;
-	uint16 CurrentY;
-	uint8 Inverted;
-	uint8 Initialized;
+    uint16 CurrentX;
+    uint16 CurrentY;
+    uint8 Inverted;
+    uint8 Initialized;
 } oled_t;
 
 #define oled_RIGHT_HORIZONTAL_SCROLL              0x26
@@ -96,7 +106,7 @@ uint8 oled_Init(I2C_Registers_t *I2Cx);
  * @param  None
  * @retval None
  */
-void oled_UpdateScreen(void);
+void oled_UpdateScreen(I2C_Registers_t *I2Cx);
 
 /**
  * @brief  Toggles pixels invertion inside internal RAM
@@ -104,7 +114,7 @@ void oled_UpdateScreen(void);
  * @param  None
  * @retval None
  */
-void oled_ToggleInvert(void);
+void oled_ToggleInvert(uint8 index);
 
 /**
  * @brief  Fills entire oled with desired color
@@ -112,7 +122,7 @@ void oled_ToggleInvert(void);
  * @param  Color: Color to be used for screen fill. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_Fill(oled_COLOR_t Color);
+void oled_Fill(oled_COLOR_t Color,uint8 index);
 
 /**
  * @brief  Draws pixel at desired location
@@ -122,7 +132,7 @@ void oled_Fill(oled_COLOR_t Color);
  * @param  color: Color to be used for screen fill. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawPixel(uint16 x, uint16 y, oled_COLOR_t color);
+void oled_DrawPixel(uint16 x, uint16 y, oled_COLOR_t color,uint8 index);
 
 /**
  * @brief  Sets cursor pointer to desired location for strings
@@ -130,7 +140,7 @@ void oled_DrawPixel(uint16 x, uint16 y, oled_COLOR_t color);
  * @param  y: Y location. This parameter can be a value between 0 and oled_HEIGHT - 1
  * @retval None
  */
-void oled_GotoXY(uint16 x, uint16 y);
+void oled_GotoXY(uint16 x, uint16 y,uint8 index);
 
 /**
  * @brief  Puts character to internal RAM
@@ -140,7 +150,7 @@ void oled_GotoXY(uint16 x, uint16 y);
  * @param  color: Color used for drawing. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval Character written
  */
-char oled_writeChar(char ch, FontDef_t* Font, oled_COLOR_t color);
+char oled_writeChar(char ch, FontDef_t* Font, oled_COLOR_t color,uint8 index);
 
 /**
  * @brief  Puts string to internal RAM
@@ -150,7 +160,7 @@ char oled_writeChar(char ch, FontDef_t* Font, oled_COLOR_t color);
  * @param  color: Color used for drawing. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval Zero on success or character value when function failed
  */
-char oled_writeString(char* str, FontDef_t* Font, oled_COLOR_t color);
+char oled_writeString(char* str, FontDef_t* Font, oled_COLOR_t color,uint8 index);
 
 /**
  * @brief  Draws line on oled
@@ -162,7 +172,7 @@ char oled_writeString(char* str, FontDef_t* Font, oled_COLOR_t color);
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawLine(uint16 x0, uint16 y0, uint16 x1, uint16 y1, oled_COLOR_t c);
+void oled_DrawLine(uint16 x0, uint16 y0, uint16 x1, uint16 y1, oled_COLOR_t c,uint8 index);
 
 /**
  * @brief  Draws rectangle on oled
@@ -174,7 +184,7 @@ void oled_DrawLine(uint16 x0, uint16 y0, uint16 x1, uint16 y1, oled_COLOR_t c);
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR_t c);
+void oled_DrawRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR_t c,uint8 index);
 
 /**
  * @brief  Draws filled rectangle on oled
@@ -186,7 +196,7 @@ void oled_DrawRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR_t c);
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawFilledRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR_t c);
+void oled_DrawFilledRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR_t c,uint8 index);
 
 /**
  * @brief  Draws triangle on oled
@@ -200,7 +210,7 @@ void oled_DrawFilledRectangle(uint16 x, uint16 y, uint16 w, uint16 h, oled_COLOR
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawTriangle(uint16 x1, uint16 y1, uint16 x2, uint16 y2, uint16 x3, uint16 y3, oled_COLOR_t color);
+void oled_DrawTriangle(uint16 x1, uint16 y1, uint16 x2, uint16 y2, uint16 x3, uint16 y3, oled_COLOR_t color,uint8 index);
 
 /**
  * @brief  Draws circle to STM buffer
@@ -211,7 +221,7 @@ void oled_DrawTriangle(uint16 x1, uint16 y1, uint16 x2, uint16 y2, uint16 x3, ui
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c);
+void oled_DrawCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c,uint8 index);
 
 /**
  * @brief  Draws filled circle to STM buffer
@@ -222,12 +232,12 @@ void oled_DrawCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c);
  * @param  c: Color to be used. This parameter can be a value of @ref oled_COLOR_t enumeration
  * @retval None
  */
-void oled_DrawFilledCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c);
+void oled_DrawFilledCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c,uint8 index);
 
 
 
 #ifndef oled_I2C_TIMEOUT
-#define oled_I2C_TIMEOUT					20000
+#define oled_I2C_TIMEOUT                    20000
 #endif
 
 /**
@@ -237,7 +247,7 @@ void oled_DrawFilledCircle(sint16 x0, sint16 y0, sint16 r, oled_COLOR_t c);
  *           - 0: oled was not detected on I2C port
  *           - > 0: oled initialized OK and ready to use
  */
-void oled_I2C_Init();
+void oled_I2C_Init(I2C_Registers_t *I2Cx);
 
 /**
  * @brief  Writes single byte to slave
@@ -247,7 +257,7 @@ void oled_I2C_Init();
  * @param  data: data to be written
  * @retval None
  */
-void oled_I2C_Write(uint8 address, uint8 reg, uint8 data);
+void oled_I2C_Write(uint8 address, uint8 reg, uint8 data,I2C_Registers_t *I2Cx);
 
 /**
  * @brief  Writes multi bytes to slave
@@ -258,7 +268,7 @@ void oled_I2C_Write(uint8 address, uint8 reg, uint8 data);
  * @param  count: how many bytes will be written
  * @retval None
  */
-void oled_I2C_WriteMulti(uint8 address, uint8 reg, uint8 *data, uint16 count);
+void oled_I2C_WriteMulti(uint8 address, uint8 reg, uint8 *data, uint16 count,I2C_Registers_t *I2Cx);
 
 /**
  * @brief  Draws the Bitmap
@@ -269,29 +279,29 @@ void oled_I2C_WriteMulti(uint8 address, uint8 reg, uint8 *data, uint16 count);
  * @param  H : Height of the image
  * @param  color : 1-> white/blue, 0-> black
  */
-void oled_DrawBitmap(sint16 x, sint16 y, const unsigned char* bitmap, sint16 w, sint16 h, sint16 color);
+void oled_DrawBitmap(sint16 x, sint16 y, const unsigned char* bitmap, sint16 w, sint16 h, sint16 color,uint8 index);
 
 // scroll the screen for fixed rows
 
-void oled_ScrollRight(uint8 start_row, uint8 end_row);
+void oled_ScrollRight(uint8 start_row, uint8 end_row,I2C_Registers_t *I2Cx);
 
 
-void oled_ScrollLeft(uint8 start_row, uint8 end_row);
+void oled_ScrollLeft(uint8 start_row, uint8 end_row,I2C_Registers_t *I2Cx);
 
 
-void oled_Scrolldiagright(uint8 start_row, uint8 end_row);
+void oled_Scrolldiagright(uint8 start_row, uint8 end_row,I2C_Registers_t *I2Cx);
 
 
-void oled_Scrolldiagleft(uint8 start_row, uint8 end_row);
+void oled_Scrolldiagleft(uint8 start_row, uint8 end_row,I2C_Registers_t *I2Cx);
 
 
 
-void oled_Stopscroll(void);
+void oled_Stopscroll(I2C_Registers_t *I2Cx);
 
 
 // inverts the display i = 1->inverted, i = 0->normal
 
-void oled_InvertDisplay (int i);
+void oled_InvertDisplay (int i,I2C_Registers_t *I2Cx);
 
 
 
@@ -300,7 +310,7 @@ void oled_InvertDisplay (int i);
 
 // clear the display
 
-void oled_Clear (void);
+void oled_Clear (I2C_Registers_t *I2Cx);
 
 
 #endif /* OLED_OLED_H_ */

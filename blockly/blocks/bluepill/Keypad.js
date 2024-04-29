@@ -10,9 +10,16 @@ Blockly.Blocks.keypad.HUE = 380;
 
 Blockly.Blocks['keypad_init'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.keypad.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.KEYPAD_INIT_PORT)
+      .appendField(list, 'ID')
+      .appendField('at port')
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.full_ports),
+        'PORT'
+      )
       .appendField('Size ')
       .appendField(
         new Blockly.FieldDropdown(
@@ -20,10 +27,6 @@ Blockly.Blocks['keypad_init'] = {
           this.updateCols_.bind(this)
         ),
         'SIZE'
-      )
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.full_ports),
-        'PORT'
       )
       .appendField(Blockly.Msg.KEY_R0)
       .appendField(
@@ -62,7 +65,8 @@ Blockly.Blocks['keypad_init'] = {
         'C2'
       );
     this.size = '4x3';
-    this.setInputsInline(true);
+    list.setValue('1');
+    this.setInputsInline(false);
     this.setFieldValue('4x3', 'SIZE');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -88,8 +92,12 @@ Blockly.Blocks['keypad_init'] = {
 
 Blockly.Blocks['keypad_getKey'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.keypad.HUE);
-    this.appendDummyInput().appendField(Blockly.Msg.KEYPAD_READ);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.KEYPAD_READ)
+      .appendField(list, 'ID');
+    list.setValue('1');
     this.setOutput(true, Blockly.Types.CHARACTER.output);
     this.setTooltip(Blockly.Msg.KEYPAD_READ_TTL);
   },

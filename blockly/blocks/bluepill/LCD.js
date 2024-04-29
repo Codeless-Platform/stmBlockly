@@ -9,7 +9,10 @@ goog.require('Blockly.Types');
 Blockly.Blocks.lcd.HUE = 400;
 Blockly.Blocks['lcd_init'] = {
   init: function () {
-    var I2C_Instant = new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.i2c) ; 
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var I2C_Instant = new Blockly.FieldDropdown(
+      Blockly.Arduino.Boards.selected.i2c
+    );
     var dropdownType = new Blockly.FieldDropdown([['Standard'], ['I2C']]);
     var dropdownSize = new Blockly.FieldDropdown([
       ['2x16'],
@@ -28,6 +31,7 @@ Blockly.Blocks['lcd_init'] = {
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_INIT)
+      .appendField(list, 'ID')
       .appendField(dropdownType, 'TYPE')
       .appendField(Blockly.Msg.LCD_SIZE)
       .appendField(dropdownSize, 'SIZE');
@@ -81,21 +85,31 @@ Blockly.Blocks['lcd_init'] = {
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+    var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace(
+      '%2',
+      'PB6'
+    );
     this.setTooltip(ToolTipMsg);
 
     var thisBlock = this;
     dropdownType.setValue('I2C'); // Initialize value
+    list.setValue('1');
     thisBlock.standardInput.fieldRow.forEach(function (field) {
       field.setVisible(false);
     });
-    // change listener for I2C 
-    I2C_Instant.setValidator(function(newValue){
+    // change listener for I2C
+    I2C_Instant.setValidator(function (newValue) {
       if (newValue === 'I2C1') {
-        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace('%2','PB6');
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace(
+          '%1',
+          'PB7'
+        ).replace('%2', 'PB6');
         thisBlock.setTooltip(ToolTipMsg);
-      }else{
-        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB11').replace('%2','PB10');
+      } else {
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace(
+          '%1',
+          'PB11'
+        ).replace('%2', 'PB10');
         thisBlock.setTooltip(ToolTipMsg);
       }
     });
@@ -117,9 +131,12 @@ Blockly.Blocks['lcd_init'] = {
           field.setVisible(true);
         });
         var I2C = thisBlock.getFieldValue('I2C');
-        var SDA = (I2C == 'I2C1')? 'PB7': 'PB11' ;
-        var SCL = (I2C == 'I2C1')? 'PB6': 'PB10' ;
-        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', SDA).replace('%2',SCL);
+        var SDA = I2C == 'I2C1' ? 'PB7' : 'PB11';
+        var SCL = I2C == 'I2C1' ? 'PB6' : 'PB10';
+        var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace(
+          '%1',
+          SDA
+        ).replace('%2', SCL);
         thisBlock.setTooltip(ToolTipMsg);
       }
       return newValue;
@@ -133,8 +150,15 @@ Blockly.Blocks['lcd_init'] = {
 // send char
 Blockly.Blocks['lcd_sendChar'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.lcd.HUE);
-    this.appendValueInput('DATA').appendField(Blockly.Msg.LCD_CHAR);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.LCD_CHAR)
+      .appendField(list, 'ID')
+      .appendField('character');
+    this.appendValueInput('DATA');
+
+    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -145,10 +169,14 @@ Blockly.Blocks['lcd_sendChar'] = {
 // send string
 Blockly.Blocks['lcd_sendString'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('DATA')
-      .setCheck(Blockly.Types.TEXT.checkList)
-      .appendField(Blockly.Msg.LCD_STRING);
+      .appendField(Blockly.Msg.LCD_STRING)
+      .setCheck(Blockly.Types.TEXT.checkList);
+    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
+
+    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -158,10 +186,13 @@ Blockly.Blocks['lcd_sendString'] = {
 // send Number
 Blockly.Blocks['lcd_sendNumber'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('DATA')
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.LCD_NUMBER);
+    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
+    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -171,8 +202,12 @@ Blockly.Blocks['lcd_sendNumber'] = {
 // clear screen
 Blockly.Blocks['lcd_clear'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.lcd.HUE);
-    this.appendDummyInput().appendField(Blockly.Msg.LCD_CLEAR);
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.LCD_CLEAR)
+      .appendField(list, 'ID');
+    list.setValue('1');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -181,12 +216,17 @@ Blockly.Blocks['lcd_clear'] = {
 // go to x y
 Blockly.Blocks['lcd_goto'] = {
   init: function () {
+    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('ROW')
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.LCD_GOTOx);
     this.appendDummyInput().appendField(Blockly.Msg.LCD_GOTOy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+      .appendField('on lcd#')
+      .appendField(list, 'ID');
+    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

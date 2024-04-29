@@ -10,8 +10,18 @@
 #include "../../MCAL/I2C/I2C.h"
 #include "../../MCAL/SYSTICK/SYSTICK.h"
 
-
-
+typedef struct {
+	uint8 LCD_Size;		// @ref LCD_SIZE
+	I2C_Registers_t *I2Cx;
+	uint16 address;
+	uint8 rows;
+	uint8 cols;
+	uint8 count;
+} LCD_I2C_t;
+// @ref LCD_SIZE
+#define LCD_4x20				1
+#define LCD_2x16				0
+#define LCD_4x16				2
 
 /* Some instructions from data sheet */
 #define CURSOR_FIRST_LINE 		(0x80)
@@ -44,17 +54,14 @@
 
 #define CLEAR_SCREEN 			(0x01)
 
-
-void lcd_I2C_Send_Command( char cmd);
-void lcd_I2C_Send_Char( char data);
-void lcd_I2C_send_String(char *string);
-void lcd_I2C_init(int cols, int rows, I2C_Registers_t *I2Cx ,uint16 address);
-void lcd_I2C_Clear_Screen(void);
-void lcd_I2C_GOTO_XY(unsigned char row, unsigned char col);
-void lcd_I2C_display_number(int Number);
-void lcd_I2C_display_Real_number(double Number);
-
-
-
+void lcd_I2C_Send_Command(LCD_I2C_t *Lcd_pinConfig, char cmd);
+void lcd_I2C_Send_Char(LCD_I2C_t *Lcd_pinConfig, char data);
+void lcd_I2C_send_String(LCD_I2C_t *Lcd_pinConfig, char *string);
+void lcd_I2C_init(LCD_I2C_t *Lcd_pinConfig);
+void lcd_I2C_Clear_Screen(LCD_I2C_t *Lcd_pinConfig);
+void lcd_I2C_GOTO_XY(LCD_I2C_t *Lcd_pinConfig, unsigned char row,
+		unsigned char col);
+void lcd_I2C_display_number(LCD_I2C_t *Lcd_pinConfig, int Number);
+void lcd_I2C_display_Real_number(LCD_I2C_t *Lcd_pinConfig, double Number);
 
 #endif /* LCD_H_ */

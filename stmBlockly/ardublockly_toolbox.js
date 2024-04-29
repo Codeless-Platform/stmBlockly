@@ -106,12 +106,7 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="io_highlow"></block>' +
   '      </value>' +
   '    </block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">pinVal</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="io_readPin"></block>' +
-  '      </value>' +
-  '    </block>' +
+  '    <block type="io_readPin"></block>' +
   '    <block type="io_builtin_led">' +
   '      <value name="STATE">' +
   '        <block type="io_highlow"></block>' +
@@ -123,18 +118,8 @@ Ardublockly.TOOLBOX_XML =
   '        <block type="io_highlow"></block>' +
   '      </value>' +
   '    </block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">portVal</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="io_readPort"></block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">analogPinVal</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="io_readAnalogPin"></block>' +
-  '      </value>' +
-  '    </block>' +
+  '    <block type="io_readPort"></block>' +
+  '    <block type="io_readAnalogPin"></block>' +
   '    <block type="io_highlow"></block>' +
   '  </category>' +
   '  <sep></sep>' +
@@ -188,12 +173,7 @@ Ardublockly.TOOLBOX_XML =
   '      </value>' +
   '    </block>' +
   '    <block type="keypad_init"></block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">key</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="keypad_getKey"></block>' +
-  '      </value>' +
-  '    </block>' +
+  '    <block type="keypad_getKey"></block>' +
   '    <block type="oled_init"></block>' +
   '    <block type="oled_sendString"></block>' +
   '    <block type="oled_clear"></block>' +
@@ -208,24 +188,9 @@ Ardublockly.TOOLBOX_XML =
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catSensors" name="Sensors">' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">temp</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="sensors_LM35"></block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">pirVal</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="sensors_PIR"></block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="variables_set">' +
-  '      <field name="VAR">distance</field>' +
-  '      <value name="VALUE">' +
-  '        <block type="sensors_ultrasonic"></block>' +
-  '      </value>' +
-  '    </block>' +
+  '    <block type="sensors_LM35"></block>' +
+  '    <block type="sensors_PIR"></block>' +
+  '    <block type="sensors_ultrasonic"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catComms" name="Comms">' +

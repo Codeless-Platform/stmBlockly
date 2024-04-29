@@ -12,22 +12,16 @@
 
 //Define the PORT  connected to keypad
 typedef struct{
-	uint16 R0;
-	uint16 R1;
-	uint16 R2;
-	uint16 R3;
-	uint16 C0;
-	uint16 C1;
-	uint16 C2;
-	uint16 C3;
+	uint16 Keypad_Rows[4];
+	uint16 Keypad_Cols[4];
 	uint16 MAX_COLS;
-	GPIO_Registers_t *Keypad_PORT;
+	GPIO_Registers_t *port;
 
 }keypad_t;
 
 
 void Keypad_init(keypad_t *keypad);
-char Keypad_Get_Key();
+char Keypad_Get_Key(keypad_t *keypad);
 
 //define keypad keys
 

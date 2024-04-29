@@ -52,29 +52,27 @@ const uint8 display[43][8] = {
 		{ 0x41, 0x22, 0x14, 0x8, 0x8, 0x8, 0x8, 0x8 }, //Y
 		{ 0x0, 0x7F, 0x2, 0x4, 0x8, 0x10, 0x20, 0x7F }, //Z
 };
-uint16 G_CS ,G_MOSI,G_CLK;
-GPIO_Registers_t *GPIOx, *CS_GPIO;
-void Led_Matrix_init(SPI_Registers_t *SPIx, uint16 CS_PIN, GPIO_Registers_t *CS_GPIOx) {
+
+void Led_Matrix_init(led_matrix_t *marix_pinConfig) {
 	STK_init();
-	RCC_CLK_EN(APB2_ID, GPIOA_ID);
-	G_CS = CS_PIN;
-	CS_GPIO = CS_GPIOx;
-	if(SPIx == SPI1){
-		G_MOSI = PIN_7;
-		G_CLK = PIN_5;
-		GPIOx = GPIOA;
-	}else if(SPIx == SPI2){
-		G_MOSI = PIN_15;
-		G_CLK = PIN_13;
-		GPIOx= GPIOB;
+	if(marix_pinConfig->SPIx == SPI1){
+		RCC_CLK_EN(APB2_ID, GPIOA_ID);
+		marix_pinConfig->MOSI = PIN_7;
+		marix_pinConfig->CLK = PIN_5;
+		marix_pinConfig->GPIOx = GPIOA;
+	}else if(marix_pinConfig->SPIx == SPI2){
+		RCC_CLK_EN(APB2_ID, GPIOB_ID);
+		marix_pinConfig->MOSI = PIN_15;
+		marix_pinConfig->CLK = PIN_13;
+		marix_pinConfig->GPIOx= GPIOB;
 	}
 	GPIO_PinConfig_t GPIO_pinConfig;
 	GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
 	GPIO_pinConfig.Output_Speed = SPEED_10M;
-	GPIO_pinConfig.Pin_Number = CS_PIN;
-	GPIO_init(CS_GPIO, &GPIO_pinConfig);
+	GPIO_pinConfig.Pin_Number = marix_pinConfig->CS_PIN;
+	GPIO_init(marix_pinConfig->CS_GPIO, &GPIO_pinConfig);
 	//SET CS HIGH LEVEL
-	GPIO_WritePin(CS_GPIO, CS_PIN, PIN_HIGH);
+	GPIO_WritePin(marix_pinConfig->CS_GPIO, marix_pinConfig->CS_PIN, PIN_HIGH);
 
 	/*Configure SPI2 pins: SCK, MISO and MOSI*/
 
@@ -94,34 +92,34 @@ void Led_Matrix_init(SPI_Registers_t *SPIx, uint16 CS_PIN, GPIO_Registers_t *CS_
 	SPI_pinConfig.NSS = SPI_NSS_Soft_set;
 	SPI_pinConfig.IRQ_Enable = SPI_IRQ_EN_None;
 	SPI_pinConfig.P_CallBackFun = NULL;
-	SPI_init(&SPI_pinConfig, SPIx);
-	SPI_GPIO_SetPins(SPIx);
+	SPI_init(&SPI_pinConfig, marix_pinConfig->SPIx);
+	SPI_GPIO_SetPins(marix_pinConfig->SPIx);
 
-	Led_Matrix_write(0x09, 0x00);       //  no decoding
-	Led_Matrix_write(0x0a, 0x03);       //  brightness intensity
-	Led_Matrix_write(0x0b, 0x07);       //  scan limit = 8 LEDs
-	Led_Matrix_write(0x0c, 0x01);       //  power down =0,normal mode = 1
-	Led_Matrix_write(0x0f, 0x00);       //  no test display
+	Led_Matrix_write(0x09, 0x00,marix_pinConfig);       //  no decoding
+	Led_Matrix_write(0x0a, 0x03,marix_pinConfig);       //  brightness intensity
+	Led_Matrix_write(0x0b, 0x07,marix_pinConfig);       //  scan limit = 8 LEDs
+	Led_Matrix_write(0x0c, 0x01,marix_pinConfig);       //  power down =0,normal mode = 1
+	Led_Matrix_write(0x0f, 0x00,marix_pinConfig);       //  no test display
 
 }
-void Led_Matrix_writeByte(uint8 byte) {
+void Led_Matrix_writeByte(uint8 byte,led_matrix_t *marix_pinConfig) {
 	for (int i = 0; i < 8; i++) {
-		GPIO_WritePin(GPIOx, G_CLK, PIN_LOW);  // pull the clock pin low
-		GPIO_WritePin(GPIOx, G_MOSI, byte & 0x80); // write the MSB bit to the data pin
+		GPIO_WritePin(marix_pinConfig->GPIOx, marix_pinConfig->CLK, PIN_LOW);  // pull the clock pin low
+		GPIO_WritePin(marix_pinConfig->GPIOx, marix_pinConfig->MOSI, byte & 0x80); // write the MSB bit to the data pin
 		byte = byte << 1;  // shift left
-		GPIO_WritePin(GPIOx, G_CLK, PIN_HIGH);  // pull the clock pin HIGH
+		GPIO_WritePin(marix_pinConfig->GPIOx, marix_pinConfig->CLK, PIN_HIGH);  // pull the clock pin HIGH
 	}
 }
-void Led_Matrix_write(uint8 address, uint8 data) {
-	GPIO_WritePin(CS_GPIO, G_CS, PIN_LOW);  // pull the CS pin LOW
-	Led_Matrix_writeByte(address);
-	Led_Matrix_writeByte(data);
-	GPIO_WritePin(CS_GPIO, G_CS, PIN_HIGH);  // pull the CS pin HIGH
+void Led_Matrix_write(uint8 address, uint8 data,led_matrix_t *marix_pinConfig) {
+	GPIO_WritePin(marix_pinConfig->CS_GPIO, marix_pinConfig->CS_PIN, PIN_LOW);  // pull the CS pin LOW
+	Led_Matrix_writeByte(address,marix_pinConfig);
+	Led_Matrix_writeByte(data,marix_pinConfig);
+	GPIO_WritePin(marix_pinConfig->CS_GPIO, marix_pinConfig->CS_PIN, PIN_HIGH);  // pull the CS pin HIGH
 }
-void Led_Matrix_writeString(char *str) {
+void Led_Matrix_writeString(char *str,led_matrix_t *marix_pinConfig) {
 	while (*str) {
 		for (int i = 1; i < 9; i++) {
-			Led_Matrix_write(i, display[(*str - 48)][i - 1]);
+			Led_Matrix_write(i, display[(*str - 48)][i - 1],marix_pinConfig);
 		}
 		*str++;
 		STK_delayMs(20000);

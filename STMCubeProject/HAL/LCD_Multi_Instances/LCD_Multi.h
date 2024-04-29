@@ -5,21 +5,27 @@
  *      Author: Alaa Wahba
  */
 
-#ifndef LCD_H_
-#define LCD_H_
+#ifndef LCD_MULTI_
+#define LCD_MULTI_
 #include "../../MCAL/GPIO/GPIO.h"
 #include "../../MCAL/SYSTICK/SYSTICK.h"
+#include "../../MCAL/Lib/BIT_MATH.h"
+
 typedef struct {
+	uint8 MODE;
 	uint8 LCD_Size;		// @ref LCD_SIZE
     GPIO_Registers_t* LCD_PORT;
 	GPIO_Registers_t* LCD_CONTROL_PORT;
 	uint16 ENABLE_SWITCH;
 	uint16 REGISTER_SELECT;
 	uint16 PINS[4];
+	uint8 count;
+	uint8 rows;
+	uint8 cols;
 }LCD_t;
 
-
-
+#define FOUR_BIT_MODE			0
+#define EIGHT_BIT_MODE			1
 // @ref LCD_SIZE
 #define LCD_4x20				1
 #define LCD_2x16				0
@@ -58,16 +64,16 @@ typedef struct {
 
 #define CLEAR_SCREEN 			(0x01)
 
-void isBusy();
-void lcd_kick();
-void lcd_Send_Command(unsigned char command);
-void lcd_Send_Char(unsigned char data);
-void lcd_send_String(char *string);
+void isBusy(LCD_t *LCD_Config);
+void lcd_kick(LCD_t *LCD_Config);
+void lcd_Send_Command(unsigned char command,LCD_t *LCD_Config);
+void lcd_Send_Char(unsigned char data,LCD_t *LCD_Config);
+void lcd_send_String(char *string,LCD_t *LCD_Config);
 void lcd_init(LCD_t *LCD_Config);
-void lcd_Clear_Screen();
-void lcd_GOTO_XY(unsigned char row, unsigned char col);
-void lcd_display_number(int Number);
-void lcd_display_Real_number(double Number);
+void lcd_Clear_Screen(LCD_t *LCD_Config);
+void lcd_GOTO_XY(unsigned char row, unsigned char col,LCD_t *LCD_Config);
+void lcd_display_number(int Number,LCD_t *LCD_Config);
+void lcd_display_Real_number(double Number,LCD_t *LCD_Config);
 
 
 #endif /* LCD_H_ */

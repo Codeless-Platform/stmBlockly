@@ -46,7 +46,12 @@ Blockly.Arduino['spi_init'] = function (block) {
     SPI_Polarity = 'SPI_CLK_Polarity_1';
     SPI_Phase = 'SPI_CLK_Phase_2nd';
   }
-  var mainCode = `\nSPI_PinConfig_t SPI_pinConfig;
+
+  var globalCode = 'SPI_PinConfig_t SPI_pinConfig;\n';
+  Blockly.Arduino.addInclude('spi_', globalCode);
+  globalCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
+  Blockly.Arduino.addInclude('io', globalCode);
+  var mainCode = `
 	SPI_pinConfig.Commuincation_Mode = SPI_Direction_2Lines_RXTX;
 	SPI_pinConfig.Data_Size = SPI_Data8;
 	SPI_pinConfig.Frame_Format = SPI_Frame_MSB;
@@ -54,13 +59,13 @@ Blockly.Arduino['spi_init'] = function (block) {
 	SPI_pinConfig.CLK_Polarity = ${SPI_Polarity};
 	SPI_pinConfig.CLK_Phase = ${SPI_Phase};\n`;
   if (spiMode == 'MASTER') {
-    mainCode += `SPI_pinConfig.SPI_Mode = SPI_Mode_Master;
+    mainCode += `
+    SPI_pinConfig.SPI_Mode = SPI_Mode_Master;
     SPI_pinConfig.NSS =  SPI_NSS_Soft_set;
     SPI_pinConfig.IRQ_Enable = SPI_IRQ_EN_None;
     SPI_pinConfig.P_CallBackFun = NULL;
-  
+
     // Configure SS pin
-    GPIO_PinConfig_t GPIO_pinConfig;
     GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
     GPIO_pinConfig.Output_Speed = SPEED_10M;
     GPIO_pinConfig.Pin_Number = ${pinnumber};
@@ -76,7 +81,7 @@ Blockly.Arduino['spi_init'] = function (block) {
   }
   mainCode += `	SPI_init(&SPI_pinConfig, ${spiId});
 	SPI_GPIO_SetPins(${spiId});`;
-  Blockly.Arduino.addMain('spi_', mainCode, true);
+  Blockly.Arduino.addMain('spi_'+ spiId, mainCode, true);
   return '';
 };
 

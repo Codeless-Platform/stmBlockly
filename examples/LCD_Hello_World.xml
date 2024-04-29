@@ -2,9 +2,12 @@
   <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="74" y="3">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="(~mE#zY(h!7Uc}-~vY8t">
-        <field name="PERIPHRAL">GPIOA</field>
+        <field name="PERIPHRAL">GPIOB</field>
         <next>
           <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+            <field name="ID">1</field>
+            <field name="TYPE">I2C</field>
+            <field name="SIZE">2x16</field>
             <field name="PORT">GPIOA</field>
             <field name="d4">PA4</field>
             <field name="d5">PA5</field>
@@ -12,10 +15,14 @@
             <field name="d7">PA7</field>
             <field name="EN">PA2</field>
             <field name="RS">PA3</field>
+            <field name="I2C">I2C1</field>
+            <field name="ADDRESS">0x4E</field>
             <next>
               <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
+                <field name="ID">1</field>
                 <next>
                   <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                    <field name="ID">1</field>
                     <value name="DATA">
                       <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
                         <field name="TEXT">Hello World!</field>
@@ -23,6 +30,7 @@
                     </value>
                     <next>
                       <block type="lcd_goto" id="f_saXh/V!j6*9WtNw8|p">
+                        <field name="ID">1</field>
                         <value name="ROW">
                           <block type="math_number" id="_`cy=Hj~IE{xyRD!fz;q">
                             <field name="NUM">1</field>
@@ -35,6 +43,7 @@
                         </value>
                         <next>
                           <block type="lcd_sendString" id="P6FMHTV#mf0aCQ~%n~%i">
+                            <field name="ID">1</field>
                             <value name="DATA">
                               <block type="text" id="Vb9rBoBmM%rO_]v_6rOG">
                                 <field name="TEXT">:)</field>

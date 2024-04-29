@@ -7,10 +7,7 @@
 
 #include "Keypad.h"
 
-int Keypad_Cols[4];
-int Keypad_Rows[4];
-uint16 KPD_MAX_COLS ;
-GPIO_Registers_t *G_keypad_PORT;
+
 void Keypad_init(keypad_t *keypad) {
 	/*
 	 * The columns are output which are used to scan the buttons by writing GND
@@ -19,55 +16,44 @@ void Keypad_init(keypad_t *keypad) {
 	 *
 	 */
 	GPIO_PinConfig_t pinConfig;
-	Keypad_Cols[0] =keypad->C0;
-	Keypad_Cols[1] =keypad->C1;
-	Keypad_Cols[2] =keypad->C2;
-	Keypad_Cols[3] =keypad->C3;
-	Keypad_Rows[0] =keypad->R0;
-	Keypad_Rows[1] =keypad->R1;
-	Keypad_Rows[2] =keypad->R2;
-	Keypad_Rows[3] =keypad->R3;
-	G_keypad_PORT = (keypad->Keypad_PORT);
-	KPD_MAX_COLS = keypad->MAX_COLS;
-
-	for (int i = 0; i < KPD_MAX_COLS; i++) {
+	for (int i = 0; i < keypad->MAX_COLS; i++) {
 		pinConfig.MODE = MODE_OUTPUT_PP;
 		pinConfig.Output_Speed = SPEED_10M;
-		pinConfig.Pin_Number = Keypad_Cols[i];
-		GPIO_init(keypad->Keypad_PORT, &pinConfig);
+		pinConfig.Pin_Number = keypad->Keypad_Cols[i];
+		GPIO_init(keypad->port, &pinConfig);
 	}
 	for (int i = 0; i < 4; i++) {
 		pinConfig.MODE = MODE_INPUT_PD;
-		pinConfig.Pin_Number = Keypad_Rows[i];
-		GPIO_init(keypad->Keypad_PORT, &pinConfig);
+		pinConfig.Pin_Number = keypad->Keypad_Rows[i];
+		GPIO_init(keypad->port, &pinConfig);
 	}
 	/*
 	 * Initialize the PORT to 1 so the Cols are connected VCC
 	 * while the ROWs are input_pullup
 	 */
 	for (int i = 0; i < 4; i++) {
-		GPIO_WritePin(keypad->Keypad_PORT, Keypad_Rows[i], PIN_LOW);
+		GPIO_WritePin(keypad->port, keypad->Keypad_Rows[i], PIN_LOW);
 	}
-	for (int i = 0; i < KPD_MAX_COLS; i++) {
-		GPIO_WritePin(keypad->Keypad_PORT, Keypad_Cols[i], PIN_LOW);
+	for (int i = 0; i < keypad->MAX_COLS; i++) {
+		GPIO_WritePin(keypad->port, keypad->Keypad_Cols[i], PIN_LOW);
 	}
 }
-char Keypad_Get_Key() {
+char Keypad_Get_Key(keypad_t *keypad) {
 
 	int i, j;
 	char ret_key = 'N';
-	for (i = 0; i < KPD_MAX_COLS; i++) {  // Cols loop
-		GPIO_WritePin(G_keypad_PORT, Keypad_Cols[i], PIN_HIGH);
+	for (i = 0; i < keypad->MAX_COLS; i++) {  // Cols loop
+		GPIO_WritePin(keypad->port, keypad->Keypad_Cols[i], PIN_HIGH);
 		for (j = 0; j < 4; j++) { // Rows loop
-			if (GPIO_ReadPin(G_keypad_PORT, Keypad_Rows[j]) ) {
-				while (GPIO_ReadPin(G_keypad_PORT, Keypad_Rows[j]) )
+			if (GPIO_ReadPin(keypad->port, keypad->Keypad_Rows[j]) ) {
+				while (GPIO_ReadPin(keypad->port, keypad->Keypad_Rows[j]) )
 					; // single press
 				ret_key = arr_keys[j][i];
 
 			}
 
 		}
-		GPIO_WritePin(G_keypad_PORT, Keypad_Cols[i], PIN_LOW);
+		GPIO_WritePin(keypad->port, keypad->Keypad_Cols[i], PIN_LOW);
 
 	}
 	return ret_key;

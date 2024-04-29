@@ -19,8 +19,19 @@ goog.require('Blockly.Arduino');
 Blockly.Arduino['uart_init'] = function (block) {
   var uartID = block.getFieldValue('UART_ID');
   var baudRate = block.getFieldValue('SPEED');
-  var mainCode = `\nUSART_pinConfig_t USART_pinConfig = {USART_TXRXEN,USART_BaudRate_${baudRate} ,USART_StopBits_1,USART_DataLength8,USART_Parity_None,USART_FlowControl_NONE,Disable,NULL}; 
-                   \nUSART_init(&USART_pinConfig, ${uartID});\n USART_SetPins(${uartID});\n`;
+  var globalCode = 'USART_pinConfig_t USART_pinConfig;\n';
+  Blockly.Arduino.addInclude("uart_", globalCode);
+
+  var mainCode = ` USART_pinConfig.BaudRate = USART_BaudRate_${baudRate};
+  USART_pinConfig.DataLength = USART_DataLength8;
+  USART_pinConfig.FlowControl = USART_FlowControl_NONE;
+  USART_pinConfig.IRQ_Enable = Disable;
+  USART_pinConfig.P_CallBack_Fun = NULL;
+  USART_pinConfig.Parity = USART_Parity_None;
+  USART_pinConfig.StopBits = USART_StopBits_1;
+  USART_pinConfig.USART_Mode =USART_TXRXEN;
+  USART_init(&USART_pinConfig, ${uartID});
+  USART_SetPins(${uartID});\n`;
   Blockly.Arduino.addMain('uart_' + uartID, mainCode, true);
   var code = '';
   return code;
