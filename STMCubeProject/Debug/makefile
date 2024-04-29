@@ -24,8 +24,8 @@ RM := rm -rf
 -include HAL/OLED/subdir.mk
 -include HAL/LM35/subdir.mk
 -include HAL/LED_MATRIX/subdir.mk
+-include HAL/LCD_Multi_Instances/subdir.mk
 -include HAL/LCD_I2C/subdir.mk
--include HAL/LCD/subdir.mk
 -include HAL/Keypad/subdir.mk
 -include objects.mk
 

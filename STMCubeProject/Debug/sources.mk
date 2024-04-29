@@ -24,8 +24,8 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 HAL/Keypad \
-HAL/LCD \
 HAL/LCD_I2C \
+HAL/LCD_Multi_Instances \
 HAL/LED_MATRIX \
 HAL/LM35 \
 HAL/OLED \

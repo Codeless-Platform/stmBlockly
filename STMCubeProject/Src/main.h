@@ -16,7 +16,7 @@
 #include "../MCAL/Lib/STM32_F103x6.h"
 #include "../MCAL/RCC/RCC.h"
 #include "../HAL/Keypad/Keypad.h"
-#include "../HAL/LCD/LCD.h"
+#include "../HAL/LCD_Multi_Instances/LCD_Multi.h"
 #include "../HAL/LCD_I2C/LCD_I2C.h"
 
 #include "../MCAL/SYSTICK/SYSTICK.h"
@@ -25,7 +25,6 @@
 #include "../HAL/OLED/OLED.h"
 #include "../HAL/LED_MATRIX/Led_Matrix.h"
 #include "../HAL/Ultrasonic/Ultrasonic.h"
-
 
 #include "math.h"
 
