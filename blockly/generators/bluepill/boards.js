@@ -347,7 +347,7 @@ Blockly.Arduino.Boards.profiles.stm32f103c8 = {
   ],
 };
 /** Set default profile to Arduino standard-compatible board */
-Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.stm32f103c6;
+Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.stm32f103c8;
 
 /**
  * Changes the Arduino board profile selected, which trigger a refresh of the
