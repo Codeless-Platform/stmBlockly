@@ -69,6 +69,9 @@ Blockly.Blocks['sensors_PIR'] = {
 
 Blockly.Blocks['sensors_ultrasonic'] = {
   init: function () {
+    var trig = new Blockly.FieldDropdown(
+      Blockly.Arduino.Boards.selected.digitalPins
+    );
     this.setColour(Blockly.Blocks.sensors.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.ULTRASONIC_READ)
@@ -77,12 +80,10 @@ Blockly.Blocks['sensors_ultrasonic'] = {
         'echo'
       )
       .appendField(Blockly.Msg.ULTRASONIC_TRIG)
-      .appendField(
-        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
-        'trig'
-      );
+      .appendField(trig, 'trig');
     this.setOutput(true, Blockly.Types.DECIMAL.output);
     this.setTooltip(Blockly.Msg.ARD_DIGITALREAD_TIP);
+    trig.setValue('PA1');
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function () {
