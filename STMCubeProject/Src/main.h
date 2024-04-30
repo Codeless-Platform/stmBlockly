@@ -25,6 +25,8 @@
 #include "../HAL/OLED/OLED.h"
 #include "../HAL/LED_MATRIX/Led_Matrix.h"
 #include "../HAL/Ultrasonic/Ultrasonic.h"
+#include "../MCAL/TIM/TIM.h"
+#include "../HAL/Motor_Driver/MotorDriver.h"
 
 #include "math.h"
 

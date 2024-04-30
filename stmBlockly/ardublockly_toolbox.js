@@ -194,10 +194,12 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="matrix_sendString"></block>' +
   '  </category>' +
   '  <sep></sep>' +
-  '  <category id="catSensors" name="Sensors">' +
+  '  <category id="catSensors" name="Sensors/Acutators">' +
   '    <block type="sensors_LM35"></block>' +
   '    <block type="sensors_PIR"></block>' +
   '    <block type="sensors_ultrasonic"></block>' +
+  '    <block type="motor_init"></block>' +
+  '    <block type="motor_move"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catComms" name="Comms">' +

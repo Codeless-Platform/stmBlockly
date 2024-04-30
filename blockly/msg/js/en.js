@@ -743,4 +743,15 @@ Blockly.Msg.ULTRASONIC_TRIG = 'trigger pin';
 Blockly.Msg.WRITE_PWM = "write"
 Blockly.Msg.PIN_PWM = "to pin#"
 Blockly.Msg.PWM_TTL = "writes a value between 0 and 65536 on selected pin"
+//motors 
+Blockly.Msg.MOTOR_INIT = "initialize motor pins #"
+Blockly.Msg.MOTOR_IN1 = "IN1"
+Blockly.Msg.MOTOR_IN2 = "IN2"
+Blockly.Msg.MOTOR_EN = "EN"
+Blockly.Msg.MOTOR_MOVE = "Move motor #"
+Blockly.Msg.MOTOR_SPEED = "with speed"
+
+
+
+
 

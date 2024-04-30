@@ -64,6 +64,11 @@ typedef enum{
 #define ADC3_ID 		15
 
 
+#define TIM1_ID 		11
+#define TIM2_ID 		0
+#define TIM3_ID 		1
+#define TIM4_ID 		2
+
 
 
 
