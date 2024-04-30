@@ -120,6 +120,13 @@ Ardublockly.TOOLBOX_XML =
   '    </block>' +
   '    <block type="io_readPort"></block>' +
   '    <block type="io_readAnalogPin"></block>' +
+  '    <block type="io_writePwm">' +
+  '      <value name="PWM">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">0</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
   '    <block type="io_highlow"></block>' +
   '  </category>' +
   '  <sep></sep>' +

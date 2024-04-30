@@ -739,3 +739,8 @@ Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
 Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
 Blockly.Msg.ULTRASONIC_READ = 'read distance on echo pin';
 Blockly.Msg.ULTRASONIC_TRIG = 'trigger pin';
+//pwm 
+Blockly.Msg.WRITE_PWM = "write"
+Blockly.Msg.PIN_PWM = "to pin#"
+Blockly.Msg.PWM_TTL = "writes a value between 0 and 65536 on selected pin"
+

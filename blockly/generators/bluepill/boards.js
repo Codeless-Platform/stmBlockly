@@ -234,6 +234,17 @@ Blockly.Arduino.Boards.profiles.stm32f103c6 = {
     ['interrupt30', 'PC8'],
     ['interrupt31', 'PC9'],
   ],
+  pwm: [
+    ['PA0', 'PA0'],
+    ['PA2', 'PA2'],
+    ['PA3', 'PA3'],
+    ['PA6', 'PA6'],
+    ['PA8', 'PA8'],
+    ['PA9', 'PA9'],
+    ['PA10', 'PA10'],
+    ['PB0', 'PB0'],
+    ['PB1', 'PB1'],
+  ],
 };
 
 Blockly.Arduino.Boards.profiles.stm32f103c8 = {
@@ -344,6 +355,21 @@ Blockly.Arduino.Boards.profiles.stm32f103c8 = {
     ['interrupt29', 'PC7'],
     ['interrupt30', 'PC8'],
     ['interrupt31', 'PC9'],
+  ],
+  pwm: [
+    ['PA0', 'PA0'],
+    ['PA2', 'PA2'],
+    ['PA3', 'PA3'],
+    ['PA6', 'PA6'],
+    ['PA8', 'PA8'],
+    ['PA9', 'PA9'],
+    ['PA10', 'PA10'],
+    ['PB0', 'PB0'],
+    ['PB1', 'PB1'],
+    ['PB6', 'PB6'],
+    ['PB7', 'PB7'],
+    ['PB8', 'PB8'],
+    ['PB9', 'PB9'],
   ],
 };
 /** Set default profile to Arduino standard-compatible board */

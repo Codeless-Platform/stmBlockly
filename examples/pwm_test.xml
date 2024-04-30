@@ -1,0 +1,96 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="41,cEukiC9k`NxJca+dP" x="51" y="62">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="^gnc9]p.G:Axo.E%AK8r">
+        <field name="PERIPHRAL">GPIOA</field>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="controls_for" id="nOE3pOfpHunXGGsB6eos">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number" id="r-0xfm`rX?)pTiHC(?z6">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number" id="xv|-~,qt/ky;)XpYCH54">
+            <field name="NUM">900</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number" id="RtZ3j;8,`|2FVI6u?p^1">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="io_writePwm" id="P3PCoDyR)Cdv0^cGLrAj">
+            <field name="PIN">PA0</field>
+            <value name="PWM">
+              <block type="variables_get" id="8^:t6{oLS|pEdO^4F(=#">
+                <field name="VAR">i</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_delay" id="^O{Zbj1a.3CkUKKml6V}">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="#9gM:IZd669(D:}_b2gZ">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_for" id="2o0OFc-_B2zQSVUT#NOL">
+            <field name="VAR">i</field>
+            <value name="FROM">
+              <block type="math_number" id="]TpFpS~po7ik/,skir#h">
+                <field name="NUM">900</field>
+              </block>
+            </value>
+            <value name="TO">
+              <block type="math_number" id="tIWWY-QfKgtMRyh#qT=}">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="BY">
+              <block type="math_number" id="nRr|^|0CtnZ-rT6Y)+ON">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="io_writePwm" id="(,=%OiZGRC*-Jt9KQ)%I">
+                <field name="PIN">PA0</field>
+                <value name="PWM">
+                  <block type="variables_get" id="ahjb_t2H44ImymNNS+%Z">
+                    <field name="VAR">i</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="?_itx5#Nl[LZTx^6ezwm">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="d50S2IyPgj[Hfh#a7q9%">
+                        <field name="NUM">10</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="time_delay" id=".=USsEYa?e`(RUD(15.S">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="^3n3W!a[VE1^Xg0PiBn!">
+                    <field name="NUM">1000</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
