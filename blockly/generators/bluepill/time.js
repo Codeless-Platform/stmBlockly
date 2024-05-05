@@ -26,9 +26,9 @@ Blockly.Arduino["time_delay"] = function (block) {
       "DELAY_TIME_MILI",
       Blockly.Arduino.ORDER_ATOMIC
     ) || "0";
-  var mainCode = "STK_init();\n";
+  var mainCode = "STK_init();";
   Blockly.Arduino.addMain("time_", mainCode, false);
-  var code = "STK_delayMs(" + delayTime + ");\n";
+  var code = "STK_delayMs(" + delayTime + ");";
   return code;
 };
 
@@ -57,7 +57,7 @@ Blockly.Arduino["time_clockEN"] = function (block) {
     peripheralID == "I2C1"
   )
     busID = "APB1_ID";
-  var pinMainCode = "\nRCC_CLK_EN(" + busID + "," + peripheralID + "_ID);\n";
+  var pinMainCode = "\nRCC_CLK_EN(" + busID + "," + peripheralID + "_ID);";
   Blockly.Arduino.addMain("time_" + peripheralID, pinMainCode, false);
   return "";
 };
@@ -73,7 +73,7 @@ Blockly.Arduino["time_clockDisable"] = function (block) {
     peripheralID == "I2C1"
   )
     busID = "APB1_ID";
-  var Code = "RCC_CLK_RST(" + busID + "," + peripheralID + "_ID);\n";
+  var Code = "RCC_CLK_RST(" + busID + "," + peripheralID + "_ID);";
   Blockly.Arduino.addMain("time" + peripheralID, Code, false);
   return "";
 };

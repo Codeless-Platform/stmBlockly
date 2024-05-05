@@ -23,7 +23,7 @@ Blockly.Arduino['sensors_LM35'] = function (block) {
 
   var pinCode = 'LM35_init(' + ADC + ');\n';
 
-  Blockly.Arduino.addMain('lm35_'+ADC, pinCode, false);
+  Blockly.Arduino.addMain('lm35_' + ADC, pinCode, false);
 
   var code = 'LM35_Read(' + ADC + ',' + adcChannel + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -41,7 +41,7 @@ Blockly.Arduino['sensors_PIR'] = function (block) {
     'PIR Pin'
   );
 
-  var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
+  var pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;';
   Blockly.Arduino.addInclude('io', pinIncludeCode);
 
   var pinCode =
@@ -77,15 +77,15 @@ Blockly.Arduino['sensors_ultrasonic'] = function (block) {
     'trig pin'
   );
   var pinIncludeCode = `Ultrasonic_t ultrasonic_pinConfig${us_id};`;
-  Blockly.Arduino.addInclude(us_id, pinIncludeCode);
+  Blockly.Arduino.addInclude("Sensors_"+us_id, pinIncludeCode);
 
   var pinCode = ` 
-  ultrasonic_pinConfig.echo_port = ${echo_port};
-  ultrasonic_pinConfig.echo_pin =${echo_pin};
-  ultrasonic_pinConfig.trig_port=${trig_port};
-  ultrasonic_pinConfig.trig_pin =${trig_pin};
+  ultrasonic_pinConfig${us_id}.echo_port = ${echo_port};
+  ultrasonic_pinConfig${us_id}.echo_pin =${echo_pin};
+  ultrasonic_pinConfig${us_id}.trig_port=${trig_port};
+  ultrasonic_pinConfig${us_id}.trig_pin =${trig_pin};
   ultraSonic_init(&ultrasonic_pinConfig${us_id});\n`;
-  Blockly.Arduino.addMain(us_id, pinCode, false);
+  Blockly.Arduino.addMain("Sensors_"+us_id, pinCode, false);
   var code = `ultraSonic_readDistance(&ultrasonic_pinConfig${us_id})`;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
