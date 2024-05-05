@@ -41,12 +41,27 @@ void ADC_init(ADC_Registers_t *ADCx) {
 
 	    ADCx->CR2 |= (1 << 0); // Enable ADC (ADON bit)
 
+
 }
 
 uint16 ADC_read(ADC_Registers_t *ADCx, ADC_CHANNEL_t ADC_CHx) {
 	GPIO_PinConfig_t GPIO_pinConfig;
 	GPIO_pinConfig.MODE = MODE_Analog;
-
+	 /*channels from 10 to 17*/
+	    if (ADC_CHx > ADC_CH9)
+	    {
+	        /* Clear the old channel sample time */
+	    	ADCx->SMPR1 &= 0x7 << (3 * (ADC_CHx - 10));
+	        /* Set the new channel sample time */
+	        ADCx->SMPR1 |= (uint32)(0b11) << (3 * (ADC_CHx - 10));
+	    }
+	    else /*channels from 0 to 9 */
+	    {
+	        /* Clear the old channel  */
+	    	ADCx->SMPR2 &= 0x7 << (3 * ADC_CHx);
+	        /* Set the new channel */
+	    	ADCx->SMPR2 |= (uint32)(0b11) << (3 * ADC_CHx);
+	    }
 	switch (ADC_CHx) {
 	case ADC_CH0:
 		// configure PA0 as analog
