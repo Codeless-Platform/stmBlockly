@@ -7,7 +7,7 @@
 
 #include "LCD_Multi.h"
 
-GPIO_PinConfig_t GPIO_pinConfig;
+GPIO_PinConfig_t Lcd_GPIO_pinConfig;
 
 void lcd_init(LCD_t *LCD_Config) {
 
@@ -30,32 +30,32 @@ void lcd_init(LCD_t *LCD_Config) {
 	// set port as ouput to write commands
 	if (LCD_Config->MODE == EIGHT_BIT_MODE) {
 		for (int i = 0; i < 8; i++) {
-			GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
-			GPIO_pinConfig.Output_Speed = SPEED_10M;
-			GPIO_pinConfig.Pin_Number = LCD_Config->PINS[i];
-			GPIO_init(LCD_Config->LCD_PORT, &GPIO_pinConfig);
+			Lcd_GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
+			Lcd_GPIO_pinConfig.Output_Speed = SPEED_10M;
+			Lcd_GPIO_pinConfig.Pin_Number = LCD_Config->PINS[i];
+			GPIO_init(LCD_Config->LCD_PORT, &Lcd_GPIO_pinConfig);
 		}
 	} else {
 		for (int i = 0; i < 4; i++) {
-			GPIO_pinConfig.Pin_Number = LCD_Config->PINS[i];
-			GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
-			GPIO_pinConfig.Output_Speed = SPEED_10M;
-			GPIO_init(LCD_Config->LCD_PORT, &GPIO_pinConfig);
+			Lcd_GPIO_pinConfig.Pin_Number = LCD_Config->PINS[i];
+			Lcd_GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
+			Lcd_GPIO_pinConfig.Output_Speed = SPEED_10M;
+			GPIO_init(LCD_Config->LCD_PORT, &Lcd_GPIO_pinConfig);
 
 		}
 	}
 	// set three control pins as output and write 0
-	GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
-	GPIO_pinConfig.Pin_Number = LCD_Config->ENABLE_SWITCH;
-	GPIO_pinConfig.Output_Speed = SPEED_10M;
-	GPIO_init(LCD_Config->LCD_CONTROL_PORT, &GPIO_pinConfig);
+	Lcd_GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
+	Lcd_GPIO_pinConfig.Pin_Number = LCD_Config->ENABLE_SWITCH;
+	Lcd_GPIO_pinConfig.Output_Speed = SPEED_10M;
+	GPIO_init(LCD_Config->LCD_CONTROL_PORT, &Lcd_GPIO_pinConfig);
 	GPIO_WritePin(LCD_Config->LCD_CONTROL_PORT, LCD_Config->ENABLE_SWITCH,
 	PIN_LOW);
 
-	GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
-	GPIO_pinConfig.Pin_Number = LCD_Config->REGISTER_SELECT;
-	GPIO_pinConfig.Output_Speed = SPEED_10M;
-	GPIO_init(LCD_Config->LCD_CONTROL_PORT, &GPIO_pinConfig);
+	Lcd_GPIO_pinConfig.MODE = MODE_OUTPUT_PP;
+	Lcd_GPIO_pinConfig.Pin_Number = LCD_Config->REGISTER_SELECT;
+	Lcd_GPIO_pinConfig.Output_Speed = SPEED_10M;
+	GPIO_init(LCD_Config->LCD_CONTROL_PORT, &Lcd_GPIO_pinConfig);
 	GPIO_WritePin(LCD_Config->LCD_CONTROL_PORT, LCD_Config->REGISTER_SELECT,
 	PIN_LOW);
 	if (LCD_Config->LCD_Size == LCD_2x16) {
