@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="39" y="-19">
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="34" y="28">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="|Q|QnK%p%)FKPFdSa9rL">
         <field name="PERIPHRAL">GPIOB</field>
@@ -8,6 +8,7 @@
             <field name="PERIPHRAL">GPIOA</field>
             <next>
               <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+                <field name="ID">1</field>
                 <field name="TYPE">Standard</field>
                 <field name="SIZE">2x16</field>
                 <field name="PORT">GPIOA</field>
@@ -21,8 +22,9 @@
                 <field name="ADDRESS">0x4E</field>
                 <next>
                   <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf">
-                    <field name="SIZE">4x3</field>
+                    <field name="ID">1</field>
                     <field name="PORT">GPIOB</field>
+                    <field name="SIZE">4x3</field>
                     <field name="R0">PB3</field>
                     <field name="R1">PB4</field>
                     <field name="R2">PB5</field>
@@ -32,8 +34,10 @@
                     <field name="C2">PB9</field>
                     <next>
                       <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
+                        <field name="ID">1</field>
                         <next>
                           <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                            <field name="ID">1</field>
                             <value name="DATA">
                               <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
                                 <field name="TEXT">Keypad_LCD!</field>
@@ -47,7 +51,9 @@
                                   </block>
                                 </value>
                                 <next>
-                                  <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}"></block>
+                                  <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}">
+                                    <field name="ID">1</field>
+                                  </block>
                                 </next>
                               </block>
                             </next>
@@ -67,7 +73,9 @@
       <block type="variables_set" id="4YXEPEJR_J/|e3KU,eB5">
         <field name="VAR">key</field>
         <value name="VALUE">
-          <block type="keypad_getKey" id="o8JLljC@;CBUO]Mwnm4K"></block>
+          <block type="keypad_getKey" id="o8JLljC@;CBUO]Mwnm4K">
+            <field name="ID">1</field>
+          </block>
         </value>
         <next>
           <block type="controls_if" id="FZtqS@;A?5S0!!Sc3bx_">
@@ -88,6 +96,7 @@
             </value>
             <statement name="DO0">
               <block type="lcd_sendChar" id="7dXly*r/;Dg,t^ctS:r!">
+                <field name="ID">1</field>
                 <value name="DATA">
                   <block type="variables_get" id="H[27H/PkGKKQ(IP#W=s;">
                     <field name="VAR">key</field>

@@ -12,7 +12,7 @@
                 <field name="VAR">item</field>
                 <value name="VALUE">
                   <block type="text" id="ELu7:k-H:yb{p@9WH7zA">
-                    <field name="TEXT">Hello World</field>
+                    <field name="TEXT">Hello World </field>
                   </block>
                 </value>
               </block>

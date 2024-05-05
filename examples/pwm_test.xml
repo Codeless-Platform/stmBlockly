@@ -25,7 +25,7 @@
         </value>
         <statement name="DO">
           <block type="io_writePwm" id="P3PCoDyR)Cdv0^cGLrAj">
-            <field name="PIN">PA0</field>
+            <field name="PIN">PA2</field>
             <value name="PWM">
               <block type="variables_get" id="8^:t6{oLS|pEdO^4F(=#">
                 <field name="VAR">i</field>
@@ -62,7 +62,7 @@
             </value>
             <statement name="DO">
               <block type="io_writePwm" id="(,=%OiZGRC*-Jt9KQ)%I">
-                <field name="PIN">PA0</field>
+                <field name="PIN">PA2</field>
                 <value name="PWM">
                   <block type="variables_get" id="ahjb_t2H44ImymNNS+%Z">
                     <field name="VAR">i</field>

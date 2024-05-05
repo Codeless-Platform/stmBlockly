@@ -15,8 +15,6 @@
             <field name="d7">PA7</field>
             <field name="EN">PA2</field>
             <field name="RS">PA3</field>
-            <field name="I2C">I2C1</field>
-            <field name="ADDRESS">0x4E</field>
             <next>
               <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
                 <field name="ID">1</field>
