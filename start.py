@@ -16,8 +16,8 @@ import platform
 import threading
 import webbrowser
 
-import ardublocklyserver.server
-import ardublocklyserver.compilersettings
+import stmblocklyserver.server
+import stmblocklyserver.compilersettings
 
 # Server IP and PORT settings
 SERVER_IP = 'localhost'
@@ -134,8 +134,8 @@ def main():
     """
     print('Running Python %s (%s bit) on %s' % (platform.python_version(),
           (struct.calcsize('P') * 8), platform.platform()))
-    if os.path.isdir(ardublocklyserver.local_packages_path):
-        print('Local packages: %s' % ardublocklyserver.local_packages_path)
+    if os.path.isdir(stmblocklyserver.local_packages_path):
+        print('Local packages: %s' % stmblocklyserver.local_packages_path)
     else:
         print('Not using local-packages, likely running packaged.')
 
@@ -169,14 +169,14 @@ def main():
 
     print('\n======= Loading Settings =======')
     # ServerCompilerSettings is a singleton, no need to save instance
-    ardublocklyserver.compilersettings.ServerCompilerSettings(
+    stmblocklyserver.compilersettings.ServerCompilerSettings(
         ardublockly_root_dir)
 
     print('\n======= Starting Server =======')
     if launch_browser:
         open_browser(ip=SERVER_IP, port=SERVER_PORT)
 
-    ardublocklyserver.server.launch_server(
+    stmblocklyserver.server.launch_server(
             ip=SERVER_IP, port=SERVER_PORT, document_root_=server_root)
 
 

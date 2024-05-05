@@ -19,12 +19,12 @@ except ImportError:
     from unittest.mock import patch
 
 try:
-    from ardublocklyserver.compilersettings import ServerCompilerSettings
+    from stmblocklyserver.compilersettings import ServerCompilerSettings
 except ImportError:
     file_dir = os.path.dirname(os.path.realpath(__file__))
     package_dir = os.path.dirname(os.path.dirname(file_dir))
     sys.path.insert(0, package_dir)
-    from ardublocklyserver.compilersettings import ServerCompilerSettings
+    from stmblocklyserver.compilersettings import ServerCompilerSettings
 
 
 class ServerCompilerSettingsTestCase(unittest.TestCase):

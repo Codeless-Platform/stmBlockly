@@ -17,7 +17,7 @@ import codecs
 # local-packages imports
 import configparser
 # This package modules
-import ardublocklyserver.serialport
+import stmblocklyserver.serialport
 
 
 class ServerCompilerSettings(object):
@@ -435,7 +435,7 @@ class ServerCompilerSettings(object):
 
     def populate_serial_port_list(self):
         """Populate the serial ports dictionary with the available ports."""
-        port_list = ardublocklyserver.serialport.get_port_list()
+        port_list = stmblocklyserver.serialport.get_port_list()
         self.__serial_ports = {}
         if port_list:
             port_id = 0

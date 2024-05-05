@@ -17,7 +17,7 @@ file_dir = os.path.dirname(os.path.realpath(__file__))
 package_dir = os.path.dirname(os.path.dirname(file_dir))
 sys.path.insert(0, package_dir)
 # Adding local-packages to the sys path
-from ardublocklyserver import local_packages_path
+from stmblocklyserver import local_packages_path
 sys.path.insert(0, local_packages_path)
 
 # Import test cases to run

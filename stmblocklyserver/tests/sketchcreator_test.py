@@ -15,14 +15,14 @@ import shutil
 import unittest
 
 try:
-    from ardublocklyserver import sketchcreator
+    from stmblocklyserver import sketchcreator
 except ImportError:
     import sys
     file_dir = os.path.dirname(os.path.realpath(__file__))
     package_dir = os.path.dirname(os.path.dirname(file_dir))
     sys.path.insert(0, package_dir)
-    from ardublocklyserver import sketchcreator
-from ardublocklyserver.compilersettings import ServerCompilerSettings
+    from stmblocklyserver import sketchcreator
+from stmblocklyserver.compilersettings import ServerCompilerSettings
 
 
 class SketchCreatorTestCase(unittest.TestCase):

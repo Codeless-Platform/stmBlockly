@@ -18,13 +18,13 @@ from six.moves import _thread as thread
 from six import iteritems
 # This package modules
 try:
-    from ardublocklyserver import server
+    from stmblocklyserver import server
 except ImportError:
     file_dir = os.path.dirname(os.path.realpath(__file__))
     package_dir = os.path.dirname(os.path.dirname(file_dir))
     sys.path.insert(0, package_dir)
-    from ardublocklyserver import server
-from ardublocklyserver.compilersettings import ServerCompilerSettings
+    from stmblocklyserver import server
+from stmblocklyserver.compilersettings import ServerCompilerSettings
 
 
 settings = None

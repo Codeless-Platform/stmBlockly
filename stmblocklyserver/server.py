@@ -14,7 +14,7 @@ from bottle import static_file, run, default_app, redirect, abort
 # Python 2 and 3 compatibility imports
 from six import iteritems
 # This package modules
-from ardublocklyserver import actions
+from stmblocklyserver import actions
 
 from bottle import route, run, request
 

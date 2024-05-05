@@ -19,13 +19,13 @@ except ImportError:
     from unittest.mock import patch, MagicMock
 # This package modules
 try:
-    import ardublocklyserver.actions as actions
+    import stmblocklyserver.actions as actions
 except ImportError:
     file_dir = os.path.dirname(os.path.realpath(__file__))
     package_dir = os.path.dirname(os.path.dirname(file_dir))
     sys.path.insert(0, package_dir)
-    import ardublocklyserver.actions as actions
-from ardublocklyserver.compilersettings import ServerCompilerSettings
+    import stmblocklyserver.actions as actions
+from stmblocklyserver.compilersettings import ServerCompilerSettings
 
 
 class ActionsTestCase(unittest.TestCase):
