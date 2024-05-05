@@ -81,7 +81,7 @@ Blockly.Blocks['lcd_init'] = {
 
     this.setFieldValue('2x16', 'SIZE');
     this.setFieldValue('0x4E', 'ADDRESS');
-    this.setInputsInline(true);
+    this.setInputsInline(false);
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
