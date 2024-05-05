@@ -718,7 +718,8 @@ Blockly.Msg.OLED_GOTOx = 'Go to row';
 Blockly.Msg.OLED_GOTOy = 'and column';
 Blockly.Msg.OLED_GOTO_TTL =
   'Sets LCD cursor to specified row and column, counting starts from 0';
-Blockly.Msg.OLED_STRING = 'write';
+Blockly.Msg.OLED_STRING = 'write text';
+Blockly.Msg.OLED_NUMBER = 'write number';
 Blockly.Msg.OLED_STRING_TTL = 'writes a string on oled ';
 Blockly.Msg.OLED_FONT = 'with font size';
 Blockly.Msg.OLED_COLOR = 'and color';

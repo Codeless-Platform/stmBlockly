@@ -21,6 +21,17 @@ Blockly.Arduino['oled_sendString'] = function (block) {
   var code = `oled_writeString(${data},&${fonts},${color},${index});\n`;
   return code;
 };
+Blockly.Arduino['oled_sendNumber'] = function (block) {
+  var index = block.getFieldValue('ID') - 1;
+  var data =
+    Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
+    '0';
+  var fonts = block.getFieldValue('FONT');
+  var color = block.getFieldValue('COLOR') === 'White' ? 1 : 0;
+
+  var code = `oled_writeNumber(${data},&${fonts},${color},${index});\n`;
+  return code;
+};
 //clear
 Blockly.Arduino['oled_clear'] = function (block) {
   var index = block.getFieldValue('ID');

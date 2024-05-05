@@ -306,7 +306,7 @@ void oled_InvertDisplay (int i,I2C_Registers_t *I2Cx);
 
 
 
-
+void oled_writeNumber(float Number, FontDef_t *Font, oled_COLOR_t color, uint8 index);
 
 // clear the display
 

@@ -183,6 +183,7 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="keypad_getKey"></block>' +
   '    <block type="oled_init"></block>' +
   '    <block type="oled_sendString"></block>' +
+  '    <block type="oled_sendNumber"></block>' +
   '    <block type="oled_clear"></block>' +
   '    <block type="oled_goto"></block>' +
   '    <block type="oled_Scroll"></block>' +

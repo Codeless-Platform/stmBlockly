@@ -286,7 +286,19 @@ char oled_writeString(char *str, FontDef_t *Font, oled_COLOR_t color,
 	/* Everything OK, zero should be returned */
 	return *str;
 }
+void oled_writeNumber(float Number, FontDef_t *Font, oled_COLOR_t color, uint8 index) {
+	char str[16];
+		char *tmpSign = (Number > 0) ? "" : "-";
+		float tmpNum = (Number > 0) ? Number : -Number;
 
+		int tmpVal = tmpNum;
+		float tmpFrac = tmpNum - tmpVal;
+
+		int Frac = tmpFrac * 100;
+
+		sprintf(str, "%s%d.%02d", tmpSign, tmpVal, Frac);
+		oled_writeString(str, Font, color,index);
+}
 void oled_DrawLine(uint16 x0, uint16 y0, uint16 x1, uint16 y1, oled_COLOR_t c,
 		uint8 index) {
 	sint16 dx, dy, sx, sy, err, e2, i, tmp;

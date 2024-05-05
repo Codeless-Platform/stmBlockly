@@ -66,13 +66,35 @@ Blockly.Blocks['oled_sendString'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(colors), 'COLOR');
+    this.setFieldValue('1', 'ID');
+    this.setFieldValue('Font_11x18', 'FONT');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+  },
+};
+Blockly.Blocks['oled_sendNumber'] = {
+  init: function () {
+    var fonts = [['Font_7x10'], ['Font_11x18'], ['Font_16x26']];
+    var colors = [['White'], ['Black']];
+    this.setColour(Blockly.Blocks.oled.HUE);
+    this.appendValueInput('DATA')
+      .setCheck(Blockly.Types.NUMBER.checkList)
+      .appendField(Blockly.Msg.OLED_NUMBER);
+    this.appendDummyInput()
+      .appendField('on oled #')
+      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID')
+      .appendField(Blockly.Msg.OLED_FONT)
+      .appendField(new Blockly.FieldDropdown(fonts), 'FONT');
+    this.appendDummyInput()
+      .appendField(Blockly.Msg.OLED_COLOR)
+      .appendField(new Blockly.FieldDropdown(colors), 'COLOR');
 
     this.setFieldValue('1', 'ID');
     this.setFieldValue('Font_11x18', 'FONT');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.OLED_STRING_TTL);
   },
 };
 
