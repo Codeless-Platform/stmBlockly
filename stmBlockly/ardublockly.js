@@ -103,8 +103,8 @@ Ardublockly.bindActionFunctions = function() {
     if (el.readOnly === false) {
       // Event listener that send the data when the user presses 'Enter'
       el.addEventListener('keypress', function(event) {
-        if (!e) e = window.event;
-        var keyCode = e.keyCode || e.which;
+        if (!event) event = window.event;
+        var keyCode = event.keyCode || event.which;
         if (keyCode == '13') {
           setValFunc(el.value, function(jsonObj) {
             setHtmlCallback(ArdublocklyServer.jsonToHtmlTextInput(jsonObj));
@@ -124,7 +124,7 @@ Ardublockly.bindActionFunctions = function() {
                              ArdublocklyServer.setCompilerLocation,
                              Ardublockly.setCompilerLocationHtml);
   settingsPathInputListeners('settings_sketch_location',
-                             ArdublocklyServer.setSketchLocationHtml,
+                             ArdublocklyServer.setSketchLocation,
                              Ardublockly.setSketchLocationHtml);
 };
 
