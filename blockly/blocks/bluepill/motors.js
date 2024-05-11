@@ -52,6 +52,9 @@ Blockly.Blocks['motor_init'] = {
       'digital Pins'
     );
   },
+  getMotorInstance: function () {
+    return this.getFieldValue('ID');
+  },
 };
 
 Blockly.Blocks['motor_move'] = {
@@ -74,5 +77,37 @@ Blockly.Blocks['motor_move'] = {
     this.setFieldValue('Clockwise', 'DIR');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+  },
+  onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
+
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getTopBlocks();
+    var InstancePresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getMotorInstance;
+      if (func) {
+        var BlockInstanceName = func.call(blocks[x]);
+        if (thisInstanceName == BlockInstanceName) {
+          InstancePresent = true;
+          break;
+        }
+      }
+    }
+
+    if (!InstancePresent) {
+      this.setWarningText(
+        Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Motor'+thisInstanceName),
+        'motor_move'
+      );
+    } else {
+      this.setWarningText(null, 'motor_move');
+    }
   },
 };

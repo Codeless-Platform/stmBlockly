@@ -88,6 +88,10 @@ Blockly.Blocks['keypad_init'] = {
         );
     }
   },
+  getKeypadInstance: function () {
+    return this.getFieldValue('ID');
+  },
+  
 };
 
 Blockly.Blocks['keypad_getKey'] = {
@@ -100,6 +104,38 @@ Blockly.Blocks['keypad_getKey'] = {
     list.setValue('1');
     this.setOutput(true, Blockly.Types.CHARACTER.output);
     this.setTooltip(Blockly.Msg.KEYPAD_READ_TTL);
+  },
+  onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
+
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getTopBlocks();
+    var InstancePresent = false;
+    for (var x = 0; x < blocks.length; x++) {
+      var func = blocks[x].getKeypadInstance;
+      if (func) {
+        var BlockInstanceName = func.call(blocks[x]);
+        if (thisInstanceName == BlockInstanceName) {
+          InstancePresent = true;
+          break;
+        }
+      }
+    }
+
+    if (!InstancePresent) {
+      this.setWarningText(
+        Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Keypad'+thisInstanceName),
+        'keypad_init'
+      );
+    } else {
+      this.setWarningText(null, 'keypad_init');
+    }
   },
   /** @return {!string} The type of return value for the block, an integer. */
   getBlockType: function () {

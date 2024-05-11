@@ -130,10 +130,10 @@ Blockly.Blocks['uart_write'] = {
     if (!setupInstancePresent) {
       this.setWarningText(
         Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
-        'uart_init'
+        'uart_write'
       );
     } else {
-      this.setWarningText(null, 'uart_init');
+      this.setWarningText(null, 'uart_write');
     }
   },
   /**
@@ -194,10 +194,10 @@ Blockly.Blocks['uart_recieve'] = {
     if (!setupInstancePresent) {
       this.setWarningText(
         Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
-        'uart_init'
+        'uart_recieve'
       );
     } else {
-      this.setWarningText(null, 'uart_init');
+      this.setWarningText(null, 'uart_recieve');
     }
   },
   /**

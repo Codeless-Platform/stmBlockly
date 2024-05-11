@@ -5,6 +5,37 @@ goog.provide('Blockly.Blocks.oled');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
+const onChangeOled = function (event, obj,id) {
+  if (
+    !obj.workspace ||
+    event.type == Blockly.Events.MOVE ||
+    event.type == Blockly.Events.UI
+  ) {
+    return; // Block deleted or irrelevant event
+  }
+  var thisInstanceName = obj.getFieldValue('ID');
+  var blocks = Blockly.mainWorkspace.getTopBlocks();
+  var InstancePresent = false;
+  for (var x = 0; x < blocks.length; x++) {
+    var func = blocks[x].getOledInstance;
+    if (func) {
+      var BlockInstanceName = func.call(blocks[x]);
+      if (thisInstanceName == BlockInstanceName) {
+        InstancePresent = true;
+        break;
+      }
+    }
+  }
+
+  if (!InstancePresent) {
+    obj.setWarningText(
+      Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Oled ' + thisInstanceName),
+      id
+    );
+  } else {
+    obj.setWarningText(null, id);
+  }
+};
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.oled.HUE = 120;
 Blockly.Blocks['oled_init'] = {
@@ -44,7 +75,9 @@ Blockly.Blocks['oled_init'] = {
       }
     });
   },
-
+  getOledInstance: function () {
+    return this.getFieldValue('ID');
+  },
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
   },
@@ -72,6 +105,9 @@ Blockly.Blocks['oled_sendString'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_sendString');
+  },
 };
 Blockly.Blocks['oled_sendNumber'] = {
   init: function () {
@@ -96,13 +132,13 @@ Blockly.Blocks['oled_sendNumber'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_sendNumber');
+  },
 };
 
 Blockly.Blocks['oled_clear'] = {
   init: function () {
-    var I2C_Instant = new Blockly.FieldDropdown(
-      Blockly.Arduino.Boards.selected.i2c
-    );
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_CLEAR)
@@ -110,6 +146,9 @@ Blockly.Blocks['oled_clear'] = {
     this.setFieldValue('1', 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+  },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_clear');
   },
 };
 
@@ -131,14 +170,13 @@ Blockly.Blocks['oled_goto'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_GOTO_TTL);
   },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_goto');
+  },
 };
 
 Blockly.Blocks['oled_UpdateScreen'] = {
   init: function () {
-    var I2C_Instant = new Blockly.FieldDropdown(
-      Blockly.Arduino.Boards.selected.i2c
-    );
-
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_UPDATE)
@@ -147,6 +185,9 @@ Blockly.Blocks['oled_UpdateScreen'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
+  },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_UpdateScreen');
   },
 };
 
@@ -177,6 +218,9 @@ Blockly.Blocks['oled_Scroll'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
   },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_Scroll');
+  },
 };
 
 Blockly.Blocks['oled_StopScroll'] = {
@@ -189,6 +233,9 @@ Blockly.Blocks['oled_StopScroll'] = {
     this.setFieldValue('1', 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+  },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_StopScroll');
   },
 };
 // oled bitmap
@@ -229,6 +276,9 @@ Blockly.Blocks['oled_drawBitmap'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Draws a bitmap at the specified coordinates');
+  },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_drawBitmap');
   },
 };
 
@@ -351,5 +401,8 @@ Blockly.Blocks['oled_Draw'] = {
         this.removeInput(inputName); // removes any field defined by this.appendValueInput
       }
     }
+  },
+  onchange: function (event) {
+    onChangeOled(event, this,'oled_Draw');
   },
 };

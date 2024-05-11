@@ -7,6 +7,37 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.lcd.HUE = 400;
+const onChangeLCD = function (event, obj,id) {
+  if (
+    !obj.workspace ||
+    event.type == Blockly.Events.MOVE ||
+    event.type == Blockly.Events.UI
+  ) {
+    return; // Block deleted or irrelevant event
+  }
+  var thisInstanceName = obj.getFieldValue('ID');
+  var blocks = Blockly.mainWorkspace.getTopBlocks();
+  var InstancePresent = false;
+  for (var x = 0; x < blocks.length; x++) {
+    var func = blocks[x].getLcdInstance;
+    if (func) {
+      var BlockInstanceName = func.call(blocks[x]);
+      if (thisInstanceName == BlockInstanceName) {
+        InstancePresent = true;
+        break;
+      }
+    }
+  }
+
+  if (!InstancePresent) {
+    obj.setWarningText(
+      Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Lcd ' + thisInstanceName),
+      id
+    );
+  } else {
+    obj.setWarningText(null, id);
+  }
+};
 Blockly.Blocks['lcd_init'] = {
   init: function () {
     var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
@@ -145,6 +176,9 @@ Blockly.Blocks['lcd_init'] = {
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
   },
+  getLcdInstance: function () {
+    return this.getFieldValue('ID');
+  },
 };
 
 // send char
@@ -164,6 +198,9 @@ Blockly.Blocks['lcd_sendChar'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.LCD_CHAR_TTL);
   },
+  onchange: function (event) {
+    onChangeLCD(event, this,'lcd_sendChar');
+  },
 };
 
 // send string
@@ -182,6 +219,9 @@ Blockly.Blocks['lcd_sendString'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.LCD_STRING_TTL);
   },
+  onchange: function (event) {
+    onChangeLCD(event, this,'lcd_sendString');
+  },
 };
 // send Number
 Blockly.Blocks['lcd_sendNumber'] = {
@@ -198,6 +238,9 @@ Blockly.Blocks['lcd_sendNumber'] = {
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.LCD_NUMBER_TTL);
   },
+  onchange: function (event) {
+    onChangeLCD(event, this,'lcd_sendNumber');
+  },
 };
 // clear screen
 Blockly.Blocks['lcd_clear'] = {
@@ -210,6 +253,9 @@ Blockly.Blocks['lcd_clear'] = {
     list.setValue('1');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+  },
+  onchange: function (event) {
+    onChangeLCD(event, this,'lcd_clear');
   },
 };
 
@@ -231,5 +277,8 @@ Blockly.Blocks['lcd_goto'] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.LCD_GOTO_TTL);
+  },
+  onchange: function (event) {
+    onChangeLCD(event, this,'lcd_goto');
   },
 };
