@@ -48,7 +48,7 @@ Blockly.Arduino['lcd_init'] = function (block) {
     var pinMainCode = `
     LCD_t LCD_Config${ID}= {FOUR_BIT_MODE,${SIZE},${gpio},${gpio},${EN},${RS},${D4},${D5},${D6},${D7}};
     lcd_init(&LCD_Config${ID});`;
-    Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, false);
+    Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
 
     return '';
   } else if (type[ID] == `I2C`) {
@@ -64,7 +64,7 @@ Blockly.Arduino['lcd_init'] = function (block) {
     }
     var pinMainCode = `LCD_I2C_t LCD_Config${ID} = {${SIZE},${I2C},${address},${rows},${cols}};
     lcd_I2C_init(&LCD_Config${ID});\n`;
-    Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, false);
+    Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
 
     return '';
   }

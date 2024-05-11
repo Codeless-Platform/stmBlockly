@@ -47,7 +47,7 @@ Blockly.Arduino['keypad_init'] = function (block) {
     );
   }
 
-  Blockly.Arduino.addMain('keypad_' + ID, pinMainCode, false);
+  Blockly.Arduino.addMain('keypad_' + ID, pinMainCode, true);
 
   return '';
 };

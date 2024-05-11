@@ -40,7 +40,7 @@ Blockly.Arduino['motor_init'] = function (block) {
   Motor_pinConfig${ID}.TIM =${TIM};
   Motor_pinConfig${ID}.TIM_Channel=${Channel};
   Motor_init(&Motor_pinConfig${ID});`;
-  Blockly.Arduino.addMain('motor_' + ID, pinMainCode, false);
+  Blockly.Arduino.addMain('motor_' + ID, pinMainCode, true);
 
   return '';
 };
