@@ -650,7 +650,6 @@ Blockly.BlockSvg.prototype.showContextMenu_ = function(e) {
   // Save the current block in a variable for use in closures.
   var block = this;
   var menuOptions = [];
-
   if (this.isDeletable() && this.isMovable() && !block.isInFlyout) {
     // Option to duplicate this block.
     var duplicateOption = {
@@ -1311,10 +1310,6 @@ Blockly.BlockSvg.prototype.setWarningText = function(text, opt_id) {
       clearTimeout(this.setWarningText.pid_[n]);
       delete this.setWarningText.pid_[n];
     }
-  } else if (this.setWarningText.pid_[id]) {
-    // Only queue up the latest change.  Kill any earlier pending process.
-    clearTimeout(this.setWarningText.pid_[id]);
-    delete this.setWarningText.pid_[id];
   }
   if (Blockly.dragMode_ == Blockly.DRAG_FREE) {
     // Don't change the warning text during a drag.
@@ -1357,10 +1352,10 @@ Blockly.BlockSvg.prototype.setWarningText = function(text, opt_id) {
     if (this.warning && !id) {
       this.warning.dispose();
       changedState = true;
-    } else if (this.warning) {
-      var oldText = this.warning.getText();
+    } else if (this.warning && id) {
+      var oldText = this.warning.getText(id);
       this.warning.setText('', id);
-      var newText = this.warning.getText();
+      var newText = this.warning.getText(id);
       if (!newText) {
         this.warning.dispose();
       }
