@@ -64,7 +64,7 @@ Blockly.Arduino['lcd_init'] = function (block) {
     }
     var pinMainCode = `LCD_I2C_t LCD_Config${ID} = {${SIZE},${I2C},${address},${rows},${cols}};
     lcd_I2C_init(&LCD_Config${ID});\n`;
-    Blockly.Arduino.addMain('lcd_' + ID + address, pinMainCode, false);
+    Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, false);
 
     return '';
   }

@@ -11,7 +11,7 @@ Blockly.Arduino['matrix_init'] = function (block) {
   var gpio = block.getFieldValue('CS').charAt(1);
   var pinMainCode = `led_matrix_t matrix_pinConfig${ID} = {${SPI},${CS},GPIO${gpio}};
   Led_Matrix_init(&matrix_pinConfig${ID});`;
-  Blockly.Arduino.addMain('matrix_' + SPI, pinMainCode, false);
+  Blockly.Arduino.addMain('matrix_' + ID, pinMainCode, false);
   return '';
 };
 

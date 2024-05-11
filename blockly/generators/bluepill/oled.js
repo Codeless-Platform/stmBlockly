@@ -6,8 +6,9 @@ goog.require('Blockly.Arduino');
 
 Blockly.Arduino['oled_init'] = function (block) {
   var I2C = block.getFieldValue('I2C');
+  var ID = block.getFieldValue('ID') ;
   var pinMainCode = `oled_Init(${I2C});\n`;
-  Blockly.Arduino.addMain('oled' + I2C, pinMainCode, false);
+  Blockly.Arduino.addMain('oled' + ID, pinMainCode, false);
   return '';
 };
 Blockly.Arduino['oled_sendString'] = function (block) {
