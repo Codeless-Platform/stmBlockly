@@ -51,6 +51,7 @@ Blockly.Blocks['matrix_init'] = {
   },
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
   },
 };
 

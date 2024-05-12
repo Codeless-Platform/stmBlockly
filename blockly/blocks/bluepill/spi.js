@@ -88,6 +88,7 @@ Blockly.Blocks['spi_init'] = {
    */
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
   },
 };
 
@@ -157,5 +158,12 @@ Blockly.Blocks['spi_RXTX'] = {
    */
   getBlockType: function () {
     return Blockly.Types.UINT16;
+  },
+   /**
+   * Updates the content of the the board SPI related fields.
+   * @this Blockly.Block
+   */
+   updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
   },
 };

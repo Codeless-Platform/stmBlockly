@@ -86,10 +86,21 @@ Blockly.Blocks['keypad_init'] = {
           ),
           'C3'
         );
+        Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C3', 'digitalPins');
     }
   },
   getKeypadInstance: function () {
     return this.getFieldValue('ID');
+  },
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PORT', 'full_ports');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R0', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R1', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R2', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R3', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C0', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C1', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C2', 'digitalPins');
   },
   
 };

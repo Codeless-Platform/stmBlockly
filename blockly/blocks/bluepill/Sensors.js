@@ -34,7 +34,8 @@ Blockly.Blocks['sensors_LM35'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'sensors');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analog');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'ADC', 'ADC');
   },
 };
 
@@ -97,6 +98,10 @@ Blockly.Blocks['sensors_ultrasonic'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
       this,
       'echo',
+      'digitalPins'
+    );
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
       'trig',
       'digitalPins'
     );

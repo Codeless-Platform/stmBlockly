@@ -44,12 +44,12 @@ Blockly.Blocks['motor_init'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
       this,
       'IN1',
-      'digital Pins'
+      'digitalPins'
     );
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
       this,
       'IN2',
-      'digital Pins'
+      'digitalPins'
     );
   },
   getMotorInstance: function () {

@@ -175,6 +175,13 @@ Blockly.Blocks['lcd_init'] = {
   },
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PORT', 'ports');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd4', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd5', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd6', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd7', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'EN', 'digitalPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'RS', 'digitalPins');
   },
   getLcdInstance: function () {
     return this.getFieldValue('ID');
