@@ -55,6 +55,28 @@ Blockly.Blocks['motor_init'] = {
   getMotorInstance: function () {
     return this.getFieldValue('ID');
   },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getMotorInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateMotor');
+    } else {
+      this.setWarningText(null, 'duplicateMotor');
+    }
+  },
 };
 
 Blockly.Blocks['motor_move'] = {

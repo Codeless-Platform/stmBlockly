@@ -53,6 +53,28 @@ Blockly.Blocks['matrix_init'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi');
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
   },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getMatrixInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateMatrix');
+    } else {
+      this.setWarningText(null, 'duplicateMatrix');
+    }
+  },
 };
 
 Blockly.Blocks['matrix_sendString'] = {

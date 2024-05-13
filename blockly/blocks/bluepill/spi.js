@@ -90,6 +90,28 @@ Blockly.Blocks['spi_init'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
   },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('SPI_ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getSpiSetupInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateSPI');
+    } else {
+      this.setWarningText(null, 'duplicateSPI');
+    }
+  },
 };
 
 Blockly.Blocks['spi_RXTX'] = {

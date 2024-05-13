@@ -81,6 +81,29 @@ Blockly.Blocks['oled_init'] = {
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
   },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getOledInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateOled');
+    } else {
+      this.setWarningText(null, 'duplicateOled');
+    }
+  },
 };
 
 Blockly.Blocks['oled_sendString'] = {

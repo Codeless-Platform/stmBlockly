@@ -66,6 +66,7 @@ Blockly.Blocks['uart_init'] = {
         thisBlock.setTooltip(ToolTipMsg);
       }
     });
+
   },
 
   getSerialSetupInstance: function () {
@@ -78,6 +79,28 @@ Blockly.Blocks['uart_init'] = {
       'SPEED',
       'uartSpeed'
     );
+  },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('UART_ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getSerialSetupInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateUart');
+    } else {
+      this.setWarningText(null, 'duplicateUart');
+    }
   },
 };
 

@@ -102,7 +102,28 @@ Blockly.Blocks['keypad_init'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C1', 'digitalPins');
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C2', 'digitalPins');
   },
-  
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getKeypadInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateKeypad');
+    } else {
+      this.setWarningText(null, 'duplicateKeypad');
+    }
+  },
 };
 
 Blockly.Blocks['keypad_getKey'] = {

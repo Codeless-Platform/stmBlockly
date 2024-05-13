@@ -7,7 +7,7 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.lcd.HUE = 400;
-const onChangeLCD = function (event, obj,id) {
+const onChangeLCD = function (event, obj, id) {
   if (
     !obj.workspace ||
     event.type == Blockly.Events.MOVE ||
@@ -186,6 +186,29 @@ Blockly.Blocks['lcd_init'] = {
   getLcdInstance: function () {
     return this.getFieldValue('ID');
   },
+  onchange: function (event) {
+    var thisInstanceName = this.getFieldValue('ID');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getLcdInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    console.log(count);
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateLCD');
+    } else {
+      this.setWarningText(null, 'duplicateLCD');
+    }
+  },
 };
 
 // send char
@@ -206,7 +229,7 @@ Blockly.Blocks['lcd_sendChar'] = {
     this.setTooltip(Blockly.Msg.LCD_CHAR_TTL);
   },
   onchange: function (event) {
-    onChangeLCD(event, this,'lcd_sendChar');
+    onChangeLCD(event, this, 'lcd_sendChar');
   },
 };
 
@@ -227,7 +250,7 @@ Blockly.Blocks['lcd_sendString'] = {
     this.setTooltip(Blockly.Msg.LCD_STRING_TTL);
   },
   onchange: function (event) {
-    onChangeLCD(event, this,'lcd_sendString');
+    onChangeLCD(event, this, 'lcd_sendString');
   },
 };
 // send Number
@@ -246,7 +269,7 @@ Blockly.Blocks['lcd_sendNumber'] = {
     this.setTooltip(Blockly.Msg.LCD_NUMBER_TTL);
   },
   onchange: function (event) {
-    onChangeLCD(event, this,'lcd_sendNumber');
+    onChangeLCD(event, this, 'lcd_sendNumber');
   },
 };
 // clear screen
@@ -262,7 +285,7 @@ Blockly.Blocks['lcd_clear'] = {
     this.setNextStatement(true, null);
   },
   onchange: function (event) {
-    onChangeLCD(event, this,'lcd_clear');
+    onChangeLCD(event, this, 'lcd_clear');
   },
 };
 
@@ -276,9 +299,7 @@ Blockly.Blocks['lcd_goto'] = {
       .appendField(Blockly.Msg.LCD_GOTOx);
     this.appendDummyInput().appendField(Blockly.Msg.LCD_GOTOy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
-    this.appendDummyInput()
-      .appendField('on lcd#')
-      .appendField(list, 'ID');
+    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
     list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -286,6 +307,6 @@ Blockly.Blocks['lcd_goto'] = {
     this.setTooltip(Blockly.Msg.LCD_GOTO_TTL);
   },
   onchange: function (event) {
-    onChangeLCD(event, this,'lcd_goto');
+    onChangeLCD(event, this, 'lcd_goto');
   },
 };
