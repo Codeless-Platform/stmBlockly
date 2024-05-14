@@ -56,6 +56,13 @@ Blockly.Blocks['motor_init'] = {
     return this.getFieldValue('ID');
   },
   onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;

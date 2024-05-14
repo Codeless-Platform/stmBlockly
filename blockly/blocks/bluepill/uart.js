@@ -66,7 +66,6 @@ Blockly.Blocks['uart_init'] = {
         thisBlock.setTooltip(ToolTipMsg);
       }
     });
-
   },
 
   getSerialSetupInstance: function () {
@@ -74,13 +73,20 @@ Blockly.Blocks['uart_init'] = {
   },
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-      this,
-      'SPEED',
-      'uartSpeed'
-    );
+    // Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+    //   this,
+    //   'SPEED',
+    //   'uartSpeed'
+    // );
   },
   onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
     var thisInstanceName = this.getFieldValue('UART_ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
