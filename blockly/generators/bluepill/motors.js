@@ -84,3 +84,50 @@ function getTimInstance(pin) {
   }
   return [TIM, Channel];
 }
+
+Blockly.Arduino['stepper_config'] = function(block) {
+  var PIN1 = block.getFieldValue('PIN1');
+  var PIN2 = block.getFieldValue('PIN2');
+  var PIN3 = block.getFieldValue('PIN3');
+  var PIN4 = block.getFieldValue('PIN4');
+  var PINS = [PIN1,PIN2,PIN3,PIN4]
+  var stepperInstanceName = block.getFieldValue('STEPPER_NAME');
+  var pinnumber=[];
+  var gpio= [];
+for (var i = 0; i < 4; i++) {
+   pinnumber[i] = 'PIN_'+PINS[i].slice(2);
+   gpio[i] =  'GPIO'+PINS[i].charAt(1);
+  Blockly.Arduino.reservePin(
+    block,
+    PINS[i],
+    Blockly.Arduino.PinTypes.OUTPUT,
+    'PIN'+(i+1)
+  );
+}
+  var pinIncludeCode = `stepper_t ${stepperInstanceName};`;
+  Blockly.Arduino.addInclude('stepper' + stepperInstanceName, pinIncludeCode);
+
+  var pinMainCode = `${stepperInstanceName}.IN1_PIN = ${pinnumber[0]} ;
+  ${stepperInstanceName}.IN2_PIN = ${pinnumber[1]} ;
+  ${stepperInstanceName}.IN3_PIN = ${pinnumber[2]} ;
+  ${stepperInstanceName}.IN4_PIN = ${pinnumber[3]} ; 
+  ${stepperInstanceName}.IN1_PORT = ${gpio[0]} ;
+  ${stepperInstanceName}.IN2_PORT = ${gpio[1]} ;
+  ${stepperInstanceName}.IN3_PORT = ${gpio[2]} ;
+  ${stepperInstanceName}.IN4_PORT = ${gpio[3]} ;
+  	stepper_init(&${stepperInstanceName});`;
+  Blockly.Arduino.addMain('stepper' + stepperInstanceName, pinMainCode, true);
+  return '';
+};
+
+
+Blockly.Arduino['stepper_step'] = function(block) {
+  var stepperInstanceName = block.getFieldValue('STEPPER_NAME');
+  var stepperDir = block.getFieldValue('STEPPER_DIR') == 'Anticlockwise'? 1:0;
+  var stepperRPM = Blockly.Arduino.valueToCode(block, 'STEPPER_RPM',
+    Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var stepperAngle = Blockly.Arduino.valueToCode(block, 'STEPPER_ANGLE',
+      Blockly.Arduino.ORDER_ATOMIC) || '0';
+  var code = `stepper_step_angle(${stepperAngle},${stepperDir},${stepperRPM},&${stepperInstanceName});\n`;
+  return code;
+};

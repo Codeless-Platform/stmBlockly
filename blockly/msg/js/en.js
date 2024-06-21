@@ -751,8 +751,16 @@ Blockly.Msg.MOTOR_IN2 = "IN2"
 Blockly.Msg.MOTOR_EN = "EN"
 Blockly.Msg.MOTOR_MOVE = "Move motor #"
 Blockly.Msg.MOTOR_SPEED = "with speed"
-
-
-
-
-
+Blockly.Msg.STEPPER_INIT = "Setup stepper motor"
+Blockly.Msg.STEPPER_DEFAULT_NAME = "MyStepper"
+Blockly.Msg.STEPPER_MOTOR = "Stepper Motor"
+Blockly.Msg.STEPPER_PIN1 = "pin#1"
+Blockly.Msg.STEPPER_PIN2 = "pin#2"
+Blockly.Msg.STEPPER_PIN3 = "pin#3"
+Blockly.Msg.STEPPER_PIN4 = "pin#4"
+Blockly.Msg.STEPPER_SETUP_TIP="Initialize stepper motor pins"
+Blockly.Msg.STEPPER_STEP = "move stepper"
+Blockly.Msg.STEPPER_ANGLE = "degree"
+Blockly.Msg.STEPPER_DIR = "direction"
+Blockly.Msg.STEPPER_RPM = "rpm"
+Blockly.Msg.STEPPER_STEP_TIP = "turn the stepper motor by a specific angle"

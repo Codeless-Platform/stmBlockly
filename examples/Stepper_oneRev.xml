@@ -1,0 +1,68 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="arduino_functions" id="y^3kni8pgI{s5k9^YJ^A" x="2" y="23">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id=")u:BgA0HrA7UWSA9sUT4">
+        <field name="PERIPHRAL">GPIOA</field>
+        <next>
+          <block type="stepper_config" id="VC`kTe|EFYvr0aKy.TVN">
+            <field name="STEPPER_NAME">MyStepper</field>
+            <field name="PIN1">PA1</field>
+            <field name="PIN2">PA2</field>
+            <field name="PIN3">PA3</field>
+            <field name="PIN4">PA4</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="stepper_step" id="F[mcB=*GqyIsvSRrtV8A">
+        <field name="STEPPER_NAME">MyStepper</field>
+        <field name="STEPPER_DIR">Clockwise</field>
+        <value name="STEPPER_ANGLE">
+          <block type="math_number" id="+l{FZS[hQE5K#)td`Zh[">
+            <field name="NUM">360</field>
+          </block>
+        </value>
+        <value name="STEPPER_RPM">
+          <block type="math_number" id="na3LTxgUAje;_Iu8CD8:">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+        <next>
+          <block type="time_delay" id="rtt#vcI4`e[TPBF@MDKU">
+            <value name="DELAY_TIME_MILI">
+              <block type="math_number" id="=Jmg|?Nj,*+01hz(J.xr">
+                <field name="NUM">2000</field>
+              </block>
+            </value>
+            <next>
+              <block type="stepper_step" id="?E~T#*aau%10{v6U-?gA">
+                <field name="STEPPER_NAME">MyStepper</field>
+                <field name="STEPPER_DIR">Anticlockwise</field>
+                <value name="STEPPER_ANGLE">
+                  <block type="math_number" id="~Gy+`z.F[-*[sdzG.7fF">
+                    <field name="NUM">360</field>
+                  </block>
+                </value>
+                <value name="STEPPER_RPM">
+                  <block type="math_number" id=",#!`j75r|,(+~O--V!L!">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_delay" id="hqd6%}ZnGz%!7w~n*Q=b">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="AyJ:rD4cfTpaf_+@b`i`">
+                        <field name="NUM">2000</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

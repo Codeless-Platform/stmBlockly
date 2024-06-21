@@ -1,12 +1,13 @@
 'use strict';
 
 goog.provide('Blockly.Blocks.motors');
-
+goog.provide('Blockly.Blocks.stepper');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.motors.HUE = 120;
+Blockly.Blocks.stepper.HUE = 140;
 
 Blockly.Blocks['motor_init'] = {
   init: function () {
@@ -77,7 +78,6 @@ Blockly.Blocks['motor_init'] = {
         }
       }
     }
-    console.log(count);
     if (count > 0) {
       this.setWarningText('This block is duplicated.', 'duplicateMotor');
     } else {
@@ -139,4 +139,137 @@ Blockly.Blocks['motor_move'] = {
       this.setWarningText(null, 'motor_move');
     }
   },
+};
+
+Blockly.Blocks['stepper_config'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.STEPPER_INIT)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.STEPPER_DEFAULT_NAME, false, false, false), 'STEPPER_NAME');
+    this.appendDummyInput('PINS')
+      .appendField(Blockly.Msg.STEPPER_PIN1)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
+        'PIN1'
+      )
+      .appendField(Blockly.Msg.STEPPER_PIN2)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
+        'PIN2'
+      )
+      .appendField(Blockly.Msg.STEPPER_PIN3)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
+        'PIN3'
+      )
+      .appendField(Blockly.Msg.STEPPER_PIN4)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
+        'PIN4'
+      );
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.STEPPER_SETUP_TIP);
+  },
+
+  /**
+   * Updates the content of the the pin related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function() {
+    Blockly.Boards.refreshBlockFieldDropdown(
+        this, 'PIN1', 'digitalPins');
+    Blockly.Boards.refreshBlockFieldDropdown(
+        this, 'PIN2', 'digitalPins');
+    Blockly.Boards.refreshBlockFieldDropdown(
+        this, 'PIN3', 'digitalPins');
+    Blockly.Boards.refreshBlockFieldDropdown(
+        this, 'PIN4', 'digitalPins');
+  },  getStepperInstance: function () {
+    return this.getFieldValue('STEPPER_NAME');
+  },
+  onchange: function (event) {
+    if (
+      !this.workspace ||
+      event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.UI
+    ) {
+      return; // Block deleted or irrelevant event
+    }
+    var thisInstanceName = this.getFieldValue('STEPPER_NAME');
+    var blocks = Blockly.mainWorkspace.getAllBlocks();
+    var count = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] != this) {
+        var func = blocks[i].getStepperInstance;
+        if (func) {
+          var blockInstanceName = func.call(blocks[i]);
+          if (thisInstanceName === blockInstanceName) {
+            count++;
+          }
+        }
+      }
+    }
+    if (count > 0) {
+      this.setWarningText('This block is duplicated.', 'duplicateStepper');
+    } else {
+      this.setWarningText(null, 'duplicateStepper');
+    }
+  },
+};
+
+Blockly.Blocks['stepper_step'] = {
+  /**
+   * Block for for the stepper 'step()' function.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setColour(Blockly.Blocks.stepper.HUE);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.STEPPER_STEP)
+        .appendField(
+            new Blockly.FieldInstance('Stepper',
+                                      Blockly.Msg.STEPPER_DEFAULT_NAME,
+                                      false, true, false),
+            'STEPPER_NAME');
+    this.appendValueInput('STEPPER_ANGLE')
+        .setCheck(Blockly.Types.NUMBER.checkList);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.STEPPER_ANGLE)
+        .appendField(Blockly.Msg.STEPPER_DIR)
+        .appendField(
+          new Blockly.FieldDropdown([['Clockwise'], ['Anticlockwise'], ['Stop']]),
+          'STEPPER_DIR'
+        )
+        .appendField(Blockly.Msg.STEPPER_RPM)
+      this.appendValueInput('STEPPER_RPM').setCheck(Blockly.Types.NUMBER.checkList);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip(Blockly.Msg.STEPPER_STEP_TIP);
+  },
+  /**
+   * Called whenever anything on the workspace changes.
+   * It checks/warns if the selected stepper instance has a config block.
+   * @this Blockly.Block
+   */
+  onchange: function(event) {
+    if (!this.workspace || event.type == Blockly.Events.MOVE ||
+        event.type == Blockly.Events.UI) {
+        return;  // Block deleted or irrelevant event
+    }
+
+    var instanceName = this.getFieldValue('STEPPER_NAME')
+    if (Blockly.Instances.isInstancePresent(instanceName, 'Stepper', this)) {
+      this.setWarningText(null);
+    } else {
+      // Set a warning to select a valid stepper config block
+      this.setWarningText(
+        Blockly.Msg.ARD_COMPONENT_WARN1.replace(
+            '%1', 'stepper').replace(
+                '%2', instanceName));
+    }
+  }
 };
