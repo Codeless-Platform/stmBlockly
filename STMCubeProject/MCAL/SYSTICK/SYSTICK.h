@@ -13,7 +13,7 @@
 //=======================
 
 #include "../Lib/STM32_F103x6.h"
-
+#include "../RCC/RCC.h"
 //===============================================
 //      Macros Configuration References
 //===============================================
@@ -21,13 +21,16 @@
  * Options: AHB_8
  * 			AHB
  */
-#define STK_CLK_SRC 	AHB_8
+#define AHB 		0
+#define AHB_8		1
+#define STK_CLK_SRC 	AHB
 /*
  * Options: SINGLE
  * 			PERIODIC
  */
 #define STK_MODE 		SINGLE
 
+#define CPU_INPUT_CLOCK		RCC_getSYSCLK_Freq()
 /*
 * ===============================================
 *      APIs Supported by "MCAL USART DRIVER"

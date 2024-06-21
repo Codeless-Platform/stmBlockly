@@ -24,16 +24,17 @@ void (*P_CallBack_Fun)(void);
  */
 
 void STK_init() {
+	// Set number of Ticks for one microsecond.
+	microSecond = (uint32) CPU_INPUT_CLOCK / 1000000;
 
-	SET(SYSTICK->CTRL,0); // enable
 #if STK_CLK_SRC == AHB_8
-	microSecond = 1;		// Assuming system clock is HSI
-	CLEAR(SYSTICK->CTRL,2);
-#elif STK_CLK_SRC =AHB
-	microSecond = 8;		// Assuming system clock is HSI
-	SET(SYSTICK->CTRL,2);
-	#endif
-
+	microSecond = microSecond/8;		// Assuming system clock is HSI
+	CLEAR(SYSTICK->CTRL, 2);
+#endif
+#if STK_CLK_SRC == AHB
+	SET(SYSTICK->CTRL, 2);
+#endif
+	SET(SYSTICK->CTRL, 0); // enable
 
 }
 void STK_BusyWait(uint32 ticks) {
@@ -66,10 +67,11 @@ void STK_stopInterval(void) {
 
 void STK_delayMs(uint32 time) {
 	for (uint32 i = 0; i < time; i++) {
-		//Disable Interrupt
-		CLEAR(SYSTICK->CTRL, 1);
+
 		//Enable Systick
 		SET(SYSTICK->CTRL, 0);
+		//Disable Interrupt
+		CLEAR(SYSTICK->CTRL, 1);
 		SYSTICK->LOAD = 1000 * microSecond;
 		//Wait for flag
 		while (!GET(SYSTICK->CTRL, 16))
