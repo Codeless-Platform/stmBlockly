@@ -114,6 +114,23 @@ Blockly.Instances.renameInstance = function(
   Blockly.Events.setGroup(false);
 };
 
+Blockly.Instances.createInstance = function(name, instanceType, workspace) {
+  // Ensure the instance name is unique within the workspace.
+  var uniqueName = Blockly.Instances.generateUniqueName(workspace, name);
+  Blockly.Instances.addInstance(uniqueName, instanceType, workspace);
+  return uniqueName;
+};
+Blockly.Instances.addInstance = function(name, instanceType, workspace) {
+  if (!workspace.instances_) {
+    workspace.instances_ = Object.create(null);
+  }
+  if (!workspace.instances_[instanceType]) {
+    workspace.instances_[instanceType] = [];
+  }
+
+  workspace.instances_[instanceType].push(name);
+};
+
 /**
  * Return a new instance name that is not yet being used as an instance or as a
  * variable name. This will try to  generate single letter names in the range

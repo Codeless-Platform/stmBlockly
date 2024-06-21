@@ -212,8 +212,15 @@ Blockly.FieldInstance.dropdownChange = function(text) {
                oldInstance, callbackRename);
     return null;
   } else if (text == Blockly.Msg.NEW_INSTANCE) {
-    //TODO: this return needs to be replaced with an asynchronous callback
-    return Blockly.Instances.generateUniqueName(workspace);
+    var thisFieldInstance = this;
+    var callbackNewInstance = function(newInstanceName) {
+      if (newInstanceName) {
+        thisFieldInstance.setValue(newInstanceName);
+        Blockly.Instances.createInstance(newInstanceName, thisFieldInstance.instanceType_, workspace);
+      }
+    };
+    promptName(Blockly.Msg.NEW_INSTANCE_TITLE, '', callbackNewInstance);
+    return null;
   }
   return undefined;
 };
