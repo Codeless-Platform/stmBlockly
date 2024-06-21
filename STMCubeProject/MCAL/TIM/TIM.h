@@ -153,7 +153,7 @@ void TIM_Init(TIM_Registers_t* TIMx, TIM_ConfigType *TimConfig);
  *              :1 for Milliseconds
  * */
 void TIM_SetBusyWait(TIM_Registers_t* TIMx,uint16 Ticks,uint16 TicksTybe);
-//void TIM_Delay_us (uint8 TIMx ,uint16 us);
+void TIM_Delay_us (TIM_Registers_t* TIMx ,uint16 us);
 //void TIM_Delay_ms (uint8 TIMx,uint16 ms);
 
 void TIM_SetIntervalSingle  (TIM_Registers_t* TIMx, uint16 Ticks, uint16 Copy_u32TicksTybe, void (*Copy_voidpFuncPtr)(void) );
@@ -176,7 +176,7 @@ void TIM_SetPeriod (TIM_Registers_t* TIMx , uint32 Period);
 /*
  * First,call PWM_DeInit ,Then, set auto reload value at TIM_SetPeriod
  */
-void PWM_voidSetDutyCycle(TIM_Registers_t* TIMx ,channel_t Channel, uint8 Duty);
+void PWM_voidSetDutyCycle(TIM_Registers_t* TIMx ,channel_t Channel, float Duty);
 void PWM_DeInit(TIM_Registers_t* TIMx ,channel_t Channel);
 uint16 PWM_GetCounterValue(TIM_Registers_t* TIMx);
 /**********************private functions prototype***************/

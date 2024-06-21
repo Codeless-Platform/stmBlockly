@@ -163,12 +163,12 @@ void TIM_Disable(TIM_Registers_t* TIMx){
 
     CLEAR(TIMx ->CR1 ,TIM_CR1_CEN);
 }
-//void TIM_Delay_us (uint8 TIMx ,uint16 us)
-//{
-//
-//  TIMx->CNT = 0;
-//  while (TIMx->CNT < us);
-//}
+void TIM_Delay_us (TIM_Registers_t* TIMx ,uint16 us)
+{
+
+  TIMx->CNT = 0;
+  while (TIMx->CNT < us);
+}
 //
 //void TIM_Delay_ms (uint8 TIMx,uint16 ms)
 //{
@@ -433,9 +433,9 @@ void PWM_SetChannel(TIM_Registers_t* TIMx,channel_t Channel,PWM_modee mode){
 
 }
 
-void PWM_voidSetDutyCycle(TIM_Registers_t* TIMx ,channel_t Channel, uint8 Duty)
+void PWM_voidSetDutyCycle(TIM_Registers_t* TIMx ,channel_t Channel, float Duty)
 {
-    uint16 Pulse= (TIMx->ARR) * Duty/100.0;
+    uint16 Pulse = Duty;
     switch(Channel){
     case TIM_Channel1:
         TIMx->CCR[0]=Pulse;
