@@ -31,7 +31,7 @@ const onChangeLCD = function (event, obj, id) {
 
   if (!InstancePresent) {
     obj.setWarningText(
-      Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Lcd ' + thisInstanceName),
+      Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
       id
     );
   } else {
@@ -40,7 +40,13 @@ const onChangeLCD = function (event, obj, id) {
 };
 Blockly.Blocks['lcd_init'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     var I2C_Instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.i2c
     );
@@ -63,6 +69,7 @@ Blockly.Blocks['lcd_init'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_INIT)
       .appendField(list, 'ID')
+      .appendField(Blockly.Msg.LCD_TYPE)
       .appendField(dropdownType, 'TYPE')
       .appendField(Blockly.Msg.LCD_SIZE)
       .appendField(dropdownSize, 'SIZE');
@@ -123,8 +130,7 @@ Blockly.Blocks['lcd_init'] = {
     this.setTooltip(ToolTipMsg);
 
     var thisBlock = this;
-    dropdownType.setValue('I2C'); // Initialize value
-    list.setValue('1');
+    dropdownType.setValue('I2C'); // Initialize valu
     thisBlock.standardInput.fieldRow.forEach(function (field) {
       field.setVisible(false);
     });
@@ -221,15 +227,19 @@ Blockly.Blocks['lcd_init'] = {
 // send char
 Blockly.Blocks['lcd_sendChar'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_CHAR)
       .appendField(list, 'ID')
       .appendField('character');
     this.appendValueInput('DATA');
-
-    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -243,14 +253,18 @@ Blockly.Blocks['lcd_sendChar'] = {
 // send string
 Blockly.Blocks['lcd_sendString'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('DATA')
       .appendField(Blockly.Msg.LCD_STRING)
       .setCheck(Blockly.Types.TEXT.checkList);
-    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
-
-    list.setValue('1');
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -263,13 +277,18 @@ Blockly.Blocks['lcd_sendString'] = {
 // send Number
 Blockly.Blocks['lcd_sendNumber'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('DATA')
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.LCD_NUMBER);
-    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
-    list.setValue('1');
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID')
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -282,12 +301,17 @@ Blockly.Blocks['lcd_sendNumber'] = {
 // clear screen
 Blockly.Blocks['lcd_clear'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_CLEAR)
-      .appendField(list, 'ID');
-    list.setValue('1');
+      .appendField(list, 'ID')
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -299,15 +323,20 @@ Blockly.Blocks['lcd_clear'] = {
 // go to x y
 Blockly.Blocks['lcd_goto'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'LCD',
+      Blockly.Msg.LCD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendValueInput('ROW')
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.LCD_GOTOx);
     this.appendDummyInput().appendField(Blockly.Msg.LCD_GOTOy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
-    this.appendDummyInput().appendField('on lcd#').appendField(list, 'ID');
-    list.setValue('1');
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID')
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

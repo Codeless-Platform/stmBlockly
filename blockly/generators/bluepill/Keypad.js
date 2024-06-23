@@ -24,9 +24,9 @@ Blockly.Arduino['keypad_init'] = function (block) {
   if (block.getFieldValue('SIZE') === '4x4') {
     C3 = 'PIN_' + block.getFieldValue('C3').toString().substring(2);
     size = 4;
-    var pinMainCode = `\nkeypad_t keypad${ID} = {${R0},${R1},${R2},${R3},${C0},${C1},${C2}, ${C3},4,${port}};\nKeypad_init(&keypad${ID});\n `;
+    var pinMainCode = `\nkeypad_t ${ID} = {${R0},${R1},${R2},${R3},${C0},${C1},${C2}, ${C3},4,${port}};\nKeypad_init(&${ID});\n `;
   } else {
-    var pinMainCode = `\nkeypad_t keypad${ID} = {${R0},${R1},${R2},${R3},${C0},${C1},${C2},0,3,${port}};\nKeypad_init(&keypad${ID});\n `;
+    var pinMainCode = `\nkeypad_t ${ID} = {${R0},${R1},${R2},${R3},${C0},${C1},${C2},0,3,${port}};\nKeypad_init(&${ID});\n `;
   }
   for (var i = 0; i < 4; i++) {
     var pin = block.getFieldValue('R' + i);
@@ -54,7 +54,7 @@ Blockly.Arduino['keypad_init'] = function (block) {
 
 Blockly.Arduino['keypad_getKey'] = function (block) {
   var ID = block.getFieldValue('ID');
-  var pinMainCode = `Keypad_Get_Key(&keypad${ID})`;
+  var pinMainCode = `Keypad_Get_Key(&${ID})`;
 
   return [pinMainCode, Blockly.Arduino.ORDER_ATOMIC];
 };

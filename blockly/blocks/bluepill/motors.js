@@ -11,7 +11,13 @@ Blockly.Blocks.stepper.HUE = 140;
 
 Blockly.Blocks['motor_init'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'MOTOR',
+      Blockly.Msg.MOTOR_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.motors.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.MOTOR_INIT)
@@ -31,7 +37,6 @@ Blockly.Blocks['motor_init'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwm),
         'PIN'
       );
-    this.setFieldValue('1', 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -88,12 +93,19 @@ Blockly.Blocks['motor_init'] = {
 
 Blockly.Blocks['motor_move'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'MOTOR',
+      Blockly.Msg.MOTOR_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
 
     this.setColour(Blockly.Blocks.motors.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.MOTOR_MOVE)
       .appendField(list, 'ID')
+      .appendField(Blockly.Msg.STEPPER_DIR)
       .appendField(
         new Blockly.FieldDropdown([['Clockwise'], ['Anticlockwise'], ['Stop']]),
         'DIR'
@@ -102,7 +114,6 @@ Blockly.Blocks['motor_move'] = {
     this.appendValueInput('SPEED').setCheck(Blockly.Types.NUMBER.checkList);
 
     this.setInputsInline(true);
-    this.setFieldValue('1', 'ID');
     this.setFieldValue('Clockwise', 'DIR');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -132,7 +143,7 @@ Blockly.Blocks['motor_move'] = {
 
     if (!InstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Motor'+thisInstanceName),
+        Blockly.Msg.UART_PRINT_WARN.replace('%1',thisInstanceName),
         'motor_move'
       );
     } else {
@@ -246,6 +257,7 @@ Blockly.Blocks['stepper_step'] = {
         )
         .appendField(Blockly.Msg.STEPPER_RPM)
       this.appendValueInput('STEPPER_RPM').setCheck(Blockly.Types.NUMBER.checkList);
+    this.setFieldValue('Clockwise', 'STEPPER_DIR');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip(Blockly.Msg.STEPPER_STEP_TIP);

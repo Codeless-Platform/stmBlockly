@@ -10,7 +10,13 @@ Blockly.Blocks.keypad.HUE = 380;
 
 Blockly.Blocks['keypad_init'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'Keypad',
+      Blockly.Msg.KEYPAD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.keypad.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.KEYPAD_INIT_PORT)
@@ -65,7 +71,6 @@ Blockly.Blocks['keypad_init'] = {
         'C2'
       );
     this.size = '4x3';
-    list.setValue('1');
     this.setInputsInline(false);
     this.setFieldValue('4x3', 'SIZE');
     this.setPreviousStatement(true, null);
@@ -135,12 +140,17 @@ Blockly.Blocks['keypad_init'] = {
 
 Blockly.Blocks['keypad_getKey'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'Keypad',
+      Blockly.Msg.KEYPAD_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.keypad.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.KEYPAD_READ)
       .appendField(list, 'ID');
-    list.setValue('1');
     this.setOutput(true, Blockly.Types.CHARACTER.output);
     this.setTooltip(Blockly.Msg.KEYPAD_READ_TTL);
   },
@@ -169,7 +179,7 @@ Blockly.Blocks['keypad_getKey'] = {
 
     if (!InstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Keypad'+thisInstanceName),
+        Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
         'keypad_init'
       );
     } else {

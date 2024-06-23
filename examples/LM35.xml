@@ -8,7 +8,7 @@
             <field name="PERIPHRAL">GPIOB</field>
             <next>
               <block type="lcd_init" id="KG5q6/+dcQDUk!iPVKIu">
-                <field name="ID">1</field>
+                <field name="ID">Lcd</field>
                 <field name="TYPE">I2C</field>
                 <field name="SIZE">2x16</field>
                 <field name="PORT">GPIOA</field>
@@ -22,10 +22,10 @@
                 <field name="ADDRESS">0x4E</field>
                 <next>
                   <block type="lcd_clear" id="3pXUzPj27Ey[Z]vjYZ9*">
-                    <field name="ID">1</field>
+                    <field name="ID">Lcd</field>
                     <next>
                       <block type="lcd_sendString" id=",rjiJ@j@u;j{JE)F)pzL">
-                        <field name="ID">1</field>
+                        <field name="ID">Lcd</field>
                         <value name="DATA">
                           <block type="text" id="sBIv~GJaR{lB,m;`%=TJ">
                             <field name="TEXT">LM35 Test</field>
@@ -52,7 +52,7 @@
     </statement>
     <statement name="LOOP_FUNC">
       <block type="lcd_clear" id="W-`d)UTPqgE.EX|~*Z.n">
-        <field name="ID">1</field>
+        <field name="ID">Lcd</field>
         <next>
           <block type="variables_set" id="hnjxne5UJdgd_NRfgzPR">
             <field name="VAR">temp</field>
@@ -64,7 +64,7 @@
             </value>
             <next>
               <block type="lcd_sendString" id="|aZl[c{X[gXm54)C3)9E">
-                <field name="ID">1</field>
+                <field name="ID">Lcd</field>
                 <value name="DATA">
                   <block type="text" id="xWLdTq_b_;TMLkuc^R[`">
                     <field name="TEXT">Temp = </field>
@@ -72,7 +72,7 @@
                 </value>
                 <next>
                   <block type="lcd_sendNumber" id="Kvmv]_(c0en4ELD^IJyq">
-                    <field name="ID">1</field>
+                    <field name="ID">Lcd</field>
                     <value name="DATA">
                       <block type="variables_get" id="ShJPJ4q{Yc{ys6e^n#L;">
                         <field name="VAR">temp</field>
@@ -80,7 +80,7 @@
                     </value>
                     <next>
                       <block type="lcd_sendString" id="EudCLiXH+L{ckW}mfGM]">
-                        <field name="ID">1</field>
+                        <field name="ID">Lcd</field>
                         <value name="DATA">
                           <block type="text" id="fH3oPh]R}QF5!EOSZ7!K">
                             <field name="TEXT"> C</field>

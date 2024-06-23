@@ -10,7 +10,13 @@ Blockly.Blocks.ledMatrix.HUE = 170;
 
 Blockly.Blocks['matrix_init'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'MATRIX',
+      Blockly.Msg.MATRIX_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     var SPI_instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.spi
     );
@@ -18,13 +24,13 @@ Blockly.Blocks['matrix_init'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.MATRIX_INIT)
       .appendField(list, 'ID')
+      .appendField('SPI instance')
       .appendField(SPI_instant, 'SPI')
       .appendField('CS: ')
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'CS'
       );
-    list.setValue('1');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     var ToolTipMsg = Blockly.Msg.MATRIX_INIT_TTL.replace('%1', 'PA7')
@@ -86,15 +92,20 @@ Blockly.Blocks['matrix_init'] = {
 
 Blockly.Blocks['matrix_sendString'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2'], ['3'], ['4']]);
+    var list = new Blockly.FieldInstance(
+      'MATRIX',
+      Blockly.Msg.MATRIX_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     this.setColour(Blockly.Blocks.ledMatrix.HUE);
     this.appendValueInput('DATA')
       .setCheck(Blockly.Types.TEXT.checkList)
       .appendField(Blockly.Msg.MATRIX_STRING);
     this.appendDummyInput()
-      .appendField('on led matrix#')
+      .appendField('on ')
       .appendField(list, 'ID');
-    list.setValue('1');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -126,7 +137,7 @@ Blockly.Blocks['matrix_sendString'] = {
 
     if (!InstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', 'LedMatrix'+thisInstanceName),
+        Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
         'matrix_init'
       );
     } else {

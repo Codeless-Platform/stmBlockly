@@ -29,7 +29,7 @@ const onChangeOled = function (event, obj,id) {
 
   if (!InstancePresent) {
     obj.setWarningText(
-      Blockly.Msg.UART_PRINT_WARN.replace('%1', 'Oled ' + thisInstanceName),
+      Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
       id
     );
   } else {
@@ -40,7 +40,13 @@ const onChangeOled = function (event, obj,id) {
 Blockly.Blocks.oled.HUE = 120;
 Blockly.Blocks['oled_init'] = {
   init: function () {
-    var list = new Blockly.FieldDropdown([['1'], ['2']]);
+    var list = new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     var I2C_Instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.i2c
     );
@@ -48,6 +54,7 @@ Blockly.Blocks['oled_init'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_INIT)
       .appendField(list, 'ID')
+      .appendField('I2C instance')
       .appendField(I2C_Instant, 'I2C');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -56,7 +63,6 @@ Blockly.Blocks['oled_init'] = {
       'PB6'
     );
     this.setTooltip(ToolTipMsg);
-    list.setValue('1');
     var thisBlock = this;
     // change listener for I2C
     I2C_Instant.setValidator(function (newValue) {
@@ -122,14 +128,19 @@ Blockly.Blocks['oled_sendString'] = {
       .setCheck(Blockly.Types.TEXT.checkList)
       .appendField(Blockly.Msg.OLED_STRING);
     this.appendDummyInput()
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID')
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID')
       .appendField(Blockly.Msg.OLED_FONT)
       .appendField(new Blockly.FieldDropdown(fonts), 'FONT');
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(colors), 'COLOR');
-    this.setFieldValue('1', 'ID');
     this.setFieldValue('Font_11x18', 'FONT');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -148,15 +159,20 @@ Blockly.Blocks['oled_sendNumber'] = {
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.OLED_NUMBER);
     this.appendDummyInput()
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID')
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID')
       .appendField(Blockly.Msg.OLED_FONT)
       .appendField(new Blockly.FieldDropdown(fonts), 'FONT');
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(colors), 'COLOR');
 
-    this.setFieldValue('1', 'ID');
     this.setFieldValue('Font_11x18', 'FONT');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -172,8 +188,13 @@ Blockly.Blocks['oled_clear'] = {
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_CLEAR)
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -192,9 +213,14 @@ Blockly.Blocks['oled_goto'] = {
     this.appendDummyInput().appendField(Blockly.Msg.OLED_GOTOy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -210,8 +236,13 @@ Blockly.Blocks['oled_UpdateScreen'] = {
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_UPDATE)
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
@@ -240,9 +271,14 @@ Blockly.Blocks['oled_Scroll'] = {
     this.appendDummyInput().appendField(Blockly.Msg.OLED_SCROLLy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setFieldValue('Left', 'SCROLL');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -258,9 +294,14 @@ Blockly.Blocks['oled_StopScroll'] = {
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_STOP_SCROLL)
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -299,9 +340,14 @@ Blockly.Blocks['oled_drawBitmap'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(color), 'COLOR')
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID');
-    this.setFieldValue('1', 'ID');
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -324,12 +370,17 @@ Blockly.Blocks['oled_Draw'] = {
         new Blockly.FieldDropdown(shapes, this.updateShape_.bind(this)),
         'SHAPE'
       )
-      .appendField('on oled #')
-      .appendField(new Blockly.FieldDropdown([['1'], ['2']]), 'ID')
+      .appendField('on ')
+      .appendField(new Blockly.FieldInstance(
+      'OLED',
+      Blockly.Msg.OLED_DEFAULT_NAME,
+      false,
+      false,
+      false
+    ), 'ID')
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(color), 'COLOR');
     this.shape = 'Line'; // Default shape
-    this.setFieldValue('1', 'ID');
     this.updateShape_(this.shape);
     this.setInputsInline(true);
     this.setFieldValue('Line', 'SHAPE');

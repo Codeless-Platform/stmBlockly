@@ -5,7 +5,7 @@
         <field name="PERIPHRAL">GPIOB</field>
         <next>
           <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
-            <field name="ID">1</field>
+            <field name="ID">Lcd</field>
             <field name="TYPE">I2C</field>
             <field name="SIZE">2x16</field>
             <field name="PORT">GPIOA</field>
@@ -17,10 +17,10 @@
             <field name="RS">PA3</field>
             <next>
               <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
-                <field name="ID">1</field>
+                <field name="ID">Lcd</field>
                 <next>
                   <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
-                    <field name="ID">1</field>
+                    <field name="ID">Lcd</field>
                     <value name="DATA">
                       <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
                         <field name="TEXT">Hello World!</field>
@@ -28,7 +28,7 @@
                     </value>
                     <next>
                       <block type="lcd_goto" id="f_saXh/V!j6*9WtNw8|p">
-                        <field name="ID">1</field>
+                        <field name="ID">Lcd</field>
                         <value name="ROW">
                           <block type="math_number" id="_`cy=Hj~IE{xyRD!fz;q">
                             <field name="NUM">1</field>
@@ -41,7 +41,7 @@
                         </value>
                         <next>
                           <block type="lcd_sendString" id="P6FMHTV#mf0aCQ~%n~%i">
-                            <field name="ID">1</field>
+                            <field name="ID">Lcd</field>
                             <value name="DATA">
                               <block type="text" id="Vb9rBoBmM%rO_]v_6rOG">
                                 <field name="TEXT">:)</field>

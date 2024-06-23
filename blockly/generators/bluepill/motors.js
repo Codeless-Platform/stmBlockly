@@ -28,18 +28,18 @@ Blockly.Arduino['motor_init'] = function (block) {
     Blockly.Arduino.PinTypes.OUTPUT,
     'IN2'
   );
-  var pinIncludeCode = `Motor_t Motor_pinConfig${ID};`;
+  var pinIncludeCode = `Motor_t ${ID};`;
   Blockly.Arduino.addInclude('motor' + ID, pinIncludeCode);
 
-  var pinMainCode = `Motor_pinConfig${ID}.IN1 = PIN_${IN1.slice(2)};
-  Motor_pinConfig${ID}.IN1_port = GPIO${IN1.charAt(1)};
-  Motor_pinConfig${ID}.IN2 = PIN_${IN2.slice(2)};
-  Motor_pinConfig${ID}.IN2_port = GPIO${IN2.charAt(1)};
-  Motor_pinConfig${ID}.EN = PIN_${pinnumber};
-  Motor_pinConfig${ID}.EN_port= ${gpio};
-  Motor_pinConfig${ID}.TIM =${TIM};
-  Motor_pinConfig${ID}.TIM_Channel=${Channel};
-  Motor_init(&Motor_pinConfig${ID});`;
+  var pinMainCode = `${ID}.IN1 = PIN_${IN1.slice(2)};
+  ${ID}.IN1_port = GPIO${IN1.charAt(1)};
+  ${ID}.IN2 = PIN_${IN2.slice(2)};
+  ${ID}.IN2_port = GPIO${IN2.charAt(1)};
+  ${ID}.EN = PIN_${pinnumber};
+  ${ID}.EN_port= ${gpio};
+  ${ID}.TIM =${TIM};
+  ${ID}.TIM_Channel=${Channel};
+  Motor_init(&${ID});`;
   Blockly.Arduino.addMain('motor_' + ID, pinMainCode, true);
 
   return '';
@@ -52,10 +52,10 @@ Blockly.Arduino['motor_move'] = function (block) {
   var ID = block.getFieldValue('ID');
   var code;
   if (direction == 'Clockwise')
-    code = `Motor_Clockwise(&Motor_pinConfig${ID}, ${speed});`;
+    code = `Motor_Clockwise(&${ID}, ${speed});`;
   else if (direction == 'Anticlockwise')
-    code = `Motor_AntiClockwise(&Motor_pinConfig${ID}, ${speed});`;
-  else if (direction == 'Stop') code = `Motor_Stop(&Motor_pinConfig${ID});`;
+    code = `Motor_AntiClockwise(&${ID}, ${speed});`;
+  else if (direction == 'Stop') code = `Motor_Stop(&${ID});`;
 
   return code;
 };

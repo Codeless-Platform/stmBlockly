@@ -4,7 +4,7 @@
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
       <block type="motor_move" id="e|vi^3]If32VNi=XmLIj">
-        <field name="ID">1</field>
+        <field name="ID">Motor</field>
         <field name="DIR">Clockwise</field>
         <value name="SPEED">
           <block type="math_number" id="A%WwI]uQ:!JO:]_Rq-![">
@@ -31,7 +31,7 @@
         <field name="PERIPHRAL">GPIOA</field>
         <next>
           <block type="motor_init" id="_LH/wmsv*CpeNl{r#3P^">
-            <field name="ID">1</field>
+            <field name="ID">Motor</field>
             <field name="IN1">PA2</field>
             <field name="IN2">PA3</field>
             <field name="PIN">PA8</field>
@@ -156,7 +156,7 @@
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
       <block type="motor_move" id="Ks4EcPRU~x95;Wka-`_d">
-        <field name="ID">1</field>
+        <field name="ID">Motor</field>
         <field name="DIR">Anticlockwise</field>
         <value name="SPEED">
           <block type="math_number" id="T/^DVpZ7*,uwwG/1/iW}">
@@ -182,7 +182,7 @@
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
       <block type="motor_move" id="7?ql0W-p0)b%^1#,b]Zr">
-        <field name="ID">1</field>
+        <field name="ID">Motor</field>
         <field name="DIR">Clockwise</field>
         <value name="SPEED">
           <block type="math_number" id="j_*:p;|6H26}d7b#~Vty">
@@ -208,7 +208,7 @@
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
       <block type="motor_move" id="x%EF3Eu-m?a^}Y=vvga[">
-        <field name="ID">1</field>
+        <field name="ID">Motor</field>
         <field name="DIR">Stop</field>
         <value name="SPEED">
           <block type="math_number" id="28sR(bx!Z{d+U|trM[46">
@@ -234,7 +234,7 @@
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
       <block type="motor_move" id="-@*^Z=6B(90=Vwm!6/Y3">
-        <field name="ID">1</field>
+        <field name="ID">Motor</field>
         <field name="DIR">Stop</field>
         <value name="SPEED">
           <block type="math_number" id="Ad|y=.(qY5hrBQ`;?c6#">

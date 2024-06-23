@@ -629,23 +629,24 @@ Blockly.Msg.PORT_LOW = 'PORT_LOW';
 Blockly.Msg.PIN_LOW = 'PIN_LOW';
 Blockly.Msg.PORT_HIGH = 'PORT_HIGH';
 Blockly.Msg.PIN_HIGH = 'PIN_HIGH';
-Blockly.Msg.KEYPAD_INIT_PORT = 'initalize keypad #';
+Blockly.Msg.KEYPAD_INIT_PORT = 'initalize ';
 Blockly.Msg.KEYPAD_TTL = 'initalize 4x3 keypad connected to the selected pins';
-Blockly.Msg.KEYPAD_READ = 'get pressed key value ';
+Blockly.Msg.KEYPAD_READ = 'get pressed key value on ';
 Blockly.Msg.KEYPAD_READ_TTL = 'gets the value of pressed pin';
-Blockly.Msg.LCD_INIT = 'initalize lcd#';
+Blockly.Msg.LCD_INIT = 'initialize  ';
 Blockly.Msg.LCD_INIT_TTL = 'initalize standard LCD connected to selected pins';
 Blockly.Msg.LCD_INIT_I2C = 'I2C';
+Blockly.Msg.LCD_TYPE = 'Type';
 Blockly.Msg.LCD_ADDRESS_I2C = 'with Address';
 Blockly.Msg.LCD_INIT_I2C_TTL = 'initalize LCD connected to SDA:%1 SCL:%2';
-Blockly.Msg.LCD_CHAR = 'write on lcd #';
+Blockly.Msg.LCD_CHAR = 'write on ';
 Blockly.Msg.LCD_NUMBER = 'write a number';
 Blockly.Msg.LCD_NUMBER_TTL = 'writes a number on lcd ';
-Blockly.Msg.LCD_TO = 'on lcd';
+Blockly.Msg.LCD_TO = 'on ';
 Blockly.Msg.LCD_CHAR_TTL = 'writes a single char on lcd ';
 Blockly.Msg.LCD_STRING = 'write';
 Blockly.Msg.LCD_STRING_TTL = 'writes a string on lcd ';
-Blockly.Msg.LCD_CLEAR = 'Clear LCD #';
+Blockly.Msg.LCD_CLEAR = 'Clear';
 Blockly.Msg.LCD_GOTOx = 'Go to row';
 Blockly.Msg.LCD_GOTOy = 'and column';
 Blockly.Msg.LCD_GOTO_TTL =
@@ -657,6 +658,7 @@ Blockly.Msg.LCD_D7 = 'D7:';
 Blockly.Msg.LCD_EN = 'EN:';
 Blockly.Msg.LCD_RS = 'RS:';
 Blockly.Msg.LCD_SIZE = 'Size:';
+Blockly.Msg.LCD_DEFAULT_NAME = 'LCD';
 
 Blockly.Msg.KEY_C0 = 'C0:';
 Blockly.Msg.KEY_C1 = 'C1:';
@@ -666,6 +668,7 @@ Blockly.Msg.KEY_R0 = 'R0:';
 Blockly.Msg.KEY_R1 = 'R1:';
 Blockly.Msg.KEY_R2 = 'R2:';
 Blockly.Msg.KEY_R3 = 'R3:';
+Blockly.Msg.KEYPAD_DEFAULT_NAME = 'Keypad';
 
 Blockly.Msg.READLM35 = 'Read Tempreature sensor at pin #';
 
@@ -708,10 +711,10 @@ Blockly.Msg.SPI_MODE = 'Mode:';
 Blockly.Msg.SPI_MODE_MASTER = 'Master';
 Blockly.Msg.SPI_MODE_SALVE = 'Slave';
 
-Blockly.Msg.OLED_INIT = 'initalize oled screen #';
+Blockly.Msg.OLED_INIT = 'initalize ';
 Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected SDA: %1 , SCL: %2';
-Blockly.Msg.OLED_CLEAR = 'Clear Oled screen #';
-Blockly.Msg.OLED_UPDATE = 'Update Oled screen #';
+Blockly.Msg.OLED_CLEAR = 'Clear ';
+Blockly.Msg.OLED_UPDATE = 'Update ';
 Blockly.Msg.OLED_UPDATE_TTL =
   'This function must be called each time you do some changes to oled';
 Blockly.Msg.OLED_GOTOx = 'Go to row';
@@ -720,7 +723,7 @@ Blockly.Msg.OLED_GOTO_TTL =
   'Sets LCD cursor to specified row and column, counting starts from 0';
 Blockly.Msg.OLED_STRING = 'write text';
 Blockly.Msg.OLED_NUMBER = 'write number';
-Blockly.Msg.OLED_STRING_TTL = 'writes a string on oled ';
+Blockly.Msg.OLED_STRING_TTL = 'writes a string on ';
 Blockly.Msg.OLED_FONT = 'with font size';
 Blockly.Msg.OLED_COLOR = 'and color';
 Blockly.Msg.OLED_SCROLL = 'Scroll';
@@ -731,11 +734,14 @@ Blockly.Msg.OLED_DRAW = 'Draw';
 Blockly.Msg.OLED_DATA = 'Data';
 Blockly.Msg.OLED_DRAW_BITMAP = 'Draw bitmap';
 Blockly.Msg.OLED_COLOR = 'color';
+Blockly.Msg.OLED_DEFAULT_NAME = 'Oled';
 
-Blockly.Msg.MATRIX_INIT = 'initalize led dot matrix#';
+Blockly.Msg.MATRIX_INIT = 'initalize ';
 Blockly.Msg.MATRIX_INIT_TTL =
   'initalize led dot matrix on MOSI: %1 MISO: %2 SCK: %3 and chip select with size 8*8';
 Blockly.Msg.MATRIX_STRING = 'write ';
+Blockly.Msg.MATRIX_DEFAULT_NAME = 'LedMatrix';
+
 Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
 Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
 Blockly.Msg.ULTRASONIC_READ = 'read distance on echo pin';
@@ -745,14 +751,16 @@ Blockly.Msg.WRITE_PWM = "write"
 Blockly.Msg.PIN_PWM = "to pin#"
 Blockly.Msg.PWM_TTL = "writes a value between 0 and 65536 on selected pin"
 //motors 
-Blockly.Msg.MOTOR_INIT = "initialize motor pins #"
+Blockly.Msg.MOTOR_INIT = "initialize motor pins"
 Blockly.Msg.MOTOR_IN1 = "IN1"
 Blockly.Msg.MOTOR_IN2 = "IN2"
 Blockly.Msg.MOTOR_EN = "EN"
-Blockly.Msg.MOTOR_MOVE = "Move motor #"
+Blockly.Msg.MOTOR_MOVE = "Move "
 Blockly.Msg.MOTOR_SPEED = "with speed"
-Blockly.Msg.STEPPER_INIT = "Setup stepper motor"
-Blockly.Msg.STEPPER_DEFAULT_NAME = "MyStepper"
+Blockly.Msg.MOTOR_DEFAULT_NAME = 'Motor';
+
+Blockly.Msg.STEPPER_INIT = "initialize stepper motor"
+Blockly.Msg.STEPPER_DEFAULT_NAME = "Stepper"
 Blockly.Msg.STEPPER_MOTOR = "Stepper Motor"
 Blockly.Msg.STEPPER_PIN1 = "pin#1"
 Blockly.Msg.STEPPER_PIN2 = "pin#2"

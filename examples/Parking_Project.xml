@@ -8,11 +8,11 @@
             <field name="PERIPHRAL">GPIOB</field>
             <next>
               <block type="oled_init" id="i8704x*V;0Y]?V3nBra{">
-                <field name="ID">1</field>
+                <field name="ID">Oled</field>
                 <field name="I2C">I2C1</field>
                 <next>
                   <block type="oled_goto" id="HxSL8ha)IMEl=q6WCf4_">
-                    <field name="ID">1</field>
+                    <field name="ID">Oled</field>
                     <value name="ROW">
                       <block type="math_number" id="#;^j(JJl}()63eGM2ORZ">
                         <field name="NUM">10</field>
@@ -25,7 +25,7 @@
                     </value>
                     <next>
                       <block type="oled_sendString" id="f;#vGL*@ra[0%BpI5@s6">
-                        <field name="ID">1</field>
+                        <field name="ID">Oled</field>
                         <field name="FONT">Font_11x18</field>
                         <field name="COLOR">White</field>
                         <value name="DATA">
@@ -35,7 +35,7 @@
                         </value>
                         <next>
                           <block type="oled_goto" id="`?YwK:/p@s8{s^1YSHn-">
-                            <field name="ID">1</field>
+                            <field name="ID">Oled</field>
                             <value name="ROW">
                               <block type="math_number" id="Cl|i#H^G[jq7UJz1vsCY">
                                 <field name="NUM">20</field>
@@ -48,7 +48,7 @@
                             </value>
                             <next>
                               <block type="oled_sendString" id=",y+tutUM]IE@{,)3^;dn">
-                                <field name="ID">1</field>
+                                <field name="ID">Oled</field>
                                 <field name="FONT">Font_11x18</field>
                                 <field name="COLOR">White</field>
                                 <value name="DATA">
@@ -58,7 +58,7 @@
                                 </value>
                                 <next>
                                   <block type="oled_UpdateScreen" id="885kdm-W65Nl~PQ)oGKQ">
-                                    <field name="ID">1</field>
+                                    <field name="ID">Oled</field>
                                     <next>
                                       <block type="time_delay" id="K)p4|h@V6kmx:,XEH5N1">
                                         <value name="DELAY_TIME_MILI">
@@ -68,10 +68,10 @@
                                         </value>
                                         <next>
                                           <block type="oled_clear" id="MTZB7~VLvbr4Xg#`UaxY">
-                                            <field name="ID">1</field>
+                                            <field name="ID">Oled</field>
                                             <next>
                                               <block type="oled_goto" id="q7uJ{H89Gq8uOFf9k?Jb">
-                                                <field name="ID">1</field>
+                                                <field name="ID">Oled</field>
                                                 <value name="ROW">
                                                   <block type="math_number" id="M1F2+JG|yLM0]{1QQ9M]">
                                                     <field name="NUM">0</field>
@@ -84,7 +84,7 @@
                                                 </value>
                                                 <next>
                                                   <block type="oled_sendString" id="3(0T}?s3^wv5Nqx7Xz.*">
-                                                    <field name="ID">1</field>
+                                                    <field name="ID">Oled</field>
                                                     <field name="FONT">Font_11x18</field>
                                                     <field name="COLOR">White</field>
                                                     <value name="DATA">
@@ -94,7 +94,7 @@
                                                     </value>
                                                     <next>
                                                       <block type="oled_UpdateScreen" id="?f!@G)p~`hQz|.wo!AcG">
-                                                        <field name="ID">1</field>
+                                                        <field name="ID">Oled</field>
                                                       </block>
                                                     </next>
                                                   </block>
@@ -132,7 +132,7 @@
         </value>
         <next>
           <block type="oled_goto" id="YeZL[s(#;XDmGyY1KJi+">
-            <field name="ID">1</field>
+            <field name="ID">Oled</field>
             <value name="ROW">
               <block type="math_number" id="c[|%N2U6,H~fCny*ciGv">
                 <field name="NUM">60</field>
@@ -145,7 +145,7 @@
             </value>
             <next>
               <block type="oled_sendNumber" id="piC^M3k^ft*{yP=j(0k}">
-                <field name="ID">1</field>
+                <field name="ID">Oled</field>
                 <field name="FONT">Font_11x18</field>
                 <field name="COLOR">White</field>
                 <value name="DATA">
@@ -155,7 +155,7 @@
                 </value>
                 <next>
                   <block type="oled_UpdateScreen" id="wf1jc_}7d4(xNV9r/h#Z">
-                    <field name="ID">1</field>
+                    <field name="ID">Oled</field>
                     <next>
                       <block type="io_writePin" id="uEupSpK=ZS,mEe+hLZPJ">
                         <field name="PIN">PA0</field>
