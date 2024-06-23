@@ -86,7 +86,10 @@ Blockly.Blocks['motor_init'] = {
       }
     }
     if (count > 0) {
-      this.setWarningText('This block is duplicated.', 'duplicateMotor');
+      this.setWarningText(
+        'this block is duplicated, Create new instance or delete duplicates.',
+        'duplicateMotor'
+      );
     } else {
       this.setWarningText(null, 'duplicateMotor');
     }
@@ -231,7 +234,10 @@ Blockly.Blocks['stepper_config'] = {
       }
     }
     if (count > 0) {
-      this.setWarningText('This block is duplicated.', 'duplicateStepper');
+      this.setWarningText(
+        'this block is duplicated, Create new instance or delete duplicates.',
+        'duplicateStepper'
+      );
     } else {
       this.setWarningText(null, 'duplicateStepper');
     }
@@ -360,7 +366,10 @@ Blockly.Blocks['servo_init'] = {
       }
     }
     if (count > 0) {
-      this.setWarningText('This block is duplicated.', 'duplicateServo');
+      this.setWarningText(
+        'this block is duplicated, Create new instance or delete duplicates.',
+        'duplicateServo'
+      );
     } else {
       this.setWarningText(null, 'duplicateServo');
     }

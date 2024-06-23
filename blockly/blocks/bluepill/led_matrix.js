@@ -83,7 +83,10 @@ Blockly.Blocks['matrix_init'] = {
     }
     console.log(count);
     if (count > 0) {
-      this.setWarningText('This block is duplicated.', 'duplicateMatrix');
+      this.setWarningText(
+        'this block is duplicated, Create new instance or delete duplicates.',
+        'duplicateMatrix'
+      );
     } else {
       this.setWarningText(null, 'duplicateMatrix');
     }

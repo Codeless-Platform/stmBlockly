@@ -114,7 +114,10 @@ Blockly.Blocks['spi_init'] = {
     }
     console.log(count);
     if (count > 0) {
-      this.setWarningText('This block is duplicated.', 'duplicateSPI');
+      this.setWarningText(
+        'this block is duplicated, Create new instance or delete duplicates.',
+        'duplicateSPI'
+      );
     } else {
       this.setWarningText(null, 'duplicateSPI');
     }
@@ -188,11 +191,11 @@ Blockly.Blocks['spi_RXTX'] = {
   getBlockType: function () {
     return Blockly.Types.UINT16;
   },
-   /**
+  /**
    * Updates the content of the the board SPI related fields.
    * @this Blockly.Block
    */
-   updateFields: function () {
+  updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
   },
 };
