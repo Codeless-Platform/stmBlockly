@@ -103,9 +103,7 @@ Blockly.Blocks['matrix_sendString'] = {
     this.appendValueInput('DATA')
       .setCheck(Blockly.Types.TEXT.checkList)
       .appendField(Blockly.Msg.MATRIX_STRING);
-    this.appendDummyInput()
-      .appendField('on ')
-      .appendField(list, 'ID');
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -137,7 +135,7 @@ Blockly.Blocks['matrix_sendString'] = {
 
     if (!InstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
+        Blockly.Msg.PRINT_WARN.replace('%1', thisInstanceName),
         'matrix_init'
       );
     } else {

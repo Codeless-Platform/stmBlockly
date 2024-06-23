@@ -158,7 +158,7 @@ Blockly.Blocks['uart_write'] = {
 
     if (!setupInstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
+        Blockly.Msg.PRINT_WARN.replace('%1', thisInstanceName),
         'uart_write'
       );
     } else {
@@ -222,7 +222,7 @@ Blockly.Blocks['uart_recieve'] = {
 
     if (!setupInstancePresent) {
       this.setWarningText(
-        Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
+        Blockly.Msg.PRINT_WARN.replace('%1', thisInstanceName),
         'uart_recieve'
       );
     } else {

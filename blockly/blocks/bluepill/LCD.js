@@ -31,7 +31,7 @@ const onChangeLCD = function (event, obj, id) {
 
   if (!InstancePresent) {
     obj.setWarningText(
-      Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
+      Blockly.Msg.PRINT_WARN.replace('%1', thisInstanceName),
       id
     );
   } else {
@@ -288,7 +288,7 @@ Blockly.Blocks['lcd_sendNumber'] = {
     this.appendValueInput('DATA')
       .setCheck(Blockly.Types.NUMBER.checkList)
       .appendField(Blockly.Msg.LCD_NUMBER);
-    this.appendDummyInput().appendField('on ').appendField(list, 'ID')
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -311,7 +311,7 @@ Blockly.Blocks['lcd_clear'] = {
     this.setColour(Blockly.Blocks.lcd.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.LCD_CLEAR)
-      .appendField(list, 'ID')
+      .appendField(list, 'ID');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
@@ -336,7 +336,7 @@ Blockly.Blocks['lcd_goto'] = {
       .appendField(Blockly.Msg.LCD_GOTOx);
     this.appendDummyInput().appendField(Blockly.Msg.LCD_GOTOy);
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
-    this.appendDummyInput().appendField('on ').appendField(list, 'ID')
+    this.appendDummyInput().appendField('on ').appendField(list, 'ID');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

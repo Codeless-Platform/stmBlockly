@@ -5,7 +5,7 @@ goog.provide('Blockly.Blocks.oled');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
-const onChangeOled = function (event, obj,id) {
+const onChangeOled = function (event, obj, id) {
   if (
     !obj.workspace ||
     event.type == Blockly.Events.MOVE ||
@@ -29,7 +29,7 @@ const onChangeOled = function (event, obj,id) {
 
   if (!InstancePresent) {
     obj.setWarningText(
-      Blockly.Msg.UART_PRINT_WARN.replace('%1', thisInstanceName),
+      Blockly.Msg.PRINT_WARN.replace('%1', thisInstanceName),
       id
     );
   } else {
@@ -129,13 +129,16 @@ Blockly.Blocks['oled_sendString'] = {
       .appendField(Blockly.Msg.OLED_STRING);
     this.appendDummyInput()
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID')
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      )
       .appendField(Blockly.Msg.OLED_FONT)
       .appendField(new Blockly.FieldDropdown(fonts), 'FONT');
     this.appendDummyInput()
@@ -147,7 +150,7 @@ Blockly.Blocks['oled_sendString'] = {
     this.setNextStatement(true, null);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_sendString');
+    onChangeOled(event, this, 'oled_sendString');
   },
 };
 Blockly.Blocks['oled_sendNumber'] = {
@@ -160,13 +163,16 @@ Blockly.Blocks['oled_sendNumber'] = {
       .appendField(Blockly.Msg.OLED_NUMBER);
     this.appendDummyInput()
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID')
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      )
       .appendField(Blockly.Msg.OLED_FONT)
       .appendField(new Blockly.FieldDropdown(fonts), 'FONT');
     this.appendDummyInput()
@@ -179,7 +185,7 @@ Blockly.Blocks['oled_sendNumber'] = {
     this.setNextStatement(true, null);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_sendNumber');
+    onChangeOled(event, this, 'oled_sendNumber');
   },
 };
 
@@ -188,18 +194,21 @@ Blockly.Blocks['oled_clear'] = {
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_CLEAR)
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_clear');
+    onChangeOled(event, this, 'oled_clear');
   },
 };
 
@@ -214,20 +223,23 @@ Blockly.Blocks['oled_goto'] = {
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_GOTO_TTL);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_goto');
+    onChangeOled(event, this, 'oled_goto');
   },
 };
 
@@ -236,19 +248,22 @@ Blockly.Blocks['oled_UpdateScreen'] = {
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_UPDATE)
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_UpdateScreen');
+    onChangeOled(event, this, 'oled_UpdateScreen');
   },
 };
 
@@ -272,20 +287,23 @@ Blockly.Blocks['oled_Scroll'] = {
     this.appendValueInput('COL').setCheck(Blockly.Types.NUMBER.checkList);
     this.appendDummyInput()
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setFieldValue('Left', 'SCROLL');
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip(Blockly.Msg.OLED_UPDATE_TTL);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_Scroll');
+    onChangeOled(event, this, 'oled_Scroll');
   },
 };
 
@@ -295,18 +313,21 @@ Blockly.Blocks['oled_StopScroll'] = {
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_STOP_SCROLL)
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_StopScroll');
+    onChangeOled(event, this, 'oled_StopScroll');
   },
 };
 // oled bitmap
@@ -341,20 +362,23 @@ Blockly.Blocks['oled_drawBitmap'] = {
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(color), 'COLOR')
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID');
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      );
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Draws a bitmap at the specified coordinates');
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_drawBitmap');
+    onChangeOled(event, this, 'oled_drawBitmap');
   },
 };
 
@@ -371,13 +395,16 @@ Blockly.Blocks['oled_Draw'] = {
         'SHAPE'
       )
       .appendField('on ')
-      .appendField(new Blockly.FieldInstance(
-      'OLED',
-      Blockly.Msg.OLED_DEFAULT_NAME,
-      false,
-      false,
-      false
-    ), 'ID')
+      .appendField(
+        new Blockly.FieldInstance(
+          'OLED',
+          Blockly.Msg.OLED_DEFAULT_NAME,
+          false,
+          false,
+          false
+        ),
+        'ID'
+      )
       .appendField(Blockly.Msg.OLED_COLOR)
       .appendField(new Blockly.FieldDropdown(color), 'COLOR');
     this.shape = 'Line'; // Default shape
@@ -484,6 +511,6 @@ Blockly.Blocks['oled_Draw'] = {
     }
   },
   onchange: function (event) {
-    onChangeOled(event, this,'oled_Draw');
+    onChangeOled(event, this, 'oled_Draw');
   },
 };
