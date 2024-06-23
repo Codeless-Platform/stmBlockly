@@ -681,7 +681,7 @@ Blockly.Msg.UART_BPS = 'bps';
 Blockly.Msg.UART_WRITE = 'write';
 Blockly.Msg.UART_WRITE_TTP =
   'Prints data to the console/serial port as human-readable ASCII text.';
-Blockly.Msg.UART_PRINT_WARN =
+Blockly.Msg.PRINT_WARN =
   'A setup block for %1 must be added to the workspace to use this block!';
 Blockly.Msg.UART_READ = 'get data from';
 Blockly.Msg.UART_READ_TTP =
@@ -746,29 +746,35 @@ Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
 Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
 Blockly.Msg.ULTRASONIC_READ = 'read distance on echo pin';
 Blockly.Msg.ULTRASONIC_TRIG = 'trigger pin';
-//pwm 
-Blockly.Msg.WRITE_PWM = "write"
-Blockly.Msg.PIN_PWM = "to pin#"
-Blockly.Msg.PWM_TTL = "writes a value between 0 and 65536 on selected pin"
-//motors 
-Blockly.Msg.MOTOR_INIT = "initialize motor pins"
-Blockly.Msg.MOTOR_IN1 = "IN1"
-Blockly.Msg.MOTOR_IN2 = "IN2"
-Blockly.Msg.MOTOR_EN = "EN"
-Blockly.Msg.MOTOR_MOVE = "Move "
-Blockly.Msg.MOTOR_SPEED = "with speed"
+//pwm
+Blockly.Msg.WRITE_PWM = 'write';
+Blockly.Msg.PIN_PWM = 'to pin#';
+Blockly.Msg.PWM_TTL = 'writes a value between 0 and 65536 on selected pin';
+//motors
+Blockly.Msg.MOTOR_INIT = 'initialize motor pins';
+Blockly.Msg.MOTOR_IN1 = 'IN1';
+Blockly.Msg.MOTOR_IN2 = 'IN2';
+Blockly.Msg.MOTOR_EN = 'EN';
+Blockly.Msg.MOTOR_MOVE = 'Move ';
+Blockly.Msg.MOTOR_SPEED = 'with speed';
 Blockly.Msg.MOTOR_DEFAULT_NAME = 'Motor';
 
-Blockly.Msg.STEPPER_INIT = "initialize stepper motor"
-Blockly.Msg.STEPPER_DEFAULT_NAME = "Stepper"
-Blockly.Msg.STEPPER_MOTOR = "Stepper Motor"
-Blockly.Msg.STEPPER_PIN1 = "pin#1"
-Blockly.Msg.STEPPER_PIN2 = "pin#2"
-Blockly.Msg.STEPPER_PIN3 = "pin#3"
-Blockly.Msg.STEPPER_PIN4 = "pin#4"
-Blockly.Msg.STEPPER_SETUP_TIP="Initialize stepper motor pins"
-Blockly.Msg.STEPPER_STEP = "move stepper"
-Blockly.Msg.STEPPER_ANGLE = "degree"
-Blockly.Msg.STEPPER_DIR = "direction"
-Blockly.Msg.STEPPER_RPM = "rpm"
-Blockly.Msg.STEPPER_STEP_TIP = "turn the stepper motor by a specific angle"
+Blockly.Msg.STEPPER_INIT = 'initialize stepper motor';
+Blockly.Msg.STEPPER_DEFAULT_NAME = 'Stepper';
+Blockly.Msg.STEPPER_MOTOR = 'Stepper Motor';
+Blockly.Msg.STEPPER_PIN1 = 'pin#1';
+Blockly.Msg.STEPPER_PIN2 = 'pin#2';
+Blockly.Msg.STEPPER_PIN3 = 'pin#3';
+Blockly.Msg.STEPPER_PIN4 = 'pin#4';
+Blockly.Msg.STEPPER_SETUP_TIP = 'Initialize stepper motor pins';
+Blockly.Msg.STEPPER_STEP = 'move stepper';
+Blockly.Msg.STEPPER_ANGLE = 'degree';
+Blockly.Msg.STEPPER_DIR = 'direction';
+Blockly.Msg.STEPPER_RPM = 'rpm';
+Blockly.Msg.STEPPER_STEP_TIP = 'turn the stepper motor by a specific angle';
+
+Blockly.Msg.SERVO_INIT = 'Initialize servo motor ';
+Blockly.Msg.SERVO_DEFAULT_NAME = 'Servo';
+Blockly.Msg.SERVO_PIN = ' on pin';
+Blockly.Msg.SERVO_WRITE = 'Move';
+Blockly.Msg.SERVO_ANGLE = 'by angle ';

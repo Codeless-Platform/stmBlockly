@@ -202,9 +202,28 @@ Ardublockly.TOOLBOX_XML =
   '  </category>' +
   '  <category id="catMotors" name="Motors">' +
   '    <block type="motor_init"></block>' +
-  '    <block type="motor_move"></block>' +
+  '    <block type="motor_move">' +
+  '      <value name="SPEED">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">100</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
   '    <block type="stepper_config"></block>' +
-  '    <block type="stepper_step"></block>' +
+  '    <block type="stepper_step">' +
+  '      <value name="STEPPER_ANGLE">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">45</field>' +
+  '        </block>' +
+  '      </value>' +
+  '      <value name="STEPPER_RPM">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">5</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
+  '    <block type="servo_init"></block>' +
+  '    <block type="servo_write"></block>' +
   '  </category>' +
   '  <sep></sep>' +
   '  <category id="catComms" name="Comms">' +

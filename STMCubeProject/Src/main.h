@@ -28,6 +28,7 @@
 #include "../MCAL/TIM/TIM.h"
 #include "../HAL/Motor_Driver/MotorDriver.h"
 #include "../HAL/Stepper_Motor/Stepper.h"
+#include "../HAL/Servo_Motor/Servo.h"
 #include "math.h"
 
 
