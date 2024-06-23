@@ -215,7 +215,7 @@ Blockly.Blocks['lcd_init'] = {
         }
       }
     }
-    console.log(count);
+
     if (count > 0) {
       this.setWarningText(
         'this block is duplicated, Create new instance or delete duplicates.',
