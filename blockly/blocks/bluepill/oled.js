@@ -55,7 +55,10 @@ Blockly.Blocks['oled_init'] = {
       .appendField(Blockly.Msg.OLED_INIT)
       .appendField(list, 'ID')
       .appendField('I2C instance')
-      .appendField(I2C_Instant, 'I2C');
+      .appendField(I2C_Instant, 'I2C')
+      .appendField('address')
+      .appendField(new Blockly.FieldDropdown([['0x78'],['0x7A'],['0x3C'],['0x3D']]), 'ADDRESS');
+    this.setFieldValue('0x78','ADDRESS');  
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     var ToolTipMsg = Blockly.Msg.OLED_INIT_I2C_TTL.replace('%1', 'PB7').replace(
