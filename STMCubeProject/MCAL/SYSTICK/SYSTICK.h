@@ -23,7 +23,7 @@
  */
 #define AHB 		0
 #define AHB_8		1
-#define STK_CLK_SRC 	AHB
+#define STK_CLK_SRC 	AHB_8
 /*
  * Options: SINGLE
  * 			PERIODIC
