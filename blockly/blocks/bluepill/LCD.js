@@ -121,8 +121,8 @@ Blockly.Blocks['lcd_init'] = {
     this.setFieldValue('0x4E', 'ADDRESS');
     this.setInputsInline(false);
 
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace(
       '%2',
       'PB6'

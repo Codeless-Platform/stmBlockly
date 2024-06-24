@@ -1,5 +1,17 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="34" y="28">
+  <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf" x="21" y="8">
+    <field name="ID">Keypad</field>
+    <field name="PORT">GPIOB</field>
+    <field name="SIZE">4x3</field>
+    <field name="R0">PB3</field>
+    <field name="R1">PB4</field>
+    <field name="R2">PB5</field>
+    <field name="R3">PB6</field>
+    <field name="C0">PB7</field>
+    <field name="C1">PB8</field>
+    <field name="C2">PB9</field>
+  </block>
+  <block type="arduino_functions" id="-Arai|?U,GC?[#w@fE5#" x="6" y="84">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="|Q|QnK%p%)FKPFdSa9rL">
         <field name="PERIPHRAL">GPIOB</field>
@@ -7,56 +19,26 @@
           <block type="time_clockEN" id="(~mE#zY(h!7Uc}-~vY8t">
             <field name="PERIPHRAL">GPIOA</field>
             <next>
-              <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg">
+              <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
                 <field name="ID">Lcd</field>
-                <field name="TYPE">Standard</field>
-                <field name="SIZE">2x16</field>
-                <field name="PORT">GPIOA</field>
-                <field name="d4">PA4</field>
-                <field name="d5">PA5</field>
-                <field name="d6">PA6</field>
-                <field name="d7">PA7</field>
-                <field name="EN">PA2</field>
-                <field name="RS">PA3</field>
-                <field name="I2C">I2C1</field>
-                <field name="ADDRESS">0x4E</field>
                 <next>
-                  <block type="keypad_init" id="DJatgx5SWcmMw,0/zzEf">
-                    <field name="ID">Keypad</field>
-                    <field name="PORT">GPIOB</field>
-                    <field name="SIZE">4x3</field>
-                    <field name="R0">PB3</field>
-                    <field name="R1">PB4</field>
-                    <field name="R2">PB5</field>
-                    <field name="R3">PB6</field>
-                    <field name="C0">PB7</field>
-                    <field name="C1">PB8</field>
-                    <field name="C2">PB9</field>
+                  <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                    <field name="ID">Lcd</field>
+                    <value name="DATA">
+                      <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
+                        <field name="TEXT">Keypad_LCD!</field>
+                      </block>
+                    </value>
                     <next>
-                      <block type="lcd_clear" id="+y%WVhe[4!eva8sYj0z%">
-                        <field name="ID">Lcd</field>
+                      <block type="time_delay" id="W+jx,fkQHt[0Y-bV7,Hc">
+                        <value name="DELAY_TIME_MILI">
+                          <block type="math_number" id="29=iFI6.}rp#{hNZpM^-">
+                            <field name="NUM">1000</field>
+                          </block>
+                        </value>
                         <next>
-                          <block type="lcd_sendString" id="6G8M39:=TwuuLU,+(#E+">
+                          <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}">
                             <field name="ID">Lcd</field>
-                            <value name="DATA">
-                              <block type="text" id="TT0LxR2Jt[6CU4EF%[wK">
-                                <field name="TEXT">Keypad_LCD!</field>
-                              </block>
-                            </value>
-                            <next>
-                              <block type="time_delay" id="W+jx,fkQHt[0Y-bV7,Hc">
-                                <value name="DELAY_TIME_MILI">
-                                  <block type="math_number" id="29=iFI6.}rp#{hNZpM^-">
-                                    <field name="NUM">1000</field>
-                                  </block>
-                                </value>
-                                <next>
-                                  <block type="lcd_clear" id="8Ol_@W33/5oNHM:c~U=}">
-                                    <field name="ID">Lcd</field>
-                                  </block>
-                                </next>
-                              </block>
-                            </next>
                           </block>
                         </next>
                       </block>
@@ -108,5 +90,19 @@
         </next>
       </block>
     </statement>
+  </block>
+  <block type="lcd_init" id="Xey0wVT=wp)}Ar)4nIZg" x="247" y="91">
+    <field name="ID">Lcd</field>
+    <field name="TYPE">Standard</field>
+    <field name="SIZE">2x16</field>
+    <field name="PORT">GPIOA</field>
+    <field name="d4">PA4</field>
+    <field name="d5">PA5</field>
+    <field name="d6">PA6</field>
+    <field name="d7">PA7</field>
+    <field name="EN">PA2</field>
+    <field name="RS">PA3</field>
+    <field name="I2C">I2C1</field>
+    <field name="ADDRESS">0x4E</field>
   </block>
 </xml>

@@ -73,8 +73,8 @@ Blockly.Blocks['keypad_init'] = {
     this.size = '4x3';
     this.setInputsInline(false);
     this.setFieldValue('4x3', 'SIZE');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     this.setTooltip(Blockly.Msg.KEYPAD_TTL);
   },
   updateCols_: function (size) {

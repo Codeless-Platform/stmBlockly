@@ -1,40 +1,81 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="time_clockEN" id="8gUfuw0bljH|G[7r4*W(" x="54" y="23">
-    <field name="PERIPHRAL">GPIOB</field>
-    <next>
-      <block type="servo_init" id="-,SJ8FMvYAHoDe)tS?jm">
-        <field name="ID">Servo</field>
-        <field name="PIN">PB0</field>
-        <next>
-          <block type="controls_for" id="A2EKG^ZtS{Lm0#0YIzQ,">
-            <field name="VAR">i</field>
-            <value name="FROM">
-              <block type="math_number" id="{o`#p2csR@]@=KZ[SBJ|">
-                <field name="NUM">0</field>
+  <block type="servo_init" id="-,SJ8FMvYAHoDe)tS?jm" x="34" y="20">
+    <field name="ID">Servo</field>
+    <field name="PIN">PA3</field>
+  </block>
+  <block type="arduino_functions" id="e,k*oKEL/Equd[u2*;Cq" x="33" y="50">
+    <statement name="SETUP_FUNC">
+      <block type="time_clockEN" id="8gUfuw0bljH|G[7r4*W(">
+        <field name="PERIPHRAL">GPIOB</field>
+      </block>
+    </statement>
+    <statement name="LOOP_FUNC">
+      <block type="controls_for" id="A2EKG^ZtS{Lm0#0YIzQ,">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number" id="{o`#p2csR@]@=KZ[SBJ|">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number" id="~;2?ototLSZ{kBAZBzx5">
+            <field name="NUM">180</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number" id=";{QylHU`SxBnMp9bhAxW">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="servo_write" id="-[,dy|,h-cut[}SIs_k9">
+            <field name="ID">Servo</field>
+            <value name="ANGLE">
+              <block type="variables_get" id="=}jHz~qhe}9Q,z;_^9C/">
+                <field name="VAR">i</field>
               </block>
             </value>
-            <value name="TO">
-              <block type="math_number" id="~;2?ototLSZ{kBAZBzx5">
+            <next>
+              <block type="time_delay" id="D7Eo+Ap,~r^{9e@k|WW7">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="98-I4iSbNH%p!vWU9Hi*">
+                    <field name="NUM">10</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_for" id="%#:?`}@Z_(NE{/pA`#:a">
+            <field name="VAR">i</field>
+            <value name="FROM">
+              <block type="math_number" id="*Hbtyh*![|l]nEt#6w^@">
                 <field name="NUM">180</field>
               </block>
             </value>
+            <value name="TO">
+              <block type="math_number" id="kQR[SH@07OnbQcYJu+l_">
+                <field name="NUM">0</field>
+              </block>
+            </value>
             <value name="BY">
-              <block type="math_number" id=";{QylHU`SxBnMp9bhAxW">
+              <block type="math_number" id="EZO+OfsHxEUFw@gmAR4J">
                 <field name="NUM">1</field>
               </block>
             </value>
             <statement name="DO">
-              <block type="servo_write" id="-[,dy|,h-cut[}SIs_k9">
+              <block type="servo_write" id="Q-Cx(U+(C`_[1_,Jk9P]">
                 <field name="ID">Servo</field>
                 <value name="ANGLE">
-                  <block type="variables_get" id="=}jHz~qhe}9Q,z;_^9C/">
+                  <block type="variables_get" id="VYjx]}bJ-Se@Y!Ku]jeI">
                     <field name="VAR">i</field>
                   </block>
                 </value>
                 <next>
-                  <block type="time_delay" id="D7Eo+Ap,~r^{9e@k|WW7">
+                  <block type="time_delay" id="%ou#h[m)~MpQoTSi{P@=">
                     <value name="DELAY_TIME_MILI">
-                      <block type="math_number" id="98-I4iSbNH%p!vWU9Hi*">
+                      <block type="math_number" id="61x@KVh(__V}s6PX;F9F">
                         <field name="NUM">10</field>
                       </block>
                     </value>
@@ -43,56 +84,17 @@
               </block>
             </statement>
             <next>
-              <block type="controls_for" id="%#:?`}@Z_(NE{/pA`#:a">
-                <field name="VAR">i</field>
-                <value name="FROM">
-                  <block type="math_number" id="*Hbtyh*![|l]nEt#6w^@">
-                    <field name="NUM">180</field>
+              <block type="time_delay" id="W~I~J^T%9=E}:=A5g5a,">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="!?qJ:cZ-c-)sK4rO0yqg">
+                    <field name="NUM">1000</field>
                   </block>
                 </value>
-                <value name="TO">
-                  <block type="math_number" id="kQR[SH@07OnbQcYJu+l_">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-                <value name="BY">
-                  <block type="math_number" id="EZO+OfsHxEUFw@gmAR4J">
-                    <field name="NUM">1</field>
-                  </block>
-                </value>
-                <statement name="DO">
-                  <block type="servo_write" id="Q-Cx(U+(C`_[1_,Jk9P]">
-                    <field name="ID">Servo</field>
-                    <value name="ANGLE">
-                      <block type="variables_get" id="VYjx]}bJ-Se@Y!Ku]jeI">
-                        <field name="VAR">i</field>
-                      </block>
-                    </value>
-                    <next>
-                      <block type="time_delay" id="%ou#h[m)~MpQoTSi{P@=">
-                        <value name="DELAY_TIME_MILI">
-                          <block type="math_number" id="61x@KVh(__V}s6PX;F9F">
-                            <field name="NUM">10</field>
-                          </block>
-                        </value>
-                      </block>
-                    </next>
-                  </block>
-                </statement>
-                <next>
-                  <block type="time_delay" id="W~I~J^T%9=E}:=A5g5a,">
-                    <value name="DELAY_TIME_MILI">
-                      <block type="math_number" id="!?qJ:cZ-c-)sK4rO0yqg">
-                        <field name="NUM">1000</field>
-                      </block>
-                    </value>
-                  </block>
-                </next>
               </block>
             </next>
           </block>
         </next>
       </block>
-    </next>
+    </statement>
   </block>
 </xml>

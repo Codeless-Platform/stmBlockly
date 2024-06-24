@@ -40,8 +40,8 @@ Blockly.Blocks['motor_init'] = {
         'PIN'
       );
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
   },
   /**
    * Updates the content of the the pin related fields.
@@ -193,8 +193,8 @@ Blockly.Blocks['stepper_config'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'PIN4'
       );
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     this.setTooltip(Blockly.Msg.STEPPER_SETUP_TIP);
   },
 
@@ -330,8 +330,8 @@ Blockly.Blocks['servo_init'] = {
         'PIN'
       );
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
   },
   /**
    * Updates the content of the the pin related fields.

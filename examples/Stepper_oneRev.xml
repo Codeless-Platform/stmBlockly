@@ -1,17 +1,15 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="y^3kni8pgI{s5k9^YJ^A" x="2" y="23">
+  <block type="stepper_config" id="VC`kTe|EFYvr0aKy.TVN" x="207" y="39">
+    <field name="STEPPER_NAME">MyStepper</field>
+    <field name="PIN1">PA1</field>
+    <field name="PIN2">PA2</field>
+    <field name="PIN3">PA3</field>
+    <field name="PIN4">PA4</field>
+  </block>
+  <block type="arduino_functions" id="y^3kni8pgI{s5k9^YJ^A" x="16" y="84">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id=")u:BgA0HrA7UWSA9sUT4">
         <field name="PERIPHRAL">GPIOA</field>
-        <next>
-          <block type="stepper_config" id="VC`kTe|EFYvr0aKy.TVN">
-            <field name="STEPPER_NAME">MyStepper</field>
-            <field name="PIN1">PA1</field>
-            <field name="PIN2">PA2</field>
-            <field name="PIN3">PA3</field>
-            <field name="PIN4">PA4</field>
-          </block>
-        </next>
       </block>
     </statement>
     <statement name="LOOP_FUNC">

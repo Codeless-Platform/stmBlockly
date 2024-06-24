@@ -31,8 +31,8 @@ Blockly.Blocks['matrix_init'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'CS'
       );
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     var ToolTipMsg = Blockly.Msg.MATRIX_INIT_TTL.replace('%1', 'PA7')
       .replace('%2', 'PA6')
       .replace('%3', 'PA5');

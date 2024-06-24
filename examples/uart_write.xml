@@ -1,22 +1,20 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="uart_init" id="/+FL6Sc0~!OIHm^g:L|h" x="86" y="56">
+    <field name="UART_ID">USART1</field>
+    <field name="SPEED">9600</field>
+  </block>
   <block type="arduino_functions" id="LMW@2yc9IaUS~@b~bQRD" x="68" y="115">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="|3~D9]b2.~/C@WX^8g#-">
         <field name="PERIPHRAL">GPIOA</field>
         <next>
-          <block type="uart_init" id="/+FL6Sc0~!OIHm^g:L|h">
-            <field name="UART_ID">USART1</field>
-            <field name="SPEED">9600</field>
-            <next>
-              <block type="variables_set" id="RvOR*v9Dabl6i.JNx7l`">
-                <field name="VAR">item</field>
-                <value name="VALUE">
-                  <block type="text" id="ELu7:k-H:yb{p@9WH7zA">
-                    <field name="TEXT">Hello World </field>
-                  </block>
-                </value>
+          <block type="variables_set" id="RvOR*v9Dabl6i.JNx7l`">
+            <field name="VAR">item</field>
+            <value name="VALUE">
+              <block type="text" id="ELu7:k-H:yb{p@9WH7zA">
+                <field name="TEXT">Hello World </field>
               </block>
-            </next>
+            </value>
           </block>
         </next>
       </block>

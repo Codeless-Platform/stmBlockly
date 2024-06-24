@@ -1,4 +1,10 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="motor_init" id="_LH/wmsv*CpeNl{r#3P^" x="59" y="-150">
+    <field name="ID">Motor</field>
+    <field name="IN1">PA2</field>
+    <field name="IN2">PA3</field>
+    <field name="PIN">PA8</field>
+  </block>
   <block type="procedures_defnoreturn" id="HcV%ZQ}*i9_#%GT_7B`R" x="-44" y="-103">
     <field name="NAME">Forward</field>
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
@@ -13,7 +19,7 @@
         </value>
         <next>
           <block type="motor_move" id="DZm0936hcfEvlWb[9E@v">
-            <field name="ID">2</field>
+            <field name="ID">Motor</field>
             <field name="DIR">Clockwise</field>
             <value name="SPEED">
               <block type="math_number" id="!o?jgY4fvDH~,K08TpG2">
@@ -29,22 +35,6 @@
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="9VSt?y]/cQu(b}E/#rol">
         <field name="PERIPHRAL">GPIOA</field>
-        <next>
-          <block type="motor_init" id="_LH/wmsv*CpeNl{r#3P^">
-            <field name="ID">Motor</field>
-            <field name="IN1">PA2</field>
-            <field name="IN2">PA3</field>
-            <field name="PIN">PA8</field>
-            <next>
-              <block type="motor_init" id="A/XYou(FGa6@b1UGN-h/">
-                <field name="ID">2</field>
-                <field name="IN1">PA4</field>
-                <field name="IN2">PA5</field>
-                <field name="PIN">PA9</field>
-              </block>
-            </next>
-          </block>
-        </next>
       </block>
     </statement>
     <statement name="LOOP_FUNC">
@@ -165,7 +155,7 @@
         </value>
         <next>
           <block type="motor_move" id="t#|vS,_bnyFa;Jx,g|WL">
-            <field name="ID">2</field>
+            <field name="ID">Motor</field>
             <field name="DIR">Anticlockwise</field>
             <value name="SPEED">
               <block type="math_number" id="4:?5:!{xD#lF(2~SBrf`">
@@ -191,7 +181,7 @@
         </value>
         <next>
           <block type="motor_move" id="ft]Q?i?ejtmgAm8Y4_gU">
-            <field name="ID">2</field>
+            <field name="ID">Motor</field>
             <field name="DIR">Stop</field>
             <value name="SPEED">
               <block type="math_number" id="ee:8H#!dx`kT^aG5^.So">
@@ -217,7 +207,7 @@
         </value>
         <next>
           <block type="motor_move" id="@uOsi/+vUa~|`!.NPFva">
-            <field name="ID">2</field>
+            <field name="ID">Motor</field>
             <field name="DIR">Clockwise</field>
             <value name="SPEED">
               <block type="math_number" id="5+pnJBuAWWeJnlM2MUWR">
@@ -243,7 +233,7 @@
         </value>
         <next>
           <block type="motor_move" id="hlyZ{a2~!b(=U1_EWytp">
-            <field name="ID">2</field>
+            <field name="ID">Motor</field>
             <field name="DIR">Stop</field>
             <value name="SPEED">
               <block type="math_number" id="YB^4c:h;dGI|#y6y_.IP">

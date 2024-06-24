@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="arduino_functions" id="G=1bV^wjsaT(uVrJ-~s-" x="6" y="8">
+  <block type="arduino_functions" id="G=1bV^wjsaT(uVrJ-~s-" x="16" y="49">
     <statement name="SETUP_FUNC">
       <block type="time_clockEN" id="ba{c(]83iyt0n~`]pzkN">
         <field name="PERIPHRAL">GPIOA</field>
@@ -7,39 +7,23 @@
           <block type="time_clockEN" id="NH_fO5Ut*5UR%}kLF)Jj">
             <field name="PERIPHRAL">GPIOB</field>
             <next>
-              <block type="lcd_init" id="^jMOTkv[mwTajqFD,G#Q">
+              <block type="lcd_sendString" id="%`Ypdw*BvNtOv{7k6%QI">
                 <field name="ID">Lcd</field>
-                <field name="TYPE">I2C</field>
-                <field name="SIZE">2x16</field>
-                <field name="PORT">GPIOA</field>
-                <field name="d4">PA0</field>
-                <field name="d5">PA0</field>
-                <field name="d6">PA0</field>
-                <field name="d7">PA0</field>
-                <field name="EN">PA0</field>
-                <field name="RS">PA0</field>
-                <field name="I2C">I2C1</field>
-                <field name="ADDRESS">0x4E</field>
+                <value name="DATA">
+                  <block type="text" id="I6iJ5]-!xM{yv-2]T1s8">
+                    <field name="TEXT">Ultrasonic Test!</field>
+                  </block>
+                </value>
                 <next>
-                  <block type="lcd_sendString" id="%`Ypdw*BvNtOv{7k6%QI">
-                    <field name="ID">Lcd</field>
-                    <value name="DATA">
-                      <block type="text" id="I6iJ5]-!xM{yv-2]T1s8">
-                        <field name="TEXT">Ultrasonic Test!</field>
+                  <block type="time_delay" id="Yu[9]HIdy-fXe)S^g0=.">
+                    <value name="DELAY_TIME_MILI">
+                      <block type="math_number" id="V^`G.FAo0b1%+G#KwE,h">
+                        <field name="NUM">1000</field>
                       </block>
                     </value>
                     <next>
-                      <block type="time_delay" id="Yu[9]HIdy-fXe)S^g0=.">
-                        <value name="DELAY_TIME_MILI">
-                          <block type="math_number" id="V^`G.FAo0b1%+G#KwE,h">
-                            <field name="NUM">1000</field>
-                          </block>
-                        </value>
-                        <next>
-                          <block type="lcd_clear" id="7rV6}rQcz}/XV-k#Z~q+">
-                            <field name="ID">Lcd</field>
-                          </block>
-                        </next>
+                      <block type="lcd_clear" id="7rV6}rQcz}/XV-k#Z~q+">
+                        <field name="ID">Lcd</field>
                       </block>
                     </next>
                   </block>
@@ -95,5 +79,19 @@
         </next>
       </block>
     </statement>
+  </block>
+  <block type="lcd_init" id="^jMOTkv[mwTajqFD,G#Q" x="275" y="37">
+    <field name="ID">Lcd</field>
+    <field name="TYPE">I2C</field>
+    <field name="SIZE">2x16</field>
+    <field name="PORT">GPIOA</field>
+    <field name="d4">PA0</field>
+    <field name="d5">PA0</field>
+    <field name="d6">PA0</field>
+    <field name="d7">PA0</field>
+    <field name="EN">PA0</field>
+    <field name="RS">PA0</field>
+    <field name="I2C">I2C1</field>
+    <field name="ADDRESS">0x4E</field>
   </block>
 </xml>

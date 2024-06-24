@@ -37,8 +37,8 @@ Blockly.Blocks['spi_init'] = {
         ]),
         'SPI_MODE'
       );
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     this.appendDummyInput()
       .appendField(Blockly.Msg.SPI_SETUP_MODE)
       .appendField(

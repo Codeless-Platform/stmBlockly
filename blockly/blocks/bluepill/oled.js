@@ -62,8 +62,8 @@ Blockly.Blocks['oled_init'] = {
       .appendField(new Blockly.FieldDropdown([['128x64'],['256x128']]), 'SIZE');
     this.setFieldValue('0x78','ADDRESS');  
     this.setFieldValue('128x64','SIZE');  
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     var ToolTipMsg = Blockly.Msg.OLED_INIT_I2C_TTL.replace('%1', 'PB7').replace(
       '%2',
       'PB6'

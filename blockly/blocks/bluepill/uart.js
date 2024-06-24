@@ -36,8 +36,8 @@ Blockly.Blocks['uart_init'] = {
       )
       .appendField(Blockly.Msg.UART_BPS);
     this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
     var ToolTipMsg = Blockly.Msg.UART_INIT_TTP.replace('%1', 'PA9').replace(
       '%2',
       'PA10'
