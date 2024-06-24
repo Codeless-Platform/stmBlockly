@@ -613,6 +613,12 @@ Blockly.Msg.CLK_FOR = ' Clock';
 Blockly.Msg.CLK_EN_TIP = 'Enables Clock for selected periphral';
 Blockly.Msg.CLK_DIS = 'Disable ';
 Blockly.Msg.CLK_DIS_TIP = 'Disables Clock for selected periphral';
+Blockly.Msg.CLK_INIT = 'Configure RCC clock source ';
+Blockly.Msg.CLK_EXT = 'oscillator type'
+Blockly.Msg.CLK_MUL = 'multiplied by'
+// Blockly.Msg.EXT_DIV = 'divided by '
+Blockly.Msg.CLK_INIT_TTL = 'Initialize the clock source for all buses HSI & HSE = 8MHz '
+
 Blockly.Msg.READANALOG = 'read analog pin#';
 Blockly.Msg.ADC = 'at ';
 Blockly.Msg.READANALOG_TTL = 'reads the ADC Channel on the specified pin';

@@ -138,6 +138,7 @@ Ardublockly.TOOLBOX_XML =
   '        </block>' +
   '      </value>' +
   '    </block>' +
+  '    <block type="time_clkInit"></block>' +
   '    <block type="time_clockEN"></block>' +
   '    <block type="time_clockDisable"></block>' +
   '    <block type="infinite_loop"></block>' +
