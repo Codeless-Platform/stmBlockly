@@ -36,24 +36,7 @@
 #include "string.h"
 
 /* oled settings */
-/* oled width in pixels */
-#ifndef oled_WIDTH1
-#define oled_WIDTH1            128
-#endif
-/* oled height in pixels */
-#ifndef oled_HEIGHT1
-#define oled_HEIGHT1           64
-#endif
-
-/* oled settings */
-/* oled width in pixels */
-#ifndef oled_WIDTH2
-#define oled_WIDTH2            128
-#endif
-/* oled height in pixels */
-#ifndef oled_HEIGHT2
-#define oled_HEIGHT2           64
-#endif
+#define MAX_OLED_NUMBER 		5
 
 /**
  * @brief  oled color enumeration
@@ -72,6 +55,7 @@ typedef struct {
 	uint16 CurrentY;
 	uint8 Inverted;
 	uint8 Initialized;
+	uint8 Buffer[256*128/8];
 } oled_Config;
 
 #define oled_RIGHT_HORIZONTAL_SCROLL              0x26

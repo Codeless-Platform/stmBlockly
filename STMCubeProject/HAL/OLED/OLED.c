@@ -15,9 +15,6 @@
 #define ABS(x)   ((x) > 0 ? (x) : -(x))
 
 /* oled data buffer */
-static uint8 oled_Buffer1[oled_WIDTH1 * oled_HEIGHT1 / 8];
-static uint8 oled_Buffer2[oled_WIDTH2 * oled_HEIGHT2 / 8];
-static uint8* oled_Buffer[] = { oled_Buffer1, oled_Buffer2 };
 
 /* Private variable */
 //static oled_t oled[2];
@@ -168,7 +165,6 @@ uint8 oled_Init(oled_Config *oled) {
 
 void oled_UpdateScreen(oled_Config *oled) {
 	uint8 m;
-	uint8 index = (oled->I2Cx == I2C1) ? 0 : 1;
 	for (m = 0; m < 8; m++) {
 		oled_WRITECOMMAND(0xB0 + m, oled->I2Cx);
 		oled_WRITECOMMAND(0x00, oled->I2Cx);
@@ -176,33 +172,30 @@ void oled_UpdateScreen(oled_Config *oled) {
 
 		/* Write multi data */
 		oled_I2C_WriteMulti(oled->address, 0x40,
-				&oled_Buffer[index][oled->width * m], oled->width, oled);
+				&oled->Buffer[oled->width * m], oled->width, oled);
 	}
 }
 
 void oled_ToggleInvert(oled_Config *oled) {
 	uint16 i;
-	uint8 index = (oled->I2Cx == I2C1) ? 0 : 1;
 	/* Toggle invert */
 	oled->Inverted = !oled->Inverted;
 
 	/* Do memory toggle */
-	for (i = 0; i < sizeof(oled_Buffer[index]); i++) {
-		oled_Buffer[index][i] = ~oled_Buffer[index][i];
+	for (i = 0; i < sizeof(oled->Buffer); i++) {
+		oled->Buffer[i] = ~oled->Buffer[i];
 	}
 }
 
 void oled_Fill(oled_COLOR_t color, oled_Config *oled) {
-	uint8 index = (oled->I2Cx == I2C1) ? 0 : 1;
 	/* Set memory */
-	uint16 oled_Buffer_Size = (index == 0) ? (oled_WIDTH1 * oled_HEIGHT1 / 8) : (oled_WIDTH2 * oled_HEIGHT2 / 8);
-	memset(oled_Buffer[index], (color == oled_COLOR_BLACK) ? 0x00 : 0xFF,
+	uint16 oled_Buffer_Size = oled->width * oled->height /8;
+	memset(oled->Buffer, (color == oled_COLOR_BLACK) ? 0x00 : 0xFF,
 			oled_Buffer_Size);
 
 }
 
 void oled_DrawPixel(uint16 x, uint16 y, oled_COLOR_t color, oled_Config *oled) {
-	uint8 index = (oled->I2Cx == I2C1) ? 0 : 1;
 	if (x >= oled->width || y >= oled->height) {
 		/* Error */
 		return;
@@ -215,9 +208,9 @@ void oled_DrawPixel(uint16 x, uint16 y, oled_COLOR_t color, oled_Config *oled) {
 
 	/* Set color */
 	if (color == oled_COLOR_WHITE) {
-		oled_Buffer[index][x + (y / 8) * oled->width] |= 1 << (y % 8);
+		oled->Buffer[x + (y / 8) * oled->width] |= 1 << (y % 8);
 	} else {
-		oled_Buffer[index][x + (y / 8) * oled->width] &= ~(1 << (y % 8));
+		oled->Buffer[x + (y / 8) * oled->width] &= ~(1 << (y % 8));
 	}
 }
 

@@ -8,7 +8,14 @@ Blockly.Arduino['oled_init'] = function (block) {
   var I2C = block.getFieldValue('I2C');
   var ID = block.getFieldValue('ID') ;
   var address = block.getFieldValue('ADDRESS') ;
-  var pinMainCode = `oled_Config ${ID} = {${I2C},${address},128,64};
+  var size = block.getFieldValue('SIZE') ;
+  var col, row;
+  if(size == '128x64'){
+     col = '128' ;  row = '64';
+  }else if(size == '256x128'){
+     col = '256' ;  row = '128';
+  }
+  var pinMainCode = `oled_Config ${ID} = {${I2C},${address},${col},${row}};
   oled_Init(&${ID});\n`;
   Blockly.Arduino.addMain('oled' + ID, pinMainCode, true);
   return '';
