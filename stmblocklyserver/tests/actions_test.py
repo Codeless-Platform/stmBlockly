@@ -352,44 +352,44 @@ class ActionsTestCase(unittest.TestCase):
     #
     # Tests sketch creation
     #
-    @patch('ardublocklyserver.actions.create_sketch_from_string')
+    @patch('ardublocklyserver.actions.create_main_from_string')
     @patch('ardublocklyserver.actions.load_arduino_cli')
     def test_arduino_ide_send_code_valid(
             self, mock_load_arduino_cli, mock_create_sketch_from_string):
-        """Test a valid input to arduino_ide_send_code function.
+        """Test a valid input to STMCube_ide_send_code function.
 
         Because this function basically bridges two functions also tested here
         we only need to test they've been called correctly.
 
         :param mock_load_arduino_cli: Mock for load_arduino_cli()
         :param mock_create_sketch_from_string: Mock for
-                create_sketch_from_string()
+                create_main_from_string()
         :return: None.
         """
-        actions.arduino_ide_send_code('dummy sketch content here')
+        actions.STMCube_ide_send_code('dummy sketch content here')
 
         self.assertTrue(mock_create_sketch_from_string.called)
         self.assertTrue(mock_load_arduino_cli.called)
 
-    @patch('ardublocklyserver.actions.create_sketch_from_string')
+    @patch('ardublocklyserver.actions.create_main_from_string')
     @patch('ardublocklyserver.actions.load_arduino_cli')
     def test_arduino_ide_send_code_invalid(
             self, mock_load_arduino_cli, mock_create_sketch_from_string):
-        """Test an error occurring inside arduino_ide_send_code function call.
+        """Test an error occurring inside STMCube_ide_send_code function call.
 
         Because this function basically bridges two functions also tested here
         we only need to test the error condiction caused if the
-        create_sketch_from_string() function fails.
+        create_main_from_string() function fails.
 
         :param mock_load_arduino_cli: Mock for load_arduino_cli()
         :param mock_create_sketch_from_string: Mock for
-                create_sketch_from_string()
+                create_main_from_string()
         :return: None.
         """
         mock_create_sketch_from_string.return_value = None
 
         success, ide_mode, std_out, err_out, exit_code = \
-            actions.arduino_ide_send_code('dummy sketch content here')
+            actions.STMCube_ide_send_code('dummy sketch content here')
 
         self.assertTrue(mock_create_sketch_from_string.called)
         self.assertFalse(mock_load_arduino_cli.called)
@@ -401,7 +401,7 @@ class ActionsTestCase(unittest.TestCase):
 
     @patch.object(actions.ServerCompilerSettings, '__new__')
     def test_create_sketch_from_string_file(self, mock_settings):
-        """Test the create_sketch_from_string creates the file correctly.
+        """Test the create_main_from_string creates the file correctly.
 
         :param mock_settings: Mock for ServerCompilerSettings class.
         :return: None.
@@ -413,14 +413,14 @@ class ActionsTestCase(unittest.TestCase):
                 self.temp_folder, sketch_name, sketch_name + '.ino')
         self.assertFalse(os.path.exists(sketch_path))
 
-        returned_path = actions.create_sketch_from_string('')
+        returned_path = actions.create_main_from_string('')
 
         self.assertEqual(returned_path, sketch_path)
         self.assertTrue(os.path.exists(returned_path))
 
     @patch.object(actions.ServerCompilerSettings, '__new__')
     def test_create_sketch_from_string_content(self, mock_settings):
-        """Test the create_sketch_from_string creates the file correctly.
+        """Test the create_main_from_string creates the file correctly.
 
         :param mock_settings: Mock for ServerCompilerSettings class.
         :return: None.
@@ -429,7 +429,7 @@ class ActionsTestCase(unittest.TestCase):
         mock_settings.return_value.sketch_dir = self.temp_folder
         mock_settings.return_value.sketch_name = 'test_sketch'
 
-        returned_path = actions.create_sketch_from_string(sketch_code)
+        returned_path = actions.create_main_from_string(sketch_code)
 
         with codecs.open(returned_path, 'r', encoding='utf-8') as sketch:
             self.assertEqual(sketch.read(), sketch_code)
