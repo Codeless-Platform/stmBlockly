@@ -21,6 +21,6 @@ sys.path.insert(0, local_packages_path)
 # Follows Semantic Versioning 2.0.0 http://semver.org/spec/v2.0.0.html
 __version__ = '0.1.3-a'
 
-__author__ = 'carlosperate'
-__copyright__ = 'Copyright 2017, carlosperate https://github.com/carlosperate/'
+__author__ = 'alaa wahba'
+__copyright__ = 'Copyright 2024, alaa wahba https://github.com/Codeless-Platform/stmBlockly'
 __license__ = 'Apache License, Version 2.0'
