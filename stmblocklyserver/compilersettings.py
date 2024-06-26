@@ -30,9 +30,10 @@ class ServerCompilerSettings(object):
     point to the local Arduino IDE and sketch are stored here.
     The public settings to set and get are:
         compiler_dir
+        programmer_dir
         sketch_name
         sketch_dir
-        arduino_board
+        STM32_board
         serial_port
         load_ide_option
     """
@@ -48,7 +49,7 @@ class ServerCompilerSettings(object):
     # TODO: This content will be moved from here and integrated completely
     #       into 'blockly\generators\arduino\boards.js', which should then
     #       send the selected flag to be saved as a single value
-    __arduino_types = {
+    __STM32_types = {
                        'stm32F103C6': 'stm32duino:STM32F1:genericSTM32F103C',
                        'stm32F103C8': 'stm32duino:STM32F1:genericSTM32F103C',
                       }
@@ -57,7 +58,9 @@ class ServerCompilerSettings(object):
     __serial_ports = {'port0': 'COM1'}
 
     # Class dictionary to define IDE load options, static content
-    __ide_load_options = {'open': 'Open sketch in IDE',
+    __ide_load_options = {'open': 'Open project in IDE',
+                           'verify': 'Compile project',
+                          'upload': 'Compile and Upload project'
                           }
 
     #
@@ -83,6 +86,7 @@ class ServerCompilerSettings(object):
         # Create variables to be used with accessors
         self.__load_ide_option = None
         self.__compiler_dir = None
+        self.__programmer_dir = None
         self.__sketch_dir = None
         self.__sketch_name = None
         self.__arduino_board_key = None
@@ -159,6 +163,60 @@ class ServerCompilerSettings(object):
             print('\t%s' % new_compiler_dir)
             self.set_compiler_dir_default()
             print('Default compiler path set:\n\t%s' % self.__compiler_dir)
+   
+    #
+    # Programmer Directory accessors
+    #
+    def get_programmer_dir(self):
+        return self.__programmer_dir
+
+    def set_programmer_dir(self, new_programmer_dir):
+        """Set the programmer dir, must a valid file or directory."""
+        # Mac only check, as apps are packaged directories
+        if sys.platform == 'darwin':
+            # Arduino version >1.6.0 has changed the binary name, so check both
+            bundle = os.path.join(new_programmer_dir, 'Contents', 'MacOS')
+            if os.path.isfile(os.path.join(bundle, 'JavaApplicationStub')):
+                new_programmer_dir = os.path.join(bundle, 'JavaApplicationStub')
+                print('Compiler file in OS X located within the app bundle.')
+            elif os.path.isfile(os.path.join(bundle, 'Arduino')):
+                new_programmer_dir = os.path.join(bundle, 'Arduino')
+                print('Compiler file in OS X located within the app bundle.')
+            else:
+                print('Could not find Arduino executable in OS X app bundle.')
+
+        # Check directory
+        if os.path.isfile(new_programmer_dir):
+            self.__programmer_dir = new_programmer_dir
+            print('Compiler directory set to:\n\t%s' % self.__programmer_dir)
+            self.save_settings()
+        else:
+            print('The provided programmer path is not valid !!!'
+                  '\n\t %s' % new_programmer_dir)
+            if self.__programmer_dir:
+                print('Previous programmer path maintained:\n\t%s' %
+                      self.__programmer_dir)
+            else:
+                self.set_compiler_dir_default()
+                print('Default programmer path set:\n\t%s' %
+                      self.__programmer_dir)
+                self.save_settings()
+
+    programmer_dir = property(get_programmer_dir, set_programmer_dir)
+
+    def set_programmer_dir_default(self):
+        self.__programmer_dir = None
+
+    def set_programmer_dir_from_file(self, new_programmer_dir):
+        """Set the programmer location, must be full path to an existing file."""
+        if os.path.exists(new_programmer_dir):
+            self.__programmer_dir = new_programmer_dir
+        else:
+            print('The provided programmer path in the settings file is not '
+                  'valid:')
+            print('\t%s' % new_programmer_dir)
+            self.set_programmer_dir_default()
+            print('Default programmer path set:\n\t%s' % self.__programmer_dir)
 
     #
     # Sketch name accessors
@@ -252,8 +310,8 @@ class ServerCompilerSettings(object):
         return self.__arduino_board_key
 
     def set_arduino_board(self, new_board):
-        if new_board in self.__arduino_types:
-            self.__arduino_board_value = self.__arduino_types[new_board]
+        if new_board in self.__STM32_types:
+            self.__arduino_board_value = self.__STM32_types[new_board]
             self.__arduino_board_key = new_board
             print('Arduino Board set to:\n\t%s' % self.__arduino_board_key)
             self.save_settings()
@@ -269,16 +327,16 @@ class ServerCompilerSettings(object):
                       self.__arduino_board_key)
                 self.save_settings()
 
-    arduino_board = property(get_arduino_board, set_arduino_board)
+    STM32_board = property(get_arduino_board, set_arduino_board)
 
     def set_arduino_board_default(self):
-        self.__arduino_board_key = sorted(self.__arduino_types.keys())[0]
+        self.__arduino_board_key = sorted(self.__STM32_types.keys())[0]
         self.__arduino_board_value = \
-            self.__arduino_types[self.__arduino_board_key]
+            self.__STM32_types[self.__arduino_board_key]
 
     def set_arduino_board_from_file(self, new_board):
-        if new_board in self.__arduino_types:
-            self.__arduino_board_value = self.__arduino_types[new_board]
+        if new_board in self.__STM32_types:
+            self.__arduino_board_value = self.__STM32_types[new_board]
             self.__arduino_board_key = new_board
         else:
             print('Settings file Arduino Board does not exist:\n\t%s'
@@ -291,7 +349,7 @@ class ServerCompilerSettings(object):
         return self.__arduino_board_value
 
     def get_arduino_board_types(self):
-        return [key for key in self.__arduino_types]
+        return [key for key in self.__STM32_types]
 
     #
     # Serial Port and lists accessors
@@ -306,7 +364,7 @@ class ServerCompilerSettings(object):
         """
         self.populate_serial_port_list()
         if not self.__serial_ports:
-            print('There are no available Serial Ports !!!')
+            # print('There are no available Serial Ports !!!')
             self.__serial_port_key = None
             self.__serial_port_value = None
             self.save_settings()
@@ -339,7 +397,7 @@ class ServerCompilerSettings(object):
             # Now we check if the Port is still available
             self.populate_serial_port_list()
             if not self.__serial_ports:
-                print('There are no available Serial Ports !!!')
+                # print('There are no available Serial Ports !!!')
                 self.__serial_port_key = None
                 self.__serial_port_value = None
             elif self.__serial_port_value not in self.__serial_ports.values():
@@ -393,11 +451,11 @@ class ServerCompilerSettings(object):
                     self.__serial_port_key = key
                     self.__serial_port_value = value
                     set_default = False
-        if set_default:
-            print('Settings file Serial Port is not currently available:'
-                  '\n\t%s' % new_port_value)
-            self.set_serial_port_default()
-            print('Default Serial Port set:\n\t%s' % self.__serial_port_value)
+        # if set_default:
+            # print('Settings file Serial Port is not currently available:'
+            #       '\n\t%s' % new_port_value)
+            # self.set_serial_port_default()
+            # print('Default Serial Port set:\n\t%s' % self.__serial_port_value)
 
     def get_serial_port_flag(self):
         """Check available Serial Ports and populates the port dictionary.
@@ -409,7 +467,7 @@ class ServerCompilerSettings(object):
         """
         self.populate_serial_port_list()
         if not self.__serial_ports:
-            print('There are no available Serial Ports !!!')
+            # print('There are no available Serial Ports !!!')
             self.__serial_port_key = None
             self.__serial_port_value = None
             self.save_settings()
@@ -493,6 +551,7 @@ class ServerCompilerSettings(object):
     def set_default_settings(self):
         self.set_load_ide_default()
         self.set_compiler_dir_default()
+        self.set_programmer_dir_default()
         self.set_sketch_dir_default()
         self.set_sketch_name_default()
         self.set_serial_port_default()
@@ -505,25 +564,27 @@ class ServerCompilerSettings(object):
         """Save all the settings into a configuration file."""
         settings_parser = configparser.ConfigParser()
         # IDE Section
-        settings_parser.add_section('Arduino_IDE')
+        settings_parser.add_section('STMCube_IDE')
         settings_parser.set(
-            'Arduino_IDE', 'arduino_exec_path', '%s' % self.compiler_dir)
+            'STMCube_IDE', 'IDE_Path', '%s' % self.compiler_dir)
         settings_parser.set(
-            'Arduino_IDE', 'arduino_board', '%s' % self.arduino_board)
+            'STMCube_IDE', 'Programmer_Path', '%s' % self.programmer_dir)
         settings_parser.set(
-            'Arduino_IDE',
-            'arduino_serial_port',
+            'STMCube_IDE', 'STM32_board', '%s' % self.STM32_board)
+        settings_parser.set(
+            'STMCube_IDE',
+            'serial_port',
             '%s' % self.__serial_port_value)
         # Sketch section
-        settings_parser.add_section('Arduino_Sketch')
+        settings_parser.add_section('Project')
         settings_parser.set(
-            'Arduino_Sketch', 'sketch_name', '%s' % self.sketch_name)
+            'Project', 'file_name', '%s' % self.sketch_name)
         settings_parser.set(
-            'Arduino_Sketch', 'sketch_directory', '%s' % self.sketch_dir)
+            'Project', 'project_directory', '%s' % self.sketch_dir)
         # Ardublockly section
-        settings_parser.add_section('Ardublockly')
+        settings_parser.add_section('StmBlockly')
         settings_parser.set(
-            'Ardublockly', 'ide_load', '%s' % self.load_ide_option)
+            'StmBlockly', 'ide_load', '%s' % self.load_ide_option)
 
         # Set the path and create/overwrite the file
         try:
@@ -545,12 +606,13 @@ class ServerCompilerSettings(object):
         """
         settings_dict = self.get_settings_file_data()
         if settings_dict:
-            self.set_compiler_dir_from_file(settings_dict['arduino_exec_path'])
-            self.set_arduino_board_from_file(settings_dict['arduino_board'])
+            self.set_compiler_dir_from_file(settings_dict['IDE_Path'])
+            self.set_programmer_dir_from_file(settings_dict['Programmer_Path'])
+            self.set_arduino_board_from_file(settings_dict['STM32_board'])
             self.set_serial_port_from_file(
-                    settings_dict['arduino_serial_port'])
-            self.set_sketch_name_from_file(settings_dict['sketch_name'])
-            self.set_sketch_dir_from_file(settings_dict['sketch_directory'])
+                    settings_dict['serial_port'])
+            self.set_sketch_name_from_file(settings_dict['file_name'])
+            self.set_sketch_dir_from_file(settings_dict['project_directory'])
             self.set_load_ide_from_file(settings_dict['ide_load'])
         else:
             print('Settings will be set to the default values.')
@@ -559,11 +621,11 @@ class ServerCompilerSettings(object):
         # Printing the settings to be able to easily spot issues at load
         print('Final settings loaded:')
         print('\tCompiler directory: %s' % self.__compiler_dir)
-        print('\tArduino Board Key: %s' % self.__arduino_board_key)
-        print('\tArduino Board Value: %s' % self.__arduino_board_value)
-        print('\tSerial Port Value: %s' % self.__serial_port_value)
-        print('\tSketch Name: %s' % self.__sketch_name)
-        print('\tSketch Directory: %s' % self.__sketch_dir)
+        print('\tProgrammer directory: %s' % self.__programmer_dir)
+        print('\STM32 Board Key: %s' % self.__arduino_board_key)
+        print('\STM32 Board Value: %s' % self.__arduino_board_value)
+        # print('\tSerial Port Value: %s' % self.__serial_port_value)
+        print('\tProject Directory: %s' % self.__sketch_dir)
         print('\tLoad IDE option: %s' % self.__load_ide_option)
 
         # The read X_from_file() functions do not save new settings and neither
@@ -581,18 +643,20 @@ class ServerCompilerSettings(object):
         try:
             with codecs.open(self.__settings_path, 'r', 'utf8') as config_file:
                 settings_parser.read_file(config_file)
-            settings_dict['arduino_exec_path'] =\
-                settings_parser.get('Arduino_IDE', 'arduino_exec_path')
-            settings_dict['arduino_board'] =\
-                settings_parser.get('Arduino_IDE', 'arduino_board')
-            settings_dict['arduino_serial_port'] =\
-                settings_parser.get('Arduino_IDE', 'arduino_serial_port')
-            settings_dict['sketch_name'] =\
-                settings_parser.get('Arduino_Sketch', 'sketch_name')
-            settings_dict['sketch_directory'] =\
-                settings_parser.get('Arduino_Sketch', 'sketch_directory')
+            settings_dict['IDE_Path'] =\
+                settings_parser.get('STMCube_IDE', 'IDE_Path')
+            settings_dict['Programmer_Path'] =\
+                settings_parser.get('STMCube_IDE', 'Programmer_Path')
+            settings_dict['STM32_board'] =\
+                settings_parser.get('STMCube_IDE', 'STM32_board')
+            settings_dict['serial_port'] =\
+                settings_parser.get('STMCube_IDE', 'serial_port')
+            settings_dict['file_name'] =\
+                settings_parser.get('Project', 'file_name')
+            settings_dict['project_directory'] =\
+                settings_parser.get('Project', 'project_directory')
             settings_dict['ide_load'] =\
-                settings_parser.get('Ardublockly', 'ide_load')
+                settings_parser.get('StmBlockly', 'ide_load')
             print('Settings loaded from:\n\t%s' % self.__settings_path)
         except Exception:
             print('Settings file corrupted or not found in:\n\t%s'
