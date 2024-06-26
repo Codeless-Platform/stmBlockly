@@ -50,7 +50,7 @@ uint32 RCC_getSYSCLK_Freq(void) {
 		//todo need to calculate  it //HSE User Should Specify it
 		sysClk = HSE;
 		break;
-	case 2:
+	case 2:{
 		uint8 pll_src = (RCC->CFGR >> 16) & 1 ;
 		if(pll_src){ // HSE
 			 sysClk = GET(RCC->CFGR,17) == 1 ?( HSE /2) : HSE ; //check if HSE is divided by 2
@@ -59,7 +59,7 @@ uint32 RCC_getSYSCLK_Freq(void) {
 		}
 		uint16 pll_mul = (RCC->CFGR >> 18) & 0b1111;
 		sysClk = sysClk * (pll_mul+2);
-		break;
+		}break;
 
 	}
 	return sysClk;
