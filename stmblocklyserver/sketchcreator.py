@@ -106,55 +106,6 @@ def create_sketch(sketch_dir, sketch_name, sketch_code):
         return None
 
     return sketch_path
-    """Create an Arduino Sketch file into the given directory.
-    
-    :param sketch_dir: Location for the sketch.
-    :param sketch_name: Optional name for the sketch.
-    :param sketch_code: Optional unicode string with the code for the sketch.
-    :return: Unicode string with full path to the sketch file
-             Return None indicates an error has occurred.
-    """
-    # Check the code first, to not create sketch file if invalid
-    if not isinstance(sketch_code, six.string_types) or \
-            not isinstance(sketch_name, six.string_types):
-        print('The project name or code given is not a valid string !!!')
-        return None
-
-    # Create the sketch path
-    sketch_path = build_sketch_path(sketch_dir, sketch_name)
-    base_path = str(Path(__file__).parent)
-    process = None  # Initialize process outside try block
-    
-    try:
-        print('basepathhh: ', base_path)
-        process = subprocess.Popen(['python', os.path.join(base_path,"script.py"), sketch_dir], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate(timeout=30)  # Set a timeout for process completion
-        
-        if process.returncode != 0:  # Check if the process was successful
-            print('Failed to execute script.py: %s' % stderr.decode())
-            return None
-    except subprocess.TimeoutExpired:
-        print("Script execution exceeded the time limit and will be terminated.")
-        if process:
-            process.terminate()
-            process.wait()  # Wait for the process to clean up properly
-    except Exception as e:
-        print('An error occurred: %s' % e)
-        return None
-    finally:
-        # Explicitly terminate the process if still running
-        if process and process.poll() is None:  # Check if process is still running
-            process.terminate()  # Use terminate as a softer option than kill
-            process.wait()  # Wait for the process to clean up properly
-
-    try:
-        with codecs.open(sketch_path, 'wb+', encoding='utf-8') as sketch_f:
-            sketch_f.write(sketch_code)
-    except Exception as e:
-        print('Error: %s project file could not be created !!!' % e)
-        return None
-
-    return sketch_path
 
 def build_sketch_path(sketch_dir, sketch_name):
     """Create the Arduino Sketch folder required for a valid Sketch.
@@ -166,13 +117,6 @@ def build_sketch_path(sketch_dir, sketch_name):
     """
     sketch_path = None
     if os.path.isdir(sketch_dir):
-        # try:
-        #     sketch_path = os.path.join(sketch_dir, sketch_name)
-        # except (TypeError, AttributeError) as e:
-        #     print('Error: %s\project Name could not be processed.' % e)
-        # else:
-        #     if not os.path.exists(sketch_path):
-        #         os.makedirs(sketch_path)
             sketch_path = os.path.join(sketch_dir,'Src', sketch_name + '.c')
     else:
         print('The sketch directory "%s" does not exists !!!' % sketch_dir)
