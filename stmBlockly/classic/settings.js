@@ -14,6 +14,8 @@ window.addEventListener('load', function() {
   // Populate the form data
   ArdublocklyServer.requestCompilerLocation(
       ArduinoSettings.setCompilerLocationHtml);
+  ArdublocklyServer.requestProgrammerLocation(
+      ArduinoSettings.setProgrammerLocationHtml);
   ArdublocklyServer.requestSketchLocation(
       ArduinoSettings.setSketchLocationHtml);
   ArdublocklyServer.requestArduinoBoards(
@@ -25,6 +27,10 @@ window.addEventListener('load', function() {
   ArduinoSettings.bindClick_('settings_compiler_location', function() {
     ArdublocklyServer.requestNewCompilerLocation(
         ArduinoSettings.setCompilerLocationHtml);
+  });
+  ArduinoSettings.bindClick_('settings_programmer_location', function() {
+    ArdublocklyServer.requestNewProgrammerLocation(
+        ArduinoSettings.setProgrammerLocationHtml);
   });
   ArduinoSettings.bindClick_('settings_sketch_location', function() {
     ArdublocklyServer.requestNewSketchLocation(
@@ -53,7 +59,19 @@ ArduinoSettings.setCompilerLocationHtml = function(jsonResponse) {
     }
   }
 };
-
+/**
+ * Sets the compiler location form data retrieve from an updated element.
+ * @param {element} jsonResponse JSON data coming back from the server.
+ */
+ArduinoSettings.setProgrammerLocationHtml = function(jsonResponse) {
+  if (jsonResponse != null) {
+    var newEl = ArdublocklyServer.createElementFromJson(jsonResponse);
+    var progLocIp = document.getElementById('settings_programmer_location');
+    if (progLocIp != null) {
+      progLocIp.value = newEl.value;
+    }
+  }
+};
 /**
  * Sets the sketch location form data retrieve from an updated element.
  * @param {element} jsonResponse JSON data coming back from the server.

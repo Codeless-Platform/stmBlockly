@@ -169,6 +169,9 @@ def handler_settings_get_all():
             'settings': [{
                 'settings_type': 'compiler',
                 'selected': actions.get_compiler_path()
+            },{
+                'settings_type': 'programmer',
+                'selected': actions.get_programmer_path()
             }, {
                 'settings_type': 'sketch',
                 'selected': actions.get_sketch_path()
@@ -210,6 +213,9 @@ def handler_settings_get_individual(name):
     if name == 'compiler':
         response_dict.update({
             'selected': actions.get_compiler_path()})
+    elif name == 'programmer':
+        response_dict.update({
+            'selected': actions.get_programmer_path()})    
     elif name == 'sketch':
         response_dict.update({
             'selected': actions.get_sketch_path()})
@@ -314,6 +320,8 @@ def handler_settings_update_individual(name):
             set_value = None
             if name == 'compiler':
                 set_value = actions.set_compiler_path(new_value)
+            if name == 'programmer':
+                set_value = actions.set_programmer_path(new_value)    
             elif name == 'sketch':
                 set_value = actions.set_sketch_path(new_value)
             elif name == 'board':
@@ -401,11 +409,11 @@ def handler_code_post():
     else:
         try:
             success, ide_mode, std_out, err_out, exit_code = \
-                actions.arduino_ide_send_code(sketch_code)
+                actions.STMCube_ide_send_code(sketch_code)
         except Exception as e:
             exit_code = 52
             err_out += 'Unexpected server error.'
-            print('Error: Exception in arduino_ide_send_code:\n%s' % str(e))
+            print('Error: Exception in STMCube_ide_send_code:\n%s' % str(e))
 
     response_dict.update({'success': success,
                           'ide_mode': ide_mode,

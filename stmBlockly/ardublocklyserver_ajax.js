@@ -235,6 +235,25 @@ ArdublocklyServer.setCompilerLocation = function(new_path, callback) {
 };
 
 /**
+ * Gets the current programmer location from the ArdublocklyServer settings.
+ * @param {!function} callback Callback function for the server request, must
+ *     have one argument to receive the JSON response.
+ */
+ArdublocklyServer.requestProgrammerLocation = function(callback) {
+  ArdublocklyServer.getJson('/settings/programmer', callback);
+};
+
+/**
+ * Sends a string to the Ardublockly Server for a the Arduino IDE executable
+ * path.
+ * @param {!function} callback Callback function for the server request, must
+ *     have one argument to receive the JSON response.
+ */
+ArdublocklyServer.setProgrammerLocation = function(new_path, callback) {
+  ArdublocklyServer.putJson(
+    '/settings/programmer', {"new_value": new_path}, callback);
+};
+/**
  * Gets the current Sketch location from the Ardublockly Server settings.
  * @param {!function} callback Callback function for the server request, must
  *     have one argument to receive the JSON response.

@@ -13,8 +13,12 @@
   <div class="settings_wrapper">
     <h1>Settings</h1>
     <div class="settings_div">
-      <label>Compiler Location:</label> <br>
+      <label>IDE Location:</label> <br>
       <input type="text" id="settings_compiler_location" readonly>
+    </div>
+    <div class="settings_div">
+      <label>Programmer Location:</label> <br>
+      <input type="text" id="settings_programmer_location" readonly>
     </div>
     <div class="settings_div">
       <label>Project Folder:</label> <br>
@@ -23,15 +27,16 @@
     <div class="settings_div">
       <label>STM Board:</label> <br>
       <select name="settings_board" id="board">
-        <option value="STM32F103C6">STM32F103C6</option>
-        <option value="STM32F103C8">STM32F103C8</option>
+        <option value="STM32F103C6">STM32F103C8</option>
+        <option value="STM32F103C8">STM32F103C6</option>
       </select>
     </div>
     <div class="settings_div">
       <label>IDE:</label> <br>
       <select name="settings_ide" id="ide_settings">
-        <option value="ide_upload">Compile</option>
-        <option value="ide_only">Load</option>
+        <option value="ide_upload">Upload</option>
+        <option value="ide_only">Open</option>
+        <option value="ide_verify">verify</option>
       </select>
     </div>
   </div>

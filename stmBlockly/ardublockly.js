@@ -126,6 +126,9 @@ Ardublockly.bindActionFunctions = function() {
   settingsPathInputListeners('settings_sketch_location',
                              ArdublocklyServer.setSketchLocation,
                              Ardublockly.setSketchLocationHtml);
+  settingsPathInputListeners('settings_programmer_location',
+                              ArdublocklyServer.setProgrammerLocation,
+                              Ardublockly.setProgrammerLocationHtml);
 };
 
 /** Sets the Ardublockly server IDE setting to upload and sends the code. */
@@ -351,6 +354,10 @@ Ardublockly.openSettings = function() {
     Ardublockly.setCompilerLocationHtml(
         ArdublocklyServer.jsonToHtmlTextInput(jsonObj));
   });
+  ArdublocklyServer.requestProgrammerLocation(function(jsonObj) {
+    Ardublockly.setProgrammerLocationHtml(
+        ArdublocklyServer.jsonToHtmlTextInput(jsonObj));
+  });
   ArdublocklyServer.requestSketchLocation(function(jsonObj) {
     Ardublockly.setSketchLocationHtml(
         ArdublocklyServer.jsonToHtmlTextInput(jsonObj));
@@ -381,11 +388,21 @@ Ardublockly.setCompilerLocationHtml = function(newEl) {
   var compLocIp = document.getElementById('settings_compiler_location');
   if (compLocIp != null) {
     compLocIp.value = newEl.value || compLocIp.value ||
-        'Please enter the location of the Arduino IDE executable';
+        'Please enter the location of the STM Cube IDE executable';
     compLocIp.style.cssText = newEl.style.cssText;
   }
 };
 
+Ardublockly.setProgrammerLocationHtml = function(newEl) {
+  if (newEl === null) return Ardublockly.openNotConnectedModal();
+
+  var compLocIp = document.getElementById('settings_programmer_location');
+  if (compLocIp != null) {
+    compLocIp.value = newEl.value || compLocIp.value ||
+        'Please enter the location of the STM Cube programmer executable';
+    compLocIp.style.cssText = newEl.style.cssText;
+  }
+};
 /**
  * Sets the sketch location form data retrieve from an updated element.
  * @param {element} jsonResponse JSON data coming back from the server.
