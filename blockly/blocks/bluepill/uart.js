@@ -19,9 +19,24 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 Blockly.Blocks.uart.HUE = 160;
-
+function getCurrentValuePresentUart(block,id){
+  if (!block.currentValuePresent) {
+    var field = block.getField('UART_ID');
+    var fieldValue = field.getValue();
+    var dataArray = Blockly.Arduino.Boards.selected.uart;
+    field.menuGenerator_ = dataArray;
+    for (var i = 0; i < dataArray.length; i++) {
+      if (fieldValue == dataArray[i][1]) {
+        block.currentValuePresent = true;
+      }}
+  }
+  if(block.currentValuePresent) {
+    block.setWarningText(null, id);
+  } 
+}
 Blockly.Blocks['uart_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var uart_instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.uart
     );
@@ -72,12 +87,7 @@ Blockly.Blocks['uart_init'] = {
     return this.getFieldValue('UART_ID');
   },
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart');
-    // Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-    //   this,
-    //   'SPEED',
-    //   'uartSpeed'
-    // );
+   this.currentValuePresent= Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart','UART_INIT');
   },
   onchange: function (event) {
     if (
@@ -87,6 +97,10 @@ Blockly.Blocks['uart_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+    getCurrentValuePresentUart(this,'UART_INIT')
+  },
+  getDuplicateBlock: function(){
     var thisInstanceName = this.getFieldValue('UART_ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -110,11 +124,12 @@ Blockly.Blocks['uart_init'] = {
     } else {
       this.setWarningText(null, 'duplicateUart');
     }
-  },
+  }
 };
 
 Blockly.Blocks['uart_write'] = {
   init: function () {
+    this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()
       .appendField(
@@ -142,7 +157,10 @@ Blockly.Blocks['uart_write'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-
+    this.isInitBlockPresent()
+    getCurrentValuePresentUart(this,'UART_WRITE')
+  },
+  isInitBlockPresent: function () {
     // Get the Serial instance from this block
     var thisInstanceName = this.getFieldValue('UART_ID');
     // Iterate through top level blocks to find setup instance for the serial id
@@ -173,12 +191,13 @@ Blockly.Blocks['uart_write'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart');
+    this.currentValuePresent= Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart','UART_WRITE');
   },
 };
 
 Blockly.Blocks['uart_recieve'] = {
   init: function () {
+    this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.UART_READ)
@@ -206,7 +225,10 @@ Blockly.Blocks['uart_recieve'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-
+    this.isInitBlockPresent();
+    getCurrentValuePresentUart(this,'UART_RECIEVE')
+  },
+  isInitBlockPresent: function () {
     // Get the Serial instance from this block
     var thisInstanceName = this.getFieldValue('UART_ID');
     // Iterate through top level blocks to find setup instance for the serial id
@@ -237,6 +259,10 @@ Blockly.Blocks['uart_recieve'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'UART_ID', 'uart');
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      'UART_ID',
+      'uart','UART_RECIEVE'
+    );
   },
 };

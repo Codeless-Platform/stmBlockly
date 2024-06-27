@@ -5,6 +5,7 @@ goog.provide('Blockly.Blocks.oled');
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
+//finds the oled init block if exists 
 const onChangeOled = function (event, obj, id) {
   if (
     !obj.workspace ||
@@ -40,6 +41,7 @@ const onChangeOled = function (event, obj, id) {
 Blockly.Blocks.oled.HUE = 120;
 Blockly.Blocks['oled_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'OLED',
       Blockly.Msg.OLED_DEFAULT_NAME,
@@ -91,7 +93,7 @@ Blockly.Blocks['oled_init'] = {
     return this.getFieldValue('ID');
   },
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
+    this.currentValuePresent =Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c',this.getFieldValue('ID'));
   },
   onchange: function (event) {
     if (
@@ -101,6 +103,10 @@ Blockly.Blocks['oled_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock();
+    this.getCurrentValuePresent();
+  },
+  getDuplicateBlock: function()  {
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -116,7 +122,6 @@ Blockly.Blocks['oled_init'] = {
         }
       }
     }
-    console.log(count);
     if (count > 0) {
       this.setWarningText(
         'this block is duplicated, Create new instance or delete duplicates.',
@@ -125,6 +130,23 @@ Blockly.Blocks['oled_init'] = {
     } else {
       this.setWarningText(null, 'duplicateOled');
     }
+  },
+   // checks if the I2C value is valid and removes the warning
+   getCurrentValuePresent: function(){
+    if (!this.currentValuePresent) {
+      var field = this.getField('I2C');
+      var fieldValue = field.getValue();
+      var dataArray = Blockly.Arduino.Boards.selected.i2c;
+      field.menuGenerator_ = dataArray;
+      for (var i = 0; i < dataArray.length; i++) {
+        if (fieldValue == dataArray[i][1]) {
+          this.currentValuePresent = true;
+        }}
+    }
+    if(this.currentValuePresent) {
+      var id = this.getFieldValue('ID')
+      this.setWarningText(null,id);
+    } 
   },
 };
 

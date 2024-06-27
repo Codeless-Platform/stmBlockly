@@ -314,7 +314,10 @@ Blockly.Arduino.Boards.profiles.stm32f103c8 = {
     ['64 (1.125MHz)', 'SPI_CLOCK_DIV64'],
     ['128 (562.5KHz)', 'SPI_CLOCK_DIV128'],
   ],
-  i2c: [['I2C1', 'I2C1'],['I2C2','I2C2']],
+  i2c: [
+    ['I2C1', 'I2C1'],
+    ['I2C2', 'I2C2'],
+  ],
   i2cSpeed: [
     ['100kHz', '100000L'],
     ['400kHz', '400000L'],
@@ -405,7 +408,7 @@ Blockly.Arduino.Boards.changeBoard = function (workspace, newBoard) {
 Blockly.Arduino.Boards.refreshBlockFieldDropdown = function (
   block,
   fieldName,
-  boardKey
+  boardKey,id
 ) {
   var field = block.getField(fieldName);
   var fieldValue = field.getValue();
@@ -421,10 +424,8 @@ Blockly.Arduino.Boards.refreshBlockFieldDropdown = function (
   // If the old value is not present any more, add a warning to the block.
   if (!currentValuePresent) {
     block.setWarningText(
-      'The old ' + fieldValue + ' is no longer available.',
-      'bPin'
+      'The old ' + fieldValue + ' is no longer available.',id 
     );
-  } else {
-    block.setWarningText(null, 'bPin');
-  }
+  } 
+  return(currentValuePresent)
 };

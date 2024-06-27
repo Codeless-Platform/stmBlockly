@@ -101,20 +101,13 @@ Blockly.Blocks['keypad_init'] = {
   getKeypadInstance: function () {
     return this.getFieldValue('ID');
   },
-  updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-      this,
-      'PORT',
-      'full_ports'
-    );
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R0', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R1', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R2', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'R3', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C0', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C1', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'C2', 'digitalPins');
-  },
+  // updateFields: function () {
+  //   Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+  //     this,
+  //     'PORT',
+  //     'full_ports'
+  //   );
+  // },
   onchange: function (event) {
     if (
       !this.workspace ||
@@ -123,6 +116,9 @@ Blockly.Blocks['keypad_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+  },
+  getDuplicateBlock: function(){
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;

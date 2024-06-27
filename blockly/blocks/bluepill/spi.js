@@ -17,9 +17,24 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.spi.HUE = 170;
-
+function getCurrentValuePresentSPI(block,id){
+  if (!block.currentValuePresent) {
+    var field = block.getField('SPI_ID');
+    var fieldValue = field.getValue();
+    var dataArray = Blockly.Arduino.Boards.selected.spi;
+    field.menuGenerator_ = dataArray;
+    for (var i = 0; i < dataArray.length; i++) {
+      if (fieldValue == dataArray[i][1]) {
+        block.currentValuePresent = true;
+      }}
+  }
+  if(block.currentValuePresent) {
+    block.setWarningText(null, id);
+  } 
+}
 Blockly.Blocks['spi_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var SPI_instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.spi
     );
@@ -87,8 +102,7 @@ Blockly.Blocks['spi_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
+    this.currentValuePresent =Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi','SPI_INIT');
   },
   onchange: function (event) {
     if (
@@ -98,6 +112,10 @@ Blockly.Blocks['spi_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+    getCurrentValuePresentSPI(this,'SPI_INIT')
+  },
+  getDuplicateBlock: function () {
     var thisInstanceName = this.getFieldValue('SPI_ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -130,6 +148,7 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   init: function () {
+    this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.spi.HUE);
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.spi),
@@ -157,7 +176,10 @@ Blockly.Blocks['spi_RXTX'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-
+    this.isInitBlockPresent()
+    getCurrentValuePresentSPI(this,'SPI_TXRX')
+  },
+  isInitBlockPresent: function(){
     // Get the Serial instance from this block
     var thisInstanceName = this.getFieldValue('SPI_ID');
 
@@ -196,6 +218,6 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi');
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi','SPI_TXRX');
   },
 };

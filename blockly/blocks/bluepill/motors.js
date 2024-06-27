@@ -10,9 +10,24 @@ goog.require('Blockly.Types');
 Blockly.Blocks.motors.HUE = 120;
 Blockly.Blocks.stepper.HUE = 140;
 Blockly.Blocks.servo.HUE = 120;
-
+function getCurrentValuePresentPWM(block,id){
+  if (!block.currentValuePresent) {
+    var field = block.getField('PIN');
+    var fieldValue = field.getValue();
+    var dataArray = Blockly.Arduino.Boards.selected.pwm;
+    field.menuGenerator_ = dataArray;
+    for (var i = 0; i < dataArray.length; i++) {
+      if (fieldValue == dataArray[i][1]) {
+        block.currentValuePresent = true;
+      }}
+  }
+  if(block.currentValuePresent) {
+    block.setWarningText(null, id);
+  } 
+}
 Blockly.Blocks['motor_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'MOTOR',
       Blockly.Msg.MOTOR_DEFAULT_NAME,
@@ -48,17 +63,7 @@ Blockly.Blocks['motor_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-      this,
-      'IN1',
-      'digitalPins'
-    );
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(
-      this,
-      'IN2',
-      'digitalPins'
-    );
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm',this.getFieldValue('ID'));
   },
   getMotorInstance: function () {
     return this.getFieldValue('ID');
@@ -71,6 +76,10 @@ Blockly.Blocks['motor_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+  this.getDuplicateBlock();
+  getCurrentValuePresentPWM(this, this.getFieldValue('ID'))
+  },
+  getDuplicateBlock:function(){
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -93,7 +102,7 @@ Blockly.Blocks['motor_init'] = {
     } else {
       this.setWarningText(null, 'duplicateMotor');
     }
-  },
+  }
 };
 
 Blockly.Blocks['motor_move'] = {
@@ -219,6 +228,9 @@ Blockly.Blocks['stepper_config'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+  },
+  getDuplicateBlock: function(){
     var thisInstanceName = this.getFieldValue('STEPPER_NAME');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -241,7 +253,7 @@ Blockly.Blocks['stepper_config'] = {
     } else {
       this.setWarningText(null, 'duplicateStepper');
     }
-  },
+  }
 };
 
 Blockly.Blocks['stepper_step'] = {
@@ -313,6 +325,7 @@ Blockly.Blocks['stepper_step'] = {
 
 Blockly.Blocks['servo_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'SERVO',
       Blockly.Msg.SERVO_DEFAULT_NAME,
@@ -338,7 +351,7 @@ Blockly.Blocks['servo_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm');
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm',this.getFieldValue('ID'));
   },
   getServoInstance: function () {
     return this.getFieldValue('ID');
@@ -351,6 +364,10 @@ Blockly.Blocks['servo_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+    getCurrentValuePresentPWM(this, this.getFieldValue('ID'))
+  },
+  getDuplicateBlock: function(){
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -373,7 +390,7 @@ Blockly.Blocks['servo_init'] = {
     } else {
       this.setWarningText(null, 'duplicateServo');
     }
-  },
+  }
 };
 
 Blockly.Blocks['servo_write'] = {

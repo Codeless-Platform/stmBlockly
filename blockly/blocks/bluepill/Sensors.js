@@ -35,7 +35,6 @@ Blockly.Blocks['sensors_LM35'] = {
    */
   updateFields: function () {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analog');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'ADC', 'ADC');
   },
 };
 

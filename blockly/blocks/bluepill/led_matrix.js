@@ -10,6 +10,7 @@ Blockly.Blocks.ledMatrix.HUE = 170;
 
 Blockly.Blocks['matrix_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'MATRIX',
       Blockly.Msg.MATRIX_DEFAULT_NAME,
@@ -56,8 +57,7 @@ Blockly.Blocks['matrix_init'] = {
     return this.getFieldValue('ID');
   },
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'CS', 'digitalPins');
+    this.currentValuePresent =Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI', 'spi',this.getFieldValue('ID'));
   },
   onchange: function (event) {
     if (
@@ -67,6 +67,11 @@ Blockly.Blocks['matrix_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+    this.getDuplicateBlock()
+   this.getCurrentValuePresent()
+    
+  },
+  getDuplicateBlock: function(){
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -90,6 +95,22 @@ Blockly.Blocks['matrix_init'] = {
     } else {
       this.setWarningText(null, 'duplicateMatrix');
     }
+  },
+  getCurrentValuePresent: function(){
+    if (!this.currentValuePresent) {
+      var field = this.getField('SPI');
+      var fieldValue = field.getValue();
+      var dataArray = Blockly.Arduino.Boards.selected.spi;
+      field.menuGenerator_ = dataArray;
+      for (var i = 0; i < dataArray.length; i++) {
+        if (fieldValue == dataArray[i][1]) {
+          this.currentValuePresent = true;
+        }}
+    }
+    if(this.currentValuePresent) {
+      var id = this.getFieldValue('ID')
+      this.setWarningText(null,id);
+    } 
   },
 };
 

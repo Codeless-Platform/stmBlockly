@@ -7,6 +7,7 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.lcd.HUE = 400;
+// this function finds the lcd initalization block 
 const onChangeLCD = function (event, obj, id) {
   if (
     !obj.workspace ||
@@ -40,6 +41,7 @@ const onChangeLCD = function (event, obj, id) {
 };
 Blockly.Blocks['lcd_init'] = {
   init: function () {
+    this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,
@@ -76,7 +78,6 @@ Blockly.Blocks['lcd_init'] = {
 
     // Additional fields added later
     this.standardInput = this.appendDummyInput()
-      .appendField(' ')
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.full_ports),
         'PORT'
@@ -120,7 +121,6 @@ Blockly.Blocks['lcd_init'] = {
     this.setFieldValue('2x16', 'SIZE');
     this.setFieldValue('0x4E', 'ADDRESS');
     this.setInputsInline(false);
-
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
     var ToolTipMsg = Blockly.Msg.LCD_INIT_I2C_TTL.replace('%1', 'PB7').replace(
@@ -179,15 +179,9 @@ Blockly.Blocks['lcd_init'] = {
       return newValue;
     });
   },
+  // gets called when the board changes
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PORT', 'ports');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd4', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd5', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd6', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'd7', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'EN', 'digitalPins');
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'RS', 'digitalPins');
+    this.currentValuePresent= Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'I2C', 'i2c',this.getFieldValue('ID'));
   },
   getLcdInstance: function () {
     return this.getFieldValue('ID');
@@ -200,6 +194,11 @@ Blockly.Blocks['lcd_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
+   this.getDuplicateBlock()
+   this.getCurrentValuePresent()
+  },
+  // check if the init block is duplicated with the same ID 
+  getDuplicateBlock:function(){
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -222,8 +221,25 @@ Blockly.Blocks['lcd_init'] = {
         'duplicateLCD'
       );
     } else {
-      this.setWarningText(null, 'duplicateLCD');
+      this.setWarningText(null,'duplicateLCD');
     }
+  },
+  // checks if the I2C value is valid and removes the warning
+  getCurrentValuePresent: function(){
+    if (!this.currentValuePresent) {
+      var field = this.getField('I2C');
+      var fieldValue = field.getValue();
+      var dataArray = Blockly.Arduino.Boards.selected.i2c;
+      field.menuGenerator_ = dataArray;
+      for (var i = 0; i < dataArray.length; i++) {
+        if (fieldValue == dataArray[i][1]) {
+          this.currentValuePresent = true;
+        }}
+    }
+    if(this.currentValuePresent) {
+      var id = this.getFieldValue('ID')
+      this.setWarningText(null,id);
+    } 
   },
 };
 
