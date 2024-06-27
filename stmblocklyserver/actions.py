@@ -10,6 +10,8 @@ import subprocess
 import locale
 import sys
 import os
+import time
+import re
 # local-packages imports
 import six
 # This package modules
@@ -18,30 +20,30 @@ from stmblocklyserver import sketchcreator
 
 
 #
-# Sketch loading to Arduino functions
+# file loading to STM Cube functions
 #
-def arduino_ide_send_code(code_str):
-    """Create a sketch from a code string and sends it to the Arduino IDE.
+def STMCube_ide_send_code(code_str):
+    """Create a file from a code string and sends it to the STM Cube IDE.
 
-    :param code_str: String of Arduino code
+    :param code_str: String of C code
     :return: Tuple with (success, ide_mode, std_out, err_out, exit_code)
     """
-    sketch_path = create_sketch_from_string(code_str)
+    sketch_path = create_main_from_string(code_str)
     if not sketch_path:
         return False, 'unknown', None, None, 51
     return load_arduino_cli(sketch_path)
 
 
-def create_sketch_from_string(sketch_code):
-    """Create an Arduino Sketch in location and name given by Settings.
+def create_main_from_string(file_code):
+    """Create an main file in location and name given by Settings.
 
-    :param sketch_code: Code for the sketch.
-    :return: Sketch location. None if there was a problem.
+    :param sketch_code: Code for the file.
+    :return: file location. None if there was a problem.
     """
     settings = ServerCompilerSettings()
     return sketchcreator.create_sketch(sketch_dir=settings.sketch_dir,
                                        sketch_name=settings.sketch_name,
-                                       sketch_code=sketch_code)
+                                       sketch_code=file_code)
 
 
 def load_arduino_cli(sketch_path):
@@ -74,6 +76,10 @@ def load_arduino_cli(sketch_path):
         success = False
         exit_code = 53
         err_out = 'Compiler directory not configured in the Settings.'
+    elif not settings.programmer_dir:
+        success = False
+        exit_code = 55
+        err_out = 'programmer directory not configured in the Settings.'
     elif not settings.load_ide_option:
         success = False
         exit_code = 54
@@ -83,34 +89,37 @@ def load_arduino_cli(sketch_path):
             settings.load_ide_option == 'verify'):
         success = False
         exit_code = 56
-        err_out = 'Arduino Board not configured in the Settings.'
-    elif not settings.get_serial_port_flag() and \
-            settings.load_ide_option == 'upload':
-        success = False
-        exit_code = 55
-        err_out = 'Serial Port configured in Settings not accessible.'
+        err_out = 'STM Board not configured in the Settings.'
+    # elif not settings.get_serial_port_flag() and \
+    #         settings.load_ide_option == 'upload':
+    #     success = False
+    #     exit_code = 55
+    #     err_out = 'Serial Port configured in Settings not accessible.' 
 
     if success:
         ide_mode = settings.load_ide_option
         # Concatenates the CLI command and execute if the flags are valid
         directory_path = os.path.dirname(sketch_path)
         grandparent_directory = os.path.dirname(directory_path)
-        new_sketch_path = os.path.join(grandparent_directory, ".project")
-        cli_command = [settings.compiler_dir, "%s" % new_sketch_path]
+        project_name = os.path.basename(grandparent_directory)
+        hex_file_path = os.path.join(grandparent_directory, 'build', f'{project_name}.hex')
+        hex_file_path_str=  f'"{hex_file_path}"'
+        main_file_path = os.path.join(grandparent_directory, 'Src\main.c')
+        makefile_path = os.path.join(grandparent_directory, 'Makefile')
+        new_projectFile_path = os.path.join(grandparent_directory, ".project") 
+        edit_makefile(makefile_path,settings.STM32_board)
+        cli_command1 = []
         if settings.load_ide_option == 'upload':
-            print('\nUploading sketch to Arduino...')
-            cli_command.append('--upload')
-            cli_command.append('--port')
-            cli_command.append(settings.get_serial_port_flag())
-            cli_command.append('--board')
-            cli_command.append(settings.get_arduino_board_flag())
+            cli_command1 = ['make', '-C', grandparent_directory]
+            print('\nCompiling the code...\nGenerating .hex file')
+            print('\nUploading sketch to bluepill...')
+            cli_command = [settings.programmer_dir, '-c port=SWD -w', hex_file_path,'-v --start']
         elif settings.load_ide_option == 'verify':
-            print('\nVerifying the sketch...')
-            cli_command.append('--board')
-            cli_command.append(settings.get_arduino_board_flag())
-            cli_command.append('--verify')
+            cli_command = ['make -j12', '-C', grandparent_directory]
+            print('\nCompiling the code...\nGenerating .hex file')
         elif settings.load_ide_option == 'open':
-            print('\nOpening the sketch in the Arduino IDE...')
+            cli_command = [settings.compiler_dir, "%s" % new_projectFile_path]
+            print('\nOpening the project in the STM Cube IDE...')
         print('CLI command: %s' % ' '.join(cli_command))
         # Python 2 needs the input to subprocess.Popen to be in system encoding
         if sys.version_info[0] < 3:
@@ -119,11 +128,9 @@ def load_arduino_cli(sketch_path):
 
         if settings.load_ide_option == 'open':
             # Open IDE in a subprocess without capturing outputs
-          #  subprocess.Popen(cli_command, shell=False)
-            os.startfile(new_sketch_path)
-            exit_code = 0
-        else:
-            # Launch the Arduino CLI in a subprocess and capture output data
+            os.startfile(new_projectFile_path)
+            time.sleep(5)
+            cli_command = [settings.compiler_dir, "%s" % main_file_path]
             process = subprocess.Popen(
                 cli_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 shell=False)
@@ -131,19 +138,68 @@ def load_arduino_cli(sketch_path):
             std_out = six.u(std_out)
             err_out = six.u(err_out)
             exit_code = process.returncode
-            print('Arduino output:\n%s' % std_out)
-            print('Arduino Error output:\n%s' % err_out)
-            print('Arduino Exit code: %s' % exit_code)
-            # For some reason Arduino CLI can return 256 on success
-            if (process.returncode != 0) and (process.returncode != 256):
-                success = False
-                if exit_code >= 50:
-                    # Custom exit codes from server start at 50
-                    err_out = '%s\nUnexpected Arduino exit error code: %s' % \
-                              (err_out, exit_code)
-                    exit_code = 50
-
+            print('STM Cube output:\n%s' % std_out)
+            print('STM Cube Error output:\n%s' % err_out)
+            print('STM Cube Exit code: %s' % exit_code)
+            exit_code = 0
+        else:
+            # Launch the STM Cube programmer CLI in a subprocess and capture output data
+            if(cli_command1):
+                process2 = subprocess.Popen(
+                cli_command1, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                shell=False)
+                std_out, err_out = process2.communicate()
+                std_out = six.u(std_out)
+                err_out = six.u(err_out)
+                exit_code = process2.returncode
+                print('Make command output:\n%s' % std_out)
+                print('Make command Error output:\n%s' % err_out)
+                print('Make command Exit code: %s' % exit_code)
+            process = subprocess.Popen(
+                cli_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                shell=False)
+            std_out, err_out = process.communicate()
+            std_out = six.u(std_out)
+            err_out = six.u(err_out)
+            exit_code = process.returncode
+            print('STM Cube output:\n%s' % std_out)
+            print('STM Cube Error output:\n%s' % err_out)
+            print('STM Cube Exit code: %s' % exit_code)
+            # # For some reason Arduino CLI can return 256 on success
+            # if (process.returncode != 0) and (process.returncode != 256):
+            #     success = False
+            #     if exit_code >= 50:
+            #         # Custom exit codes from server start at 50
+            #         err_out = '%s\nUnexpected Arduino exit error code: %s' % \
+            #                   (err_out, exit_code)
+            #         exit_code = 50     
     return success, ide_mode, std_out, err_out, exit_code
+
+def edit_makefile(makefile_path, board):
+    # Read the Makefile
+    with open(makefile_path, 'r') as file:
+        makefile_content = file.read()
+    ldscript_value = "STM32F103C6TX_FLASH.ld"
+    asm_sources_value = "startup_stm32f103c6tx.s"
+    if board == 'stm32F103C8':
+        ldscript_value = "STM32F103C8TX_FLASH.ld"
+     # Update ASM_SOURCES based on board
+    if board == 'stm32F103C8':
+        asm_sources_value = "startup_stm32f103c8tx.s"
+     # Find and replace the LDSCRIPT variable
+    asm_sources_pattern = r'startup_stm32f103c[0-9]tx\.s'
+    makefile_content = re.sub(asm_sources_pattern, f'{asm_sources_value}', makefile_content, flags=re.MULTILINE)
+
+    # Regex pattern for LDSCRIPT
+    ldscript_pattern = r'^(LDSCRIPT\s*=\s*).*'
+    makefile_content = re.sub(ldscript_pattern, f'LDSCRIPT = {ldscript_value}', makefile_content, flags=re.MULTILINE)
+    
+    
+    # Write the updated content back to the Makefile
+    with open(makefile_path, 'w') as file:
+        file.write(makefile_content)
+    
+    print("LDSCRIPT variable updated successfully.")
 
 
 #
@@ -171,6 +227,32 @@ def get_compiler_path():
     if not compiler_directory:
         compiler_directory = None
     return compiler_directory
+
+#
+# Programmer Settings
+#
+def set_programmer_path(new_path):
+    """Open the file browser to select an Arduino IDE executable.
+
+    The new file path is saved into ServerCompilerSettings.
+
+    :param new_path: New path for the Arduino IDE executable.
+    :return: Same as get_compiler_path().
+    """
+    ServerCompilerSettings().programmer_dir = new_path
+    return get_programmer_path()
+
+
+def get_programmer_path():
+    """Return the Arduino IDE executable path as stored in the Settings.
+
+    :return: String with compiler path from the Settings.
+             None if there is no path saved in the Settings.
+    """
+    programmer_directory = ServerCompilerSettings().programmer_dir
+    if not programmer_directory:
+        programmer_directory = None
+    return programmer_directory
 
 
 #
@@ -210,7 +292,7 @@ def set_arduino_board(new_value):
             flag (so 'Uno', not 'arduino:avr:uno').
     :return: Same as the get_arduino_board_selected() function.
     """
-    ServerCompilerSettings().arduino_board = new_value
+    ServerCompilerSettings().STM32_board = new_value
     return get_arduino_board_selected()
 
 
@@ -219,7 +301,7 @@ def get_arduino_board_selected():
 
     :return: The currently selected Arduino board from the Settings.
     """
-    return ServerCompilerSettings().arduino_board
+    return ServerCompilerSettings().STM32_board
 
 
 def get_arduino_boards():
