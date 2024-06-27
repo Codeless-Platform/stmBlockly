@@ -14,40 +14,22 @@ Blockly.Arduino['lcd_init'] = function (block) {
   if (type[ID] == 'Standard') {
     var port = block.getFieldValue('PORT');
     var gpio = 'GPIO' + port.charAt(4);
-    var D4 = 'PIN_' + block.getFieldValue('d4').toString().substring(2);
-    var D5 = 'PIN_' + block.getFieldValue('d5').toString().substring(2);
-    var D6 = 'PIN_' + block.getFieldValue('d6').toString().substring(2);
-    var D7 = 'PIN_' + block.getFieldValue('d7').toString().substring(2);
-    var RS = 'PIN_' + block.getFieldValue('RS').toString().substring(2);
-    var EN = 'PIN_' + block.getFieldValue('EN').toString().substring(2);
+    var pins = ['d4', 'd5', 'd6', 'd7', 'RS', 'EN'].map(pin => {
+      return 'PIN_' + block.getFieldValue(pin).toString().substring(2);
+    });
     var SIZE = 'LCD_' + block.getFieldValue('SIZE');
 
-    for (var i = 4; i < 8; i++) {
-      var pin = block.getFieldValue('d' + i);
+    pins.forEach(pin => {
       Blockly.Arduino.reservePin(
         block,
-        pin,
+        block.getFieldValue(pin),
         Blockly.Arduino.PinTypes.OUTPUT,
         'LCD pins'
       );
-    }
-    pin = block.getFieldValue('RS');
-    Blockly.Arduino.reservePin(
-      block,
-      pin,
-      Blockly.Arduino.PinTypes.OUTPUT,
-      'LCD pins'
-    );
-    pin = block.getFieldValue('EN');
-    Blockly.Arduino.reservePin(
-      block,
-      pin,
-      Blockly.Arduino.PinTypes.OUTPUT,
-      'LCD pins'
-    );
+    });  
     var pinMainCode = `
-    LCD_t ${ID}= {FOUR_BIT_MODE,${SIZE},${gpio},${gpio},${EN},${RS},${D4},${D5},${D6},${D7}};
-    lcd_init(&${ID});`;
+     LCD_t ${ID} = {FOUR_BIT_MODE, ${SIZE}, ${gpio}, ${gpio}, ${pins[5]}, ${pins[4]}, ${pins[0]}, ${pins[1]}, ${pins[2]}, ${pins[3]}};
+  lcd_init(&${ID});`;
     Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
 
     return '';
