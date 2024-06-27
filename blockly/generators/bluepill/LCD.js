@@ -27,8 +27,7 @@ Blockly.Arduino['lcd_init'] = function (block) {
         'LCD pins'
       );
     });  
-    var pinMainCode = `
-     LCD_t ${ID} = {FOUR_BIT_MODE, ${SIZE}, ${gpio}, ${gpio}, ${pins[5]}, ${pins[4]}, ${pins[0]}, ${pins[1]}, ${pins[2]}, ${pins[3]}};
+    var pinMainCode = `LCD_t ${ID} = {FOUR_BIT_MODE, ${SIZE}, ${gpio}, ${gpio}, ${pins[5]}, ${pins[4]}, ${pins[0]}, ${pins[1]}, ${pins[2]}, ${pins[3]}};
   lcd_init(&${ID});`;
     Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
 
