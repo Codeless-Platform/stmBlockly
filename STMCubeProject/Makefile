@@ -62,7 +62,7 @@ Src/main.c
 
 # ASM sources
 ASM_SOURCES =  \
-Startup/startup_stm32f103c6tx.s
+startup_stm32f103c6tx.s
 
 
 #######################################
