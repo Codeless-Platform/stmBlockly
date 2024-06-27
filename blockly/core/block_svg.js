@@ -1350,7 +1350,7 @@ Blockly.BlockSvg.prototype.setWarningText = function(text, opt_id) {
   } else {
     // Dispose all warnings if no id is given.
     if (this.warning && id) {  //changed these condition no idea what's the difference between if, else if 
-      this.warning.dispose();
+      this.warning.dispose(id);
       changedState = true;
     } else if (this.warning && !id) {
       var oldText = this.warning.getText(id);

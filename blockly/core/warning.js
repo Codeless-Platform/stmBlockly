@@ -179,7 +179,20 @@ Blockly.Warning.prototype.getText = function() {
 /**
  * Dispose of this warning.
  */
-Blockly.Warning.prototype.dispose = function() {
-  this.block_.warning = null;
-  Blockly.Icon.prototype.dispose.call(this);
+Blockly.Warning.prototype.dispose = function(opt_id) {
+  if (opt_id) {
+    // Dispose of the warning text with the specified ID.
+    if (this.text_[opt_id]) {
+      delete this.text_[opt_id];
+    }
+    // If no texts remain, dispose of the warning icon.
+    if (Object.keys(this.text_).length === 0) {
+      this.block_.warning = null;
+      Blockly.Icon.prototype.dispose.call(this);
+    }
+  } else {
+    // Dispose of the entire warning.
+    this.block_.warning = null;
+    Blockly.Icon.prototype.dispose.call(this);
+  }
 };
