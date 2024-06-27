@@ -718,7 +718,7 @@ Blockly.Msg.SPI_MODE_MASTER = 'Master';
 Blockly.Msg.SPI_MODE_SALVE = 'Slave';
 
 Blockly.Msg.OLED_INIT = 'initalize ';
-Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected SDA: %1 , SCL: %2 with size 128x64';
+Blockly.Msg.OLED_INIT_I2C_TTL = 'initalize Oled connected SDA: %1 , SCL: %2';
 Blockly.Msg.OLED_CLEAR = 'Clear ';
 Blockly.Msg.OLED_UPDATE = 'Update ';
 Blockly.Msg.OLED_UPDATE_TTL =

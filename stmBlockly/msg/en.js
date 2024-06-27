@@ -29,9 +29,9 @@ Ardublockly.LOCALISED_TEXT = {
   arduinoOpMainTitle: "STM cube IDE output",
   arduinoOpWaiting: "Waiting for the IDE output...",
   arduinoOpUploadedTitle: "Successfully Uploaded File",
-  arduinoOpVerifiedTitle: "Successfully Verified File",
-  arduinoOpOpenedTitle: "File opened in IDE",
-  arduinoOpOpenedBody: "The File should be loaded in the STM Cube IDE.",
+  arduinoOpVerifiedTitle: "Successfully Compile the project",
+  arduinoOpOpenedTitle: "Project opened in IDE",
+  arduinoOpOpenedBody: "The Project should be loaded in the STM Cube IDE.",
   arduinoOpErrorTitle: "There has been an error",
   arduinoOpErrorIdContext_0: "No error.",
   arduinoOpErrorIdContext_1: "Build or Upload failed.",
@@ -61,7 +61,7 @@ Ardublockly.LOCALISED_TEXT = {
   noServerTitle: "stmblockly app not running",
   noServerTitleBody: "<p>For all the stmblockly features to be enabled, the stmblockly desktop application must be running locally on your computer.</p>" +
                      "<p>If you are using an online version you will not be able to configure the settings.</p>" +
-                     "<p>Installation instruction can be found in the <a href=\"https://github.com/carlosperate/ardublockly\">Ardublockly repository</a>.</p>" +
+                     "<p>Installation instruction can be found in the <a href=\"https://github.com/Codeless-Platform/stmBlockly\">Ardublockly repository</a>.</p>" +
                      "<p>If you have stmblockly already installed, make sure the application is running correctly.</p>",
   noServerNoLangBody: "If the stmblockly application is not running the language cannot be fully changed.",
   addBlocksTitle: "Additional Blocks",
@@ -75,12 +75,12 @@ Ardublockly.LOCALISED_TEXT = {
   invalidXmlTitle: "Invalid XML",
   invalidXmlBody: "The XML file was not successfully parsed into blocks. Please review the XML code and try again.",
   /* Tooltips */
-  uploadingSketch: "Uploading file into STM...",
-  uploadSketch: "Upload file to the STM",
-  verifyingSketch: "Verifying file...",
-  verifySketch: "Verify the file",
-  openingSketch: "Opening file in the STM Cube IDE...",
-  openSketch: "Open file in IDE",
+  uploadingSketch: "Uploading .hex file into bluepill...",
+  uploadSketch: "Upload .hex file to the bluepill",
+  verifyingSketch: "Compiling project...",
+  verifySketch: "Compile the project",
+  openingSketch: "Opening the project in the STM Cube IDE...",
+  openSketch: "Open the project in IDE",
   notImplemented: "Function not yet implemented",
   /* Prompts */
   ok: "OK",

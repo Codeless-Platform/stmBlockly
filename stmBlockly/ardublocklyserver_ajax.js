@@ -145,7 +145,7 @@ ArdublocklyServer.jsonToIdeModal = function(jsonObj) {
   } else if (jsonObj.success && jsonObj.ide_mode) {
     // Format a successful response
     if (jsonObj.ide_mode == 'upload') {
-      elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpUploadedTitle');
+    // elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpUploadedTitle');
     } else if (jsonObj.ide_mode == 'verify') {
       elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpVerifiedTitle');
     } else if (jsonObj.ide_mode == 'open') {
