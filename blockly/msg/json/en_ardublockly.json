@@ -42,7 +42,7 @@
   "ARD_FUN_RUN_SETUP": "Arduino run first:",
   "ARD_FUN_RUN_LOOP": "Arduino loop forever:",
   "ARD_FUN_RUN_TIP": "Defines the Arduino setup() and loop() functions.",
-  "ARD_PIN_WARN1": "Pin %1 is needed for %2 as pin %3. Already used as %4.",
+  "ARD_PIN_WARN1": "Pin %1 is needed for %2. Already used in another block.  ",
   "ARD_SERIAL_SETUP": "Setup",
   "ARD_SERIAL_SPEED": ":  speed to",
   "ARD_SERIAL_BPS": "bps",

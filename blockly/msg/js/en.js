@@ -545,7 +545,7 @@ Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT =
 
 // Ardublockly strings
 Blockly.Msg.ARD_PIN_WARN1 =
-  'Pin %1 is needed for %2 as pin %3. Already used as %4.';
+  'Pin %1 is needed for %2. Already used in another block.  ';
 
 Blockly.Msg.ARD_ANALOGREAD = 'read analog pin#';
 Blockly.Msg.ARD_ANALOGREAD_TIP = 'Return value between 0 and 1024';
@@ -614,10 +614,11 @@ Blockly.Msg.CLK_EN_TIP = 'Enables Clock for selected periphral';
 Blockly.Msg.CLK_DIS = 'Disable ';
 Blockly.Msg.CLK_DIS_TIP = 'Disables Clock for selected periphral';
 Blockly.Msg.CLK_INIT = 'Configure RCC clock source ';
-Blockly.Msg.CLK_EXT = 'oscillator type'
-Blockly.Msg.CLK_MUL = 'multiplied by'
+Blockly.Msg.CLK_EXT = 'oscillator type';
+Blockly.Msg.CLK_MUL = 'multiplied by';
 // Blockly.Msg.EXT_DIV = 'divided by '
-Blockly.Msg.CLK_INIT_TTL = 'Initialize the clock source for all buses HSI & HSE = 8MHz '
+Blockly.Msg.CLK_INIT_TTL =
+  'Initialize the clock source for all buses HSI & HSE = 8MHz ';
 
 Blockly.Msg.READANALOG = 'read analog pin#';
 Blockly.Msg.ADC = 'at ';

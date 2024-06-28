@@ -18,7 +18,6 @@ goog.provide('Blockly.Msg.en');
 
 goog.require('Blockly.Msg');
 
-
 /**
  * Due to the frequency of long strings, the 80-column wrap rule need not apply
  * to message files.
@@ -64,28 +63,36 @@ Blockly.Msg.ARD_LOW = 'LOW';
 Blockly.Msg.ARD_ANALOGREAD = 'read analog pin#';
 Blockly.Msg.ARD_ANALOGREAD_TIP = 'Return value between 0 and 1024';
 Blockly.Msg.ARD_ANALOGWRITE = 'set analog pin#';
-Blockly.Msg.ARD_ANALOGWRITE_TIP = 'Write analog value between 0 and 255 to a specific PWM Port';
+Blockly.Msg.ARD_ANALOGWRITE_TIP =
+  'Write analog value between 0 and 255 to a specific PWM Port';
 Blockly.Msg.ARD_HIGHLOW_TIP = 'Set a pin state logic High or Low.';
 Blockly.Msg.ARD_DIGITALREAD = 'read digital pin#';
 Blockly.Msg.ARD_DIGITALREAD_TIP = 'Read digital value on a pin: HIGH or LOW';
 Blockly.Msg.ARD_DIGITALWRITE = 'set digitial pin#';
 Blockly.Msg.ARD_WRITE_TO = 'to';
-Blockly.Msg.ARD_DIGITALWRITE_TIP = 'Write digital value HIGH or LOW to a specific Port';
+Blockly.Msg.ARD_DIGITALWRITE_TIP =
+  'Write digital value HIGH or LOW to a specific Port';
 Blockly.Msg.ARD_BUILTIN_LED = 'set built-in LED';
-Blockly.Msg.ARD_BUILTIN_LED_TIP = 'Light on or off for the built-in LED of the Arduino';
+Blockly.Msg.ARD_BUILTIN_LED_TIP =
+  'Light on or off for the built-in LED of the Arduino';
 Blockly.Msg.ARD_DEFINE = 'Define';
 Blockly.Msg.ARD_FUN_RUN_SETUP = 'Arduino run first:';
 Blockly.Msg.ARD_FUN_RUN_LOOP = 'Arduino loop forever:';
-Blockly.Msg.ARD_FUN_RUN_TIP = 'Defines the Arduino setup() and loop() functions.';
-Blockly.Msg.ARD_PIN_WARN1 = 'Pin %1 is needed for %2 as pin %3. Already used as %4.';
+Blockly.Msg.ARD_FUN_RUN_TIP =
+  'Defines the Arduino setup() and loop() functions.';
+Blockly.Msg.ARD_PIN_WARN1 =
+  'Pin %1 is needed for %2. Already used in another block.  ';
 Blockly.Msg.ARD_SERIAL_SETUP = 'Setup';
 Blockly.Msg.ARD_SERIAL_SPEED = ':  speed to';
 Blockly.Msg.ARD_SERIAL_BPS = 'bps';
-Blockly.Msg.ARD_SERIAL_SETUP_TIP = 'Selects the speed for a specific Serial peripheral';
+Blockly.Msg.ARD_SERIAL_SETUP_TIP =
+  'Selects the speed for a specific Serial peripheral';
 Blockly.Msg.ARD_SERIAL_PRINT = 'print';
 Blockly.Msg.ARD_SERIAL_PRINT_NEWLINE = 'add new line';
-Blockly.Msg.ARD_SERIAL_PRINT_TIP = 'Prints data to the console/serial port as human-readable ASCII text.';
-Blockly.Msg.ARD_SERIAL_PRINT_WARN = 'A setup block for %1 must be added to the workspace to use this block!';
+Blockly.Msg.ARD_SERIAL_PRINT_TIP =
+  'Prints data to the console/serial port as human-readable ASCII text.';
+Blockly.Msg.ARD_SERIAL_PRINT_WARN =
+  'A setup block for %1 must be added to the workspace to use this block!';
 Blockly.Msg.ARD_SPI_SETUP = 'Setup';
 Blockly.Msg.ARD_SPI_SETUP_CONF = 'configuration:';
 Blockly.Msg.ARD_SPI_SETUP_SHIFT = 'data shift';
@@ -101,20 +108,26 @@ Blockly.Msg.ARD_SPI_SETUP_TIP = 'Configures the SPI peripheral.';
 Blockly.Msg.ARD_SPI_TRANS_NONE = 'none';
 Blockly.Msg.ARD_SPI_TRANS_VAL = 'transfer';
 Blockly.Msg.ARD_SPI_TRANS_SLAVE = 'to slave pin';
-Blockly.Msg.ARD_SPI_TRANS_TIP = 'Send a SPI message to an specified slave device.';
-Blockly.Msg.ARD_SPI_TRANS_WARN1 = 'A setup block for %1 must be added to the workspace to use this block!';
+Blockly.Msg.ARD_SPI_TRANS_TIP =
+  'Send a SPI message to an specified slave device.';
+Blockly.Msg.ARD_SPI_TRANS_WARN1 =
+  'A setup block for %1 must be added to the workspace to use this block!';
 Blockly.Msg.ARD_SPI_TRANS_WARN2 = 'Old pin value %1 is no longer available.';
-Blockly.Msg.ARD_SPI_TRANSRETURN_TIP = 'Send a SPI message to an specified slave device and get data back.';
-Blockly.Msg.ARD_COMPONENT_WARN1 = 'A %1 configuration block with the same %2 name must be added to use this block!';
+Blockly.Msg.ARD_SPI_TRANSRETURN_TIP =
+  'Send a SPI message to an specified slave device and get data back.';
+Blockly.Msg.ARD_COMPONENT_WARN1 =
+  'A %1 configuration block with the same %2 name must be added to use this block!';
 Blockly.Msg.ARD_TIME_DELAY = 'wait';
 Blockly.Msg.ARD_TIME_MS = 'milliseconds';
 Blockly.Msg.ARD_TIME_DELAY_TIP = 'Wait specific time in milliseconds';
 Blockly.Msg.ARD_TIME_DELAY_MICROS = 'microseconds';
 Blockly.Msg.ARD_TIME_DELAY_MICRO_TIP = 'Wait specific time in microseconds';
 Blockly.Msg.ARD_TIME_MILLIS = 'current elapsed Time (milliseconds)';
-Blockly.Msg.ARD_TIME_MILLIS_TIP = 'Returns the number of milliseconds since the Arduino board began running the current program. Has to be stored in a positive long integer';
+Blockly.Msg.ARD_TIME_MILLIS_TIP =
+  'Returns the number of milliseconds since the Arduino board began running the current program. Has to be stored in a positive long integer';
 Blockly.Msg.ARD_TIME_MICROS = 'current elapsed Time (microseconds)';
-Blockly.Msg.ARD_TIME_MICROS_TIP = 'Returns the number of microseconds since the Arduino board began running the current program. Has to be stored in a positive long integer';
+Blockly.Msg.ARD_TIME_MICROS_TIP =
+  'Returns the number of microseconds since the Arduino board began running the current program. Has to be stored in a positive long integer';
 Blockly.Msg.ARD_TIME_INF = 'wait forever (end program)';
 Blockly.Msg.ARD_TIME_INF_TIP = 'Wait indefinitely, stopping the program.';
 Blockly.Msg.ARD_VAR_AS = 'as';
@@ -122,14 +135,18 @@ Blockly.Msg.ARD_VAR_AS_TIP = 'Sets a value to a specific type';
 /// IO blocks - pulseIn - Block for function pulseIn(), it measure a pulse duration in a given pin.
 Blockly.Msg.ARD_PULSE_READ = 'measure %1 pulse on pin #%2';
 /// IO blocks - pulseIn - Block similar to ARD_PULSE_READ, but it adds a time-out in microseconds.
-Blockly.Msg.ARD_PULSE_READ_TIMEOUT = 'measure %1 pulse on pin #%2 (timeout after %3 μs)';
+Blockly.Msg.ARD_PULSE_READ_TIMEOUT =
+  'measure %1 pulse on pin #%2 (timeout after %3 μs)';
 /// IO blocks - pulseIn - Tooltip for pulseIn() block.
-Blockly.Msg.ARD_PULSE_TIP = 'Measures the duration of a pulse on the selected pin.';
+Blockly.Msg.ARD_PULSE_TIP =
+  'Measures the duration of a pulse on the selected pin.';
 /// IO blocks - pulseIn - Tooltip for pulseIn() block when it uses the optional argument for time-out.
-Blockly.Msg.ARD_PULSETIMEOUT_TIP = 'Measures the duration of a pulse on the selected pin, if it is within the time-out in microseconds.';
+Blockly.Msg.ARD_PULSETIMEOUT_TIP =
+  'Measures the duration of a pulse on the selected pin, if it is within the time-out in microseconds.';
 Blockly.Msg.ARD_SETTONE = 'Set tone on pin #';
 Blockly.Msg.ARD_TONEFREQ = 'at frequency';
-Blockly.Msg.ARD_TONE_TIP = 'Sets tone on pin to specified frequency within range 31 - 65535';
+Blockly.Msg.ARD_TONE_TIP =
+  'Sets tone on pin to specified frequency within range 31 - 65535';
 Blockly.Msg.ARD_TONE_WARNING = 'Frequency must be in range 31 - 65535';
 Blockly.Msg.ARD_NOTONE = 'Turn off tone on pin #';
 Blockly.Msg.ARD_NOTONE_TIP = 'Turns the tone off on the selected pin';
