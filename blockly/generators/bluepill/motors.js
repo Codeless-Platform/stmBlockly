@@ -15,18 +15,23 @@ Blockly.Arduino['motor_init'] = function (block) {
   var TIM, Channel;
   [TIM, Channel] = getTimInstance(EN);
   Channel = 'TIM_Channel' + Channel;
-  Blockly.Arduino.reservePin(block, EN, Blockly.Arduino.PinTypes.OUTPUT, 'pwm');
+  Blockly.Arduino.reservePin(
+    block,
+    EN,
+    Blockly.bluepill.PinTypes.MOTOR_EN,
+    'Motor EN'
+  );
   Blockly.Arduino.reservePin(
     block,
     IN1,
-    Blockly.Arduino.PinTypes.OUTPUT,
-    'IN1'
+    Blockly.bluepill.PinTypes.IN1,
+    'Motor IN1'
   );
   Blockly.Arduino.reservePin(
     block,
     IN2,
-    Blockly.Arduino.PinTypes.OUTPUT,
-    'IN2'
+    Blockly.bluepill.PinTypes.IN2,
+    'Motor IN2'
   );
   var pinIncludeCode = `Motor_t ${ID};`;
   Blockly.Arduino.addInclude('motor' + ID, pinIncludeCode);
@@ -93,14 +98,15 @@ Blockly.Arduino['stepper_config'] = function (block) {
   var stepperInstanceName = block.getFieldValue('STEPPER_NAME');
   var pinnumber = [];
   var gpio = [];
+  var pinReserve = ['S_P1','S_P2','S_P3','S_P4']
   for (var i = 0; i < 4; i++) {
     pinnumber[i] = 'PIN_' + PINS[i].slice(2);
     gpio[i] = 'GPIO' + PINS[i].charAt(1);
     Blockly.Arduino.reservePin(
       block,
       PINS[i],
-      Blockly.Arduino.PinTypes.OUTPUT,
-      'PIN' + (i + 1)
+      Blockly.bluepill.PinTypes[pinReserve[i]],
+      'Stepper PIN' + (i+1)
     );
   }
   var pinIncludeCode = `stepper_t ${stepperInstanceName};`;
@@ -150,8 +156,8 @@ Blockly.Arduino['servo_init'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.OUTPUT,
-    'pwm'
+    Blockly.bluepill.PinTypes.SERVO_PIN,
+    'Servo Pin'
   );
 
   var pinIncludeCode = `servo_t ${ID};`;

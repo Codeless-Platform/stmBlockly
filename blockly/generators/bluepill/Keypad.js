@@ -33,8 +33,8 @@ Blockly.Arduino['keypad_init'] = function (block) {
     Blockly.Arduino.reservePin(
       block,
       pin,
-      Blockly.Arduino.PinTypes.INPUT,
-      'keypad pins'
+       'R'+i,
+      'keypad row'+i
     );
   }
   for (var i = 0; i < size; i++) {
@@ -42,8 +42,8 @@ Blockly.Arduino['keypad_init'] = function (block) {
     Blockly.Arduino.reservePin(
       block,
       pin,
-      Blockly.Arduino.PinTypes.INPUT,
-      'keypad pins'
+       'C'+i,
+      'keypad col'+i
     );
   }
 

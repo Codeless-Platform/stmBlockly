@@ -20,8 +20,27 @@ Blockly.Arduino['uart_init'] = function (block) {
   var uartID = block.getFieldValue('UART_ID');
   var baudRate = block.getFieldValue('SPEED');
   var globalCode = 'USART_pinConfig_t USART_pinConfig;\n';
-  Blockly.Arduino.addInclude("uart_", globalCode);
-
+  Blockly.Arduino.addInclude('uart_', globalCode);
+  var uartPins = {
+    USART1: ['PA9', 'PA10'],
+    USART2: ['PA2', 'PA3'],
+    USART3: ['PB10', 'PB11'],
+  };
+  var pin = uartPins[uartID] || uartPins['USART1'];
+  
+  Blockly.Arduino.reservePin(
+    block,
+    pin[0],
+    Blockly.bluepill.PinTypes.TX,
+    'UART TX pin'
+  );
+  Blockly.Arduino.reservePin(
+    block,
+    pin[1],
+    Blockly.bluepill.PinTypes.RX,
+    'UART RX pin'
+  );
+ 
   var mainCode = ` USART_pinConfig.BaudRate = USART_BaudRate_${baudRate};
   USART_pinConfig.DataLength = USART_DataLength8;
   USART_pinConfig.FlowControl = USART_FlowControl_NONE;

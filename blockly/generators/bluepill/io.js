@@ -27,7 +27,7 @@ Blockly.Arduino['io_writePin'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.OUTPUT,
+    Blockly.bluepill.PinTypes.OUTPUT,
     'Write PIN'
   );
 
@@ -68,7 +68,7 @@ Blockly.Arduino['io_readPin'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.INPUT,
+    Blockly.bluepill.PinTypes.INPUT,
     'Read Pin'
   );
 
@@ -104,7 +104,7 @@ Blockly.Arduino['io_builtin_led'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.OUTPUT,
+    Blockly.bluepill.PinTypes.OUTPUT,
     'Write Pin'
   );
 
@@ -140,7 +140,7 @@ Blockly.Arduino['io_togglePin'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.OUTPUT,
+    Blockly.bluepill.PinTypes.OUTPUT,
     'toggle pin'
   );
 
@@ -215,7 +215,7 @@ Blockly.Arduino['io_readAnalogPin'] = function (block) {
   Blockly.Arduino.reservePin(
     block,
     pin,
-    Blockly.Arduino.PinTypes.INPUT,
+    Blockly.bluepill.PinTypes.ADC,
     'Analog Read'
   );
 
@@ -229,19 +229,15 @@ Blockly.Arduino['io_readAnalogPin'] = function (block) {
 
 Blockly.Arduino['io_writePwm'] = function (block) {
   var pin = block.getFieldValue('PIN');
-  var pwmValue =  Blockly.Arduino.valueToCode(block, 'PWM', Blockly.Arduino.ORDER_ATOMIC) ||
-  '0';
+  var pwmValue =
+    Blockly.Arduino.valueToCode(block, 'PWM', Blockly.Arduino.ORDER_ATOMIC) ||
+    '0';
   var pinnumber = pin.slice(2);
   var gpio = 'GPIO' + pin.charAt(1);
-  var TIM, Channel; 
+  var TIM, Channel;
   [TIM, Channel] = getTimInstance(pin);
-  Channel = 'TIM_Channel'+ Channel;
-  Blockly.Arduino.reservePin(
-    block,
-    pin,
-    Blockly.Arduino.PinTypes.OUTPUT,
-    'pwm'
-  );
+  Channel = 'TIM_Channel' + Channel;
+  Blockly.Arduino.reservePin(block, pin, Blockly.bluepill.PinTypes.TIM, 'pwm');
   var pinIncludeCode = 'TIM_ConfigType timConfig;';
   Blockly.Arduino.addInclude('tim', pinIncludeCode);
   pinIncludeCode = 'GPIO_PinConfig_t GPIO_pinConfig;';
@@ -267,8 +263,8 @@ Blockly.Arduino['io_writePwm'] = function (block) {
   pwmConfig.Freq = 1;
   pwmConfig.Channel = ${Channel};
   pwmConfig.Mode = PWM_11;
-  PWM_Init(${TIM}, &pwmConfig);`
-  var pinCode = Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
+  PWM_Init(${TIM}, &pwmConfig);`;
+  Blockly.Arduino.addMain('io_' + pin, pinMainCode, false);
 
   var code = `PWM_voidSetDutyCycle(${TIM}, ${Channel}, ${pwmValue});  `;
   return code;
@@ -283,11 +279,11 @@ function getTimInstance(pin) {
   }
   if (pin == 'PA0' || pin == 'PA2' || pin == 'PA3') {
     TIM = 'TIM2';
-    Channel =   parseInt(pin.slice(2)) + 1;
+    Channel = parseInt(pin.slice(2)) + 1;
   }
   if (pin == 'PB0' || pin == 'PB1') {
     TIM = 'TIM3';
-    Channel =  parseInt(pin.slice(2))+ 3;
+    Channel = parseInt(pin.slice(2)) + 3;
   }
   if (pin == 'PA6') {
     TIM = 'TIM3';
@@ -295,7 +291,7 @@ function getTimInstance(pin) {
   }
   if (pin == 'PB6' || pin == 'PB7' || pin == 'PB8' || pin == 'PB9') {
     TIM = 'TIM4';
-    Channel =  parseInt(pin.slice(2)) - 5;
+    Channel = parseInt(pin.slice(2)) - 5;
   }
   return [TIM, Channel];
 }

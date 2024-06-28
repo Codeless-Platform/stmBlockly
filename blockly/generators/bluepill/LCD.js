@@ -14,19 +14,11 @@ Blockly.Arduino['lcd_init'] = function (block) {
   if (type[ID] == 'Standard') {
     var port = block.getFieldValue('PORT');
     var gpio = 'GPIO' + port.charAt(4);
-    var pins = ['d4', 'd5', 'd6', 'd7', 'RS', 'EN'].map(pin => {
+    var pins = ['d4', 'd5', 'd6', 'd7', 'RS', 'EN'].map((pin) => {
       return 'PIN_' + block.getFieldValue(pin).toString().substring(2);
     });
     var SIZE = 'LCD_' + block.getFieldValue('SIZE');
-
-    pins.forEach(pin => {
-      Blockly.Arduino.reservePin(
-        block,
-        block.getFieldValue(pin),
-        Blockly.Arduino.PinTypes.OUTPUT,
-        'LCD pins'
-      );
-    });  
+    reservePinLCD(type[ID],this)
     var pinMainCode = `LCD_t ${ID} = {FOUR_BIT_MODE, ${SIZE}, ${gpio}, ${gpio}, ${pins[5]}, ${pins[4]}, ${pins[0]}, ${pins[1]}, ${pins[2]}, ${pins[3]}};
   lcd_init(&${ID});`;
     Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
@@ -43,6 +35,7 @@ Blockly.Arduino['lcd_init'] = function (block) {
       rows = 4;
       cols = 20;
     }
+    reservePinLCD(type[ID],this)
     var pinMainCode = `LCD_I2C_t ${ID} = {${SIZE},${I2C},${address},${rows},${cols}};
     lcd_I2C_init(&${ID});\n`;
     Blockly.Arduino.addMain('lcd_' + ID, pinMainCode, true);
@@ -50,6 +43,57 @@ Blockly.Arduino['lcd_init'] = function (block) {
     return '';
   }
 };
+function reservePinLCD(type,obj){
+  if(type == 'Standard'){
+
+    var dPins = ['d4', 'd5', 'd6', 'd7'];
+    var pinTypes = ['D4', 'D5', 'D6', 'D7'];
+
+for (var i = 0; i < dPins.length; i++) {
+  var pin = obj.getFieldValue(dPins[i]);
+  Blockly.Arduino.reservePin(
+    obj,
+    pin,
+    Blockly.bluepill.PinTypes[pinTypes[i]], 
+    'LCD pin '+dPins[i] 
+  );
+}
+
+var RS = obj.getFieldValue('RS');
+Blockly.Arduino.reservePin(
+  obj,
+  RS,
+  Blockly.bluepill.PinTypes.RS,
+  'LCD pin RS'
+);
+
+var EN = obj.getFieldValue('EN');
+Blockly.Arduino.reservePin(
+  obj,
+  EN,
+  Blockly.bluepill.PinTypes.EN,
+  'LCD pin EN'
+);
+
+  }else{
+    var i2cPins = {
+      I2C1: ['PB7', 'PB6'],
+      I2C2: ['PB11', 'PB10'],
+    };    
+    var pins;
+    if (obj.getFieldValue('I2C')=='I2C1') {
+      pins = i2cPins['I2C1'];
+    } else {
+      pins = i2cPins['I2C2']; // Default to I2C1 pins if I2C type is not found
+    }
+    Blockly.Arduino.reservePin(obj, pins[0], Blockly.bluepill.PinTypes.SDA, 'I2C SDA Pin');
+    Blockly.Arduino.reservePin(obj, pins[1], Blockly.bluepill.PinTypes.SCL, 'I2C SCL Pin');
+    
+  }
+
+}
+
+
 //send char
 
 Blockly.Arduino['lcd_sendChar'] = function (block) {

@@ -46,7 +46,26 @@ Blockly.Arduino['spi_init'] = function (block) {
     SPI_Polarity = 'SPI_CLK_Polarity_1';
     SPI_Phase = 'SPI_CLK_Phase_2nd';
   }
-
+   // Reserve SPI pins MOSI, MISO, and SCK
+   var spiPins =
+   spiId == 'SPI1'
+     ? ['PA7', 'PA6', 'PA5']
+     : ['PB13', 'PB14', 'PB15'];
+  var spiPinType = ['MOSI','MISO','SCK']   
+ for (var i = 0; i < spiPins.length; i++) {
+   Blockly.Arduino.reservePin(
+     block,
+     spiPins[i],
+     Blockly.bluepill.PinTypes[spiPinType[i]],
+     'SPI pin '+spiPinType[i]
+   );
+ }
+ Blockly.Arduino.reservePin(
+  block,
+  CS,
+  Blockly.bluepill.PinTypes.CS,
+  'SPI CS'
+);
   var globalCode = 'SPI_PinConfig_t SPI_pinConfig;\n';
   Blockly.Arduino.addInclude('spi_', globalCode);
   globalCode = 'GPIO_PinConfig_t GPIO_pinConfig;\n';
@@ -81,7 +100,7 @@ Blockly.Arduino['spi_init'] = function (block) {
   }
   mainCode += `	SPI_init(&SPI_pinConfig, ${spiId});
 	SPI_GPIO_SetPins(${spiId});`;
-  Blockly.Arduino.addMain('spi_'+ spiId, mainCode, true);
+  Blockly.Arduino.addMain('spi_' + spiId, mainCode, true);
   return '';
 };
 
@@ -117,19 +136,6 @@ Blockly.Arduino['spi_RXTX'] = function (block) {
     var code = `GPIO_WritePin(GPIOA, PIN_12, PIN_LOW);
     SPI_RXTX(SPI2, &${spiData}, Pollingenable);
     GPIO_WritePin(GPIOA, PIN_12, PIN_HIGH);  `;
-  }
-  // Reserve SPI pins MOSI, MISO, and SCK
-  var spiPins =
-    spiId == 'SPI1'
-      ? ['PA4', 'PA5', 'PA6', 'PA7']
-      : ['PB12', 'PB13', 'PB14', 'PB15'];
-  for (var i = 0; i < spiPins.length; i++) {
-    Blockly.Arduino.reservePin(
-      block,
-      spiPins[i],
-      Blockly.Arduino.PinTypes.SPI,
-      'SPI pins'
-    );
   }
   return code;
 };

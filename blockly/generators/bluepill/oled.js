@@ -6,22 +6,37 @@ goog.require('Blockly.Arduino');
 
 Blockly.Arduino['oled_init'] = function (block) {
   var I2C = block.getFieldValue('I2C');
-  var ID = block.getFieldValue('ID') ;
-  var address = block.getFieldValue('ADDRESS') ;
-  var size = block.getFieldValue('SIZE') ;
+  var ID = block.getFieldValue('ID');
+  var address = block.getFieldValue('ADDRESS');
+  var size = block.getFieldValue('SIZE');
   var col, row;
-  if(size == '128x64'){
-     col = '128' ;  row = '64';
-  }else if(size == '256x128'){
-     col = '256' ;  row = '128';
+  if (size == '128x64') {
+    col = '128';
+    row = '64';
+  } else if (size == '256x128') {
+    col = '256';
+    row = '128';
   }
+  var i2cPins = {
+    I2C1: ['PB7', 'PB6'],
+    I2C2: ['PB11', 'PB10'],
+  };    
+  var pins;
+  if (block.getFieldValue('I2C')=='I2C1') {
+    pins = i2cPins['I2C1'];
+  } else {
+    pins = i2cPins['I2C2']; // Default to I2C1 pins if I2C type is not found
+  }
+  Blockly.Arduino.reservePin(block, pins[0], Blockly.bluepill.PinTypes.SDA, 'I2C pin SDA');
+  Blockly.Arduino.reservePin(block, pins[1], Blockly.bluepill.PinTypes.SCL, 'I2C pin SCL');
+
   var pinMainCode = `oled_Config ${ID} = {${I2C},${address},${col},${row}};
   oled_Init(&${ID});\n`;
   Blockly.Arduino.addMain('oled' + ID, pinMainCode, true);
   return '';
 };
 Blockly.Arduino['oled_sendString'] = function (block) {
-  var ID = block.getFieldValue('ID') ;
+  var ID = block.getFieldValue('ID');
   var data =
     Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
@@ -32,7 +47,7 @@ Blockly.Arduino['oled_sendString'] = function (block) {
   return code;
 };
 Blockly.Arduino['oled_sendNumber'] = function (block) {
-  var ID = block.getFieldValue('ID') ;
+  var ID = block.getFieldValue('ID');
   var data =
     Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
@@ -50,7 +65,7 @@ Blockly.Arduino['oled_clear'] = function (block) {
 
 // go to x , y
 Blockly.Arduino['oled_goto'] = function (block) {
-  var ID = block.getFieldValue('ID') ;
+  var ID = block.getFieldValue('ID');
   var x =
     Blockly.Arduino.valueToCode(block, 'ROW', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';
@@ -96,7 +111,7 @@ Blockly.Arduino['oled_StopScroll'] = function (block) {
 };
 
 Blockly.Arduino['oled_Draw'] = function (block) {
-  var ID = block.getFieldValue('ID') ;
+  var ID = block.getFieldValue('ID');
   var x1 =
     Blockly.Arduino.valueToCode(block, 'X1', Blockly.Arduino.ORDER_ATOMIC) ||
     '0';

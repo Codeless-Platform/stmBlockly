@@ -11,6 +11,7 @@
 'use strict';
 
 goog.provide('Blockly.Arduino');
+goog.provide('Blockly.bluepill');
 
 goog.require('Blockly.Generator');
 goog.require('Blockly.StaticTyping');
@@ -61,12 +62,48 @@ Blockly.Arduino.ORDER_NONE = 99; // (...)
  * A list of types tasks that the pins can be assigned. Used to track usage and
  * warn if the same pin has been assigned to more than one task.
  */
-Blockly.Arduino.PinTypes = {
+Blockly.bluepill.PinTypes = {
   INPUT: 'INPUT',
   OUTPUT: 'OUTPUT',
-  SERIAL: 'SERIAL',
-  I2C: 'I2C/TWI',
+  UART: 'UART',
+  I2C: 'I2C',
   SPI: 'SPI',
+  TIM: 'TIM',
+  ADC: 'ADC',
+  LM35: 'LM35',
+  ECHO: 'ECHO',
+  TRIG: 'TRIG',
+  SCL: 'SCL',
+  SDA: 'SDA',
+  D4: 'D4',
+  D5: 'D5',
+  D6: 'D6',
+  D7: 'D7',
+  EN: 'EN',
+  RS: 'RS',
+  R0: 'R0',
+  R1: 'R1',
+  R2: 'R2',
+  R3: 'R3',
+  C0: 'C0',
+  C1: 'C1',
+  C2: 'C2',
+  C3: 'C3',
+  SCLK: 'SCLK',
+  MOSI: 'MOSI',
+  MISO: 'MISO',
+  CS:'CS',
+  RX: 'RX',
+  TX: 'TX',
+  LED_CS: 'LED_CS',
+  IN1: 'IN1',
+  IN2: 'IN2',
+  MOTOR_EN: 'MOTOR_EN',
+  S_P1: 'PIN1',
+  S_P2: 'PIN2',
+  S_P3: 'PIN3',
+  S_P4: 'PIN4',
+  SERVO_PIN: 'SERVO_PIN',
 };
 
 /**
@@ -299,20 +336,20 @@ Blockly.Arduino.addFunction = function (preferedName, code) {
  * @param {!string} warningTag Description.
  */
 Blockly.Arduino.reservePin = function (block, pin, pinType, warningTag) {
+  console.log(pinType)
+
   if (Blockly.Arduino.pins_[pin] !== undefined) {
     if (Blockly.Arduino.pins_[pin] != pinType) {
       block.setWarningText(
-        Blockly.Msg.ARD_PIN_WARN1.replace('%1', pin)
-          .replace('%2', warningTag)
-          .replace('%3', pinType)
-          .replace('%4', Blockly.Arduino.pins_[pin]),
+        Blockly.Msg.ARD_PIN_WARN1.replace('%1', pin).replace('%2', warningTag),
         warningTag
       );
     } else {
-      block.setWarningText(null, warningTag);
-    }
+       block.setWarningText(null, warningTag);
+     }
   } else {
     Blockly.Arduino.pins_[pin] = pinType;
+    console.log(Blockly.Arduino.pins_)
     block.setWarningText(null, warningTag);
   }
 };
