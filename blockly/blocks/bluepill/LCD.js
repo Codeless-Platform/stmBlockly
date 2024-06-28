@@ -52,7 +52,7 @@ Blockly.Blocks['lcd_init'] = {
     var I2C_Instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.i2c
     );
-    var dropdownType = new Blockly.FieldDropdown([['Standard'], ['I2C']]);
+    var dropdownType = new Blockly.FieldDropdown([['Standard'], ['I2C']],this.updateVisibility.bind(this));
     var dropdownSize = new Blockly.FieldDropdown([
       ['2x16'],
       ['4x16'],
@@ -72,7 +72,7 @@ Blockly.Blocks['lcd_init'] = {
       .appendField(Blockly.Msg.LCD_INIT)
       .appendField(list, 'ID')
       .appendField(Blockly.Msg.LCD_TYPE)
-      .appendField(new Blockly.FieldDropdown([['Standard'], ['I2C']],this.updateVisibility.bind(this)), 'TYPE')
+      .appendField(dropdownType, 'TYPE')
       .appendField(Blockly.Msg.LCD_SIZE)
       .appendField(dropdownSize, 'SIZE');
 
