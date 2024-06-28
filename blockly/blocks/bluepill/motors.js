@@ -10,7 +10,7 @@ goog.require('Blockly.Types');
 Blockly.Blocks.motors.HUE = 120;
 Blockly.Blocks.stepper.HUE = 140;
 Blockly.Blocks.servo.HUE = 120;
-function getCurrentValuePresentPWM(block,id){
+function getCurrentValuePresentPWM(block, id) {
   if (!block.currentValuePresent) {
     var field = block.getField('PIN');
     var fieldValue = field.getValue();
@@ -19,15 +19,18 @@ function getCurrentValuePresentPWM(block,id){
     for (var i = 0; i < dataArray.length; i++) {
       if (fieldValue == dataArray[i][1]) {
         block.currentValuePresent = true;
-      }}
+      }
+    }
   }
-  if(block.currentValuePresent) {
+  if (block.currentValuePresent) {
     block.setWarningText(null, id);
-  } 
+  }
 }
 Blockly.Blocks['motor_init'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver'
+    );
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'MOTOR',
@@ -55,8 +58,8 @@ Blockly.Blocks['motor_init'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwm),
         'PIN'
       );
-    this.setFieldValue('PA1','IN2')
-    this.setFieldValue('PA2','PIN')
+    this.setFieldValue('PA1', 'IN2');
+    this.setFieldValue('PA2', 'PIN');
     this.setInputsInline(true);
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
@@ -66,7 +69,12 @@ Blockly.Blocks['motor_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm',this.getFieldValue('ID'));
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      'PIN',
+      'pwm',
+      this.getFieldValue('ID')
+    );
   },
   getMotorInstance: function () {
     return this.getFieldValue('ID');
@@ -79,10 +87,10 @@ Blockly.Blocks['motor_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-  this.getDuplicateBlock();
-  getCurrentValuePresentPWM(this, this.getFieldValue('ID'))
+    this.getDuplicateBlock();
+    getCurrentValuePresentPWM(this, this.getFieldValue('ID'));
   },
-  getDuplicateBlock:function(){
+  getDuplicateBlock: function () {
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -105,12 +113,14 @@ Blockly.Blocks['motor_init'] = {
     } else {
       this.setWarningText(null, 'duplicateMotor');
     }
-  }
+  },
 };
 
 Blockly.Blocks['motor_move'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver'
+    );
     var list = new Blockly.FieldInstance(
       'MOTOR',
       Blockly.Msg.MOTOR_DEFAULT_NAME,
@@ -172,7 +182,9 @@ Blockly.Blocks['motor_move'] = {
 
 Blockly.Blocks['stepper_config'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor'
+    );
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.STEPPER_INIT)
@@ -207,7 +219,7 @@ Blockly.Blocks['stepper_config'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'PIN4'
       );
-      
+
     this.setFieldValue('PA1', 'PIN2');
     this.setFieldValue('PA2', 'PIN3');
     this.setFieldValue('PA3', 'PIN4');
@@ -237,9 +249,9 @@ Blockly.Blocks['stepper_config'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-    this.getDuplicateBlock()
+    this.getDuplicateBlock();
   },
-  getDuplicateBlock: function(){
+  getDuplicateBlock: function () {
     var thisInstanceName = this.getFieldValue('STEPPER_NAME');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -262,7 +274,7 @@ Blockly.Blocks['stepper_config'] = {
     } else {
       this.setWarningText(null, 'duplicateStepper');
     }
-  }
+  },
 };
 
 Blockly.Blocks['stepper_step'] = {
@@ -271,7 +283,9 @@ Blockly.Blocks['stepper_step'] = {
    * @this Blockly.Block
    */
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor'
+    );
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.STEPPER_STEP)
@@ -335,7 +349,9 @@ Blockly.Blocks['stepper_step'] = {
 
 Blockly.Blocks['servo_init'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor'
+    );
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'SERVO',
@@ -362,7 +378,12 @@ Blockly.Blocks['servo_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'pwm',this.getFieldValue('ID'));
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      'PIN',
+      'pwm',
+      this.getFieldValue('ID')
+    );
   },
   getServoInstance: function () {
     return this.getFieldValue('ID');
@@ -375,10 +396,10 @@ Blockly.Blocks['servo_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-    this.getDuplicateBlock()
-    getCurrentValuePresentPWM(this, this.getFieldValue('ID'))
+    this.getDuplicateBlock();
+    getCurrentValuePresentPWM(this, this.getFieldValue('ID'));
   },
-  getDuplicateBlock: function(){
+  getDuplicateBlock: function () {
     var thisInstanceName = this.getFieldValue('ID');
     var blocks = Blockly.mainWorkspace.getAllBlocks();
     var count = 0;
@@ -401,12 +422,14 @@ Blockly.Blocks['servo_init'] = {
     } else {
       this.setWarningText(null, 'duplicateServo');
     }
-  }
+  },
 };
 
 Blockly.Blocks['servo_write'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor'
+    );
     var list = new Blockly.FieldInstance(
       'SERVO',
       Blockly.Msg.SERVO_DEFAULT_NAME,

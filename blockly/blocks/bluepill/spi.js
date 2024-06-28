@@ -17,7 +17,7 @@ goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
 Blockly.Blocks.spi.HUE = 170;
-function getCurrentValuePresentSPI(block,id){
+function getCurrentValuePresentSPI(block, id) {
   if (!block.currentValuePresent) {
     var field = block.getField('SPI_ID');
     var fieldValue = field.getValue();
@@ -26,15 +26,18 @@ function getCurrentValuePresentSPI(block,id){
     for (var i = 0; i < dataArray.length; i++) {
       if (fieldValue == dataArray[i][1]) {
         block.currentValuePresent = true;
-      }}
+      }
+    }
   }
-  if(block.currentValuePresent) {
+  if (block.currentValuePresent) {
     block.setWarningText(null, id);
-  } 
+  }
 }
 Blockly.Blocks['spi_init'] = {
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI'
+    );
 
     this.currentValuePresent = true;
     var SPI_instant = new Blockly.FieldDropdown(
@@ -104,7 +107,12 @@ Blockly.Blocks['spi_init'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    this.currentValuePresent =Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi','SPI_INIT');
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      'SPI_ID',
+      'spi',
+      'SPI_INIT'
+    );
   },
   onchange: function (event) {
     if (
@@ -114,8 +122,8 @@ Blockly.Blocks['spi_init'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-    this.getDuplicateBlock()
-    getCurrentValuePresentSPI(this,'SPI_INIT')
+    this.getDuplicateBlock();
+    getCurrentValuePresentSPI(this, 'SPI_INIT');
   },
   getDuplicateBlock: function () {
     var thisInstanceName = this.getFieldValue('SPI_ID');
@@ -150,7 +158,9 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   init: function () {
-    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI')
+    this.setHelpUrl(
+      'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI'
+    );
     this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.spi.HUE);
     this.appendDummyInput().appendField(
@@ -179,10 +189,10 @@ Blockly.Blocks['spi_RXTX'] = {
     ) {
       return; // Block deleted or irrelevant event
     }
-    this.isInitBlockPresent()
-    getCurrentValuePresentSPI(this,'SPI_TXRX')
+    this.isInitBlockPresent();
+    getCurrentValuePresentSPI(this, 'SPI_TXRX');
   },
-  isInitBlockPresent: function(){
+  isInitBlockPresent: function () {
     // Get the Serial instance from this block
     var thisInstanceName = this.getFieldValue('SPI_ID');
 
@@ -221,6 +231,11 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'SPI_ID', 'spi','SPI_TXRX');
+    this.currentValuePresent = Blockly.Arduino.Boards.refreshBlockFieldDropdown(
+      this,
+      'SPI_ID',
+      'spi',
+      'SPI_TXRX'
+    );
   },
 };
