@@ -144,10 +144,13 @@ ArdublocklyServer.jsonToIdeModal = function(jsonObj) {
     elErrOp.innerHTML += '<br />' + errStr.join('<br />');
   } else if (jsonObj.success && jsonObj.ide_mode) {
     // Format a successful response
+    var err= ideData.exit_code;
     if (jsonObj.ide_mode == 'upload') {
-    // elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpUploadedTitle');
+      var msg = (err? 'arduinoOpUploadedTitleErr' : 'arduinoOpUploadedTitle')
+     elTitle.innerHTML =  Ardublockly.getLocalStr(msg);
     } else if (jsonObj.ide_mode == 'verify') {
-      elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpVerifiedTitle');
+      var msg = (err? 'arduinoOpVerifiedTitleErr' : 'arduinoOpVerifiedTitle')
+      elTitle.innerHTML = Ardublockly.getLocalStr(msg);
     } else if (jsonObj.ide_mode == 'open') {
       elTitle.innerHTML = Ardublockly.getLocalStr('arduinoOpOpenedTitle');
       // This is a corner case where we also add to the stand out

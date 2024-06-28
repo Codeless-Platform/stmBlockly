@@ -110,12 +110,12 @@ def load_arduino_cli(sketch_path):
         edit_makefile(makefile_path,settings.STM32_board)
         cli_command1 = []
         if settings.load_ide_option == 'upload':
-            cli_command1 = ['make', '-C', grandparent_directory]
+            cli_command1 = ['make','-j12','-C', grandparent_directory]
             print('\nCompiling the code...\nGenerating .hex file')
             print('\nUploading sketch to bluepill...')
             cli_command = [settings.programmer_dir, '-c port=SWD -w', hex_file_path,'-v --start']
         elif settings.load_ide_option == 'verify':
-            cli_command = ['make -j12', '-C', grandparent_directory]
+            cli_command = ['make','-j12', '-C', grandparent_directory]
             print('\nCompiling the code...\nGenerating .hex file')
         elif settings.load_ide_option == 'open':
             cli_command = [settings.compiler_dir, "%s" % new_projectFile_path]
@@ -155,24 +155,38 @@ def load_arduino_cli(sketch_path):
                 print('Make command output:\n%s' % std_out)
                 print('Make command Error output:\n%s' % err_out)
                 print('Make command Exit code: %s' % exit_code)
-            process = subprocess.Popen(
+                if(exit_code):
+                    return success, ide_mode, std_out, err_out, exit_code
+                else: 
+                    process2 = subprocess.Popen(
                 cli_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 shell=False)
-            std_out, err_out = process.communicate()
-            std_out = six.u(std_out)
-            err_out = six.u(err_out)
-            exit_code = process.returncode
-            print('STM Cube output:\n%s' % std_out)
-            print('STM Cube Error output:\n%s' % err_out)
-            print('STM Cube Exit code: %s' % exit_code)
-            # # For some reason Arduino CLI can return 256 on success
-            # if (process.returncode != 0) and (process.returncode != 256):
-            #     success = False
-            #     if exit_code >= 50:
-            #         # Custom exit codes from server start at 50
-            #         err_out = '%s\nUnexpected Arduino exit error code: %s' % \
-            #                   (err_out, exit_code)
-            #         exit_code = 50     
+                std_out, err_out = process2.communicate()
+                std_out = six.u(std_out)
+                err_out = six.u(err_out)
+                exit_code = process2.returncode
+                print('Make command output:\n%s' % std_out)
+                print('Make command Error output:\n%s' % err_out)
+                print('Make command Exit code: %s' % exit_code)
+            else:
+                process = subprocess.Popen(
+                    cli_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    shell=False)
+                std_out, err_out = process.communicate()
+                std_out = six.u(std_out)
+                err_out = six.u(err_out)
+                exit_code = process.returncode
+                print('STM Cube output:\n%s' % std_out)
+                print('STM Cube Error output:\n%s' % err_out)
+                print('STM Cube Exit code: %s' % exit_code)
+                # # For some reason Arduino CLI can return 256 on success
+                # if (process.returncode != 0) and (process.returncode != 256):
+                #     success = False
+                #     if exit_code >= 50:
+                #         # Custom exit codes from server start at 50
+                #         err_out = '%s\nUnexpected Arduino exit error code: %s' % \
+                #                   (err_out, exit_code)
+                #         exit_code = 50     
     return success, ide_mode, std_out, err_out, exit_code
 
 def edit_makefile(makefile_path, board):
