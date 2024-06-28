@@ -10,6 +10,7 @@ Blockly.Blocks.ledMatrix.HUE = 170;
 
 Blockly.Blocks['matrix_init'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LED_MATRIX')
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'MATRIX',
@@ -116,6 +117,7 @@ Blockly.Blocks['matrix_init'] = {
 
 Blockly.Blocks['matrix_sendString'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LED_MATRIX')
     var list = new Blockly.FieldInstance(
       'MATRIX',
       Blockly.Msg.MATRIX_DEFAULT_NAME,

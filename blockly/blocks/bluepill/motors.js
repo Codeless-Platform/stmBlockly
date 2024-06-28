@@ -27,6 +27,7 @@ function getCurrentValuePresentPWM(block,id){
 }
 Blockly.Blocks['motor_init'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver')
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'MOTOR',
@@ -109,6 +110,7 @@ Blockly.Blocks['motor_init'] = {
 
 Blockly.Blocks['motor_move'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Motor_Driver')
     var list = new Blockly.FieldInstance(
       'MOTOR',
       Blockly.Msg.MOTOR_DEFAULT_NAME,
@@ -170,6 +172,7 @@ Blockly.Blocks['motor_move'] = {
 
 Blockly.Blocks['stepper_config'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor')
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.STEPPER_INIT)
@@ -268,6 +271,7 @@ Blockly.Blocks['stepper_step'] = {
    * @this Blockly.Block
    */
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Stepper_Motor')
     this.setColour(Blockly.Blocks.stepper.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.STEPPER_STEP)
@@ -331,6 +335,7 @@ Blockly.Blocks['stepper_step'] = {
 
 Blockly.Blocks['servo_init'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor')
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'SERVO',
@@ -401,6 +406,7 @@ Blockly.Blocks['servo_init'] = {
 
 Blockly.Blocks['servo_write'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Servo_Motor')
     var list = new Blockly.FieldInstance(
       'SERVO',
       Blockly.Msg.SERVO_DEFAULT_NAME,

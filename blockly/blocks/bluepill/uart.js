@@ -36,6 +36,7 @@ function getCurrentValuePresentUart(block,id){
 }
 Blockly.Blocks['uart_init'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/USART')
     this.currentValuePresent = true;
     var uart_instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.uart
@@ -129,6 +130,7 @@ Blockly.Blocks['uart_init'] = {
 
 Blockly.Blocks['uart_write'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/USART')
     this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()
@@ -197,6 +199,7 @@ Blockly.Blocks['uart_write'] = {
 
 Blockly.Blocks['uart_recieve'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/USART')
     this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.uart.HUE);
     this.appendDummyInput()

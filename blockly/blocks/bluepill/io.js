@@ -26,7 +26,7 @@ Blockly.Blocks['io_writePin'] = {
    * @this Blockly.Block
    */
   init: function () {
-    // this.setHelpUrl('http://arduino.cc/en/Reference/DigitalWrite');
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('STATE')
       .appendField(Blockly.Msg.ARD_DIGITALWRITE)
@@ -60,7 +60,7 @@ Blockly.Blocks['io_readPin'] = {
    * @this Blockly.Block
    */
   init: function () {
-    // this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.ARD_DIGITALREAD)
@@ -94,6 +94,7 @@ Blockly.Blocks['io_builtin_led'] = {
    * @this Blockly.Block
    */
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('STATE')
       .appendField(Blockly.Msg.ARD_BUILTIN_LED)
@@ -131,7 +132,7 @@ Blockly.Blocks['io_highlow'] = {
    * @this Blockly.Block
    */
   init: function () {
-    // this.setHelpUrl('http://arduino.cc/en/Reference/Constants');
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([
@@ -157,6 +158,7 @@ Blockly.Blocks['io_togglePin'] = {
    * @this Blockly.Block
    */
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.ARD_TOGGLEPIN)
@@ -184,6 +186,7 @@ Blockly.Blocks['io_togglePin'] = {
 
 Blockly.Blocks['io_writePort'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('STATE')
       .appendField(Blockly.Msg.WRITE_PORT)
@@ -205,7 +208,7 @@ Blockly.Blocks['io_readPort'] = {
    * @this Blockly.Block
    */
   init: function () {
-    // this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/GPIO');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.READ)
@@ -229,7 +232,7 @@ Blockly.Blocks['io_readAnalogPin'] = {
    * @this Blockly.Block
    */
   init: function () {
-    // this.setHelpUrl('http://arduino.cc/en/Reference/DigitalRead');
+     this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/ADC');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.READANALOG)
@@ -259,6 +262,7 @@ Blockly.Blocks['io_readAnalogPin'] = {
 };
 Blockly.Blocks['io_writePwm'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/TIM');
     this.setColour(Blockly.Blocks.io.HUE);
     this.appendValueInput('PWM').appendField(Blockly.Msg.WRITE_PWM);
     this.appendDummyInput()

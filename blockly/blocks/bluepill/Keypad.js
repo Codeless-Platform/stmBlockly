@@ -10,6 +10,7 @@ Blockly.Blocks.keypad.HUE = 380;
 
 Blockly.Blocks['keypad_init'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Keypad')
     var list = new Blockly.FieldInstance(
       'Keypad',
       Blockly.Msg.KEYPAD_DEFAULT_NAME,
@@ -158,6 +159,7 @@ Blockly.Blocks['keypad_init'] = {
 
 Blockly.Blocks['keypad_getKey'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Keypad')
     var list = new Blockly.FieldInstance(
       'Keypad',
       Blockly.Msg.KEYPAD_DEFAULT_NAME,

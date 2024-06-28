@@ -41,6 +41,7 @@ const onChangeLCD = function (event, obj, id) {
 };
 Blockly.Blocks['lcd_init'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'LCD',
@@ -211,6 +212,7 @@ Blockly.Blocks['lcd_init'] = {
 // send char
 Blockly.Blocks['lcd_sendChar'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,
@@ -237,6 +239,7 @@ Blockly.Blocks['lcd_sendChar'] = {
 // send string
 Blockly.Blocks['lcd_sendString'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,
@@ -261,6 +264,7 @@ Blockly.Blocks['lcd_sendString'] = {
 // send Number
 Blockly.Blocks['lcd_sendNumber'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,
@@ -285,6 +289,7 @@ Blockly.Blocks['lcd_sendNumber'] = {
 // clear screen
 Blockly.Blocks['lcd_clear'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,
@@ -307,6 +312,7 @@ Blockly.Blocks['lcd_clear'] = {
 // go to x y
 Blockly.Blocks['lcd_goto'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LCD_Multi_Instances');
     var list = new Blockly.FieldInstance(
       'LCD',
       Blockly.Msg.LCD_DEFAULT_NAME,

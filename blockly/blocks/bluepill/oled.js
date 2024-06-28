@@ -41,6 +41,7 @@ const onChangeOled = function (event, obj, id) {
 Blockly.Blocks.oled.HUE = 120;
 Blockly.Blocks['oled_init'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.currentValuePresent = true;
     var list = new Blockly.FieldInstance(
       'OLED',
@@ -152,6 +153,8 @@ Blockly.Blocks['oled_init'] = {
 
 Blockly.Blocks['oled_sendString'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
+
     var fonts = [['Font_7x10'], ['Font_11x18'], ['Font_16x26']];
     var colors = [['White'], ['Black']];
     this.setColour(Blockly.Blocks.oled.HUE);
@@ -186,6 +189,7 @@ Blockly.Blocks['oled_sendString'] = {
 };
 Blockly.Blocks['oled_sendNumber'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     var fonts = [['Font_7x10'], ['Font_11x18'], ['Font_16x26']];
     var colors = [['White'], ['Black']];
     this.setColour(Blockly.Blocks.oled.HUE);
@@ -222,6 +226,7 @@ Blockly.Blocks['oled_sendNumber'] = {
 
 Blockly.Blocks['oled_clear'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_CLEAR)
@@ -246,6 +251,7 @@ Blockly.Blocks['oled_clear'] = {
 // go to x y
 Blockly.Blocks['oled_goto'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendValueInput('ROW')
       .setCheck(Blockly.Types.NUMBER.checkList)
@@ -276,6 +282,7 @@ Blockly.Blocks['oled_goto'] = {
 
 Blockly.Blocks['oled_UpdateScreen'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_UPDATE)
@@ -300,6 +307,7 @@ Blockly.Blocks['oled_UpdateScreen'] = {
 
 Blockly.Blocks['oled_Scroll'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_SCROLL)
@@ -340,6 +348,7 @@ Blockly.Blocks['oled_Scroll'] = {
 
 Blockly.Blocks['oled_StopScroll'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     this.setColour(Blockly.Blocks.oled.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.OLED_STOP_SCROLL)
@@ -364,6 +373,7 @@ Blockly.Blocks['oled_StopScroll'] = {
 // oled bitmap
 Blockly.Blocks['oled_drawBitmap'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     const color = [['White'], ['Black']];
 
     this.setColour(Blockly.Blocks.oled.HUE);
@@ -416,6 +426,7 @@ Blockly.Blocks['oled_drawBitmap'] = {
 // oled Draw
 Blockly.Blocks['oled_Draw'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/OLED')
     const shapes = [['Line'], ['Triangle'], ['Rectangle'], ['Circle']];
     const color = [['White'], ['Black']];
     this.setColour(Blockly.Blocks.oled.HUE);

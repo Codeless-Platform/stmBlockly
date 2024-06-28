@@ -34,6 +34,8 @@ function getCurrentValuePresentSPI(block,id){
 }
 Blockly.Blocks['spi_init'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI')
+
     this.currentValuePresent = true;
     var SPI_instant = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.spi
@@ -148,6 +150,7 @@ Blockly.Blocks['spi_RXTX'] = {
    * @this Blockly.Block
    */
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/SPI')
     this.currentValuePresent = true;
     this.setColour(Blockly.Blocks.spi.HUE);
     this.appendDummyInput().appendField(

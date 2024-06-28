@@ -54,6 +54,7 @@ Blockly.Blocks['infinite_loop'] = {
 //New Blocks
 Blockly.Blocks['time_clkInit'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/RCC')
     let source = [['HSI'], ['HSE'], ['PLL_HSI'], ['PLL_HSE']];
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendDummyInput()
@@ -131,6 +132,7 @@ Blockly.Blocks['time_clkInit'] = {
 
 Blockly.Blocks['time_clockEN'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/RCC')
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.CLK_EN)
@@ -147,6 +149,7 @@ Blockly.Blocks['time_clockEN'] = {
 
 Blockly.Blocks['time_clockDisable'] = {
   init: function () {
+    this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/RCC')
     this.setColour(Blockly.Blocks.time.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.CLK_DIS)

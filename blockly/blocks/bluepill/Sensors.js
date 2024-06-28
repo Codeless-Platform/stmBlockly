@@ -10,6 +10,7 @@ Blockly.Blocks.sensors.HUE = 180;
 
 Blockly.Blocks['sensors_LM35'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/LM35')
     this.setColour(Blockly.Blocks.sensors.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.READLM35)
@@ -69,6 +70,7 @@ Blockly.Blocks['sensors_PIR'] = {
 
 Blockly.Blocks['sensors_ultrasonic'] = {
   init: function () {
+    this.addHelperUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Ultrasonic')
     var trig = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.digitalPins
     );
