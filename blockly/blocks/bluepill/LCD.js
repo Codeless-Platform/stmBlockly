@@ -91,6 +91,7 @@ Blockly.Blocks['lcd_init'] = {
   },
   updateVisibility: function (type) {
     if (type == 'Standard') {
+      this.initStandartInputs();
       this.standardInput.setVisible(true);
       this.i2cInput.setVisible(false);
     } else if (type == "I2C") {
@@ -114,6 +115,14 @@ Blockly.Blocks['lcd_init'] = {
       .appendField(new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins), 'EN')
       .appendField(Blockly.Msg.LCD_RS)
       .appendField(new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins), 'RS');
+  },
+  initStandartInputs: function(){
+    this.setFieldValue('PA0','d4')
+    this.setFieldValue('PA1','d5')
+    this.setFieldValue('PA2','d6')
+    this.setFieldValue('PA3','d7')
+    this.setFieldValue('PA4','EN')
+    this.setFieldValue('PA5','RS')
   },
 
   appendI2CInputs: function (I2C_Instant, dropdownAddress) {

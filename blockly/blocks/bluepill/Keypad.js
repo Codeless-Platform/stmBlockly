@@ -73,9 +73,19 @@ Blockly.Blocks['keypad_init'] = {
     this.size = '4x3';
     this.setInputsInline(false);
     this.setFieldValue('4x3', 'SIZE');
+    this.initPinValues()
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
     this.setTooltip(Blockly.Msg.KEYPAD_TTL);
+  },
+  initPinValues: function(){
+    this.setFieldValue('PA0','R0')
+    this.setFieldValue('PA1','R1')
+    this.setFieldValue('PA2','R2')
+    this.setFieldValue('PA3','R3')
+    this.setFieldValue('PA4','C0')
+    this.setFieldValue('PA5','C1')
+    this.setFieldValue('PA6','C2')
   },
   updateCols_: function (size) {
     this.size = size;
@@ -96,6 +106,7 @@ Blockly.Blocks['keypad_init'] = {
         'C3',
         'digitalPins'
       );
+      this.setFieldValue('PA7','C3')
     }
   },
   getKeypadInstance: function () {

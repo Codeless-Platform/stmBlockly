@@ -54,6 +54,8 @@ Blockly.Blocks['motor_init'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.pwm),
         'PIN'
       );
+    this.setFieldValue('PA1','IN2')
+    this.setFieldValue('PA2','PIN')
     this.setInputsInline(true);
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
@@ -202,6 +204,10 @@ Blockly.Blocks['stepper_config'] = {
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'PIN4'
       );
+      
+    this.setFieldValue('PA1', 'PIN2');
+    this.setFieldValue('PA2', 'PIN3');
+    this.setFieldValue('PA3', 'PIN4');
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
     this.setTooltip(Blockly.Msg.STEPPER_SETUP_TIP);
