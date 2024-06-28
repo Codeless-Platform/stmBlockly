@@ -584,6 +584,24 @@ Blockly.Blocks['oled_Draw'] = {
       }
     }
   },
+  mutationToDom: function () {
+    var container = document.createElement('mutation');
+    container.setAttribute('shape', this.shape);
+    if (this.getField('FILLED')) {
+      container.setAttribute('filled', this.getFieldValue('FILLED'));
+    }
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    var shape = xmlElement.getAttribute('shape');
+    this.setFieldValue(shape, 'SHAPE');
+    this.shape = shape;
+    this.updateShape_(shape);
+    if (this.getField('FILLED')) {
+      this.setFieldValue(xmlElement.getAttribute('filled'), 'FILLED');
+    }
+  },
   onchange: function (event) {
     onChangeOled(event, this, 'oled_Draw');
   },

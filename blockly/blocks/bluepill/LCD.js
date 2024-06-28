@@ -90,6 +90,23 @@ Blockly.Blocks['lcd_init'] = {
 
     this.updateVisibility(this.getFieldValue('TYPE'));
   },
+  mutationToDom: function () {
+    var container = document.createElement('mutation');
+    container.setAttribute('type', this.getFieldValue('TYPE'));
+    container.setAttribute('size', this.getFieldValue('SIZE'));
+    container.setAttribute('address', this.getFieldValue('ADDRESS'));
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    var type = xmlElement.getAttribute('type');
+    var size = xmlElement.getAttribute('size');
+    var address = xmlElement.getAttribute('address');
+    this.setFieldValue(type, 'TYPE');
+    this.setFieldValue(size, 'SIZE');
+    this.setFieldValue(address, 'ADDRESS');
+    this.updateVisibility(type);
+  },
   updateVisibility: function (type) {
     if (type == 'Standard') {
       this.initStandartInputs();

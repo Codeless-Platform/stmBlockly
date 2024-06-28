@@ -79,6 +79,38 @@ Blockly.Blocks['keypad_init'] = {
     this.setNextStatement(false, null);
     this.setTooltip(Blockly.Msg.KEYPAD_TTL);
   },
+  mutationToDom: function () {
+    var container = document.createElement('mutation');
+    container.setAttribute('size', this.size);
+    container.setAttribute('R0', this.getFieldValue('R0'));
+    container.setAttribute('R1', this.getFieldValue('R1'));
+    container.setAttribute('R2', this.getFieldValue('R2'));
+    container.setAttribute('R3', this.getFieldValue('R3'));
+    container.setAttribute('C0', this.getFieldValue('C0'));
+    container.setAttribute('C1', this.getFieldValue('C1'));
+    container.setAttribute('C2', this.getFieldValue('C2'));
+    if (this.size == '4x4') {
+      container.setAttribute('C3', this.getFieldValue('C3'));
+    }
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    var size = xmlElement.getAttribute('size');
+    this.setFieldValue(size, 'SIZE');
+    this.size = size;
+    this.updateCols_(size);
+    this.setFieldValue(xmlElement.getAttribute('R0'), 'R0');
+    this.setFieldValue(xmlElement.getAttribute('R1'), 'R1');
+    this.setFieldValue(xmlElement.getAttribute('R2'), 'R2');
+    this.setFieldValue(xmlElement.getAttribute('R3'), 'R3');
+    this.setFieldValue(xmlElement.getAttribute('C0'), 'C0');
+    this.setFieldValue(xmlElement.getAttribute('C1'), 'C1');
+    this.setFieldValue(xmlElement.getAttribute('C2'), 'C2');
+    if (size == '4x4') {
+      this.setFieldValue(xmlElement.getAttribute('C3'), 'C3');
+    }
+  },
   initPinValues: function(){
     this.setFieldValue('PA0','R0')
     this.setFieldValue('PA1','R1')
