@@ -751,8 +751,11 @@ Blockly.Msg.MATRIX_DEFAULT_NAME = 'LedMatrix';
 
 Blockly.Msg.PIR_READ = 'read PIR sensor on pin#';
 Blockly.Msg.ULTRASONIC_READ_TTL = 'read distance from ultrasonic sensor';
-Blockly.Msg.ULTRASONIC_READ = 'read distance on echo pin';
+Blockly.Msg.ULTRASONIC_READ = 'read distance from';
+Blockly.Msg.ULTRASONIC_ECHO ="echo pin"
 Blockly.Msg.ULTRASONIC_TRIG = 'trigger pin';
+Blockly.Msg.ULTRASONIC_DEFAULT_NAME = "Ultasonic"
+
 //pwm
 Blockly.Msg.WRITE_PWM = 'write';
 Blockly.Msg.PIN_PWM = 'to pin#';

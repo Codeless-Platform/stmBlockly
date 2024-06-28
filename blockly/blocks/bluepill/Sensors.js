@@ -75,12 +75,21 @@ Blockly.Blocks['sensors_ultrasonic'] = {
     this.setHelpUrl(
       'https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/HAL/Ultrasonic'
     );
+    var list = new Blockly.FieldInstance(
+      'Ultrasonic',
+      Blockly.Msg.ULTRASONIC_DEFAULT_NAME,
+      false,
+      false,
+      false
+    );
     var trig = new Blockly.FieldDropdown(
       Blockly.Arduino.Boards.selected.digitalPins
     );
     this.setColour(Blockly.Blocks.sensors.HUE);
     this.appendDummyInput()
       .appendField(Blockly.Msg.ULTRASONIC_READ)
+      .appendField(list,'ID')
+      .appendField(Blockly.Msg.ULTRASONIC_ECHO)
       .appendField(
         new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.digitalPins),
         'echo'
