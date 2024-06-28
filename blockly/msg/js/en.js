@@ -760,6 +760,9 @@ Blockly.Msg.ULTRASONIC_DEFAULT_NAME = "Ultasonic"
 Blockly.Msg.WRITE_PWM = 'write';
 Blockly.Msg.PIN_PWM = 'to pin#';
 Blockly.Msg.PWM_TTL = 'writes a value between 0 and 65536 on selected pin';
+
+Blockly.Msg.SET_TONE = 'Set tone ';
+Blockly.Msg.NO_TONE = 'turn off tone on pin #';
 //motors
 Blockly.Msg.MOTOR_INIT = 'initialize motor pins';
 Blockly.Msg.MOTOR_IN1 = 'IN1';

@@ -228,6 +228,7 @@ Ardublockly.updateToolboxLanguage = function () {
     "catTime",
     "catInterfaces",
     "catSensors",
+    "catTone",
     "catMotors",
     "catComms",
   ];

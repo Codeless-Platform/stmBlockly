@@ -201,6 +201,16 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="sensors_PIR"></block>' +
   '    <block type="sensors_ultrasonic"></block>' +
   '  </category>' +
+  '  <category id="catTone" name="Tone">' +
+  '    <block type="set_tone">' +
+  '      <value name="PWM">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">0</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
+  '    <block type="no_tone"></block>' +
+  '  </category>' +
   '  <category id="catMotors" name="Motors">' +
   '    <block type="motor_init"></block>' +
   '    <block type="motor_move">' +

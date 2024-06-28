@@ -29,6 +29,7 @@
 #include "../HAL/Motor_Driver/MotorDriver.h"
 #include "../HAL/Stepper_Motor/Stepper.h"
 #include "../HAL/Servo_Motor/Servo.h"
+#include "../HAL/Buzzer/Buzzer.h"
 #include "math.h"
 
 
