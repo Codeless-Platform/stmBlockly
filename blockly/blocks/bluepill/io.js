@@ -254,7 +254,7 @@ Blockly.Blocks['io_readAnalogPin'] = {
    * @this Blockly.Block
    */
   updateFields: function () {
-    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analogPins');
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analog');
   },
 };
 Blockly.Blocks['io_writePwm'] = {
@@ -280,7 +280,7 @@ Blockly.Blocks['io_writePwm'] = {
     Blockly.Arduino.Boards.refreshBlockFieldDropdown(
       this,
       'PIN',
-      'digitalPins'
+      'pwm'
     );
   },
 };
