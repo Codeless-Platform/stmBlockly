@@ -336,10 +336,16 @@ Blockly.Arduino.addFunction = function (preferedName, code) {
  * @param {!string} warningTag Description.
  */
 Blockly.Arduino.reservePin = function (block, pin, pinType, warningTag) {
-  console.log(pinType)
-
+  console.log(Blockly.Arduino.pins_)
+var blockType = ['lcd_init','keypad_init','oled_init','matrix_init','stepper_config','servo_init','motor_init']
   if (Blockly.Arduino.pins_[pin] !== undefined) {
-    if (Blockly.Arduino.pins_[pin] != pinType) {
+    if(blockType.includes(block.type)){
+      block.setWarningText(
+        Blockly.Msg.ARD_PIN_WARN1.replace('%1', pin).replace('%2', warningTag),
+        warningTag
+      );
+    }
+    else if (Blockly.Arduino.pins_[pin] != pinType) {
       block.setWarningText(
         Blockly.Msg.ARD_PIN_WARN1.replace('%1', pin).replace('%2', warningTag),
         warningTag
@@ -349,7 +355,6 @@ Blockly.Arduino.reservePin = function (block, pin, pinType, warningTag) {
      }
   } else {
     Blockly.Arduino.pins_[pin] = pinType;
-    console.log(Blockly.Arduino.pins_)
     block.setWarningText(null, warningTag);
   }
 };
