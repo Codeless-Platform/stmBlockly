@@ -200,6 +200,8 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="sensors_LM35"></block>' +
   '    <block type="sensors_PIR"></block>' +
   '    <block type="sensors_ultrasonic"></block>' +
+  '    <block type="sensors_pot"></block>' +
+  '    <block type="sensors_ldr"></block>' +
   '  </category>' +
   '  <category id="catTone" name="Tone">' +
   '    <block type="set_tone">' +

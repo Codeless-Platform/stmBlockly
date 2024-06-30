@@ -121,3 +121,73 @@ Blockly.Blocks['sensors_ultrasonic'] = {
     );
   },
 };
+
+Blockly.Blocks['sensors_pot'] = {
+  /**
+   * Block for creating a 'read pin'.
+   * @this Blockly.Block
+   */
+  init: function () {
+     this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/ADC');
+    this.setColour(Blockly.Blocks.sensors.HUE);
+    this.appendDummyInput()
+      .appendField('Read potentiometer on pin#')
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.analog),
+        'PIN'
+      )
+      .appendField(Blockly.Msg.ADC)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.ADC),
+        'ADC'
+      );
+    this.setOutput(true, Blockly.Types.UINT16.output);
+    this.setTooltip(Blockly.Msg.READANALOG_TTL);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function () {
+    return Blockly.Types.UINT16;
+  },
+  /**
+   * Updates the content of the the pin related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analog');
+  },
+};
+
+Blockly.Blocks['sensors_ldr'] = {
+  /**
+   * Block for creating a 'read pin'.
+   * @this Blockly.Block
+   */
+  init: function () {
+     this.setHelpUrl('https://github.com/Codeless-Platform/stmBlockly/tree/master/STMCubeProject/MCAL/ADC');
+    this.setColour(Blockly.Blocks.sensors.HUE);
+    this.appendDummyInput()
+      .appendField('Read LDR value on pin#')
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.analog),
+        'PIN'
+      )
+      .appendField(Blockly.Msg.ADC)
+      .appendField(
+        new Blockly.FieldDropdown(Blockly.Arduino.Boards.selected.ADC),
+        'ADC'
+      );
+    this.setOutput(true, Blockly.Types.UINT16.output);
+    this.setTooltip(Blockly.Msg.READANALOG_TTL);
+  },
+  /** @return {!string} The type of return value for the block, an integer. */
+  getBlockType: function () {
+    return Blockly.Types.UINT16;
+  },
+  /**
+   * Updates the content of the the pin related fields.
+   * @this Blockly.Block
+   */
+  updateFields: function () {
+    Blockly.Arduino.Boards.refreshBlockFieldDropdown(this, 'PIN', 'analog');
+  },
+};

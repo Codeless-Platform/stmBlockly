@@ -221,7 +221,7 @@ Blockly.Arduino['io_readAnalogPin'] = function (block) {
 
   var pinCode = 'ADC_init(' + ADC + ');\n';
 
-  Blockly.Arduino.addMain('io_', pinCode, false);
+  Blockly.Arduino.addMain('io_' +ADC, pinCode, false);
 
   var code = 'ADC_read(' + ADC + ',' + adcChannel + ')';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -256,7 +256,7 @@ Blockly.Arduino['io_writePwm'] = function (block) {
   timConfig.ClockFactor = Div_1;
   timConfig.UDI_State = Disable_Interrupt;
   timConfig.AlignedMode = EdgeAligned_Mode;
-  timConfig.Prescalar = 31;
+  timConfig.Prescalar = 0;
   TIM_Init(${TIM}, &timConfig);
   //configure pwm 
   pwmConfig.AutoReloadValue = 625;

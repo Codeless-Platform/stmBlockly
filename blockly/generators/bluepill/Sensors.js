@@ -89,3 +89,53 @@ Blockly.Arduino['sensors_ultrasonic'] = function (block) {
   var code = `ultraSonic_readDistance(&${us_id})`;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+Blockly.Arduino['sensors_pot'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  var ADC = block.getFieldValue('ADC');
+
+  var gpio = pin.charAt(1);
+  var adcChannel = 'ADC_CH' + pin.slice(2);
+  if (gpio == 'B') {
+    adcChannel = pin.slice(2) == 0 ? 'ADC_CH8' : 'ADC_CH9';
+  }
+
+  Blockly.Arduino.reservePin(
+    block,
+    pin,
+    Blockly.bluepill.PinTypes.ADC,
+    'Potentiometer'
+  );
+
+  var pinCode = 'ADC_init(' + ADC + ');\n';
+
+  Blockly.Arduino.addMain('io_' +ADC, pinCode, false);
+
+  var code = 'ADC_read(' + ADC + ',' + adcChannel + ')';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino['sensors_ldr'] = function (block) {
+  var pin = block.getFieldValue('PIN');
+  var ADC = block.getFieldValue('ADC');
+
+  var gpio = pin.charAt(1);
+  var adcChannel = 'ADC_CH' + pin.slice(2);
+  if (gpio == 'B') {
+    adcChannel = pin.slice(2) == 0 ? 'ADC_CH8' : 'ADC_CH9';
+  }
+
+  Blockly.Arduino.reservePin(
+    block,
+    pin,
+    Blockly.bluepill.PinTypes.ADC,
+    'LDR'
+  );
+
+  var pinCode = 'ADC_init(' + ADC + ');\n';
+
+  Blockly.Arduino.addMain('io_' +ADC, pinCode, false);
+
+  var code = 'ADC_read(' + ADC + ',' + adcChannel + ')';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
