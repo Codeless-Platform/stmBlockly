@@ -1,0 +1,56 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="time_clockEN" id="^gnc9]p.G:Axo.E%AK8r" x="63" y="106">
+    <field name="PERIPHRAL">GPIOA</field>
+    <next>
+      <block type="variables_set" id="xpJaL8i5CnC(CUx^O27m">
+        <field name="VAR">potVal</field>
+        <value name="VALUE">
+          <block type="sensors_pot" id="23A~OI?8r6/~{fSc-)-E">
+            <field name="PIN">PA0</field>
+            <field name="ADC">ADC1</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="tt*T6r{0/m,7Z|{Sx/LB">
+            <field name="VAR">pwmVal</field>
+            <value name="VALUE">
+              <block type="math_arithmetic" id="Vvn.R(?95;V(wv^:^)F.">
+                <field name="OP">DIVIDE</field>
+                <value name="A">
+                  <block type="math_arithmetic" id="s#h6OF_uJ_s:K7EZ;16~">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <block type="variables_get" id="5pc`AYV1kGlvz!Z3jC`P">
+                        <field name="VAR">potVal</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="5{z01OJcpHKEHT~f+_Em">
+                        <field name="NUM">625</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="D?KHiyp8r3Vr]cL9K23r">
+                    <field name="NUM">4095</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="io_writePwm" id="P3PCoDyR)Cdv0^cGLrAj">
+                <field name="PIN">PA2</field>
+                <value name="PWM">
+                  <block type="variables_get" id="8^:t6{oLS|pEdO^4F(=#">
+                    <field name="VAR">potVal</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

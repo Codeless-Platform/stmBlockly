@@ -1,0 +1,56 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="time_clockEN" id="^gnc9]p.G:Axo.E%AK8r" x="63" y="106">
+    <field name="PERIPHRAL">GPIOA</field>
+    <next>
+      <block type="variables_set" id="xpJaL8i5CnC(CUx^O27m">
+        <field name="VAR">potVal</field>
+        <value name="VALUE">
+          <block type="sensors_ldr" id="?2BP+`k%yjchky8e#V(S">
+            <field name="PIN">PA0</field>
+            <field name="ADC">ADC1</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="%nCm;cfm?%%=K*N04V9%">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_compare" id="wwA%4Y;xOYG([RD/htC-">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="variables_get" id="TI{9qJk8j#jRh3|s[y4#">
+                    <field name="VAR">potVal</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="!2^=5y8`V.6@0d?nDslk">
+                    <field name="NUM">200</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="io_writePin" id="nv8d~fZu]20ufK#KzQVu">
+                <field name="PIN">PA2</field>
+                <value name="STATE">
+                  <block type="io_highlow" id="y8LuWu#M%_A0l#kb}uOR">
+                    <field name="STATE">PIN_LOW</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="io_writePin" id=":k/+L-*hgukM.EvvsH@3">
+                <field name="PIN">PA2</field>
+                <value name="STATE">
+                  <block type="io_highlow" id="y+5Pb3mWs=6xoq%pM51)">
+                    <field name="STATE">PIN_HIGH</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

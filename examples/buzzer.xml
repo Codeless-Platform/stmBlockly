@@ -1,0 +1,58 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="time_clockEN" id="3Bi]y2]49ZSKC%`A,4}d" x="126" y="120">
+    <field name="PERIPHRAL">GPIOA</field>
+    <next>
+      <block type="controls_for" id="X7L/Q3Ef%8^IwG)jitlB">
+        <field name="VAR">i</field>
+        <value name="FROM">
+          <block type="math_number" id="KOSb?o*fR+j6*.*%=f/W">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number" id="@%0V`+0I|Ql%;dq*NgWR">
+            <field name="NUM">900</field>
+          </block>
+        </value>
+        <value name="BY">
+          <block type="math_number" id="l*oa`|^a||w{Z~Z{20)z">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="set_tone" id="Blb[^^^,/HZHn5oe:kEx">
+            <field name="PIN">PA2</field>
+            <value name="PWM">
+              <block type="variables_get" id="rS(cN~^H8jy2vJ]Ma_w;">
+                <field name="VAR">i</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_delay" id="C}JO6fX|rI,{So3PrTay">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="NpI1(WHgOp}A=XbUkyQ9">
+                    <field name="NUM">100</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="no_tone" id="wj50V|VWw9m.9jGikh[*">
+            <field name="PIN">PA2</field>
+            <next>
+              <block type="time_delay" id="DG-k5uFS!vw3+;9XAuMY">
+                <value name="DELAY_TIME_MILI">
+                  <block type="math_number" id="TV)YOJ%S1rGcdlReV[?Z">
+                    <field name="NUM">1000</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

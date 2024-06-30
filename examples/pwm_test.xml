@@ -15,7 +15,7 @@
         </value>
         <value name="TO">
           <block type="math_number" id="xv|-~,qt/ky;)XpYCH54">
-            <field name="NUM">900</field>
+            <field name="NUM">625</field>
           </block>
         </value>
         <value name="BY">
@@ -47,7 +47,7 @@
             <field name="VAR">i</field>
             <value name="FROM">
               <block type="math_number" id="]TpFpS~po7ik/,skir#h">
-                <field name="NUM">900</field>
+                <field name="NUM">625</field>
               </block>
             </value>
             <value name="TO">
