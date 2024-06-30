@@ -336,7 +336,6 @@ Blockly.Arduino.addFunction = function (preferedName, code) {
  * @param {!string} warningTag Description.
  */
 Blockly.Arduino.reservePin = function (block, pin, pinType, warningTag) {
-  console.log(Blockly.Arduino.pins_)
 var blockType = ['lcd_init','keypad_init','oled_init','matrix_init','stepper_config','servo_init','motor_init']
   if (Blockly.Arduino.pins_[pin] !== undefined) {
     if(blockType.includes(block.type)){
