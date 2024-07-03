@@ -130,7 +130,7 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="io_highlow"></block>' +
   '  </category>' +
   '  <sep></sep>' +
-  '  <category id="catTime" name="Time/Clock">' +
+  '  <category id="catTime" name="Time">' +
   '    <block type="time_delay">' +
   '      <value name="DELAY_TIME_MILI">' +
   '        <block type="math_number">' +
@@ -144,6 +144,58 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="infinite_loop"></block>' +
   '  </category>' +
   '  <sep></sep>' +
+  '  <category id="catTone" name="Tone">' +
+  '    <block type="set_tone">' +
+  '      <value name="PWM">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">0</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
+  '    <block type="no_tone"></block>' +
+  '  </category>' +
+  '  <sep></sep>' +
+  '  <category id="catMotors" name="Motors">' +
+  '    <block type="motor_init"></block>' +
+  '    <block type="motor_move">' +
+  '      <value name="SPEED">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">100</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
+  '    <block type="servo_init"></block>' +
+  '    <block type="servo_write"></block>' +
+  '    <block type="stepper_config"></block>' +
+  '    <block type="stepper_step">' +
+  '      <value name="STEPPER_ANGLE">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">45</field>' +
+  '        </block>' +
+  '      </value>' +
+  '      <value name="STEPPER_RPM">' +
+  '        <block type="math_number">' +
+  '          <field name="NUM">5</field>' +
+  '        </block>' +
+  '      </value>' +
+  '    </block>' +
+  '  </category>' +
+  '  <sep></sep>' +
+  '  <category id="catComms" name="Comms">' +
+  '    <block type="uart_init"></block>' +
+  '    <block type="uart_write"></block>' +
+  '    <block type="uart_recieve"></block>' +
+  '    <block type="spi_init"></block>' +
+  '    <block type="spi_RXTX"></block>' +
+  // '    <block type="spi_transfer_return"></block>' +
+  '  </category>'+
+  '  <category id="catSensors" name="Sensors">' +
+  '    <block type="sensors_LM35"></block>' +
+  '    <block type="sensors_PIR"></block>' +
+  '    <block type="sensors_ultrasonic"></block>' +
+  '    <block type="sensors_pot"></block>' +
+  '    <block type="sensors_ldr"></block>' +
+  '  </category>'+
   '  <category id="catInterfaces" name="Interfaces">' +
   '    <block type="lcd_init"></block>' +
   '    <block type="lcd_sendChar">' +
@@ -194,56 +246,4 @@ Ardublockly.TOOLBOX_XML =
   '    <block type="oled_drawBitmap"></block>' +
   '    <block type="matrix_init"></block>' +
   '    <block type="matrix_sendString"></block>' +
-  '  </category>' +
-  '  <sep></sep>' +
-  '  <category id="catSensors" name="Sensors">' +
-  '    <block type="sensors_LM35"></block>' +
-  '    <block type="sensors_PIR"></block>' +
-  '    <block type="sensors_ultrasonic"></block>' +
-  '    <block type="sensors_pot"></block>' +
-  '    <block type="sensors_ldr"></block>' +
-  '  </category>' +
-  '  <category id="catTone" name="Tone">' +
-  '    <block type="set_tone">' +
-  '      <value name="PWM">' +
-  '        <block type="math_number">' +
-  '          <field name="NUM">0</field>' +
-  '        </block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="no_tone"></block>' +
-  '  </category>' +
-  '  <category id="catMotors" name="Motors">' +
-  '    <block type="motor_init"></block>' +
-  '    <block type="motor_move">' +
-  '      <value name="SPEED">' +
-  '        <block type="math_number">' +
-  '          <field name="NUM">100</field>' +
-  '        </block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="stepper_config"></block>' +
-  '    <block type="stepper_step">' +
-  '      <value name="STEPPER_ANGLE">' +
-  '        <block type="math_number">' +
-  '          <field name="NUM">45</field>' +
-  '        </block>' +
-  '      </value>' +
-  '      <value name="STEPPER_RPM">' +
-  '        <block type="math_number">' +
-  '          <field name="NUM">5</field>' +
-  '        </block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="servo_init"></block>' +
-  '    <block type="servo_write"></block>' +
-  '  </category>' +
-  '  <sep></sep>' +
-  '  <category id="catComms" name="Comms">' +
-  '    <block type="uart_init"></block>' +
-  '    <block type="uart_write"></block>' +
-  '    <block type="uart_recieve"></block>' +
-  '    <block type="spi_init"></block>' +
-  '    <block type="spi_RXTX"></block>' +
-  // '    <block type="spi_transfer_return"></block>' +
-  '  </category>';
+  '  </category>' ;

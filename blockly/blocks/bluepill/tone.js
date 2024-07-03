@@ -18,7 +18,7 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.tone.HUE = 380;
+Blockly.Blocks.tone.HUE = 250;
 
 Blockly.Blocks['set_tone'] = {
   init: function () {

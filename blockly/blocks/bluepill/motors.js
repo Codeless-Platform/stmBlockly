@@ -7,9 +7,9 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 /** Common HSV hue for all blocks in this category. */
-Blockly.Blocks.motors.HUE = 120;
-Blockly.Blocks.stepper.HUE = 140;
-Blockly.Blocks.servo.HUE = 120;
+Blockly.Blocks.motors.HUE = 40;
+Blockly.Blocks.stepper.HUE = 80;
+Blockly.Blocks.servo.HUE = 60;
 function getCurrentValuePresentPWM(block, id) {
   if (!block.currentValuePresent) {
     var field = block.getField('PIN');
