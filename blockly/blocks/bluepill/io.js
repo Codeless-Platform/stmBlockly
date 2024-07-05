@@ -137,9 +137,7 @@ Blockly.Blocks['io_highlow'] = {
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([
         [Blockly.Msg.PIN_HIGH, 'PIN_HIGH'],
-        [Blockly.Msg.PORT_HIGH, 'PORT_HIGH'],
         [Blockly.Msg.PIN_LOW, 'PIN_LOW'],
-        [Blockly.Msg.PORT_LOW, 'PORT_LOW'],
       ]),
       'STATE'
     );

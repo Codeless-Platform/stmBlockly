@@ -113,12 +113,12 @@ Ardublockly.TOOLBOX_XML =
   '      </value>' +
   '    </block>' +
   '    <block type="io_togglePin"></block>' +
-  '    <block type="io_writePort">' +
-  '      <value name="STATE">' +
-  '        <block type="io_highlow"></block>' +
-  '      </value>' +
-  '    </block>' +
-  '    <block type="io_readPort"></block>' +
+  // '    <block type="io_writePort">' +
+  // '      <value name="STATE">' +
+  // '        <block type="io_highlow"></block>' +
+  // '      </value>' +
+  // '    </block>' +
+  // '    <block type="io_readPort"></block>' +
   '    <block type="io_readAnalogPin"></block>' +
   '    <block type="io_writePwm">' +
   '      <value name="PWM">' +
@@ -198,13 +198,13 @@ Ardublockly.TOOLBOX_XML =
   '  </category>'+
   '  <category id="catInterfaces" name="Interfaces">' +
   '    <block type="lcd_init"></block>' +
-  '    <block type="lcd_sendChar">' +
-  '      <value name="DATA">' +
-  '        <block type="text_char">' +
-  '          <field name="TEXT">A</field>' +
-  '        </block>' +
-  '      </value>' +
-  '    </block>' +
+  // '    <block type="lcd_sendChar">' +
+  // '      <value name="DATA">' +
+  // '        <block type="text_char">' +
+  // '          <field name="TEXT">A</field>' +
+  // '        </block>' +
+  // '      </value>' +
+  // '    </block>' +
   '    <block type="lcd_sendString">' +
   '      <value name="DATA">' +
   '        <block type="text">' +
