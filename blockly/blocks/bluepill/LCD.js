@@ -109,6 +109,7 @@ Blockly.Blocks['lcd_init'] = {
   },
   updateVisibility: function (type) {
     if (type == 'Standard') {
+      this.setTooltip('Initalize LCD screen connected to the selected pins');
       this.initStandartInputs();
       this.standardInput.setVisible(true);
       this.i2cInput.setVisible(false);
